@@ -1,5 +1,28 @@
 package personajes;
 
-public class Principal {
+import entidadesGraficas.PrincipalGrafico;
 
+public class Principal extends Personaje {
+	
+	protected static Principal original;
+	protected static final int Vivo = 1;
+	protected static final int Muerto = 2;
+	
+	protected PrincipalGrafico miRepresentacionGrafica;
+	protected int estadoActual;
+	
+	private Principal() {
+		
+	}
+	
+	@Override
+	public void recibirEfecto() {
+		// TODO Auto-generated method stub
+		
+	}
+	
+	public Principal getPrincipal() {
+		return original;
+	}
+	
 }
