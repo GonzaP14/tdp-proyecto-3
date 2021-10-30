@@ -1,14 +1,4 @@
 package entidadesLogicas;
-
-<<<<<<< HEAD
-public class Par {
-	
-	public double distanciaEntrePares(Par p) {
-		return 0;
-	}
-	
-	public
-=======
 import java.awt.Point;
 
 public class Par extends Point {
