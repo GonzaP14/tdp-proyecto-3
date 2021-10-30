@@ -27,6 +27,10 @@ public abstract class Entidad {
 		return null;
 	}
 	
+	public EntidadGrafica getMiRepresentacion() {
+		return miRepresentacion;
+	}
+	
 	// -------------------------------------------- ACCIONES ----------------------------------------
 	public abstract void afectar();
 	
