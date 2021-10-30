@@ -1,8 +1,10 @@
 package personajes;
 
-public class Frightened implements EstadoEnemigo {
+public class Chase implements EstadoEnemigo {
 	
-	public Frightened() {
+	protected ChaseIA miInteligencia;
+	
+	public Chase(ChaseIA miInteligencia) {
 		
 	}
 	

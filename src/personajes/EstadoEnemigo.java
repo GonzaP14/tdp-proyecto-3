@@ -1,5 +1,7 @@
 package personajes;
 
-public class EstadoEnemigo {
-
+public interface EstadoEnemigo {
+	
+	public void siguientePosicion();
+	
 }

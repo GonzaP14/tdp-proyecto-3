@@ -1,5 +1,9 @@
 package personajes;
 
-public class ChaseIA {
+import entidadesLogicas.Par;
 
+public abstract class ChaseIA {
+	
+	public abstract Par calcularSiguientePosicion();
+	
 }
