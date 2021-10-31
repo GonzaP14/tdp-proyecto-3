@@ -1,5 +1,9 @@
 package elementos;
 
-public class PocionCongelacionEnemigo {
-
+public class PocionCongelacionEnemigo extends Pocion {
+	
+	public PocionCongelacionEnemigo() {
+		
+	}
+	
 }

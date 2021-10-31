@@ -1,5 +1,9 @@
 package elementos;
 
-public class PocionVelocidadPrincipal {
-
+public class PocionVelocidadPrincipal extends Pocion {
+	
+	public PocionVelocidadPrincipal() {
+		
+	}
+	
 }
