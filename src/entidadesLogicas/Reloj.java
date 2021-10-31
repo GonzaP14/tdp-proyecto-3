@@ -1,12 +1,35 @@
 package entidadesLogicas;
 
 public class Reloj extends Thread{
-	
-	public Reloj() {
-		
+	int velocidadTickeo;
+	Juego miJuego;
+	public Reloj(int velocidadPrincipal, Juego miJuego) {
+		this.miJuego = miJuego;
+		velocidadTickeo = velocidadPrincipal;
 	}
 	
 	public void run() {
-		// TO-DO
+		while (!miJuego.isGameOver()) {
+	        if(!miJuego.estaPausado()) {
+	        	try {
+					miJuego.operar(miJuego.getMiPersonajePrincipal(), miJuego.getMiPersonajePrincipal().getSentidoActual());
+					Thread.sleep(1000); // 1s
+				} catch (InterruptedException e) {
+					e.printStackTrace();
+				}
+	        }
+	        else {
+	        	synchronized(miJuego.getObjetoPausa()) {
+                    while (miJuego.estaPausado()) {
+                    	try {
+                    		miJuego.getObjetoPausa().wait();
+                        }
+                    	catch(InterruptedException e) {
+                    		e.printStackTrace();
+                    	}
+                    }
+                }
+	        }
+		}
 	}
 }

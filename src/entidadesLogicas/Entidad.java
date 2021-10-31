@@ -27,6 +27,10 @@ public abstract class Entidad {
 		return miBloque;	
 	}
 	
+	public int getSentidoActual() {
+		return sentidoActual;
+	}
+
 	public Par getPosicion() {
 		return miBloque.getMiPosicion();
 	}

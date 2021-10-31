@@ -1,13 +1,11 @@
 package entidadesLogicas;
 
-import java.io.FileInputStream;
-import java.io.IOException;
-import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.Properties;
 
 import audio.Audio;
 import gui.Ventana;
+import personajes.Personaje;
 import productos.FabricaElementos;
 import productos.FabricaPersonajes;
 
@@ -26,7 +24,7 @@ public class Juego {
 	private Ventana miVentana;
 	private Grilla miGrilla;
 	private ArrayList<Entidad> misElementos, misEnemigos;
-	private Entidad miPersonajePrincipal;
+	private Personaje miPersonajePrincipal;
 	public static Properties configuration;
 	
 	// Atributos de clase
@@ -38,6 +36,27 @@ public class Juego {
 		
 	}
 	
+	// ----------------------------------------      GETTERS     ------------------------------------
+	public Personaje getMiPersonajePrincipal() {
+		return miPersonajePrincipal;
+	}
+
+	public Object getObjetoPausa() {
+		return objetoPausa;
+	}
+
+	public boolean estaPausado() {
+		return estaPausado;
+	}
+	
+	public Grilla getMiGrilla() {
+		return miGrilla;
+	}
+
+	public boolean isGameOver() {
+		return gameOver;
+	}
+
 	// ---------------------------------------- ESTADOS DEL JUEGO ------------------------------------
 	public void pausar_despausar() {
 		
@@ -63,19 +82,21 @@ public class Juego {
 	public void perderVida() {
 		
 	}
+	//
 	
 	// ---------------------------------------- MOVIMIENTO ------------------------------------
-	public void operar() {
-		
-	}
 	
-	private void moverVerticalmente() {
-		
-	}
-	
-	private void moverLateralmente() {
-		
-	}
+	/**
+     * Mueve un personaje, en un sentido
+     * @param personaje El personaje que se movera
+     * @param sentidoMovimiento El sentido en el que el personaje se movera
+     */
+    public synchronized void operar(Personaje personaje, int sentidoMovimiento) {
+    	if (!gameOver && !estaPausado) {
+	    	personaje.mover(sentidoMovimiento);
+    	}
+    }
+
 	
 	// ---------------------------------------- SPAWNING ------------------------------------
 	private void spawnearFantasmas() {
@@ -110,9 +131,5 @@ public class Juego {
 	// ---------------------------------------- CONFIGURATION ------------------------------------
 	private static void loadConfiguration() {
 		
-	}
-	
-	public Grilla getMiGrilla() {
-		return miGrilla;
 	}
 }

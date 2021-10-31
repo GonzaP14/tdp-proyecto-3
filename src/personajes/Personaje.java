@@ -4,16 +4,23 @@ import entidadesLogicas.Entidad;
 import entidadesLogicas.Par;
 
 public abstract class Personaje extends Entidad {
+	private int velocidadActual;
 	
+	public Personaje(int velocidadActual) {
+		this.velocidadActual = velocidadActual;
+	}
+	public int getVelocidadActual() {
+		return velocidadActual;
+	}
 	public abstract void recibirEfecto();
 	
 	public void mover(int movimiento) {
 		Par miPosicionActual = miBloque.getMiPosicion(); 
 		
 		if(movimiento == Entidad.sentidoAbajo || movimiento == Entidad.sentidoArriba ) 
-			moverLateralmente(movimiento , miPosicionActual );
-		else if(movimiento == Entidad.sentidoDerecha || movimiento == Entidad.sentidoIzquierda )
 			moverVerticalmente(movimiento , miPosicionActual );
+		else if(movimiento == Entidad.sentidoDerecha || movimiento == Entidad.sentidoIzquierda )
+			moverLateralmente(movimiento , miPosicionActual );
 	}
 	
 	private void moverLateralmente(int desplazamiento , Par miPosicionActual) {
