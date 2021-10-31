@@ -2,17 +2,25 @@ package entidadesLogicas;
 
 import java.io.Serializable;
 
-public class Player implements Comparable<Integer>, Serializable{
-	private int puntajeActual;
+public class Player implements Comparable<Player>, Serializable{
 	private String nombre;
+	private Integer score;
 	
-	public void aumentarPuntaje(int puntos) {
-		
+	public Player( String name, Integer puntos ) {
+		this.nombre = name;
+		this.score = puntos;
 	}
-
+	
+	public String getNombre () {
+		return nombre;
+	}
+	
+	public Integer getScore() {
+		return score;
+	}
+	
 	@Override
-	public int compareTo(Integer o) {
-		// TODO Auto-generated method stub
-		return 0;
+	public int compareTo(Player jugador) {
+		return score.compareTo(jugador.getScore());
 	}
 }

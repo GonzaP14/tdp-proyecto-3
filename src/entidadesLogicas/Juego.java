@@ -1,5 +1,8 @@
 package entidadesLogicas;
 
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.Properties;
 
@@ -14,7 +17,6 @@ public class Juego {
 	private boolean gameOver, estaPausado;
 	private int minuto, segundos, nivelActual, vidasActuales;
 	private Object objetoPausa;
-	public Properties configuration;
 	private FabricaPersonajes miFabricaPersonajes;
 	private FabricaElementos miFabricaElementos;
 	private Reloj miReloj;
@@ -25,6 +27,7 @@ public class Juego {
 	private Grilla miGrilla;
 	private ArrayList<Entidad> misElementos, misEnemigos;
 	private Entidad miPersonajePrincipal;
+	public static Properties configuration;
 	
 	// Atributos de clase
 	public static int DominioMarioBros;
@@ -106,6 +109,6 @@ public class Juego {
 	
 	// ---------------------------------------- CONFIGURATION ------------------------------------
 	private static void loadConfiguration() {
-	
+		
 	}
 }
