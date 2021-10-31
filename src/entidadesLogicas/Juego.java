@@ -111,4 +111,8 @@ public class Juego {
 	private static void loadConfiguration() {
 		
 	}
+	
+	public Grilla getMiGrilla() {
+		return miGrilla;
+	}
 }

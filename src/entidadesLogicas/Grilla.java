@@ -19,4 +19,8 @@ public class Grilla {
 	public void resetear() {
 	
 	}
+	
+	public Bloque getBloque(int x , int y) {
+		return grilla[x][y];
+	}
 }

@@ -8,7 +8,7 @@ public abstract class Entidad {
 	protected Bloque miBloque;
 	protected int sentidoActual;
 	protected EntidadGrafica miRepresentacion;
-	private Juego miJuego;
+	protected Juego miJuego;
 	
 	// Atributos de clase
 	public static final int sentidoFijo = 0;
@@ -28,7 +28,7 @@ public abstract class Entidad {
 	}
 	
 	public Par getPosicion() {
-		return null;
+		return miBloque.getMiPosicion();
 	}
 	
 	public EntidadGrafica getMiRepresentacion() {

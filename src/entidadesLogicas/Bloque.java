@@ -27,4 +27,30 @@ public class Bloque {
 		listaEntidades.remove(entidadABorrar);//Con lo que me dicen
 		miRepresentacion.actualizar(listaEntidades);
 	}
+
+	public Par getMiPosicion() {
+		return miPosicion;
+	}
+
+	public void setMiPosicion(Par miPosicion) {
+		this.miPosicion = miPosicion;
+	}
+
+	public boolean isPuedeVisitarse() {
+		return puedeVisitarse;
+	}
+
+	public void setPuedeVisitarse(boolean puedeVisitarse) {
+		this.puedeVisitarse = puedeVisitarse;
+	}
+
+	public BloqueGrafico getMiRepresentacion() {
+		return miRepresentacion;
+	}
+
+	public void setMiRepresentacion(BloqueGrafico miRepresentacion) {
+		this.miRepresentacion = miRepresentacion;
+	}
+	
+	
 }
