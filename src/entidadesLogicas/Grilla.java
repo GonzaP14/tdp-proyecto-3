@@ -4,7 +4,7 @@ public class Grilla {
 	private int fila, columna;
 	private Bloque grilla[][];
 	// Atributos de clase
-	public static Bloque spawnCasaFantasmas, spawnLibreFantasma, spawnPrincipal, ;
+	public static Bloque spawnCasaFantasmas, spawnLibreFantasma, spawnPrincipal;
 	
 	// ------------------------------------ Constructor ------------------------------------------
 	

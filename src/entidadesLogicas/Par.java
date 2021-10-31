@@ -26,5 +26,4 @@ public class Par extends Point {
 		
 		return parARetornar;
 	}
->>>>>>> d3705f23cb223d12c335daeaf705a0a9f52b56fe
 }
