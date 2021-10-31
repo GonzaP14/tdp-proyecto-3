@@ -16,8 +16,14 @@ public abstract class Enemigo extends Personaje {
 	public static final int Eaten = 3;
 	public static final int Scatter = 4;
 	
+	@Override
 	public void afectar() {
-		
+		// TODO Auto-generated method stub
+	}
+	
+	@Override
+	public void recibirEfecto() {
+		// TODO Auto-generated method stub	
 	}
 	
 	public void cambiarEstado (int estado) {
@@ -47,5 +53,7 @@ public abstract class Enemigo extends Personaje {
 	public double distanciaConPrincipal() {
 		return 0;
 	}
+	
+	
 	
 }

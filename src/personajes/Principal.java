@@ -24,5 +24,11 @@ public class Principal extends Personaje {
 	public Principal getPrincipal() {
 		return original;
 	}
+
+	@Override
+	public void afectar() {
+		// TODO Auto-generated method stub
+		
+	}
 	
 }
