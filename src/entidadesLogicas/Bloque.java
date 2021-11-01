@@ -14,13 +14,13 @@ public class Bloque {
 		this.puedeVisitarse = puedeVisitarse;
 		listaEntidades = new ArrayList<Entidad>();
 		listaEntidades.add(miEntidad);
-		miRepresentacion = new BloqueGrafico(puedeVisitarse , listaEntidades );
+		miRepresentacion = new BloqueGrafico( listaEntidades );
 	}
 	
 	public Bloque(int x , int y , boolean puedeVisitarse ) {
 		miPosicion = new Par(x , y);
 		this.puedeVisitarse = puedeVisitarse;
-		miRepresentacion = new BloqueGrafico(puedeVisitarse);
+		miRepresentacion = new BloqueGrafico();
 	}
 	
 	public void actualizarListaEntidades(Entidad entidadABorrar ) {	

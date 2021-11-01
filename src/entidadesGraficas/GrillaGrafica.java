@@ -4,6 +4,8 @@ import java.awt.Color;
 import java.awt.GridLayout;
 import java.util.LinkedList;
 import java.util.List;
+
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 
 public class GrillaGrafica  extends JPanel{
@@ -17,24 +19,25 @@ public class GrillaGrafica  extends JPanel{
     protected static final int cantidadDeColumas = 28;
     
     //atributos de instancia
-    protected final List<BloqueGrafico> lista = new LinkedList<BloqueGrafico>();
+    protected final List<JLabel> lista = new LinkedList<JLabel>();
     
     public GrillaGrafica() {
     	setBackground(Color.WHITE);
         setBounds(23, 11, 320, 720);
-        setLayout(new GridLayout(cantidadDeFilas, cantidadDeColumas, 0, 0));
+        setLayout(new GridLayout(cantidadDeColumas, cantidadDeFilas, 0, 0));
         for (int i = 0; i < cantidadDeFilas * cantidadDeColumas; i++) {
             BloqueGrafico bloque=new BloqueGrafico(); ;
-            lista.add(bloque);
-            this.add(bloque);
+            lista.add(bloque.getFondoBLoque());
+            this.add(bloque.getFondoBLoque());
         }
     }
-    public BloqueGrafico getBloqueGrafico(int f,int c) {
+    public JLabel getBloqueGrafico(int f,int c) {
     	 return lista.get(c * 10 + f);
     }
     
     public void ConstructorNivel(int i) {
-    	if(i==1) {
+    	/*if(i==1) {
+    		
     		getBloqueGrafico(0,0).setBloqueEsquinaArribaIzquierda();  	
     		
     		for(int columnas=1;columnas<12;columnas++) {
@@ -172,9 +175,20 @@ public class GrillaGrafica  extends JPanel{
     		getBloqueGrafico(9,3).setBloqueParedHorizontal();
     		getBloqueGrafico(9,4).setBloqueParedHorizontal();
     		getBloqueGrafico(9,5).setBloqueEsquinaArribaDerecha();
+    		getBloqueGrafico(9,7).setBloqueParedVertical();
+    		getBloqueGrafico(9,8).setBloqueEsquinaAbajoIzquierda();
+    		getBloqueGrafico(9,9).setBloqueParedHorizontal();
+    		getBloqueGrafico(9,10).setBloqueParedHorizontal();
+    		getBloqueGrafico(9,11).setBloqueEsquinaArribaDerecha();
+    		getBloqueGrafico(9,13).setBloqueParedVertical();
+    		getBloqueGrafico(9,14).setBloqueParedVertical();
+    		getBloqueGrafico(9,16).setBloqueEsquinaArribaIzquierda();
+    		getBloqueGrafico(9,17).setBloqueParedHorizontal();
+    		getBloqueGrafico(9,18).setBloqueParedHorizontal();
+    		getBloqueGrafico(9,19).setBloqueEsquinaAbajoDerecha();
     		
     		getBloqueGrafico(9,27).setBloqueEsquinaAbajoDerecha();
     		
-    	}
+    	}*/
     }
 }
