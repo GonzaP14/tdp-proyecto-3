@@ -1,15 +1,15 @@
 package gui;
 
 import java.awt.EventQueue;
-
 import javax.swing.JFrame;
-
-import entidadesGraficas.GrillaGrafica;
+import entidadesLogicas.Grilla;
+import javax.swing.JPanel;
 
 public class Ventana {
 
 	private JFrame frame;
-	private GrillaGrafica miGrilla;
+	private Grilla grillaLogica;
+	private JPanel miMapa;
 
 	/**
 	 * Launch the application.
@@ -31,10 +31,15 @@ public class Ventana {
 	 * Create the application.
 	 */
 	public Ventana() {
-		miGrilla= new GrillaGrafica();
-		miGrilla.setSize(300, 500);
-		miGrilla.setLocation(172, 27);
+		
+		grillaLogica = new Grilla();
+		
+		miMapa = grillaLogica.getRepresentacionGrafica();
+		miMapa.setSize(1280, 720);
+		miMapa.setLocation(100, 100);
+		
 		initialize();
+	
 	}
 
 	/**
@@ -42,9 +47,10 @@ public class Ventana {
 	 */
 	private void initialize() {
 		frame = new JFrame();
-		frame.setBounds(100, 100, 1500, 800);
-		frame.getContentPane().add(miGrilla);	
+		
+		frame.setBounds(100, 100, 1280, 720);
+		frame.getContentPane().add(miMapa);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		
 	}
-
 }

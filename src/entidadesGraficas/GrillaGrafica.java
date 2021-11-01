@@ -4,35 +4,39 @@ import java.awt.Color;
 import java.awt.GridLayout;
 import java.util.LinkedList;
 import java.util.List;
-
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import entidadesLogicas.Grilla;
 
-public class GrillaGrafica  extends JPanel{
+public class GrillaGrafica extends JPanel{
 		
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
-	//atributos de clase
-    protected static final int cantidadDeFilas = 31;
-    protected static final int cantidadDeColumas = 28;
-    
+	
     //atributos de instancia
-    protected final List<JLabel> lista = new LinkedList<JLabel>();
+    protected final List<JLabel> misLabels = new LinkedList<JLabel>();
     
-    public GrillaGrafica() {
-    	setBackground(Color.WHITE);
-        setBounds(23, 11, 320, 720);
-        setLayout(new GridLayout(cantidadDeColumas, cantidadDeFilas, 0, 0));
-        for (int i = 0; i < cantidadDeFilas * cantidadDeColumas; i++) {
-            BloqueGrafico bloque=new BloqueGrafico(); ;
-            lista.add(bloque.getFondoBLoque());
-            this.add(bloque.getFondoBLoque());
+    protected Grilla miGrillaLogica;
+    
+    public GrillaGrafica(Grilla miGrillaLogica) {
+    	this.miGrillaLogica = miGrillaLogica;
+    	
+    	setBackground(Color.BLACK);
+        setBounds(100, 100, 1280, 720);
+        setLayout(new GridLayout(Grilla.Filas, Grilla.Columnas, 0, 0));
+        
+		
+        for (int i = 0; i < Grilla.Filas; i++) {
+        	for (int j = 0; j < Grilla.Columnas; j ++) {
+        	
+        		JLabel auxiliar = miGrillaLogica.getBloque(i, j).getMiRepresentacion();
+        		
+        		misLabels.add(auxiliar);
+        		this.add(auxiliar);
+        	}
         }
     }
     public JLabel getBloqueGrafico(int f,int c) {
-    	 return lista.get(c * 10 + f);
+    	 return misLabels.get(c * 10 + f);
     }
     
     public void ConstructorNivel(int i) {

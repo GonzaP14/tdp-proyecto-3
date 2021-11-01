@@ -1,20 +1,15 @@
 package entidadesGraficas;
 
-import java.awt.Color;
 import java.awt.Image;
 import java.awt.Toolkit;
 import java.util.ArrayList;
-
 import javax.swing.*;
-import javax.swing.border.LineBorder;
-
 import entidadesLogicas.Entidad;
 
 public class BloqueGrafico extends JLabel{
-	/**
-	 * 
-	 */
+	
 	private static final long serialVersionUID = 1L;
+	
 	protected final ImageIcon bloqueNegro = new ImageIcon(Toolkit.getDefaultToolkit().getImage(this.getClass().getResource("/recursosImagenes/bloqueNegro.png")));
 	//protected final ImageIcon paredVertical = new ImageIcon(Toolkit.getDefaultToolkit().getImage(this.getClass().getResource()));
     //	protected final ImageIcon paredHorizontal = new ImageIcon(Toolkit.getDefaultToolkit().getImage(this.getClass().getResource()));
@@ -24,26 +19,30 @@ public class BloqueGrafico extends JLabel{
 	//protected final ImageIcon esquinaAbajoIzquierda = new ImageIcon(Toolkit.getDefaultToolkit().getImage(this.getClass().getResource()));
 
 	
-	private EntidadGrafica miEntidadGrafica;
-	private JLabel fondoBloque;
+	// private EntidadGrafica miEntidadGrafica;
+	// private JLabel fondoBloque;
 	private boolean puedeVisitarse;
 	
 	public BloqueGrafico( ArrayList<Entidad> listaEntidades) {
 		
+		/*
 		JLabel negro = new JLabel();
 		negro.setBounds(0, 0, 30, 30);				
 		negro.setBorder(new LineBorder(Color.gray));
 		ImageIcon imagenNegra = bloqueNegro;
 		ImageIcon img = new ImageIcon(imagenNegra.getImage().getScaledInstance(negro.getWidth(), negro.getHeight(), Image.SCALE_SMOOTH));
 		negro.setIcon(img);	
+		*/
 		
+		//miEntidadGrafica = null;
+		//fondoBloque = negro;
 		
-		fondoBloque = negro;
 		puedeVisitarse=true;
-		actualizar(listaEntidades);	
+		//actualizar(listaEntidades);	
 	}
 	
-	public BloqueGrafico( ) {
+	public BloqueGrafico() {
+		/*
 		JLabel negro = new JLabel();
 		negro.setBounds(0, 0, 30, 30);				
 		negro.setBorder(new LineBorder(Color.gray));
@@ -55,9 +54,16 @@ public class BloqueGrafico extends JLabel{
 		fondoBloque = negro;
 		puedeVisitarse=true;
 		miEntidadGrafica = null;
+		*/
+	
+		puedeVisitarse = true;
+		this.setBounds (0,0,25,25);
+		ImageIcon negroEscalado = new ImageIcon(bloqueNegro.getImage().getScaledInstance(this.getWidth(), this.getHeight(), Image.SCALE_SMOOTH));
+		this.setIcon(negroEscalado);
 	}
 	
 	
+	/*
 	public void actualizar(ArrayList<Entidad> listaEntidades ) {
 		for(Entidad entidad : listaEntidades ) {
 			if(entidad.getMiRepresentacion().getMiPrioridad() > miEntidadGrafica.getMiPrioridad() ) {
@@ -66,9 +72,14 @@ public class BloqueGrafico extends JLabel{
 			}
 		}
 	}
+	*/
+	
+	/*
 	public JLabel getFondoBLoque() {
 		return fondoBloque;
 	}
+	*/
+	
 	/*public void setBloqueParedVertical() {
 		fondoBloque.setIcon(paredVertical);
 		puedeVisitarse=false;

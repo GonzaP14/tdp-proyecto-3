@@ -21,12 +21,15 @@ public class Bloque {
 		miPosicion = new Par(x , y);
 		this.puedeVisitarse = puedeVisitarse;
 		miRepresentacion = new BloqueGrafico();
+		listaEntidades = new ArrayList<Entidad>();
 	}
 	
+	/*
 	public void actualizarListaEntidades(Entidad entidadABorrar ) {	
 		listaEntidades.remove(entidadABorrar);//Con lo que me dicen
 		miRepresentacion.actualizar(listaEntidades);
 	}
+	*/
 
 	public Par getMiPosicion() {
 		return miPosicion;

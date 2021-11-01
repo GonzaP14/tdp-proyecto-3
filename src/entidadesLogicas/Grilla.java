@@ -1,19 +1,29 @@
 package entidadesLogicas;
+
+import entidadesGraficas.GrillaGrafica;
+
 public class Grilla {
-	// Atributos de instancia
-	private int fila, columna;
+	
 	private Bloque grilla[][];
-	// Atributos de clase
+	
 	public static Bloque spawnCasaFantasmas, spawnLibreFantasma, spawnPrincipal;
+	public static final int Filas = 31;
+    public static final int Columnas = 28;
+    
+	public GrillaGrafica miRepresentacionGrafica;
 	
 	// ------------------------------------ Constructor ------------------------------------------
 	
 	public Grilla() {
-		for(int filas=0;filas<31;filas++) {
-			for(int columnas=0;columnas<28;columnas++) {
-				grilla[filas][columnas]=new Bloque(filas,columnas,true);
+		grilla = new Bloque [Filas][Columnas];
+		
+		for (int filas = 0; filas < Filas; filas ++) {
+			for (int columnas = 0;columnas < Columnas; columnas ++) {
+				grilla[filas][columnas] = new Bloque(filas,columnas,true);
 			}
 		}
+		
+		miRepresentacionGrafica = new GrillaGrafica(this);
 	}
 	
 	// ------------------------------------   Metodos   ------------------------------------------
@@ -28,4 +38,9 @@ public class Grilla {
 	public Bloque getBloque(int x , int y) {
 		return grilla[x][y];
 	}
+	
+	public GrillaGrafica getRepresentacionGrafica() {
+		return miRepresentacionGrafica;  
+	}
+	
 }
