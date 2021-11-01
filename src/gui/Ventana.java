@@ -2,14 +2,16 @@ package gui;
 
 import java.awt.EventQueue;
 import javax.swing.JFrame;
+import javax.swing.JLayeredPane;
 import entidadesLogicas.Grilla;
-import javax.swing.JPanel;
+import entidadesGraficas.Laberinto;
 
 public class Ventana {
 
 	private JFrame frame;
 	private Grilla grillaLogica;
-	private JPanel miMapa;
+	private Laberinto miLaberinto;
+	private JLayeredPane capasGraficas;
 
 	/**
 	 * Launch the application.
@@ -32,11 +34,16 @@ public class Ventana {
 	 */
 	public Ventana() {
 		
+		//capasGraficas = new JLayeredPane();
+		//capasGraficas.setBounds(0,0,1280,720);
+		
 		grillaLogica = new Grilla();
 		
-		miMapa = grillaLogica.getRepresentacionGrafica();
-		miMapa.setSize(1280, 720);
-		miMapa.setLocation(100, 100);
+		miLaberinto = new Laberinto(grillaLogica);
+		miLaberinto.setLocation(10, 26);
+		miLaberinto.setSize(1370, 794);
+		
+		// capasGraficas.add(miLaberinto, Integer.valueOf(0));
 		
 		initialize();
 	
@@ -48,9 +55,11 @@ public class Ventana {
 	private void initialize() {
 		frame = new JFrame();
 		
-		frame.setBounds(100, 100, 1280, 720);
-		frame.getContentPane().add(miMapa);
+		frame.setBounds(0, 0, 1280, 720);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame.getContentPane().setLayout(null);
+		
+		frame.getContentPane().add(miLaberinto);
 		
 	}
 }

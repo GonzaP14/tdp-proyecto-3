@@ -8,7 +8,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import entidadesLogicas.Grilla;
 
-public class GrillaGrafica extends JPanel{
+public class Laberinto extends JPanel{
 		
 	private static final long serialVersionUID = 1L;
 	
@@ -17,7 +17,7 @@ public class GrillaGrafica extends JPanel{
     
     protected Grilla miGrillaLogica;
     
-    public GrillaGrafica(Grilla miGrillaLogica) {
+    public Laberinto(Grilla miGrillaLogica) {
     	this.miGrillaLogica = miGrillaLogica;
     	
     	setBackground(Color.BLACK);
