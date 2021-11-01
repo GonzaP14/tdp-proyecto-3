@@ -9,6 +9,11 @@ public class Grilla {
 	// ------------------------------------ Constructor ------------------------------------------
 	
 	public Grilla() {
+		for(int filas=0;filas<31;filas++) {
+			for(int columnas=0;columnas<28;columnas++) {
+				grilla[filas][columnas]=new Bloque(filas,columnas,true);
+			}
+		}
 	}
 	
 	// ------------------------------------   Metodos   ------------------------------------------
