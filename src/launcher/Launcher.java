@@ -10,9 +10,6 @@ public class Launcher {
 	
 	public static void main(String[] args) {
 		
-		miJuego = new Juego(dominioJuego);
-		miVentana = new Ventana(miJuego);
-		miVentana.setVisible(true);
 	}
 	
 	public void setDominioJuego(int dominio) {
@@ -20,7 +17,8 @@ public class Launcher {
 	}
 	
 	public void iniciarJuego() {
-		
+		miJuego = new Juego(dominioJuego); // tambien lleva nivel al juego
+		miVentana = new Ventana(miJuego);
+		miVentana.setVisible(true);
 	}
-
 }
