@@ -1,12 +1,13 @@
 package personajes;
 
+import entidadesGraficas.EnemigoGrafico;
 import entidadesLogicas.Posicion;
 
 public class Pinky extends Enemigo {
-	
-	public Pinky() {
+	private EnemigoGrafico miRepresentacionGrafica;
+	public Pinky(EnemigoGrafico miRepresentacionGrafica) {
+		this.miRepresentacionGrafica = miRepresentacionGrafica;
 		miSpawn = new Posicion(400,400);
-		miPosicion = new Posicion(400,400);
+		miPosicion = new Posicion(miSpawn.getX(), miSpawn.getY());
 	}
-	
 }

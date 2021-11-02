@@ -1,12 +1,14 @@
 package personajes;
 
+import entidadesGraficas.EnemigoGrafico;
 import entidadesLogicas.Posicion;
 
 public class Blinky extends Enemigo {
-	
-	public Blinky() {
+	private EnemigoGrafico miRepresentacionGrafica;
+	public Blinky(EnemigoGrafico miRepresentacionGrafica) {
+		this.miRepresentacionGrafica = miRepresentacionGrafica;
 		miSpawn = new Posicion(300,300);
-		miPosicion = new Posicion(300,300);
+		miPosicion = new Posicion(miSpawn.getX(), miSpawn.getY());
 	}
 	
 }
