@@ -10,6 +10,8 @@ public class Posicion {
 	public Posicion(int x , int y ) {
 		this.x = x;
 		this.y = y;
+		this.ancho = 25;
+		this.alto = 25;
 	}
 	
 	/**
@@ -66,7 +68,19 @@ public class Posicion {
 		return PosicionARetornar;
 	}
 	
-	public Posicion posicionEsquinaIzquierda() {
+	public Posicion posicionEsquinaArribaIzquierda() {
 		return new Posicion(x,y);
+	}
+	
+	public Posicion posicionEsquinaArribaDerecha() {
+		return new Posicion(x + ancho , y);
+	}
+	
+	public Posicion posicionEsquinaAbajoDerecha() {
+		return new Posicion(x + ancho , y + alto);
+	}
+	
+	public Posicion posicionEsquinaAbajoIzquierda() {
+		return new Posicion(x , y + alto);
 	}
 }
