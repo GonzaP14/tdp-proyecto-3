@@ -11,8 +11,9 @@ public class Principal extends Personaje {
 	protected PrincipalGrafico miRepresentacionGrafica;
 	protected int estadoActual;
 	
-	private Principal() {
-		
+	public Principal() {
+		estadoActual = Vivo;
+		miRepresentacionGrafica = new PrincipalGrafico();
 	}
 	
 	@Override

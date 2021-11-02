@@ -1,11 +1,11 @@
 package entidadesGraficas;
 
-public class EntidadGrafica {
-	private int miPrioridad;
+import javax.swing.ImageIcon;
+
+public abstract class EntidadGrafica {
 	
-	public EntidadGrafica(int miPrioridad) {
-		this.miPrioridad = miPrioridad;
-	}
+	protected int miPrioridad;
+	protected ImageIcon representacionActual;
 	
 	public int getMiPrioridad() {
 		return miPrioridad;
@@ -14,6 +14,9 @@ public class EntidadGrafica {
 	public void setMiPrioridad(int miPrioridad) {
 		this.miPrioridad = miPrioridad;
 	}
-
+	
+	public ImageIcon getMiRepresentacionActual() {
+		return representacionActual;
+	}
 	
 }
