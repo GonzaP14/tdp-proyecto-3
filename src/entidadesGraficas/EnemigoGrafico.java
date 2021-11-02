@@ -2,7 +2,8 @@ package entidadesGraficas;
 
 import java.awt.Image;
 import javax.swing.ImageIcon;
-import entidadesLogicas.Posicion;
+import entidadesLogicas.Entidad;
+import personajes.Enemigo;
 
 public class EnemigoGrafico extends EntidadGrafica{
 	private static final long serialVersionUID = 1L;
@@ -13,8 +14,9 @@ public class EnemigoGrafico extends EntidadGrafica{
 	protected ImageIcon sentidoAbajo;
 	protected ImageIcon muerto;
 	protected ImageIcon escapando;
+	private Enemigo miEnemigo;
 	
-	public EnemigoGrafico(ImageIcon[] imagenes, Posicion miSpawn) {
+	public EnemigoGrafico(ImageIcon[] imagenes) {
 		sentidoArriba = new ImageIcon(imagenes[0].getImage().getScaledInstance(this.getWidth(), this.getHeight(), Image.SCALE_SMOOTH));
 		sentidoAbajo = new ImageIcon(imagenes[1].getImage().getScaledInstance(this.getWidth(), this.getHeight(), Image.SCALE_SMOOTH));
 		sentidoIzquierda = new ImageIcon(imagenes[2].getImage().getScaledInstance(this.getWidth(), this.getHeight(), Image.SCALE_SMOOTH));
@@ -24,12 +26,29 @@ public class EnemigoGrafico extends EntidadGrafica{
 		
 		miPrioridad = 2;
 		
-		aPosicionecerEnGrilla(miSpawn);
+		aparecer();
 	}
 	
-	private void aPosicionecerEnGrilla(Posicion miSpawn) {
-		setBounds(miSpawn.getX(), miSpawn.getY(), 25, 25);
-		representacionActual = new ImageIcon(sentidoDerecha.getImage().getScaledInstance(this.getWidth(), this.getHeight(), Image.SCALE_SMOOTH));
+	private void aparecer() {
+		setBounds(miEnemigo.getPosicion().getX(), miEnemigo.getPosicion().getY(), 25, 25);
+		representacionActual = sentidoDerecha;
 		setIcon(representacionActual);
+	}
+	
+	public void actualizar (int i) {
+		if (i == Entidad.sentidoDerecha) {
+			representacionActual = sentidoDerecha;
+		}
+		else if (i == Entidad.sentidoIzquierda) {
+			representacionActual = sentidoIzquierda;
+		}
+		else if (i == Entidad.sentidoAbajo) {
+			representacionActual = sentidoAbajo;
+		}
+		else if (i == Entidad.sentidoArriba) {
+			representacionActual = sentidoArriba;
+		}
+		setIcon(representacionActual);
+		setLocation(miEnemigo.getPosicion().getX(), miEnemigo.getPosicion().getY());
 	}
 }
