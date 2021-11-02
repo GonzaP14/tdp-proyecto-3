@@ -3,6 +3,7 @@ package entidadesLogicas;
 import java.util.ArrayList;
 import java.util.Properties;
 import audio.Audio;
+import entidadesGraficas.PrincipalGrafico;
 import gui.Ventana;
 import personajes.Personaje;
 import personajes.Principal;
@@ -32,7 +33,7 @@ public class Juego {
 	
 	// ---------------------------------------- CONSTRUCTOR ------------------------------------
 	public Juego(Integer dominio) {
-		miPersonajePrincipal = new Principal();
+		miPersonajePrincipal = miFabricaEntidades.getPrincipal();
 	}
 	
 	// ----------------------------------------      GETTERS     ------------------------------------
