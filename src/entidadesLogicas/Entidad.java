@@ -10,6 +10,7 @@ public abstract class Entidad {
 	protected EntidadGrafica miRepresentacion;
 	protected Juego miJuego;
 	protected Posicion miPosicion;
+	protected Posicion miSpawn;
 	
 	// Atributos de clase
 	public static final int sentidoFijo = 0;
@@ -45,5 +46,9 @@ public abstract class Entidad {
 	
 	public void desaPosicionecer() {
 		
+	}
+	
+	public void setSpawn(int x, int y) {
+		miSpawn = new Posicion (x, y);
 	}
 }

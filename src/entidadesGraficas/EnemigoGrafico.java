@@ -3,7 +3,6 @@ package entidadesGraficas;
 import java.awt.Image;
 import javax.swing.ImageIcon;
 import entidadesLogicas.Entidad;
-import personajes.Enemigo;
 
 public class EnemigoGrafico extends EntidadGrafica{
 	private static final long serialVersionUID = 1L;
@@ -14,7 +13,6 @@ public class EnemigoGrafico extends EntidadGrafica{
 	protected ImageIcon sentidoAbajo;
 	protected ImageIcon muerto;
 	protected ImageIcon escapando;
-	private Enemigo miEnemigo;
 	
 	public EnemigoGrafico(ImageIcon[] imagenes) {
 		sentidoArriba = new ImageIcon(imagenes[0].getImage().getScaledInstance(this.getWidth(), this.getHeight(), Image.SCALE_SMOOTH));
@@ -30,7 +28,7 @@ public class EnemigoGrafico extends EntidadGrafica{
 	}
 	
 	private void aparecer() {
-		setBounds(miEnemigo.getPosicion().getX(), miEnemigo.getPosicion().getY(), 25, 25);
+		setBounds(miPosicionLogica.getX(), miPosicionLogica.getY(), 25, 25);
 		representacionActual = sentidoDerecha;
 		setIcon(representacionActual);
 	}
@@ -49,6 +47,6 @@ public class EnemigoGrafico extends EntidadGrafica{
 			representacionActual = sentidoArriba;
 		}
 		setIcon(representacionActual);
-		setLocation(miEnemigo.getPosicion().getX(), miEnemigo.getPosicion().getY());
+		setLocation(miPosicionLogica.getX(), miPosicionLogica.getY());
 	}
 }

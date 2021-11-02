@@ -1,13 +1,9 @@
 package productos;
 
-import java.awt.Toolkit;
-
 import javax.swing.ImageIcon;
-
 import entidadesGraficas.ElementoGrafico;
 import entidadesGraficas.EnemigoGrafico;
 import entidadesGraficas.PrincipalGrafico;
-import entidadesLogicas.Grilla;
 import personajes.*;
 import elementos.*;
 
@@ -102,7 +98,7 @@ public class MarioBros extends FabricaEntidades {
 		ImageIcon imagen = new ImageIcon(this.getClass().getResource("/recursosMarioBros/HongoVerde.png"));
 		ElementoGrafico miRepresentacionGrafica = new ElementoGrafico(imagen);
 		
-		return new PocionVelocidad();
+		return new PocionVelocidad(miRepresentacionGrafica);
 	}
 	
 	@Override

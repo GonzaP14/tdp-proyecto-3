@@ -1,11 +1,9 @@
 package entidadesGraficas;
 
 import java.awt.Image;
-
 import javax.swing.ImageIcon;
-
 import entidadesLogicas.Entidad;
-import personajes.Principal;
+import entidadesLogicas.Posicion;
 
 public class PrincipalGrafico extends EntidadGrafica {
 	private static final long serialVersionUID = 1L;
@@ -15,7 +13,6 @@ public class PrincipalGrafico extends EntidadGrafica {
 	protected ImageIcon sentidoArriba;
 	protected ImageIcon sentidoAbajo;
 	protected ImageIcon muerto;
-	private Principal miPrincipal;
 	
 	public PrincipalGrafico(ImageIcon[] imagenes) {
 		sentidoArriba = new ImageIcon(imagenes[0].getImage().getScaledInstance(this.getWidth(), this.getHeight(), Image.SCALE_SMOOTH));
@@ -30,7 +27,7 @@ public class PrincipalGrafico extends EntidadGrafica {
 	}
 	
 	private void aparecer() {
-		setBounds(miPrincipal.getPosicion().getX(), miPrincipal.getPosicion().getY(), 25, 25);
+		setBounds(miPosicionLogica.getX(), miPosicionLogica.getY(), 25, 25);
 		representacionActual = sentidoDerecha;
 		setIcon(representacionActual);
 	}
@@ -49,6 +46,6 @@ public class PrincipalGrafico extends EntidadGrafica {
 			representacionActual = sentidoArriba;
 		}
 		setIcon(representacionActual);
-		setLocation(miPrincipal.getPosicion().getX(), miPrincipal.getPosicion().getY());
+		setLocation(miPosicionLogica.getX(), miPosicionLogica.getY());
 	}
 }

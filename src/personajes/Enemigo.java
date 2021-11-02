@@ -54,6 +54,4 @@ public abstract class Enemigo extends Personaje {
 		return 0;
 	}
 	
-	
-	
 }

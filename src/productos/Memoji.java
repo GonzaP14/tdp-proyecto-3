@@ -1,6 +1,7 @@
 package productos;
 
 import elementos.Elemento;
+import elementos.Pocion;
 import personajes.Enemigo;
 import personajes.Principal;
 
@@ -21,7 +22,7 @@ public class Memoji extends FabricaEntidades {
 		// TODO Auto-generated method stub
 		return null;
 	}
-	
+
 	@Override
 	public Enemigo getPinky() {
 		// TODO Auto-generated method stub
@@ -47,19 +48,25 @@ public class Memoji extends FabricaEntidades {
 	}
 
 	@Override
-	public Elemento getPocion() {
+	public Elemento getPacDot() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Pocion getPocionCongelacion() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Pocion getPocionVelocidad() {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
 	public Elemento getPowerPellet() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public Elemento getPacDot() {
 		// TODO Auto-generated method stub
 		return null;
 	}
