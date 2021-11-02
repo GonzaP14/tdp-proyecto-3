@@ -3,8 +3,6 @@ package entidadesLogicas;
 public class Grilla {
 	
 	protected Bloque grilla[][];
-	
-	public static Bloque spawnCasaFantasmas, spawnLibreFantasma, spawnPrincipal;
 	public static final int Filas = 31;
     public static final int Columnas = 28;
 	

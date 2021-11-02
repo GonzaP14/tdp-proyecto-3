@@ -1,12 +1,11 @@
 package entidadesGraficas;
 
 import java.awt.Image;
-import java.awt.Point;
-import java.awt.Toolkit;
 
 import javax.swing.ImageIcon;
 
 import entidadesLogicas.Entidad;
+import personajes.Principal;
 
 public class PrincipalGrafico extends EntidadGrafica {
 	private static final long serialVersionUID = 1L;
@@ -15,19 +14,25 @@ public class PrincipalGrafico extends EntidadGrafica {
 	protected ImageIcon sentidoDerecha;
 	protected ImageIcon sentidoArriba;
 	protected ImageIcon sentidoAbajo;
+	protected ImageIcon muerto;
+	private Principal miPrincipal;
 	
-	public PrincipalGrafico() {
-		/*sentidoIzquierda = new ImageIcon(Toolkit.getDefaultToolkit().getImage(this.getClass().getResource("/recursosImagenes/MarioIzquierda.gif")));
-		sentidoDerecha = new ImageIcon(Toolkit.getDefaultToolkit().getImage(this.getClass().getResource("/recursosImagenes/MarioDerecha.gif")));
-		sentidoArriba = new ImageIcon(Toolkit.getDefaultToolkit().getImage(this.getClass().getResource("/recursosImagenes/MarioArriba.gif")));
-		sentidoAbajo = new ImageIcon(Toolkit.getDefaultToolkit().getImage(this.getClass().getResource("/recursosImagenes/MarioAbajo.gif")));
+	public PrincipalGrafico(ImageIcon[] imagenes) {
+		sentidoArriba = new ImageIcon(imagenes[0].getImage().getScaledInstance(this.getWidth(), this.getHeight(), Image.SCALE_SMOOTH));
+		sentidoAbajo = new ImageIcon(imagenes[1].getImage().getScaledInstance(this.getWidth(), this.getHeight(), Image.SCALE_SMOOTH));
+		sentidoIzquierda = new ImageIcon(imagenes[2].getImage().getScaledInstance(this.getWidth(), this.getHeight(), Image.SCALE_SMOOTH));
+		sentidoDerecha = new ImageIcon(imagenes[3].getImage().getScaledInstance(this.getWidth(), this.getHeight(), Image.SCALE_SMOOTH));
+		muerto = new ImageIcon(imagenes[4].getImage().getScaledInstance(this.getWidth(), this.getHeight(), Image.SCALE_SMOOTH));
 		
 		miPrioridad = 2;
-		representacionActual = sentidoDerecha;
-		this.setBounds (100,100,25,25);
-		ImageIcon auxiliar = new ImageIcon(representacionActual.getImage().getScaledInstance(this.getWidth(), this.getHeight(), Image.SCALE_SMOOTH));
-		this.setIcon(auxiliar);*/
 		
+		aparecer();
+	}
+	
+	private void aparecer() {
+		setBounds(miPrincipal.getPosicion().getX(), miPrincipal.getPosicion().getY(), 25, 25);
+		representacionActual = sentidoDerecha;
+		setIcon(representacionActual);
 	}
 	
 	public void actualizar (int i) {
@@ -43,9 +48,7 @@ public class PrincipalGrafico extends EntidadGrafica {
 		else if (i == Entidad.sentidoArriba) {
 			representacionActual = sentidoArriba;
 		}
-		
-		ImageIcon auxiliar = new ImageIcon(representacionActual.getImage().getScaledInstance(this.getWidth(), this.getHeight(), Image.SCALE_SMOOTH));
-		this.setIcon(auxiliar);
+		setIcon(representacionActual);
+		setLocation(miPrincipal.getPosicion().getX(), miPrincipal.getPosicion().getY());
 	}
-	
 }

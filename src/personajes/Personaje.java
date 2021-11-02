@@ -5,11 +5,20 @@ import entidadesLogicas.Posicion;
 
 public abstract class Personaje extends Entidad {
 	private int velocidadActual;
+	protected Posicion miSpawn;
 	
 	public int getVelocidadActual() {
 		return velocidadActual;
 	}
 	
+	public Posicion getMiSpawn() {
+		return miSpawn;
+	}
+
+	public void setMiSpawn(Posicion miSpawn) {
+		this.miSpawn = miSpawn;
+	}
+
 	public abstract void recibirEfecto();
 	
 	public void mover(int movimiento) {

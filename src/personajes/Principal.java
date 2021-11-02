@@ -12,10 +12,12 @@ public class Principal extends Personaje {
 	protected PrincipalGrafico miRepresentacionGrafica;
 	protected int estadoActual;
 	
-	public Principal() {
+	private Principal(PrincipalGrafico miRepresentacionGrafica) { // singleton principle
 		estadoActual = Vivo;
-		miRepresentacionGrafica = new PrincipalGrafico();
-		miPosicion = new Posicion(150,150);
+		this.miRepresentacionGrafica = miRepresentacionGrafica;
+		
+		miSpawn = new Posicion(100,100);
+		miPosicion = new Posicion(miSpawn.getX(), miSpawn.getY());
 	}
 	
 	@Override
@@ -24,7 +26,10 @@ public class Principal extends Personaje {
 		
 	}
 	
-	public Principal getPrincipal() {
+	public static Principal getPrincipal(PrincipalGrafico miRepresentacionGrafica) {
+		if (original == null) {
+			original = new Principal(miRepresentacionGrafica);
+		}
 		return original;
 	}
 

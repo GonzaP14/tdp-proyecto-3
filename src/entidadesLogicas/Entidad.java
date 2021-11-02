@@ -33,7 +33,7 @@ public abstract class Entidad {
 	}
 
 	public Posicion getPosicion() {
-		return miBloque.getMiPosicion();
+		return miPosicion;
 	}
 	
 	public EntidadGrafica getMiRepresentacion() {

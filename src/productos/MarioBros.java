@@ -26,7 +26,7 @@ public class MarioBros extends FabricaEntidades {
 		imagenes[3] = new ImageIcon(this.getClass().getResource("/recursosImagenes/MarioDerecha.gif")); 
 		imagenes[4] = new ImageIcon(this.getClass().getResource("/recursosImagenes/MarioMuerto.gif")); 
 		
-		PrincipalGrafico entidadGrafica = new PrincipalGrafico(imagenes, Grilla.spawnPrincipal.getMiPosicion());
+		PrincipalGrafico entidadGrafica = new PrincipalGrafico(imagenes);
 		return Principal.getPrincipal(entidadGrafica);
 	}
 	
@@ -40,7 +40,7 @@ public class MarioBros extends FabricaEntidades {
 		imagenes[4] = new ImageIcon(this.getClass().getResource("/recursosImagenes/Goompa.gif")); 
 		imagenes[5] = new ImageIcon(this.getClass().getResource("/recursosImagenes/GoompaEscapando.gif")); 
 		
-		EnemigoGrafico entidadGrafica = new EnemigoGrafico(imagenes, Grilla.spawnBlinky.getMiPosicion());
+		EnemigoGrafico entidadGrafica = new EnemigoGrafico(imagenes);
 		return new Blinky(entidadGrafica);
 	}
 	
@@ -54,7 +54,7 @@ public class MarioBros extends FabricaEntidades {
 		imagenes[4] = new ImageIcon(this.getClass().getResource("/recursosImagenes/BooMuerto.gif")); 
 		imagenes[5] = new ImageIcon(this.getClass().getResource("/recursosImagenes/BooEscapando.gif")); 
 		
-		EnemigoGrafico entidadGrafica = new EnemigoGrafico(imagenes, Grilla.spawnPinky.getMiPosicion());
+		EnemigoGrafico entidadGrafica = new EnemigoGrafico(imagenes);
 		return new Pinky(entidadGrafica);
 	}	
 
@@ -68,7 +68,7 @@ public class MarioBros extends FabricaEntidades {
 		imagenes[4] = new ImageIcon(this.getClass().getResource("/recursosImagenes/BowserMuerto.gif")); 
 		imagenes[5] = new ImageIcon(this.getClass().getResource("/recursosImagenes/BowserEscapando.gif")); 
 		
-		EnemigoGrafico entidadGrafica = new EnemigoGrafico(imagenes, Grilla.spawnInky.getMiPosicion());
+		EnemigoGrafico entidadGrafica = new EnemigoGrafico(imagenes);
 		return new Inky(entidadGrafica);
 	}
 
@@ -82,7 +82,7 @@ public class MarioBros extends FabricaEntidades {
 		imagenes[4] = new ImageIcon(this.getClass().getResource("/recursosImagenes/KoopaTroopaMuerto.gif")); 
 		imagenes[5] = new ImageIcon(this.getClass().getResource("/recursosImagenes/KoopaTroopaEscapando.gif")); 
 		
-		EnemigoGrafico entidadGrafica = new EnemigoGrafico(imagenes, Grilla.spawnClyde.getMiPosicion());
+		EnemigoGrafico entidadGrafica = new EnemigoGrafico(imagenes);
 		return new Clyde(entidadGrafica);
 	}
 
