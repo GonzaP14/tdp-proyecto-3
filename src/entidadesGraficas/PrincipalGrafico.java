@@ -1,5 +1,6 @@
 package entidadesGraficas;
 
+import java.awt.Image;
 import java.awt.Toolkit;
 
 import javax.swing.ImageIcon;
@@ -7,6 +8,8 @@ import javax.swing.ImageIcon;
 import entidadesLogicas.Entidad;
 
 public class PrincipalGrafico extends EntidadGrafica {
+	private static final long serialVersionUID = 1L;
+	
 	protected ImageIcon sentidoIzquierda;
 	protected ImageIcon sentidoDerecha;
 	protected ImageIcon sentidoArriba;
@@ -20,6 +23,10 @@ public class PrincipalGrafico extends EntidadGrafica {
 		
 		miPrioridad = 2;
 		representacionActual = sentidoDerecha;
+		
+		this.setBounds (0,0,25,25);
+		ImageIcon auxiliar = new ImageIcon(representacionActual.getImage().getScaledInstance(this.getWidth(), this.getHeight(), Image.SCALE_SMOOTH));
+		this.setIcon(auxiliar);
 		
 	}
 	
@@ -37,6 +44,8 @@ public class PrincipalGrafico extends EntidadGrafica {
 			representacionActual = sentidoArriba;
 		}
 		
+		ImageIcon auxiliar = new ImageIcon(representacionActual.getImage().getScaledInstance(this.getWidth(), this.getHeight(), Image.SCALE_SMOOTH));
+		this.setIcon(auxiliar);
 	}
 	
 }

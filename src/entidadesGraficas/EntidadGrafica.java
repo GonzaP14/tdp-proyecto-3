@@ -1,8 +1,11 @@
 package entidadesGraficas;
 
 import javax.swing.ImageIcon;
+import javax.swing.JLabel;
 
-public abstract class EntidadGrafica {
+public abstract class EntidadGrafica extends JLabel {
+	
+	private static final long serialVersionUID = 1L;
 	
 	protected int miPrioridad;
 	protected ImageIcon representacionActual;
@@ -13,10 +16,6 @@ public abstract class EntidadGrafica {
 
 	public void setMiPrioridad(int miPrioridad) {
 		this.miPrioridad = miPrioridad;
-	}
-	
-	public ImageIcon getMiRepresentacionActual() {
-		return representacionActual;
 	}
 	
 }
