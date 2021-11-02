@@ -6,12 +6,10 @@ import entidadesLogicas.Par;
 public abstract class Personaje extends Entidad {
 	private int velocidadActual;
 	
-	public Personaje(int velocidadActual) {
-		this.velocidadActual = velocidadActual;
-	}
 	public int getVelocidadActual() {
 		return velocidadActual;
 	}
+	
 	public abstract void recibirEfecto();
 	
 	public void mover(int movimiento) {
