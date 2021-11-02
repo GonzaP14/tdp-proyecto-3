@@ -6,6 +6,7 @@ import java.util.Properties;
 import audio.Audio;
 import gui.Ventana;
 import personajes.Personaje;
+import personajes.Principal;
 import productos.FabricaElementos;
 import productos.FabricaPersonajes;
 
@@ -33,7 +34,7 @@ public class Juego {
 	
 	// ---------------------------------------- CONSTRUCTOR ------------------------------------
 	public Juego(Integer dominio) {
-		
+		miPersonajePrincipal = new Principal();
 	}
 	
 	// ----------------------------------------      GETTERS     ------------------------------------

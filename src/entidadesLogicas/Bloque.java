@@ -4,13 +4,13 @@ import java.util.ArrayList;
 import entidadesGraficas.BloqueGrafico;
 
 public class Bloque {
-	private Par miPosicion;
+	private Posicion miPosicion;
 	private boolean puedeVisitarse;
 	private BloqueGrafico miRepresentacion;
 	private ArrayList<Entidad> listaEntidades;
 	
 	public Bloque(int x , int y , boolean puedeVisitarse, Entidad miEntidad ) {
-		miPosicion = new Par(x , y);
+		miPosicion = new Posicion(x , y);
 		this.puedeVisitarse = puedeVisitarse;
 		listaEntidades = new ArrayList<Entidad>();
 		listaEntidades.add(miEntidad);
@@ -18,7 +18,7 @@ public class Bloque {
 	}
 	
 	public Bloque(int x , int y , boolean puedeVisitarse ) {
-		miPosicion = new Par(x , y);
+		miPosicion = new Posicion(x , y);
 		this.puedeVisitarse = puedeVisitarse;
 		miRepresentacion = new BloqueGrafico();
 		listaEntidades = new ArrayList<Entidad>();
@@ -31,11 +31,11 @@ public class Bloque {
 	}
 	*/
 
-	public Par getMiPosicion() {
+	public Posicion getMiPosicion() {
 		return miPosicion;
 	}
 
-	public void setMiPosicion(Par miPosicion) {
+	public void setMiPosicion(Posicion miPosicion) {
 		this.miPosicion = miPosicion;
 	}
 

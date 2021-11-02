@@ -1,7 +1,7 @@
 package personajes;
 
 import entidadesLogicas.Entidad;
-import entidadesLogicas.Par;
+import entidadesLogicas.Posicion;
 
 public abstract class Personaje extends Entidad {
 	private int velocidadActual;
@@ -13,7 +13,7 @@ public abstract class Personaje extends Entidad {
 	public abstract void recibirEfecto();
 	
 	public void mover(int movimiento) {
-		Par miPosicionActual = miBloque.getMiPosicion(); 
+		Posicion miPosicionActual = miBloque.getMiPosicion(); 
 		
 		if(movimiento == Entidad.sentidoAbajo || movimiento == Entidad.sentidoArriba ) 
 			moverVerticalmente(movimiento , miPosicionActual );
@@ -21,37 +21,41 @@ public abstract class Personaje extends Entidad {
 			moverLateralmente(movimiento , miPosicionActual );
 	}
 	
-	private void moverLateralmente(int desplazamiento , Par miPosicionActual) {
-		Par proximaPosicion;
+	private void moverLateralmente(int desplazamiento , Posicion miPosicionActual) {
+		Posicion proximaPosicion;
 		
 		if(desplazamiento == Entidad.sentidoDerecha ) {
-			proximaPosicion = new Par(miPosicionActual.getX() + 1, miPosicionActual.getY() );
+			proximaPosicion = new Posicion(miPosicionActual.getX() + 5, miPosicionActual.getY() );
 			
 			if(miJuego.getMiGrilla().buscarColisiones(proximaPosicion) )
-				miBloque = miJuego.getMiGrilla().getBloque(proximaPosicion.getX() , proximaPosicion.getY() );
+				cambiarMiBloque(proximaPosicion);
 		}
 		else if(desplazamiento == Entidad.sentidoIzquierda ) {
-			proximaPosicion = new Par(miPosicionActual.getX() - 1, miPosicionActual.getY() );
+			proximaPosicion = new Posicion(miPosicionActual.getX() - 5, miPosicionActual.getY() );
 			
 			if(miJuego.getMiGrilla().buscarColisiones(proximaPosicion) )
-				miBloque = miJuego.getMiGrilla().getBloque(proximaPosicion.getX() , proximaPosicion.getY() );
+				cambiarMiBloque(proximaPosicion);
 		}
 	}
 	
-	private void moverVerticalmente(int desplazamiento , Par miPosicionActual) {
-		Par proximaPosicion;
+	private void moverVerticalmente(int desplazamiento , Posicion miPosicionActual) {
+		Posicion proximaPosicion;
 		if(desplazamiento == Entidad.sentidoArriba ) {
-			proximaPosicion = new Par(miPosicionActual.getX() , miPosicionActual.getY() + 1 );
+			proximaPosicion = new Posicion(miPosicionActual.getX() , miPosicionActual.getY() + 5 );
 			
 			if(miJuego.getMiGrilla().buscarColisiones(proximaPosicion) )
-				miBloque = miJuego.getMiGrilla().getBloque(proximaPosicion.getX() , proximaPosicion.getY() );
+				cambiarMiBloque(proximaPosicion);
 		}
 		else if(desplazamiento == Entidad.sentidoAbajo ) {
-			proximaPosicion = new Par(miPosicionActual.getX() , miPosicionActual.getY() - 1 );
+			proximaPosicion = new Posicion(miPosicionActual.getX() , miPosicionActual.getY() - 5 );
 			
 			if(miJuego.getMiGrilla().buscarColisiones(proximaPosicion) )
-				miBloque = miJuego.getMiGrilla().getBloque(proximaPosicion.getX() , proximaPosicion.getY() );
+				cambiarMiBloque(proximaPosicion);
 		}
+	}
+	
+	private void cambiarMiBloque(Posicion miPosicionAMover) {
+		miBloque = miJuego.getMiGrilla().getBloque(miPosicionAMover.getX() / 10 , miPosicionAMover.getY() / 10);
 	}
 	
 	public void morir() {

@@ -1,6 +1,7 @@
 package entidadesGraficas;
 
 import java.awt.Image;
+import java.awt.Point;
 import java.awt.Toolkit;
 
 import javax.swing.ImageIcon;
@@ -16,17 +17,16 @@ public class PrincipalGrafico extends EntidadGrafica {
 	protected ImageIcon sentidoAbajo;
 	
 	public PrincipalGrafico() {
-		sentidoIzquierda = new ImageIcon(Toolkit.getDefaultToolkit().getImage(this.getClass().getResource("/recursosImagenes/MarioIzquierda.gif")));
+		/*sentidoIzquierda = new ImageIcon(Toolkit.getDefaultToolkit().getImage(this.getClass().getResource("/recursosImagenes/MarioIzquierda.gif")));
 		sentidoDerecha = new ImageIcon(Toolkit.getDefaultToolkit().getImage(this.getClass().getResource("/recursosImagenes/MarioDerecha.gif")));
 		sentidoArriba = new ImageIcon(Toolkit.getDefaultToolkit().getImage(this.getClass().getResource("/recursosImagenes/MarioArriba.gif")));
 		sentidoAbajo = new ImageIcon(Toolkit.getDefaultToolkit().getImage(this.getClass().getResource("/recursosImagenes/MarioAbajo.gif")));
 		
 		miPrioridad = 2;
 		representacionActual = sentidoDerecha;
-		
-		this.setBounds (0,0,25,25);
+		this.setBounds (100,100,25,25);
 		ImageIcon auxiliar = new ImageIcon(representacionActual.getImage().getScaledInstance(this.getWidth(), this.getHeight(), Image.SCALE_SMOOTH));
-		this.setIcon(auxiliar);
+		this.setIcon(auxiliar);*/
 		
 	}
 	

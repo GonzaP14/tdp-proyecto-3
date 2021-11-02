@@ -9,6 +9,7 @@ public abstract class Entidad {
 	protected int sentidoActual;
 	protected EntidadGrafica miRepresentacion;
 	protected Juego miJuego;
+	protected Posicion miPosicion;
 	
 	// Atributos de clase
 	public static final int sentidoFijo = 0;
@@ -31,7 +32,7 @@ public abstract class Entidad {
 		return sentidoActual;
 	}
 
-	public Par getPosicion() {
+	public Posicion getPosicion() {
 		return miBloque.getMiPosicion();
 	}
 	
@@ -42,7 +43,7 @@ public abstract class Entidad {
 	// -------------------------------------------- ACCIONES ----------------------------------------
 	public abstract void afectar();
 	
-	public void desaparecer() {
+	public void desaPosicionecer() {
 		
 	}
 }

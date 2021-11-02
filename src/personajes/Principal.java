@@ -1,6 +1,7 @@
 package personajes;
 
 import entidadesGraficas.PrincipalGrafico;
+import entidadesLogicas.Posicion;
 
 public class Principal extends Personaje {
 	
@@ -14,6 +15,7 @@ public class Principal extends Personaje {
 	public Principal() {
 		estadoActual = Vivo;
 		miRepresentacionGrafica = new PrincipalGrafico();
+		miPosicion = new Posicion(150,150);
 	}
 	
 	@Override

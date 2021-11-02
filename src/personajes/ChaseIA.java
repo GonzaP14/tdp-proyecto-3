@@ -1,9 +1,9 @@
 package personajes;
 
-import entidadesLogicas.Par;
+import entidadesLogicas.Posicion;
 
 public abstract class ChaseIA {
 	
-	public abstract Par calcularSiguientePosicion();
+	public abstract Posicion calcularSiguientePosicion();
 	
 }
