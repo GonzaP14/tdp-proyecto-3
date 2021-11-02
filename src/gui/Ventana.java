@@ -40,8 +40,8 @@ public class Ventana {
 		grillaLogica = new Grilla();
 		
 		miLaberinto = new Laberinto(grillaLogica);
-		miLaberinto.setLocation(10, 26);
-		miLaberinto.setSize(1370, 794);
+		miLaberinto.setLocation(10, 0);
+		miLaberinto.setSize(726, 794);
 		
 		// capasGraficas.add(miLaberinto, Integer.valueOf(0));
 		
@@ -54,11 +54,9 @@ public class Ventana {
 	 */
 	private void initialize() {
 		frame = new JFrame();
-		
-		frame.setBounds(0, 0, 1280, 720);
+		frame.setBounds(0, 0, 1280, 846);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.getContentPane().setLayout(null);
-		
 		frame.getContentPane().add(miLaberinto);
 		
 	}
