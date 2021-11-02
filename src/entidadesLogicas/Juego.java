@@ -2,13 +2,12 @@ package entidadesLogicas;
 
 import java.util.ArrayList;
 import java.util.Properties;
-
 import audio.Audio;
 import gui.Ventana;
 import personajes.Personaje;
 import personajes.Principal;
-import productos.FabricaElementos;
-import productos.FabricaPersonajes;
+import productos.FabricaEntidades;
+
 
 public class Juego {
 	
@@ -16,8 +15,7 @@ public class Juego {
 	private boolean gameOver, estaPausado;
 	private int minuto, segundos, nivelActual, vidasActuales;
 	private Object objetoPausa;
-	private FabricaPersonajes miFabricaPersonajes;
-	private FabricaElementos miFabricaElementos;
+	private FabricaEntidades miFabricaEntidades;
 	private Reloj miReloj;
 	private Player miPlayer;
 	private Leaderboard miLeaderboard;
