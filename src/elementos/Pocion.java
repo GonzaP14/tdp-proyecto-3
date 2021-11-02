@@ -1,10 +1,6 @@
 package elementos;
 
-public class Pocion extends Elemento {
-	
-	public Pocion() {
-		
-	}
+public abstract class Pocion extends Elemento {
 	
 	@Override
 	public void iniciarTimer(HiloElemento timer) {
@@ -13,9 +9,6 @@ public class Pocion extends Elemento {
 	}
 
 	@Override
-	public void afectar() {
-		// TODO Auto-generated method stub
-		
-	}
+	public abstract void afectar();
 		
 }

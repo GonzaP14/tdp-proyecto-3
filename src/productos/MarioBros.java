@@ -4,7 +4,7 @@ import java.awt.Toolkit;
 
 import javax.swing.ImageIcon;
 
-import elementos.Elemento;
+import entidadesGraficas.ElementoGrafico;
 import entidadesGraficas.EnemigoGrafico;
 import entidadesGraficas.PrincipalGrafico;
 import entidadesLogicas.Grilla;
@@ -20,90 +20,113 @@ public class MarioBros extends FabricaEntidades {
 	@Override
 	public Principal getPrincipal() {
 		ImageIcon[] imagenes = new ImageIcon[4];
-		imagenes[0] = new ImageIcon(this.getClass().getResource("/recursosImagenes/MarioArriba.gif"));
-		imagenes[1] = new ImageIcon(this.getClass().getResource("/recursosImagenes/MarioAbajo.gif"));
-		imagenes[2] = new ImageIcon(this.getClass().getResource("/recursosImagenes/MarioIzquierda.gif"));
-		imagenes[3] = new ImageIcon(this.getClass().getResource("/recursosImagenes/MarioDerecha.gif")); 
-		imagenes[4] = new ImageIcon(this.getClass().getResource("/recursosImagenes/MarioMuerto.gif")); 
+		imagenes[0] = new ImageIcon(this.getClass().getResource("/recursosMarioBros/MarioArriba.gif"));
+		imagenes[1] = new ImageIcon(this.getClass().getResource("/recursosMarioBros/MarioAbajo.gif"));
+		imagenes[2] = new ImageIcon(this.getClass().getResource("/recursosMarioBros/MarioDerecha.gif"));
+		imagenes[3] = new ImageIcon(this.getClass().getResource("/recursosMarioBros/MarioIzquierda.gif")); 
+		// imagenes[4] = new ImageIcon(this.getClass().getResource("/recursosMarioBros/MarioMuerto.gif")); 
 		
-		PrincipalGrafico entidadGrafica = new PrincipalGrafico(imagenes);
-		return Principal.getPrincipal(entidadGrafica);
+		PrincipalGrafico miRepresentacionGrafica = new PrincipalGrafico(imagenes);
+		
+		return Principal.getPrincipal(miRepresentacionGrafica);
 	}
 	
 	@Override
 	public Enemigo getBlinky() {
 		ImageIcon[] imagenes = new ImageIcon[4];
-		imagenes[0] = new ImageIcon(this.getClass().getResource("/recursosImagenes/Goompa.gif"));
-		imagenes[1] = new ImageIcon(this.getClass().getResource("/recursosImagenes/Goompa.gif"));
-		imagenes[2] = new ImageIcon(this.getClass().getResource("/recursosImagenes/Goompa.gif"));
-		imagenes[3] = new ImageIcon(this.getClass().getResource("/recursosImagenes/Goompa.gif")); 
-		imagenes[4] = new ImageIcon(this.getClass().getResource("/recursosImagenes/Goompa.gif")); 
-		imagenes[5] = new ImageIcon(this.getClass().getResource("/recursosImagenes/GoompaEscapando.gif")); 
+		imagenes[0] = new ImageIcon(this.getClass().getResource("/recursosMarioBros/GoompaArriba.gif"));
+		imagenes[1] = new ImageIcon(this.getClass().getResource("/recursosMarioBros/GoompaAbajo.gif"));
+		imagenes[2] = new ImageIcon(this.getClass().getResource("/recursosMarioBros/GoompaDerecha.gif"));
+		imagenes[3] = new ImageIcon(this.getClass().getResource("/recursosMarioBros/GoompaIzquierda.gif")); 
+		// imagenes[4] = new ImageIcon(this.getClass().getResource("/recursosMarioBros/GoompaMuerto.gif")); 
+		// imagenes[5] = new ImageIcon(this.getClass().getResource("/recursosMarioBros/GoompaEscapando.gif")); 
 		
-		EnemigoGrafico entidadGrafica = new EnemigoGrafico(imagenes);
-		return new Blinky(entidadGrafica);
+		EnemigoGrafico miRepresentacionGrafica = new EnemigoGrafico(imagenes);
+		
+		return new Blinky(miRepresentacionGrafica);
 	}
 	
 	@Override
 	public Enemigo getPinky() {
 		ImageIcon[] imagenes = new ImageIcon[4];
-		imagenes[0] = new ImageIcon(this.getClass().getResource("/recursosImagenes/BooArriba.gif"));
-		imagenes[1] = new ImageIcon(this.getClass().getResource("/recursosImagenes/BooAbajo.gif"));
-		imagenes[2] = new ImageIcon(this.getClass().getResource("/recursosImagenes/BooDerecha.gif"));
-		imagenes[3] = new ImageIcon(this.getClass().getResource("/recursosImagenes/BooIzquierda.gif")); 
-		imagenes[4] = new ImageIcon(this.getClass().getResource("/recursosImagenes/BooMuerto.gif")); 
-		imagenes[5] = new ImageIcon(this.getClass().getResource("/recursosImagenes/BooEscapando.gif")); 
+		imagenes[0] = new ImageIcon(this.getClass().getResource("/recursosMarioBros/BooArriba.gif"));
+		imagenes[1] = new ImageIcon(this.getClass().getResource("/recursosMarioBros/BooAbajo.gif"));
+		imagenes[2] = new ImageIcon(this.getClass().getResource("/recursosMarioBros/BooDerecha.gif"));
+		imagenes[3] = new ImageIcon(this.getClass().getResource("/recursosMarioBros/BooIzquierda.gif")); 
+		// imagenes[4] = new ImageIcon(this.getClass().getResource("/recursosMarioBros/BooMuerto.gif")); 
+		// imagenes[5] = new ImageIcon(this.getClass().getResource("/recursosMarioBros/BooEscapando.gif")); 
 		
-		EnemigoGrafico entidadGrafica = new EnemigoGrafico(imagenes);
-		return new Pinky(entidadGrafica);
+		EnemigoGrafico miRepresentacionGrafica = new EnemigoGrafico(imagenes);
+		
+		return new Pinky(miRepresentacionGrafica);
 	}	
 
 	@Override
 	public Enemigo getInky() {
 		ImageIcon[] imagenes = new ImageIcon[4];
-		imagenes[0] = new ImageIcon(this.getClass().getResource("/recursosImagenes/BowserArriba.gif"));
-		imagenes[1] = new ImageIcon(this.getClass().getResource("/recursosImagenes/BowserAbajo.gif"));
-		imagenes[2] = new ImageIcon(this.getClass().getResource("/recursosImagenes/BowserDerecha.gif"));
-		imagenes[3] = new ImageIcon(this.getClass().getResource("/recursosImagenes/BowserIzquierda.gif")); 
-		imagenes[4] = new ImageIcon(this.getClass().getResource("/recursosImagenes/BowserMuerto.gif")); 
-		imagenes[5] = new ImageIcon(this.getClass().getResource("/recursosImagenes/BowserEscapando.gif")); 
+		imagenes[0] = new ImageIcon(this.getClass().getResource("/recursosMarioBros/BowserArriba.gif"));
+		imagenes[1] = new ImageIcon(this.getClass().getResource("/recursosMarioBros/BowserAbajo.gif"));
+		imagenes[2] = new ImageIcon(this.getClass().getResource("/recursosMarioBros/BowserDerecha.gif"));
+		imagenes[3] = new ImageIcon(this.getClass().getResource("/recursosMarioBros/BowserIzquierda.gif")); 
+		// imagenes[4] = new ImageIcon(this.getClass().getResource("/recursosMarioBros/BowserMuerto.gif")); 
+		// imagenes[5] = new ImageIcon(this.getClass().getResource("/recursosMarioBros/BowserEscapando.gif")); 
 		
-		EnemigoGrafico entidadGrafica = new EnemigoGrafico(imagenes);
-		return new Inky(entidadGrafica);
+		EnemigoGrafico miRepresentacionGrafica = new EnemigoGrafico(imagenes);
+		
+		return new Inky(miRepresentacionGrafica);
 	}
 
 	@Override
 	public Enemigo getClyde() {
 		ImageIcon[] imagenes = new ImageIcon[4];
-		imagenes[0] = new ImageIcon(this.getClass().getResource("/recursosImagenes/KoopaTroopaArriba.gif"));
-		imagenes[1] = new ImageIcon(this.getClass().getResource("/recursosImagenes/KoopaTroopaAbajo.gif"));
-		imagenes[2] = new ImageIcon(this.getClass().getResource("/recursosImagenes/KoopaTroopaDerecha.gif"));
-		imagenes[3] = new ImageIcon(this.getClass().getResource("/recursosImagenes/KoopaTroopaIzquierda.gif")); 
-		imagenes[4] = new ImageIcon(this.getClass().getResource("/recursosImagenes/KoopaTroopaMuerto.gif")); 
-		imagenes[5] = new ImageIcon(this.getClass().getResource("/recursosImagenes/KoopaTroopaEscapando.gif")); 
+		imagenes[0] = new ImageIcon(this.getClass().getResource("/recursosMarioBros/KoopaTroopaArriba.gif"));
+		imagenes[1] = new ImageIcon(this.getClass().getResource("/recursosMarioBros/KoopaTroopaAbajo.gif"));
+		imagenes[2] = new ImageIcon(this.getClass().getResource("/recursosMarioBros/KoopaTroopaDerecha.gif"));
+		imagenes[3] = new ImageIcon(this.getClass().getResource("/recursosMarioBros/KoopaTroopaIzquierda.gif")); 
+		// imagenes[4] = new ImageIcon(this.getClass().getResource("/recursosMarioBros/KoopaTroopaMuerto.gif")); 
+		// imagenes[5] = new ImageIcon(this.getClass().getResource("/recursosMarioBros/KoopaTroopaEscapando.gif")); 
 		
-		EnemigoGrafico entidadGrafica = new EnemigoGrafico(imagenes);
-		return new Clyde(entidadGrafica);
+		EnemigoGrafico miRepresentacionGrafica = new EnemigoGrafico(imagenes);
+		return new Clyde(miRepresentacionGrafica);
 	}
 
 	@Override
 	public Elemento getFruta() {
-		return new Fruta();
+		ImageIcon imagen = new ImageIcon(this.getClass().getResource("/recursosMarioBros/Flor.png"));
+		ElementoGrafico miRepresentacionGrafica = new ElementoGrafico(imagen);
+		
+		return new Fruta(miRepresentacionGrafica);
 	}
-
+	
+	public Pocion getPocionVelocidad() {
+		ImageIcon imagen = new ImageIcon(this.getClass().getResource("/recursosMarioBros/HongoVerde.png"));
+		ElementoGrafico miRepresentacionGrafica = new ElementoGrafico(imagen);
+		
+		return new PocionVelocidad();
+	}
+	
 	@Override
-	public Elemento getPocion() {
-		return new Pocion();
+	public Pocion getPocionCongelacion() {
+		ImageIcon imagen = new ImageIcon(this.getClass().getResource("/recursosMarioBros/HongoRojo.png"));
+		ElementoGrafico miRepresentacionGrafica = new ElementoGrafico(imagen);
+		
+		return new PocionCongelacion(miRepresentacionGrafica);
 	}
 
 	@Override
 	public Elemento getPowerPellet() {
-		return new PowerPellet();
+		ImageIcon imagen = new ImageIcon(this.getClass().getResource("/recursosMarioBros/Estrella.png"));
+		ElementoGrafico miRepresentacionGrafica = new ElementoGrafico(imagen);
+		
+		return new PowerPellet(miRepresentacionGrafica);
 	}
 
 	@Override
 	public Elemento getPacDot() {
-		return new PacDot();
+		ImageIcon imagen = new ImageIcon(this.getClass().getResource("/recursosMarioBros/Moneda.png"));
+		ElementoGrafico miRepresentacionGrafica = new ElementoGrafico(imagen);
+		
+		return new PacDot(miRepresentacionGrafica);
 	}
 
 }
