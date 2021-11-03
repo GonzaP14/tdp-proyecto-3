@@ -4,6 +4,7 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import javax.swing.JFrame;
 import javax.swing.JLayeredPane;
+
 import entidadesGraficas.EntidadGrafica;
 import entidadesGraficas.Laberinto;
 import entidadesLogicas.Entidad;

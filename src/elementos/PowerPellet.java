@@ -9,8 +9,8 @@ public class PowerPellet extends Elemento {
 	public PowerPellet(Juego miJuego, String imagen) {
 		this.miJuego = miJuego;
 		miPosicion = new Posicion(0,0);
-		miRepresentacionGrafica = new ElementoGrafico(imagen);
-		miRepresentacionGrafica.aparecer(miPosicion);
+		miRepresentacion = new ElementoGrafico(imagen);
+		miRepresentacion.aparecer(miPosicion);
 	}
 
 	@Override

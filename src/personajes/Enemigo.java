@@ -6,7 +6,6 @@ public abstract class Enemigo extends Personaje {
 	
 	protected EstadoEnemigo estadoActual; 
 	protected EstadoEnemigo [] estados;
-	protected EnemigoGrafico miRepresentacionGrafica;
 	protected int indiceEstado;
 	protected int tiempoEstado;
 	protected int velocidad;

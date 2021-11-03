@@ -10,17 +10,16 @@ public class Principal extends Personaje {
 	protected static final int Vivo = 1;
 	protected static final int Muerto = 2;
 	
-	protected PrincipalGrafico miRepresentacionGrafica;
 	protected int estadoActual;
 	
 	private Principal(Juego miJuego, String[] imagenes) { // singleton principle
 		System.out.println(imagenes[0]);
-		miRepresentacionGrafica = new PrincipalGrafico(imagenes);
+		miRepresentacion = new PrincipalGrafico(imagenes);
 		estadoActual = Vivo;
 		this.miJuego = miJuego;
 		miSpawn = new Posicion(100,100);
 		miPosicion = new Posicion(miSpawn.getX(), miSpawn.getY());
-		this.miRepresentacionGrafica.aparecer(miPosicion);
+		this.miRepresentacion.aparecer(miPosicion);
 	}
 	
 	@Override
@@ -42,9 +41,4 @@ public class Principal extends Personaje {
 		// TODO Auto-generated method stub
 		
 	}
-	
-	public PrincipalGrafico getMiRepresentacion() {
-		return miRepresentacionGrafica;
-	}
-	
 }
