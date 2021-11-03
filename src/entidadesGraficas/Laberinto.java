@@ -21,7 +21,7 @@ public class Laberinto extends JPanel{
     	this.miGrillaLogica = miGrillaLogica;
     	
     	setBackground(Color.WHITE);
-        setBounds(100, 100, 1280, 720);
+        setBounds(0, 0, 1250, 850);
         setLayout(new GridLayout(Grilla.Filas, Grilla.Columnas, 0, 0));
         
 		
@@ -638,6 +638,17 @@ public class Laberinto extends JPanel{
    			miGrillaLogica.getBloque(30,columnas).setPuedeVisitarse(false);
    		}	
    	}
+    	
+    	
+    	
+    	// ---------------------------------------------------------------------------- NIVEL 2 --------------------------------------------------------------------------
+    	
+    	
+    	
+    	
+    	
+    	
+    	
     	else if(i==2) {
    		 //fila 0		
    		for(int columnas=0;columnas<28;columnas++) {

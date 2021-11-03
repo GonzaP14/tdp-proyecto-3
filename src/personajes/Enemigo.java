@@ -1,7 +1,5 @@
 package personajes;
 
-import entidadesGraficas.EnemigoGrafico;
-
 public abstract class Enemigo extends Personaje {
 	
 	protected EstadoEnemigo estadoActual; 

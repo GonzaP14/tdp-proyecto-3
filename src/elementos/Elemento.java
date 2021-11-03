@@ -1,6 +1,5 @@
 package elementos;
 
-import entidadesGraficas.ElementoGrafico;
 import entidadesLogicas.Entidad;
 
 public abstract class Elemento extends Entidad {

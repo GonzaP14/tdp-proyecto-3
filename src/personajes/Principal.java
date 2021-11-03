@@ -9,6 +9,7 @@ public class Principal extends Personaje {
 	protected static Principal original;
 	protected static final int Vivo = 1;
 	protected static final int Muerto = 2;
+	private final Posicion miSpawn;
 	
 	protected int estadoActual;
 	
@@ -17,7 +18,7 @@ public class Principal extends Personaje {
 		miRepresentacion = new PrincipalGrafico(imagenes);
 		estadoActual = Vivo;
 		this.miJuego = miJuego;
-		miSpawn = new Posicion(100,100);
+		miSpawn = new Posicion(350, 575);
 		miPosicion = new Posicion(miSpawn.getX(), miSpawn.getY());
 		this.miRepresentacion.aparecer(miPosicion);
 	}
