@@ -1,15 +1,16 @@
 package elementos;
 
 import entidadesGraficas.ElementoGrafico;
+import entidadesLogicas.Juego;
 import entidadesLogicas.Posicion;
 
 public class PocionCongelacion extends Pocion {
-	
-	public PocionCongelacion(ElementoGrafico miRepresentacionGrafica) {
-		this.miRepresentacionGrafica = miRepresentacionGrafica;
-		miSpawn = new Posicion(300,300);
-		miPosicion = new Posicion(miSpawn.getX(), miSpawn.getY());
-		this.miRepresentacionGrafica.aparecer(miPosicion);
+
+	public PocionCongelacion(Juego miJuego, String imagen) {
+		this.miJuego = miJuego;
+		miPosicion = new Posicion(0,0);
+		miRepresentacionGrafica = new ElementoGrafico(imagen);
+		miRepresentacionGrafica.aparecer(miPosicion);
 	}
 
 	@Override

@@ -1,17 +1,18 @@
 package elementos;
 
 import entidadesGraficas.ElementoGrafico;
+import entidadesLogicas.Juego;
 import entidadesLogicas.Posicion;
 
 public class PacDot extends Elemento {
 	
-	public PacDot(ElementoGrafico miRepresentacionGrafica) {
-		this.miRepresentacionGrafica = miRepresentacionGrafica;
-		miSpawn = new Posicion(300,300);
-		miPosicion = new Posicion(miSpawn.getX(), miSpawn.getY());
-		this.miRepresentacionGrafica.aparecer(miPosicion);
+	public PacDot(Juego miJuego, String imagen) {
+		this.miJuego = miJuego;
+		miPosicion = new Posicion(0,0);
+		miRepresentacionGrafica = new ElementoGrafico(imagen);
+		miRepresentacionGrafica.aparecer(miPosicion);
 	}
-	
+
 	@Override
 	public void iniciarTimer(HiloElemento timer) {
 		// TODO Auto-generated method stub

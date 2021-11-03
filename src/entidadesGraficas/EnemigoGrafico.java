@@ -2,22 +2,35 @@ package entidadesGraficas;
 
 import java.awt.Image;
 import javax.swing.ImageIcon;
-import entidadesLogicas.Entidad;
 
 public class EnemigoGrafico extends PersonajeGrafico{
 	private static final long serialVersionUID = 1L;
 	
 	protected ImageIcon escapando;
 	
-	public EnemigoGrafico(ImageIcon[] imagenes) {
+	public EnemigoGrafico(String[] imagenes) {
 		setBounds(25, 25, 25, 25);
-		sentidoArriba = new ImageIcon(imagenes[0].getImage().getScaledInstance(this.getWidth(), this.getHeight(), Image.SCALE_SMOOTH));
-		sentidoAbajo = new ImageIcon(imagenes[1].getImage().getScaledInstance(this.getWidth(), this.getHeight(), Image.SCALE_SMOOTH));
-		sentidoIzquierda = new ImageIcon(imagenes[2].getImage().getScaledInstance(this.getWidth(), this.getHeight(), Image.SCALE_SMOOTH));
-		sentidoDerecha = new ImageIcon(imagenes[3].getImage().getScaledInstance(this.getWidth(), this.getHeight(), Image.SCALE_SMOOTH));
-		muerto = new ImageIcon(imagenes[4].getImage().getScaledInstance(this.getWidth(), this.getHeight(), Image.SCALE_SMOOTH));
-		escapando = new ImageIcon(imagenes[5].getImage().getScaledInstance(this.getWidth(), this.getHeight(), Image.SCALE_SMOOTH));
 		
+		sentidoArriba = new ImageIcon(this.getClass().getResource(imagenes[0]));
+		sentidoArriba = new ImageIcon(sentidoArriba.getImage().getScaledInstance(getWidth(), getHeight(), Image.SCALE_DEFAULT));
+		
+		sentidoAbajo = new ImageIcon(this.getClass().getResource(imagenes[1]));
+		sentidoAbajo = new ImageIcon(sentidoAbajo.getImage().getScaledInstance(getWidth(), getHeight(), Image.SCALE_DEFAULT));
+		
+		sentidoDerecha = new ImageIcon(this.getClass().getResource(imagenes[2]));
+		sentidoDerecha = new ImageIcon(sentidoDerecha.getImage().getScaledInstance(getWidth(), getHeight(), Image.SCALE_DEFAULT));
+		
+		sentidoIzquierda = new ImageIcon(this.getClass().getResource(imagenes[3]));
+		sentidoIzquierda = new ImageIcon(sentidoIzquierda.getImage().getScaledInstance(getWidth(), getHeight(), Image.SCALE_DEFAULT));
+		
+		muerto = new ImageIcon(this.getClass().getResource(imagenes[4]));
+		muerto = new ImageIcon(muerto.getImage().getScaledInstance(getWidth(), getHeight(), Image.SCALE_DEFAULT));
+		
+		escapando = new ImageIcon(this.getClass().getResource(imagenes[5]));
+		escapando = new ImageIcon(escapando.getImage().getScaledInstance(getWidth(), getHeight(), Image.SCALE_DEFAULT));
+	
 		miPrioridad = 2;
+		representacionActual = sentidoDerecha;
+		this.setIcon(representacionActual);
 	}
 }

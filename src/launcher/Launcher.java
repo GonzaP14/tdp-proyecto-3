@@ -7,8 +7,8 @@ import entidadesLogicas.Nivel1;
 import gui.SplashScreen;
 import gui.Ventana;
 import productos.FabricaEntidades;
-import productos.MarioBros;
-import productos.Memoji;
+import productos.FabricaMarioBros;
+import productos.FabricaMemoji;
 
 public class Launcher {
 	private static DominioJuego dominioJuego;
@@ -24,10 +24,10 @@ public class Launcher {
 		miSplashScreen.setVisible(true);
 		miNivel = new Nivel1();
 		if (dominioJuego.getDominioJuego() == DominioJuego.dominioMarioBros) {
-			iniciarJuego(miNivel, new MarioBros(miJuego));
+			iniciarJuego(miNivel, new FabricaMarioBros(miJuego));
 		}
 		else if (dominioJuego.getDominioJuego() == DominioJuego.dominioMemoji){
-			iniciarJuego(miNivel, new Memoji(miJuego));
+			iniciarJuego(miNivel, new FabricaMemoji(miJuego));
 		}
 	}
 	

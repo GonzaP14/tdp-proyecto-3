@@ -12,9 +12,14 @@ public class ElementoGrafico extends EntidadGrafica {
 	
 	protected ImageIcon sentidoFijo;
 	
-	public ElementoGrafico (ImageIcon miRepresentacionGrafica) {
+	public ElementoGrafico (String imagen) {
 		setBounds(25, 25, 25, 25);
-		sentidoFijo = new ImageIcon(miRepresentacionGrafica.getImage().getScaledInstance(this.getWidth(), this.getHeight(), Image.SCALE_SMOOTH));
+		sentidoFijo = new ImageIcon(this.getClass().getResource(imagen));
+		sentidoFijo = new ImageIcon(sentidoFijo.getImage().getScaledInstance(getWidth(), getHeight(), Image.SCALE_DEFAULT));
+		
+		miPrioridad = 1;
+		representacionActual = sentidoFijo;
+		this.setIcon(representacionActual);
 	}
 	
 	public void aparecer(Posicion miPosicion) {
