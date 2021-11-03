@@ -16,30 +16,28 @@ public class MarioBros extends FabricaEntidades {
 	
 	@Override
 	public Principal getPrincipal() {
-		ImageIcon[] imagenes = new ImageIcon[5];
-		imagenes[0] = new ImageIcon(this.getClass().getResource("/recursosMarioBros/MarioArriba.gif"));
-		imagenes[1] = new ImageIcon(this.getClass().getResource("/recursosMarioBros/MarioAbajo.gif"));
-		imagenes[2] = new ImageIcon(this.getClass().getResource("/recursosMarioBros/MarioDerecha.gif"));
-		imagenes[3] = new ImageIcon(this.getClass().getResource("/recursosMarioBros/MarioIzquierda.gif")); 
-		imagenes[4] = new ImageIcon(this.getClass().getResource("/recursosMarioBros/MarioMuerto.gif")); 
+		String[] imagenes = new String[5];
+		imagenes[0] = "/recursosMarioBros/MarioArriba.gif";
+		imagenes[1] = "/recursosMarioBros/MarioAbajo.gif";
+		imagenes[2] = "/recursosMarioBros/MarioDerecha.gif";
+		imagenes[3] = "/recursosMarioBros/MarioIzquierda.gif";
+		imagenes[4] = "/recursosMarioBros/MarioMuerto.gif";
 		
-		PrincipalGrafico miRepresentacionGrafica = new PrincipalGrafico(imagenes);
-		return new Principal(miRepresentacionGrafica , miJuego);
+		return Principal.getPrincipal(miJuego, imagenes);
 	}
 	
 	@Override
 	public Enemigo getBlinky() {
-		ImageIcon[] imagenes = new ImageIcon[6];
-		imagenes[0] = new ImageIcon(this.getClass().getResource("/recursosMarioBros/GoompaArriba.gif"));
-		imagenes[1] = new ImageIcon(this.getClass().getResource("/recursosMarioBros/GoompaAbajo.gif"));
-		imagenes[2] = new ImageIcon(this.getClass().getResource("/recursosMarioBros/GoompaDerecha.gif"));
-		imagenes[3] = new ImageIcon(this.getClass().getResource("/recursosMarioBros/GoompaIzquierda.gif")); 
-		imagenes[4] = new ImageIcon(this.getClass().getResource("/recursosMarioBros/GoompaMuerto.gif")); 
-		imagenes[5] = new ImageIcon(this.getClass().getResource("/recursosMarioBros/GoompaEscapando.gif")); 
+		String[] imagenes = new String[6];
 		
-		EnemigoGrafico miRepresentacionGrafica = new EnemigoGrafico(imagenes);
-		
-		return new Blinky(miRepresentacionGrafica);
+		imagenes[0] = ("/recursosMarioBros/GoompaArriba.gif");
+		imagenes[1] = ("/recursosMarioBros/GoompaAbajo.gif");
+		imagenes[2] = ("/recursosMarioBros/GoompaDerecha.gif");
+		imagenes[3] = ("/recursosMarioBros/GoompaIzquierda.gif");
+		imagenes[4] = ("/recursosMarioBros/GoompaMuerto.gif");
+		imagenes[5] = ("/recursosMarioBros/GoompaEscapando.gif");
+
+		return new Blinky(miJuego, imagenes);
 	}
 	
 	@Override

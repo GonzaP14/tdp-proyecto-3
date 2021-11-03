@@ -13,9 +13,10 @@ public class Principal extends Personaje {
 	protected PrincipalGrafico miRepresentacionGrafica;
 	protected int estadoActual;
 	
-	public Principal(PrincipalGrafico miRepresentacionGrafica , Juego miJuego ) { // singleton principle
+	private Principal(Juego miJuego, String[] imagenes) { // singleton principle
+		System.out.println(imagenes[0]);
+		miRepresentacionGrafica = new PrincipalGrafico(imagenes);
 		estadoActual = Vivo;
-		this.miRepresentacionGrafica = miRepresentacionGrafica;
 		this.miJuego = miJuego;
 		miSpawn = new Posicion(100,100);
 		miPosicion = new Posicion(miSpawn.getX(), miSpawn.getY());
@@ -28,17 +29,22 @@ public class Principal extends Personaje {
 		
 	}
 	
-	/*public static Principal getPrincipal(PrincipalGrafico miRepresentacionGrafica) {
+	public static Principal getPrincipal(Juego miJuego, String[] imagenes) {
 		if (original == null) {
-			original = new Principal(miRepresentacionGrafica);
+			original = new Principal(miJuego, imagenes);
 		}
+		
 		return original;
-	}*/
+	}
 
 	@Override
 	public void afectar() {
 		// TODO Auto-generated method stub
 		
+	}
+	
+	public PrincipalGrafico getMiRepresentacion() {
+		return miRepresentacionGrafica;
 	}
 	
 }

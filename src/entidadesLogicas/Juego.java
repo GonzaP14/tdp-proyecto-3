@@ -3,8 +3,12 @@ package entidadesLogicas;
 import java.util.ArrayList;
 import java.util.Properties;
 import audio.Audio;
+import entidadesGraficas.EnemigoGrafico;
+import entidadesGraficas.EntidadGrafica;
 import entidadesGraficas.PrincipalGrafico;
 import gui.Ventana;
+import personajes.Blinky;
+import personajes.Enemigo;
 import personajes.Personaje;
 import personajes.Principal;
 import productos.FabricaEntidades;
@@ -24,7 +28,7 @@ public class Juego {
 	private Ventana miVentana;
 	private Grilla miGrilla;
 	private ArrayList<Entidad> misElementos, misEnemigos;
-	private Personaje miPersonajePrincipal;
+	private Principal miPersonajePrincipal;
 	private EstrategiaNivel nivelActual;
 	public static Properties configuration;
 	
@@ -40,10 +44,11 @@ public class Juego {
 		miReloj = new Reloj(1,this);
 		gameOver = false;
 		miReloj.start();
+		miGrilla = new Grilla();
 	}
 	
 	// ----------------------------------------      GETTERS     ------------------------------------
-	public Personaje getMiPersonajePrincipal() {
+	public Principal getMiPersonajePrincipal() {
 		return miPersonajePrincipal;
 	}
 

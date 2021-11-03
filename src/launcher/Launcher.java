@@ -23,6 +23,7 @@ public class Launcher {
 		miSplashScreen.setBounds(100, 200, 640, 480);
 		miSplashScreen.setVisible(true);
 		miNivel = new Nivel1();
+		// aca debe esperar a que cierre el splashscreen para seguir
 		if (dominioJuego.getDominioJuego() == 0) {
 			iniciarJuego(miNivel, new MarioBros(miJuego));
 		}

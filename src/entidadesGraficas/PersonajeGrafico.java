@@ -13,7 +13,6 @@ public abstract class PersonajeGrafico extends EntidadGrafica{
 	protected ImageIcon sentidoArriba;
 	protected ImageIcon sentidoAbajo;
 	protected ImageIcon muerto;
-	
 	public void actualizar (int i) {
 		if (i == Entidad.sentidoDerecha) {
 			representacionActual = sentidoDerecha;
