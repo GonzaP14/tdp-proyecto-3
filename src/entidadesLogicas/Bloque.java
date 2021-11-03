@@ -24,12 +24,14 @@ public class Bloque {
 		listaEntidades = new ArrayList<Entidad>();
 	}
 	
-	/*
-	public void actualizarListaEntidades(Entidad entidadABorrar ) {	
-		listaEntidades.remove(entidadABorrar);//Con lo que me dicen
-		miRepresentacion.actualizar(listaEntidades);
+
+	public void agregarAListaEntidades(Entidad entidadABorrar ) {	
+		listaEntidades.remove(entidadABorrar);
 	}
-	*/
+	
+	public void borrarDeListaDeEntidades(Entidad entidadAAgregar) {
+		listaEntidades.add(entidadAAgregar);
+	}
 
 	public Posicion getMiPosicion() {
 		return miPosicion;

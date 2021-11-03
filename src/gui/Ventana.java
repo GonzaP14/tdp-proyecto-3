@@ -22,7 +22,6 @@ public class Ventana extends JFrame {
     private Juego miJuego;
     private EntidadGrafica miPrincipalGrafico;
     private Entidad miPrincipal;
-    private static AnimationController animationControl;
     private Grilla grillaL;
     private Laberinto miLaberinto;
     private JLayeredPane layeredPane;
@@ -30,15 +29,12 @@ public class Ventana extends JFrame {
     public Ventana(Juego miJuego) {
         this.miJuego = miJuego;
         miPrincipal = miJuego.getMiPersonajePrincipal();
-        animationControl = new AnimationController();
         grillaL = new Grilla();
         miLaberinto = new Laberinto (grillaL);
         miLaberinto.setLocation(10, 0);
 		miLaberinto.setSize(726, 794);
 		miLaberinto.ConstructorNivel(1);
 		initialize();
-		
-    
     }
     
     private void initialize() {
@@ -62,45 +58,20 @@ public class Ventana extends JFrame {
                 
             }
 
-
             public void keyPressed(KeyEvent e) {
                 switch (e.getKeyCode()) {
-                  case KeyEvent.VK_SPACE:
-                      miPrincipalGrafico.setLocation(miPrincipalGrafico.getX() + 2, miPrincipalGrafico.getY());
-                      break;
                   case KeyEvent.VK_UP:
-                      if (animationControl.getAnimation() != null && !animationControl.getAnimation().isAnimationFinished()) {
-                          animationControl.getAnimation().setSentidoAnimacion(1);
-                      }
-                      else {
-                    	  animationControl.addMovement(new AnimacionMovimiento(1, (int) miPrincipalGrafico.getLocation().getX(), (int) miPrincipalGrafico.getLocation().getY(), miPrincipalGrafico));      
-                      }
+                    miJuego.cambiarSentidoActualPrincipal(Entidad.sentidoArriba);
                     break;
                 case KeyEvent.VK_DOWN:
-                    if (animationControl.getAnimation() != null && !animationControl.getAnimation().isAnimationFinished()) {
-                          animationControl.getAnimation().setSentidoAnimacion(2);
-                      }
-                      else {
-                          animationControl.addMovement(new AnimacionMovimiento(2, (int) miPrincipalGrafico.getLocation().getX(), (int) miPrincipalGrafico.getLocation().getY(), miPrincipalGrafico));
-                      }
+                    miJuego.cambiarSentidoActualPrincipal(Entidad.sentidoAbajo);
                     break;
                   case KeyEvent.VK_LEFT:
-                      if (animationControl.getAnimation() != null && !animationControl.getAnimation().isAnimationFinished()) {
-                          animationControl.getAnimation().setSentidoAnimacion(3);
-                      }
-                      else {
-                          animationControl.addMovement(new AnimacionMovimiento(3, (int) miPrincipalGrafico.getLocation().getX(), (int) miPrincipalGrafico.getLocation().getY(), miPrincipalGrafico));
-                      }
+                    miJuego.cambiarSentidoActualPrincipal(Entidad.sentidoIzquierda);
                     break;
                   case KeyEvent.VK_RIGHT:
-                      if (animationControl.getAnimation() != null && !animationControl.getAnimation().isAnimationFinished()) {
-                          animationControl.getAnimation().setSentidoAnimacion(4);
-                      }
-                      else {
-                          animationControl.addMovement(new AnimacionMovimiento(4, (int) miPrincipalGrafico.getLocation().getX(), (int) miPrincipalGrafico.getLocation().getY(), miPrincipalGrafico));
-                      }
-                    break;
-                 
+                    miJuego.cambiarSentidoActualPrincipal(Entidad.sentidoDerecha);
+                    break;          
                   case KeyEvent.VK_P:
                       break;
                   case KeyEvent.VK_R:

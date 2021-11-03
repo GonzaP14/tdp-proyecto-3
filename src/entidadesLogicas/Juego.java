@@ -92,14 +92,17 @@ public class Juego {
 	/**
      * Mueve un personaje, en un sentido
      * @param personaje El personaje que se movera
-     * @param sentidoMovimiento El sentido en el que el personaje se movera
      */
-    public synchronized void operar(Personaje personaje, int sentidoMovimiento) {
+    public synchronized void operar() {
     	if (!gameOver && !estaPausado) {
-	    	personaje.mover(sentidoMovimiento);
+	    	miPersonajePrincipal.mover();
     	}
     }
-
+    public void cambiarSentidoActualPrincipal( int sentidoMovimiento) {
+    	if (!gameOver && !estaPausado) {
+	    	miPersonajePrincipal.setSentidoActual(sentidoMovimiento);
+    	}
+    }
 	
 	// ---------------------------------------- SPAWNING ------------------------------------
 	private void spawnearFantasmas() {

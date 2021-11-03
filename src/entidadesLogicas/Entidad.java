@@ -5,7 +5,6 @@ import entidadesGraficas.EntidadGrafica;
 public abstract class Entidad {
 	
 	// Atributos de instancia
-	protected Bloque miBloque;
 	protected int sentidoActual;
 	protected EntidadGrafica miRepresentacion;
 	protected Juego miJuego;
@@ -19,15 +18,8 @@ public abstract class Entidad {
 	public static final int sentidoIzquierda = 3;
 	public static final int sentidoDerecha = 4;
 	
-	// ------------------------------------------ CONSTRUCTOR --------------------------------------
-	public Entidad() {
-		
-	}
 	
 	// -------------------------------------------- GETTERS ----------------------------------------
-	public Bloque getBloque() {
-		return miBloque;	
-	}
 	
 	public int getSentidoActual() {
 		return sentidoActual;
@@ -39,6 +31,12 @@ public abstract class Entidad {
 	
 	public EntidadGrafica getMiRepresentacion() {
 		return miRepresentacion;
+	}
+	
+	// -------------------------------------------- SETTERS ----------------------------------------
+		
+	public void setSentidoActual(int sentido) {
+		sentidoActual = sentido;
 	}
 	
 	// -------------------------------------------- ACCIONES ----------------------------------------

@@ -12,7 +12,7 @@ public class Reloj extends Thread{
 		while (!miJuego.isGameOver()) {
 	        if(!miJuego.estaPausado()) {
 	        	try {
-					miJuego.operar(miJuego.getMiPersonajePrincipal(), miJuego.getMiPersonajePrincipal().getSentidoActual());
+					miJuego.operar();
 					Thread.sleep(1000); // 1s
 				} catch (InterruptedException e) {
 					e.printStackTrace();
