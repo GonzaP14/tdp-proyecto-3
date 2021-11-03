@@ -14,6 +14,7 @@ public class BloqueGrafico extends JLabel{
 	protected final ImageIcon paredeslvl1= new ImageIcon(Toolkit.getDefaultToolkit().getImage(this.getClass().getResource("/recursosImagenes/paredLvl1.png")));
 	protected final ImageIcon paredeslvl2= new ImageIcon(Toolkit.getDefaultToolkit().getImage(this.getClass().getResource("/recursosImagenes/paredLvl2.png")));
 	protected final ImageIcon paredeslvl3= new ImageIcon(Toolkit.getDefaultToolkit().getImage(this.getClass().getResource("/recursosImagenes/paredLvl3.png")));
+	protected final ImageIcon puerta= new ImageIcon(Toolkit.getDefaultToolkit().getImage(this.getClass().getResource("/recursosImagenes/puerta.png")));
 
 	public BloqueGrafico( ArrayList<Entidad> listaEntidades) {
 		
@@ -55,7 +56,10 @@ public class BloqueGrafico extends JLabel{
 		ImageIcon pared = new ImageIcon(paredeslvl3.getImage().getScaledInstance(this.getWidth(), this.getHeight(), Image.SCALE_SMOOTH));
 		this.setIcon(pared);
 	}
-
+	public void setPuerta() {
+		ImageIcon puertas = new ImageIcon(puerta.getImage().getScaledInstance(this.getWidth(), this.getHeight(), Image.SCALE_SMOOTH));
+		this.setIcon(puertas);
+	}
 	
 	
 	
