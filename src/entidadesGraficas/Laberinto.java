@@ -20,7 +20,7 @@ public class Laberinto extends JPanel{
     public Laberinto(Grilla miGrillaLogica) {
     	this.miGrillaLogica = miGrillaLogica;
     	
-    	setBackground(Color.WHITE);
+    	setBackground(Color.BLACK);
         setBounds(0, 0, 1250, 850);
         setLayout(new GridLayout(Grilla.Filas, Grilla.Columnas, 0, 0));
         
@@ -283,6 +283,15 @@ public class Laberinto extends JPanel{
    		miGrillaLogica.getBloque(12,8).setPuedeVisitarse(false);
    		
    		for(int columnas=10;columnas<18;columnas++) {
+   			miGrillaLogica.getBloque(12,columnas).getMiRepresentacion().setBloqueParedLvl1();
+   			miGrillaLogica.getBloque(12,columnas).setPuedeVisitarse(false);
+   		}
+   		miGrillaLogica.getBloque(12,13).getMiRepresentacion().setPuerta();
+   		miGrillaLogica.getBloque(12,14).getMiRepresentacion().setPuerta();
+		miGrillaLogica.getBloque(12,13).setPuedeVisitarse(false);		
+   		miGrillaLogica.getBloque(12,14).setPuedeVisitarse(false);
+   		
+   		for(int columnas=15;columnas<13;columnas++) {
    			miGrillaLogica.getBloque(12,columnas).getMiRepresentacion().setBloqueParedLvl1();
    			miGrillaLogica.getBloque(12,columnas).setPuedeVisitarse(false);
    		}
@@ -899,6 +908,15 @@ public class Laberinto extends JPanel{
    			miGrillaLogica.getBloque(12,columnas).getMiRepresentacion().setBloqueParedLvl2();
    			miGrillaLogica.getBloque(12,columnas).setPuedeVisitarse(false);
    		}
+   		miGrillaLogica.getBloque(12,13).getMiRepresentacion().setPuerta();
+   		miGrillaLogica.getBloque(12,14).getMiRepresentacion().setPuerta();
+		miGrillaLogica.getBloque(12,13).setPuedeVisitarse(false);		
+   		miGrillaLogica.getBloque(12,14).setPuedeVisitarse(false);
+   		
+   		for(int columnas=15;columnas<13;columnas++) {
+   			miGrillaLogica.getBloque(12,columnas).getMiRepresentacion().setBloqueParedLvl2();
+   			miGrillaLogica.getBloque(12,columnas).setPuedeVisitarse(false);
+   		}
    		miGrillaLogica.getBloque(12,19).getMiRepresentacion().setBloqueParedLvl2();
    		miGrillaLogica.getBloque(12,20).getMiRepresentacion().setBloqueParedLvl2();
    		miGrillaLogica.getBloque(12,19).setPuedeVisitarse(false);
@@ -1498,6 +1516,15 @@ public class Laberinto extends JPanel{
    		miGrillaLogica.getBloque(12,8).setPuedeVisitarse(false);
    		
    		for(int columnas=10;columnas<18;columnas++) {
+   			miGrillaLogica.getBloque(12,columnas).getMiRepresentacion().setBloqueParedLvl3();
+   			miGrillaLogica.getBloque(12,columnas).setPuedeVisitarse(false);
+   		}
+   		miGrillaLogica.getBloque(12,13).getMiRepresentacion().setPuerta();
+   		miGrillaLogica.getBloque(12,14).getMiRepresentacion().setPuerta();
+		miGrillaLogica.getBloque(12,13).setPuedeVisitarse(false);		
+   		miGrillaLogica.getBloque(12,14).setPuedeVisitarse(false);
+   		
+   		for(int columnas=15;columnas<13;columnas++) {
    			miGrillaLogica.getBloque(12,columnas).getMiRepresentacion().setBloqueParedLvl3();
    			miGrillaLogica.getBloque(12,columnas).setPuedeVisitarse(false);
    		}

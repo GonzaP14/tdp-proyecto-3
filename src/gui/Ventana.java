@@ -24,8 +24,8 @@ public class Ventana extends JFrame {
         miPrincipalGrafico = miJuego.getMiPersonajePrincipal().getMiRepresentacion();
         miLaberinto = new Laberinto (miJuego.getMiGrilla());
         miLaberinto.setLocation(0, 0);
-		miLaberinto.setSize(726, 794);
-		miLaberinto.ConstructorNivel(3);
+		miLaberinto.setSize(700, 775);
+		miLaberinto.ConstructorNivel(2);
 		initialize();
     }
     
