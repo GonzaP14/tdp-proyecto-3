@@ -6,36 +6,42 @@ import entidadesLogicas.DominioJuego;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
-public class SplashScreen extends JFrame{
+public class SplashScreen extends JDialog{
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	private JButton marioBtn; 
-	private JButton memojiBtn;
+	private JButton marioButton; 
+	private JButton memojiButton;
 	
 	public SplashScreen(DominioJuego dominioJuego) {
+		super();
+		setModal(true);
+		// constructor de JDialog & modal en true
+		
 		getContentPane().setLayout(null);
 		
-		marioBtn = new JButton("MARIO =)");
-		marioBtn.addActionListener(new ActionListener() {
+		// Mario Bros
+		marioButton = new JButton("MARIO =)");
+		marioButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				dominioJuego.setDominioJuego(0);
+				dominioJuego.setDominioJuego(DominioJuego.dominioMarioBros);
 				setVisible(false);
 			}
 		});
-		marioBtn.setBounds(44, 211, 89, 23);
-		getContentPane().add(marioBtn);
+		marioButton.setBounds(44, 211, 89, 23);
+		getContentPane().add(marioButton);
 		
-		memojiBtn = new JButton("MEMOJI =(");
-		memojiBtn.addActionListener(new ActionListener() {
+		// Memoji
+		memojiButton = new JButton("MEMOJI =(");
+		memojiButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				dominioJuego.setDominioJuego(1);
+				dominioJuego.setDominioJuego(DominioJuego.dominioMemoji);
 				setVisible(false);
 			}
 		});
-		memojiBtn.setBounds(272, 211, 89, 23);
-		getContentPane().add(memojiBtn);
+		memojiButton.setBounds(272, 211, 89, 23);
+		getContentPane().add(memojiButton);
 		
 	}
 }
