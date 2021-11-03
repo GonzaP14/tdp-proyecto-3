@@ -39,6 +39,12 @@ public abstract class Entidad {
 		sentidoActual = sentido;
 	}
 	
+	
+	
+	public void setMiRepresentacion(EntidadGrafica miRepresentacion) {
+		this.miRepresentacion = miRepresentacion;
+	}
+
 	// -------------------------------------------- ACCIONES ----------------------------------------
 	public abstract void afectar();
 	

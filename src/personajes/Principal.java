@@ -1,6 +1,7 @@
 package personajes;
 
 import entidadesGraficas.PrincipalGrafico;
+import entidadesLogicas.Juego;
 import entidadesLogicas.Posicion;
 
 public class Principal extends Personaje {
@@ -12,10 +13,10 @@ public class Principal extends Personaje {
 	protected PrincipalGrafico miRepresentacionGrafica;
 	protected int estadoActual;
 	
-	private Principal(PrincipalGrafico miRepresentacionGrafica) { // singleton principle
+	public Principal(PrincipalGrafico miRepresentacionGrafica , Juego miJuego ) { // singleton principle
 		estadoActual = Vivo;
 		this.miRepresentacionGrafica = miRepresentacionGrafica;
-		
+		this.miJuego = miJuego;
 		miSpawn = new Posicion(100,100);
 		miPosicion = new Posicion(miSpawn.getX(), miSpawn.getY());
 		this.miRepresentacionGrafica.aparecer(miPosicion);
@@ -27,12 +28,12 @@ public class Principal extends Personaje {
 		
 	}
 	
-	public static Principal getPrincipal(PrincipalGrafico miRepresentacionGrafica) {
+	/*public static Principal getPrincipal(PrincipalGrafico miRepresentacionGrafica) {
 		if (original == null) {
 			original = new Principal(miRepresentacionGrafica);
 		}
 		return original;
-	}
+	}*/
 
 	@Override
 	public void afectar() {

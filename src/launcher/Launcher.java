@@ -24,10 +24,10 @@ public class Launcher {
 		miSplashScreen.setVisible(true);
 		miNivel = new Nivel1();
 		if (dominioJuego.getDominioJuego() == 0) {
-			iniciarJuego(miNivel, new MarioBros());
+			iniciarJuego(miNivel, new MarioBros(miJuego));
 		}
 		else if (dominioJuego.getDominioJuego() == 1){
-			iniciarJuego(miNivel, new Memoji());
+			iniciarJuego(miNivel, new Memoji(miJuego));
 		}
 	}
 	

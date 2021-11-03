@@ -5,7 +5,7 @@ import javax.swing.ImageIcon;
 import entidadesLogicas.Entidad;
 import entidadesLogicas.Posicion;
 
-public class PersonajeGrafico extends EntidadGrafica{
+public abstract class PersonajeGrafico extends EntidadGrafica{
 	private static final long serialVersionUID = 1L;
 
 	protected ImageIcon sentidoIzquierda;
@@ -13,7 +13,7 @@ public class PersonajeGrafico extends EntidadGrafica{
 	protected ImageIcon sentidoArriba;
 	protected ImageIcon sentidoAbajo;
 	protected ImageIcon muerto;
-
+	
 	public void actualizar (int i) {
 		if (i == Entidad.sentidoDerecha) {
 			representacionActual = sentidoDerecha;

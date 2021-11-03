@@ -2,13 +2,14 @@ package productos;
 
 import elementos.Elemento;
 import elementos.Pocion;
+import entidadesLogicas.Juego;
 import personajes.Enemigo;
 import personajes.Principal;
 
 public class Memoji extends FabricaEntidades {
-	
-	public Memoji() {
-		
+	private Juego miJuego;
+	public Memoji(Juego miJuego) {
+		this.miJuego = miJuego;
 	}
 	
 	@Override

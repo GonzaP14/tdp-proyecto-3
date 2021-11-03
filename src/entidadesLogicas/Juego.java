@@ -37,6 +37,9 @@ public class Juego {
 		this.miFabricaEntidades = miFabricaEntidades;
 		miPersonajePrincipal = miFabricaEntidades.getPrincipal();
 		this.nivelActual = nivelActual;
+		miReloj = new Reloj(1,this);
+		gameOver = false;
+		miReloj.start();
 	}
 	
 	// ----------------------------------------      GETTERS     ------------------------------------

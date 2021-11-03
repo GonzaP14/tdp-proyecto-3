@@ -2,6 +2,8 @@ package gui;
 
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+
+import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JLayeredPane;
 
@@ -40,8 +42,15 @@ public class Ventana extends JFrame {
     private void initialize() {
     	layeredPane = new JLayeredPane();
 	    layeredPane.setBounds(0,0,1250,850);
-	    miPrincipalGrafico = miPrincipal.getMiRepresentacion();
-	    System.out.println(miPrincipalGrafico);
+	    ImageIcon[] imagenes = new ImageIcon[5];
+		imagenes[0] = new ImageIcon(this.getClass().getResource("/recursosMarioBros/MarioArriba.gif"));
+		imagenes[1] = new ImageIcon(this.getClass().getResource("/recursosMarioBros/MarioAbajo.gif"));
+		imagenes[2] = new ImageIcon(this.getClass().getResource("/recursosMarioBros/MarioDerecha.gif"));
+		imagenes[3] = new ImageIcon(this.getClass().getResource("/recursosMarioBros/MarioIzquierda.gif")); 
+		imagenes[4] = new ImageIcon(this.getClass().getResource("/recursosMarioBros/MarioMuerto.gif")); 
+	    miPrincipalGrafico = new PrincipalGrafico(imagenes);
+	    miPrincipal.setMiRepresentacion(miPrincipalGrafico);
+	    System.out.println(miJuego);
 	    layeredPane.add(miLaberinto,Integer.valueOf(0));
 	    layeredPane.add(miPrincipalGrafico, Integer.valueOf(1)); // Principal // 3 -> Fantasas
 	    this.getContentPane().add(layeredPane);
@@ -51,7 +60,7 @@ public class Ventana extends JFrame {
 	    layeredPane.setFocusable(true);
 		setBounds(0, 0, 1250, 850);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		this.addKeyListener(new KeyListener () {
+		layeredPane.addKeyListener(new KeyListener () {
             @Override
             public void keyTyped(KeyEvent e) {
                 // TODO Auto-generated method stub

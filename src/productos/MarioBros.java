@@ -4,13 +4,14 @@ import javax.swing.ImageIcon;
 import entidadesGraficas.ElementoGrafico;
 import entidadesGraficas.EnemigoGrafico;
 import entidadesGraficas.PrincipalGrafico;
+import entidadesLogicas.Juego;
 import personajes.*;
 import elementos.*;
 
 public class MarioBros extends FabricaEntidades {
-
-	public MarioBros() {
-		
+	private Juego miJuego;
+	public MarioBros(Juego miJuego) {
+		this.miJuego = miJuego;
 	}
 	
 	@Override
@@ -23,7 +24,7 @@ public class MarioBros extends FabricaEntidades {
 		imagenes[4] = new ImageIcon(this.getClass().getResource("/recursosMarioBros/MarioMuerto.gif")); 
 		
 		PrincipalGrafico miRepresentacionGrafica = new PrincipalGrafico(imagenes);
-		return Principal.getPrincipal(miRepresentacionGrafica);
+		return new Principal(miRepresentacionGrafica , miJuego);
 	}
 	
 	@Override
