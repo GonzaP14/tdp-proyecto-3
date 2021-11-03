@@ -9,16 +9,14 @@ public class Principal extends Personaje {
 	protected static Principal original;
 	protected static final int Vivo = 1;
 	protected static final int Muerto = 2;
-	private final Posicion miSpawn;
+	private static final Posicion miSpawn = new Posicion(350, 575);
 	
 	protected int estadoActual;
 	
 	private Principal(Juego miJuego, String[] imagenes) { // singleton principle
-		System.out.println(imagenes[0]);
 		miRepresentacion = new PrincipalGrafico(imagenes);
 		estadoActual = Vivo;
 		this.miJuego = miJuego;
-		miSpawn = new Posicion(350, 575);
 		miPosicion = new Posicion(miSpawn.getX(), miSpawn.getY());
 		this.miRepresentacion.aparecer(miPosicion);
 	}

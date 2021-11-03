@@ -9,6 +9,7 @@ import entidadesGraficas.PrincipalGrafico;
 import gui.Ventana;
 import personajes.Blinky;
 import personajes.Enemigo;
+import elementos.*;
 import personajes.Personaje;
 import personajes.Principal;
 import productos.FabricaEntidades;
@@ -29,7 +30,7 @@ public class Juego {
 	private Grilla miGrilla;
 	private ArrayList<Entidad> misElementos, misEnemigos;
 	private Principal miPersonajePrincipal;
-	private EstrategiaNivel nivelActual;
+	private BuilderNivel nivelActual;
 	public static Properties configuration;
 	
 	// Atributos de clase
@@ -37,7 +38,7 @@ public class Juego {
 	public static int DominioMemoji;
 	
 	// ---------------------------------------- CONSTRUCTOR ------------------------------------
-	public Juego(EstrategiaNivel nivelActual, FabricaEntidades miFabricaEntidades) {
+	public Juego(BuilderNivel nivelActual, FabricaEntidades miFabricaEntidades) {
 		this.miFabricaEntidades = miFabricaEntidades;
 		miPersonajePrincipal = miFabricaEntidades.getPrincipal();
 		
@@ -122,8 +123,9 @@ public class Juego {
 		
 	}
 	
-	private void spawnearElementos(EstrategiaNivel nivelActual) {
-		
+	public void spawnearFruta() {
+		miFabricaEntidades.getFruta();
+		// falta modelar todo lo relacionado al hilo de la fruta y aplicarle el nivel de estrategiaNivel
 	}
 	// ---------------------------------------- INICIO & RESET ------------------------------------
 	private void iniciarJuego() {

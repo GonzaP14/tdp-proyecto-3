@@ -83,7 +83,7 @@ public class FabricaMarioBros extends FabricaEntidades {
 	public Elemento getFruta() {
 		String imagen = ("/recursosMarioBros/Flor.png");
 		
-		return new Fruta(miJuego, imagen);
+		return new Fruta(miJuego, imagen, new HiloElemento());
 	}
 	
 	public Pocion getPocionVelocidad() {

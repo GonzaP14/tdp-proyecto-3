@@ -1,6 +1,6 @@
 package entidadesLogicas;
 
-public class Nivel1 implements EstrategiaNivel{
+public class Nivel1 implements BuilderNivel{
 
 	@Override
 	public void construirGrilla(Bloque[][] grilla) {

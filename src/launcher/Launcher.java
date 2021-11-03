@@ -1,7 +1,7 @@
 package launcher;
 
 import entidadesLogicas.DominioJuego;
-import entidadesLogicas.EstrategiaNivel;
+import entidadesLogicas.BuilderNivel;
 import entidadesLogicas.Juego;
 import entidadesLogicas.Nivel1;
 import gui.SplashScreen;
@@ -15,7 +15,7 @@ public class Launcher {
 	private static Juego miJuego;
 	private static Ventana miVentana;
 	private static SplashScreen miSplashScreen;
-	private static EstrategiaNivel miNivel;
+	private static BuilderNivel miNivel;
 	
 	public static void main(String[] args) {
 		dominioJuego = new DominioJuego();
@@ -31,7 +31,7 @@ public class Launcher {
 		}
 	}
 	
-	public static void iniciarJuego(EstrategiaNivel miNivel, FabricaEntidades fabricaEntidades) {
+	public static void iniciarJuego(BuilderNivel miNivel, FabricaEntidades fabricaEntidades) {
 		miJuego = new Juego(miNivel, fabricaEntidades);
 		miVentana = new Ventana(miJuego);
 		miVentana.setVisible(true);
