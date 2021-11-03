@@ -20,7 +20,7 @@ public class Laberinto extends JPanel{
     public Laberinto(Grilla miGrillaLogica) {
     	this.miGrillaLogica = miGrillaLogica;
     	
-    	setBackground(Color.BLACK);
+    	setBackground(Color.WHITE);
         setBounds(100, 100, 1280, 720);
         setLayout(new GridLayout(Grilla.Filas, Grilla.Columnas, 0, 0));
         

@@ -37,6 +37,7 @@ public abstract class Entidad {
 		
 	public void setSentidoActual(int sentido) {
 		sentidoActual = sentido;
+		miRepresentacion.actualizar(sentido);
 	}
 	
 	

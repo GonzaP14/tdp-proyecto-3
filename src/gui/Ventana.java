@@ -25,7 +25,6 @@ public class Ventana extends JFrame {
         miLaberinto.setLocation(10, 0);
 		miLaberinto.setSize(726, 794);
 		miLaberinto.ConstructorNivel(1);
-		
 		initialize();
     }
     

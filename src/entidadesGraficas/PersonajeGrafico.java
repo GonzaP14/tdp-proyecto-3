@@ -27,7 +27,6 @@ public abstract class PersonajeGrafico extends EntidadGrafica{
 			representacionActual = sentidoArriba;
 		}
 		setIcon(representacionActual);
-		setLocation(miPosicionLogica.getX(), miPosicionLogica.getY());
 	}
 	
 	public void aparecer(Posicion miPosicion) {

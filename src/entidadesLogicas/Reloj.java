@@ -13,7 +13,7 @@ public class Reloj extends Thread{
 	        if(!miJuego.estaPausado()) {
 	        	try {
 					miJuego.operar();
-					Thread.sleep(1000); // 1s
+					Thread.sleep(50); // 1s
 				} catch (InterruptedException e) {
 					e.printStackTrace();
 				}
