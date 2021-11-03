@@ -44,11 +44,7 @@ public abstract class Entidad {
 	// -------------------------------------------- ACCIONES ----------------------------------------
 	public abstract void afectar();
 	
-	public void desaPosicionecer() {
+	public void desaparecer() {
 		
-	}
-	
-	public void setSpawn(int x, int y) {
-		miSpawn = new Posicion (x, y);
 	}
 }

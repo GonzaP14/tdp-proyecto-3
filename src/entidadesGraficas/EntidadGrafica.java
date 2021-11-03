@@ -20,14 +20,11 @@ public abstract class EntidadGrafica extends JLabel {
 		this.miPrioridad = miPrioridad;
 	}
 	
-	public void setSpawnLogico(Posicion miPosicionLogica) {
-		this.miPosicionLogica = miPosicionLogica;
-	}
-	
 	public ImageIcon getRepresentacionActual() {
 		return representacionActual;
 	}
 	
 	public abstract void actualizar (int sentido);
- 	
+	
+	public abstract void aparecer(Posicion miPosicion);
 }

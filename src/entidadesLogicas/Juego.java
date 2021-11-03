@@ -14,7 +14,7 @@ public class Juego {
 	
 	// Atributos de instancia 
 	private boolean gameOver, estaPausado;
-	private int minuto, segundos, nivelActual, vidasActuales;
+	private int minuto, segundos, vidasActuales;
 	private Object objetoPausa;
 	private FabricaEntidades miFabricaEntidades;
 	private Reloj miReloj;
@@ -25,6 +25,7 @@ public class Juego {
 	private Grilla miGrilla;
 	private ArrayList<Entidad> misElementos, misEnemigos;
 	private Personaje miPersonajePrincipal;
+	private EstrategiaNivel nivelActual;
 	public static Properties configuration;
 	
 	// Atributos de clase
@@ -32,8 +33,10 @@ public class Juego {
 	public static int DominioMemoji;
 	
 	// ---------------------------------------- CONSTRUCTOR ------------------------------------
-	public Juego(Integer dominio) {
+	public Juego(EstrategiaNivel nivelActual, FabricaEntidades miFabricaEntidades) {
+		this.miFabricaEntidades = miFabricaEntidades;
 		miPersonajePrincipal = miFabricaEntidades.getPrincipal();
+		this.nivelActual = nivelActual;
 	}
 	
 	// ----------------------------------------      GETTERS     ------------------------------------

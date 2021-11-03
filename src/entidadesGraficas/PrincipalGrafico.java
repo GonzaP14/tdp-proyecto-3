@@ -5,16 +5,11 @@ import javax.swing.ImageIcon;
 import entidadesLogicas.Entidad;
 import entidadesLogicas.Posicion;
 
-public class PrincipalGrafico extends EntidadGrafica {
+public class PrincipalGrafico extends PersonajeGrafico {
 	private static final long serialVersionUID = 1L;
 	
-	protected ImageIcon sentidoIzquierda;
-	protected ImageIcon sentidoDerecha;
-	protected ImageIcon sentidoArriba;
-	protected ImageIcon sentidoAbajo;
-	protected ImageIcon muerto;
-	
 	public PrincipalGrafico(ImageIcon[] imagenes) {
+		this.setBounds(25, 25, 25, 25);
 		sentidoArriba = new ImageIcon(imagenes[0].getImage().getScaledInstance(this.getWidth(), this.getHeight(), Image.SCALE_SMOOTH));
 		sentidoAbajo = new ImageIcon(imagenes[1].getImage().getScaledInstance(this.getWidth(), this.getHeight(), Image.SCALE_SMOOTH));
 		sentidoIzquierda = new ImageIcon(imagenes[2].getImage().getScaledInstance(this.getWidth(), this.getHeight(), Image.SCALE_SMOOTH));
@@ -22,30 +17,5 @@ public class PrincipalGrafico extends EntidadGrafica {
 		muerto = new ImageIcon(imagenes[4].getImage().getScaledInstance(this.getWidth(), this.getHeight(), Image.SCALE_SMOOTH));
 		
 		miPrioridad = 2;
-		
-		aparecer();
-	}
-	
-	private void aparecer() {
-		setBounds(miPosicionLogica.getX(), miPosicionLogica.getY(), 25, 25);
-		representacionActual = sentidoDerecha;
-		setIcon(representacionActual);
-	}
-	
-	public void actualizar (int i) {
-		if (i == Entidad.sentidoDerecha) {
-			representacionActual = sentidoDerecha;
-		}
-		else if (i == Entidad.sentidoIzquierda) {
-			representacionActual = sentidoIzquierda;
-		}
-		else if (i == Entidad.sentidoAbajo) {
-			representacionActual = sentidoAbajo;
-		}
-		else if (i == Entidad.sentidoArriba) {
-			representacionActual = sentidoArriba;
-		}
-		setIcon(representacionActual);
-		setLocation(miPosicionLogica.getX(), miPosicionLogica.getY());
 	}
 }

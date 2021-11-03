@@ -9,14 +9,6 @@ public abstract class Personaje extends Entidad {
 	public int getVelocidadActual() {
 		return velocidadActual;
 	}
-	
-	public Posicion getMiSpawn() {
-		return miSpawn;
-	}
-
-	public void setMiSpawn(Posicion miSpawn) {
-		this.miSpawn = miSpawn;
-	}
 
 	public abstract void recibirEfecto();
 	

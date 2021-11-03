@@ -1,6 +1,10 @@
 package entidadesGraficas;
 
+import java.awt.Image;
+
 import javax.swing.ImageIcon;
+
+import entidadesLogicas.Posicion;
 
 public class ElementoGrafico extends EntidadGrafica {
 	
@@ -9,12 +13,12 @@ public class ElementoGrafico extends EntidadGrafica {
 	protected ImageIcon sentidoFijo;
 	
 	public ElementoGrafico (ImageIcon miRepresentacionGrafica) {
-		sentidoFijo = miRepresentacionGrafica;
+		setBounds(25, 25, 25, 25);
+		sentidoFijo = new ImageIcon(miRepresentacionGrafica.getImage().getScaledInstance(this.getWidth(), this.getHeight(), Image.SCALE_SMOOTH));
 	}
 	
-	@SuppressWarnings("unused")
-	private void aparecer() {
-		setBounds(miPosicionLogica.getX(), miPosicionLogica.getY(), 25, 25);
+	public void aparecer(Posicion miPosicion) {
+		this.setBounds(miPosicion.getX(), miPosicion.getY(), 25, 25);
 		representacionActual = sentidoFijo;
 		setIcon(representacionActual);
 	}

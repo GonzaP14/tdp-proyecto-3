@@ -2,24 +2,40 @@ package gui;
 
 import javax.swing.*;
 
-import launcher.Launcher;
+import entidadesLogicas.DominioJuego;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class SplashScreen extends JFrame{
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	private JLabel bienvenidoLbl;
 	private JButton marioBtn; 
 	private JButton memojiBtn;
-	private JButton iniciarBtn;
 	
-	public SplashScreen() {
+	public SplashScreen(DominioJuego dominioJuego) {
+		getContentPane().setLayout(null);
+		
+		marioBtn = new JButton("MARIO =)");
+		marioBtn.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				dominioJuego.setDominioJuego(0);
+				setVisible(false);
+			}
+		});
+		marioBtn.setBounds(44, 211, 89, 23);
+		getContentPane().add(marioBtn);
+		
+		memojiBtn = new JButton("MEMOJI =(");
+		memojiBtn.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				dominioJuego.setDominioJuego(1);
+				setVisible(false);
+			}
+		});
+		memojiBtn.setBounds(272, 211, 89, 23);
+		getContentPane().add(memojiBtn);
 		
 	}
-	
-	private void iniciarBtnAccion(Launcher miLauncher) {
-		
-	}
-	
 }

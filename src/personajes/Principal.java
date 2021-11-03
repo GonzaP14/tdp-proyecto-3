@@ -18,6 +18,7 @@ public class Principal extends Personaje {
 		
 		miSpawn = new Posicion(100,100);
 		miPosicion = new Posicion(miSpawn.getX(), miSpawn.getY());
+		this.miRepresentacionGrafica.aparecer(miPosicion);
 	}
 	
 	@Override

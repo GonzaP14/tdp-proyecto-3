@@ -15,27 +15,26 @@ public class MarioBros extends FabricaEntidades {
 	
 	@Override
 	public Principal getPrincipal() {
-		ImageIcon[] imagenes = new ImageIcon[4];
+		ImageIcon[] imagenes = new ImageIcon[5];
 		imagenes[0] = new ImageIcon(this.getClass().getResource("/recursosMarioBros/MarioArriba.gif"));
 		imagenes[1] = new ImageIcon(this.getClass().getResource("/recursosMarioBros/MarioAbajo.gif"));
 		imagenes[2] = new ImageIcon(this.getClass().getResource("/recursosMarioBros/MarioDerecha.gif"));
 		imagenes[3] = new ImageIcon(this.getClass().getResource("/recursosMarioBros/MarioIzquierda.gif")); 
-		// imagenes[4] = new ImageIcon(this.getClass().getResource("/recursosMarioBros/MarioMuerto.gif")); 
+		imagenes[4] = new ImageIcon(this.getClass().getResource("/recursosMarioBros/MarioMuerto.gif")); 
 		
 		PrincipalGrafico miRepresentacionGrafica = new PrincipalGrafico(imagenes);
-		
 		return Principal.getPrincipal(miRepresentacionGrafica);
 	}
 	
 	@Override
 	public Enemigo getBlinky() {
-		ImageIcon[] imagenes = new ImageIcon[4];
+		ImageIcon[] imagenes = new ImageIcon[6];
 		imagenes[0] = new ImageIcon(this.getClass().getResource("/recursosMarioBros/GoompaArriba.gif"));
 		imagenes[1] = new ImageIcon(this.getClass().getResource("/recursosMarioBros/GoompaAbajo.gif"));
 		imagenes[2] = new ImageIcon(this.getClass().getResource("/recursosMarioBros/GoompaDerecha.gif"));
 		imagenes[3] = new ImageIcon(this.getClass().getResource("/recursosMarioBros/GoompaIzquierda.gif")); 
-		// imagenes[4] = new ImageIcon(this.getClass().getResource("/recursosMarioBros/GoompaMuerto.gif")); 
-		// imagenes[5] = new ImageIcon(this.getClass().getResource("/recursosMarioBros/GoompaEscapando.gif")); 
+		imagenes[4] = new ImageIcon(this.getClass().getResource("/recursosMarioBros/GoompaMuerto.gif")); 
+		imagenes[5] = new ImageIcon(this.getClass().getResource("/recursosMarioBros/GoompaEscapando.gif")); 
 		
 		EnemigoGrafico miRepresentacionGrafica = new EnemigoGrafico(imagenes);
 		
@@ -44,13 +43,13 @@ public class MarioBros extends FabricaEntidades {
 	
 	@Override
 	public Enemigo getPinky() {
-		ImageIcon[] imagenes = new ImageIcon[4];
+		ImageIcon[] imagenes = new ImageIcon[6];
 		imagenes[0] = new ImageIcon(this.getClass().getResource("/recursosMarioBros/BooArriba.gif"));
 		imagenes[1] = new ImageIcon(this.getClass().getResource("/recursosMarioBros/BooAbajo.gif"));
 		imagenes[2] = new ImageIcon(this.getClass().getResource("/recursosMarioBros/BooDerecha.gif"));
 		imagenes[3] = new ImageIcon(this.getClass().getResource("/recursosMarioBros/BooIzquierda.gif")); 
-		// imagenes[4] = new ImageIcon(this.getClass().getResource("/recursosMarioBros/BooMuerto.gif")); 
-		// imagenes[5] = new ImageIcon(this.getClass().getResource("/recursosMarioBros/BooEscapando.gif")); 
+		imagenes[4] = new ImageIcon(this.getClass().getResource("/recursosMarioBros/BooMuerto.gif")); 
+		imagenes[5] = new ImageIcon(this.getClass().getResource("/recursosMarioBros/BooEscapando.gif")); 
 		
 		EnemigoGrafico miRepresentacionGrafica = new EnemigoGrafico(imagenes);
 		
@@ -59,13 +58,13 @@ public class MarioBros extends FabricaEntidades {
 
 	@Override
 	public Enemigo getInky() {
-		ImageIcon[] imagenes = new ImageIcon[4];
+		ImageIcon[] imagenes = new ImageIcon[6];
 		imagenes[0] = new ImageIcon(this.getClass().getResource("/recursosMarioBros/BowserArriba.gif"));
 		imagenes[1] = new ImageIcon(this.getClass().getResource("/recursosMarioBros/BowserAbajo.gif"));
 		imagenes[2] = new ImageIcon(this.getClass().getResource("/recursosMarioBros/BowserDerecha.gif"));
 		imagenes[3] = new ImageIcon(this.getClass().getResource("/recursosMarioBros/BowserIzquierda.gif")); 
-		// imagenes[4] = new ImageIcon(this.getClass().getResource("/recursosMarioBros/BowserMuerto.gif")); 
-		// imagenes[5] = new ImageIcon(this.getClass().getResource("/recursosMarioBros/BowserEscapando.gif")); 
+		imagenes[4] = new ImageIcon(this.getClass().getResource("/recursosMarioBros/BowserMuerto.gif")); 
+		imagenes[5] = new ImageIcon(this.getClass().getResource("/recursosMarioBros/BowserEscapando.gif")); 
 		
 		EnemigoGrafico miRepresentacionGrafica = new EnemigoGrafico(imagenes);
 		
@@ -74,13 +73,13 @@ public class MarioBros extends FabricaEntidades {
 
 	@Override
 	public Enemigo getClyde() {
-		ImageIcon[] imagenes = new ImageIcon[4];
+		ImageIcon[] imagenes = new ImageIcon[6];
 		imagenes[0] = new ImageIcon(this.getClass().getResource("/recursosMarioBros/KoopaTroopaArriba.gif"));
 		imagenes[1] = new ImageIcon(this.getClass().getResource("/recursosMarioBros/KoopaTroopaAbajo.gif"));
 		imagenes[2] = new ImageIcon(this.getClass().getResource("/recursosMarioBros/KoopaTroopaDerecha.gif"));
 		imagenes[3] = new ImageIcon(this.getClass().getResource("/recursosMarioBros/KoopaTroopaIzquierda.gif")); 
-		// imagenes[4] = new ImageIcon(this.getClass().getResource("/recursosMarioBros/KoopaTroopaMuerto.gif")); 
-		// imagenes[5] = new ImageIcon(this.getClass().getResource("/recursosMarioBros/KoopaTroopaEscapando.gif")); 
+		imagenes[4] = new ImageIcon(this.getClass().getResource("/recursosMarioBros/KoopaTroopaMuerto.gif")); 
+		imagenes[5] = new ImageIcon(this.getClass().getResource("/recursosMarioBros/KoopaTroopaEscapando.gif")); 
 		
 		EnemigoGrafico miRepresentacionGrafica = new EnemigoGrafico(imagenes);
 		return new Clyde(miRepresentacionGrafica);

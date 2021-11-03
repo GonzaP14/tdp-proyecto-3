@@ -5,12 +5,11 @@ import entidadesLogicas.Posicion;
 
 public class PacDot extends Elemento {
 	
-	protected ElementoGrafico miRepresentacionGrafica;
-	
 	public PacDot(ElementoGrafico miRepresentacionGrafica) {
 		this.miRepresentacionGrafica = miRepresentacionGrafica;
 		miSpawn = new Posicion(300,300);
 		miPosicion = new Posicion(miSpawn.getX(), miSpawn.getY());
+		this.miRepresentacionGrafica.aparecer(miPosicion);
 	}
 	
 	@Override
