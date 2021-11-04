@@ -12,6 +12,7 @@ public class PocionCongelacion extends Pocion {
 		miPosicion = new Posicion(miSpawn.getX(), miSpawn.getY());
 		miRepresentacion = new ElementoGrafico(imagen);
 		miRepresentacion.aparecer(miPosicion);
+		velocidadOtorgada = 0;
 	}
 
 	@Override

@@ -11,6 +11,7 @@ public class PacDot extends Elemento {
 		miPosicion = new Posicion(miSpawn.getX(), miSpawn.getY());
 		miRepresentacion = new ElementoGrafico(imagen);
 		miRepresentacion.aparecer(miPosicion);
+		puntajeOtorgado = 10;
 	}
 
 	@Override

@@ -32,6 +32,7 @@ public class Juego {
 	private Principal miPersonajePrincipal;
 	private BuilderNivel nivelActual;
 	public static Properties configuration;
+	private int cantidadPacDotsRestantes;
 	
 	// Atributos de clase
 	public static int DominioMarioBros;

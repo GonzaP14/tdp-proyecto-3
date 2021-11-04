@@ -7,11 +7,15 @@ public class Posicion {
 	private int ancho;
 	private int alto;
 	
-	public Posicion(int x , int y ) {
+	public Posicion(int x , int y , int ancho , int alto) {
 		this.x = x;
 		this.y = y;
-		this.ancho = 25;
-		this.alto = 25;
+		this.ancho = ancho;
+		this.alto = alto;
+	}
+	
+	public Posicion(int x , int y) {
+		this(x,y,25,25);
 	}
 	
 	/**

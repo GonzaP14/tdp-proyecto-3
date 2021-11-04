@@ -33,7 +33,7 @@ public class Ventana extends JFrame {
     	layeredPane = new JLayeredPane();
 	    layeredPane.setBounds(0,0,1250,850); 
 	    layeredPane.add(miLaberinto,Integer.valueOf(0));
-	    layeredPane.add(miPrincipalGrafico, Integer.valueOf(1)); // Principal // 3 -> Fantasas
+	    layeredPane.add(miPrincipalGrafico, Integer.valueOf(miPrincipalGrafico.getMiPrioridad())); // Principal // 3 -> Fantasas
 	    this.getContentPane().add(layeredPane);
 	    this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	    this.getContentPane().setLayout(null);

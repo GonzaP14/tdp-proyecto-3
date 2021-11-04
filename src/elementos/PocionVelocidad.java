@@ -12,6 +12,7 @@ public class PocionVelocidad extends Pocion {
 		miPosicion = new Posicion(miSpawn.getX(), miSpawn.getY());
 		miRepresentacion = new ElementoGrafico(imagen);
 		miRepresentacion.aparecer(miPosicion);
+		velocidadOtorgada = 2;
 	}
 
 	@Override

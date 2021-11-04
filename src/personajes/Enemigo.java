@@ -7,6 +7,7 @@ public abstract class Enemigo extends Personaje {
 	protected int indiceEstado;
 	protected int tiempoEstado;
 	protected int velocidad;
+	private static final int puntajeOtorgado = 200;
 	
 	public static final int Frightened = 1;
 	public static final int Chase = 2;
