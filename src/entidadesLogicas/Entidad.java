@@ -9,7 +9,6 @@ public abstract class Entidad {
 	protected EntidadGrafica miRepresentacion;
 	protected Juego miJuego;
 	protected Posicion miPosicion;
-	protected Posicion miSpawn;
 	
 	// Atributos de clase
 	public static final int sentidoFijo = 0;
@@ -29,6 +28,7 @@ public abstract class Entidad {
 		return miPosicion;
 	}
 	
+	
 	public EntidadGrafica getMiRepresentacion() {
 		return miRepresentacion;
 	}
@@ -45,6 +45,11 @@ public abstract class Entidad {
 	public void setMiRepresentacion(EntidadGrafica miRepresentacion) {
 		this.miRepresentacion = miRepresentacion;
 	}
+	
+	public void setPosicion(Posicion p) {
+		miPosicion = p;
+	}
+	
 
 	// -------------------------------------------- ACCIONES ----------------------------------------
 	public abstract void afectar();

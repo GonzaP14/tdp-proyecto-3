@@ -4,6 +4,7 @@ import java.awt.Image;
 import javax.swing.ImageIcon;
 
 public class PrincipalGrafico extends PersonajeGrafico {
+	
 	private static final long serialVersionUID = 1L;
 	
 	public PrincipalGrafico(String[] imagenes) {

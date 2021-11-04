@@ -12,6 +12,7 @@ import entidadesGraficas.EntidadGrafica;
 import entidadesGraficas.Laberinto;
 import entidadesLogicas.Entidad;
 import entidadesLogicas.Juego;
+import javax.swing.JLabel;
 
 public class Ventana extends JFrame {
 
@@ -26,7 +27,7 @@ public class Ventana extends JFrame {
         miJuego.setMiVentana(this);
         misEntidadesGraficas = new ArrayList<EntidadGrafica>();
         miLaberinto = new Laberinto (miJuego.getMiGrilla());
-        miLaberinto.setLocation(0, 0);
+        miLaberinto.setLocation(-141, 159);
 		miLaberinto.setSize(700, 775);
 		miLaberinto.ConstructorNivel(2);
 		initialize();
@@ -86,5 +87,4 @@ public class Ventana extends JFrame {
 		misEntidadesGraficas.add(entidadGrafica);
 		layeredPane.add(entidadGrafica, Integer.valueOf(entidadGrafica.getMiPrioridad())); 
 	}
-    
 }

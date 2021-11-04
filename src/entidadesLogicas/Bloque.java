@@ -4,19 +4,12 @@ import java.util.ArrayList;
 import entidadesGraficas.BloqueGrafico;
 
 public class Bloque {
+	
 	private Posicion miPosicion;
 	private boolean puedeVisitarse;
 	private BloqueGrafico miRepresentacion;
 	private ArrayList<Entidad> listaEntidades;
-	
-	public Bloque(int x , int y , boolean puedeVisitarse, Entidad miEntidad ) {
-		miPosicion = new Posicion(x , y);
-		this.puedeVisitarse = puedeVisitarse;
-		listaEntidades = new ArrayList<Entidad>();
-		listaEntidades.add(miEntidad);
-		miRepresentacion = new BloqueGrafico( listaEntidades );
-	}
-	
+
 	public Bloque(int x , int y , boolean puedeVisitarse ) {
 		miPosicion = new Posicion(x , y);
 		this.puedeVisitarse = puedeVisitarse;
@@ -56,6 +49,5 @@ public class Bloque {
 	public void setMiRepresentacion(BloqueGrafico miRepresentacion) {
 		this.miRepresentacion = miRepresentacion;
 	}
-	
 	
 }

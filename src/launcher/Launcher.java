@@ -6,9 +6,6 @@ import entidadesLogicas.Juego;
 import entidadesLogicas.Nivel1;
 import gui.SplashScreen;
 import gui.Ventana;
-import productos.FabricaEntidades;
-import productos.FabricaMarioBros;
-import productos.FabricaMemoji;
 
 public class Launcher {
 	private static DominioJuego dominioJuego;

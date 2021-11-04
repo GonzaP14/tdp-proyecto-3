@@ -6,6 +6,9 @@ import java.util.ArrayList;
 import java.util.Collections;
 
 public class Leaderboard implements Serializable{
+
+	private static final long serialVersionUID = 1L;
+	
 	private List<Player> ranking;
 	
 	public Leaderboard() {
