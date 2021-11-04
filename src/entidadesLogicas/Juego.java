@@ -68,6 +68,10 @@ public class Juego {
 		return miGrilla;
 	}
 
+	public BuilderNivel getNivelActual() {
+		return nivelActual;
+	}
+
 	public boolean isGameOver() {
 		return gameOver;
 	}

@@ -3,16 +3,12 @@ package gui;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.util.ArrayList;
-
 import javax.swing.JFrame;
 import javax.swing.JLayeredPane;
-
-import entidadesGraficas.ElementoGrafico;
 import entidadesGraficas.EntidadGrafica;
 import entidadesGraficas.Laberinto;
 import entidadesLogicas.Entidad;
 import entidadesLogicas.Juego;
-import javax.swing.JLabel;
 
 public class Ventana extends JFrame implements KeyListener{
 
@@ -26,10 +22,7 @@ public class Ventana extends JFrame implements KeyListener{
         this.miJuego = miJuego;
         miJuego.setMiVentana(this);
         misEntidadesGraficas = new ArrayList<EntidadGrafica>();
-        miLaberinto = new Laberinto (miJuego.getMiGrilla());
-        miLaberinto.setLocation(0, 0);
-		miLaberinto.setSize(700, 775);
-		miLaberinto.ConstructorNivel(1);
+        miLaberinto = miJuego.getNivelActual().getLaberinto(miJuego.getMiGrilla());
 		initialize();
 		miJuego.iniciarJuego();
     }
