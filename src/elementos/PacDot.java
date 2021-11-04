@@ -5,15 +5,17 @@ import entidadesLogicas.Juego;
 import entidadesLogicas.Posicion;
 
 public class PacDot extends Elemento {
-	
+	private static final Posicion[] misSpawns = 
+	{
+			new Posicion(400, 575), new Posicion(425, 575)
+	};
 	public PacDot(Juego miJuego, String imagen) {
 		this.miJuego = miJuego;
-		miPosicion = new Posicion(miSpawn.getX(), miSpawn.getY());
 		miRepresentacion = new ElementoGrafico(imagen);
-		miRepresentacion.aparecer(miPosicion);
 		puntajeOtorgado = 10;
 	}
 
+	
 	@Override
 	public void iniciarTimer(HiloElemento timer) {
 		// TODO Auto-generated method stub
@@ -24,6 +26,10 @@ public class PacDot extends Elemento {
 	public void afectar() {
 		// TODO Auto-generated method stub
 		
+	}
+
+	public static Posicion[] getMisSpawns() {
+		return misSpawns;
 	}
 
 }

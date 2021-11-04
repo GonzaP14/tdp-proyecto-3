@@ -5,16 +5,13 @@ import entidadesLogicas.Juego;
 import entidadesLogicas.Posicion;
 
 public class PowerPellet extends Elemento {
-	
-	public static final Posicion spawnIzquierdaAbajo = new Posicion(350,570);
-	public static final Posicion spawnIzquierdaArriba = new Posicion(350,570);
-	public static final Posicion spawnDerechaAbajo = new Posicion(350,570);
-	public static final Posicion spawnDerechaArriba = new Posicion(350,570);
-	
+	private static final Posicion[] misSpawns = 
+		{
+				new Posicion(650,725), new Posicion(25,725), new Posicion(650,25), new Posicion(25,25)
+		};
 	public PowerPellet(Juego miJuego, String imagen) {
 		this.miJuego = miJuego;
 		miRepresentacion = new ElementoGrafico(imagen);
-		miRepresentacion.aparecer(miPosicion);
 		puntajeOtorgado = 50;
 	}
 
@@ -30,4 +27,7 @@ public class PowerPellet extends Elemento {
 		
 	}
 	
+	public static Posicion[] getMisSpawns() {
+		return misSpawns;
+	}
 }

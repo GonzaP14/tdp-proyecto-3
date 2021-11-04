@@ -26,7 +26,6 @@ public class ElementoGrafico extends EntidadGrafica {
 		this.setBounds(miPosicion.getX(), miPosicion.getY(), 25, 25);
 		representacionActual = sentidoFijo;
 		setIcon(representacionActual);
-		
 	}
 	
 	@Override

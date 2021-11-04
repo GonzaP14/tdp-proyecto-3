@@ -3,6 +3,7 @@ package entidadesLogicas;
 import java.util.ArrayList;
 import java.util.Properties;
 import audio.Audio;
+import elementos.PacDot;
 import elementos.PowerPellet;
 import gui.Ventana;
 import personajes.Principal;
@@ -136,33 +137,28 @@ public class Juego {
 		// falta modelar todo lo relacionado al hilo de la fruta y aplicarle el nivel de estrategiaNivel
 	}
 	
+	public void spawnearPacDots() {
+		for (Posicion spawn : PacDot.getMisSpawns()) {
+			misElementos.add(miFabricaEntidades.getPacDot());
+			misElementos.get(misElementos.size()-1).getMiRepresentacion().aparecer(spawn);
+			miVentana.aparecerEntidad(misElementos.get(misElementos.size()-1).getMiRepresentacion()); // aparece el recien agregado
+		}
+		// falta modelar todo lo relacionado al hilo de la fruta y aplicarle el nivel de estrategiaNivel
+	}
+	
 	public void spawnearPowerPellets() {
-		Entidad p1, p2, p3, p4;
-		
-		p1 = miFabricaEntidades.getPowerPellet();
-		p2 = miFabricaEntidades.getPowerPellet();
-		p3 = miFabricaEntidades.getPowerPellet();
-		p4 = miFabricaEntidades.getPowerPellet();
-		
-		p1.setPosicion(PowerPellet.spawnIzquierdaAbajo);
-		p2.setPosicion(PowerPellet.spawnIzquierdaArriba);
-		p3.setPosicion(PowerPellet.spawnDerechaAbajo);
-		p4.setPosicion(PowerPellet.spawnIzquierdaArriba);
-		
-		misElementos.add(p1);
-		misElementos.add(p2);
-		misElementos.add(p3);
-		misElementos.add(p4);
-		
-		miVentana.aparecerEntidad(p1.getMiRepresentacion());
-		miVentana.aparecerEntidad(p2.getMiRepresentacion());
-		miVentana.aparecerEntidad(p3.getMiRepresentacion());
-		miVentana.aparecerEntidad(p4.getMiRepresentacion());
+		for (Posicion spawn : PowerPellet.getMisSpawns()) {
+			misElementos.add(miFabricaEntidades.getPowerPellet());
+			misElementos.get(misElementos.size()-1).getMiRepresentacion().aparecer(spawn);
+			miVentana.aparecerEntidad(misElementos.get(misElementos.size()-1).getMiRepresentacion()); // aparece el recien agregado
+		}
 	}
  	
 	// ---------------------------------------- INICIO & RESET ------------------------------------
 	public void iniciarJuego() {
 		spawnearPrincipal();
+		spawnearPacDots();
+		spawnearPowerPellets();
 		iniciarReloj();
 	}
 	
