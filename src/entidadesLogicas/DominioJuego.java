@@ -6,6 +6,10 @@ public class DominioJuego {
 	public static final int dominioMemoji = 1;
 	private int dominioJuego;
 
+	public DominioJuego() {
+		dominioJuego = 99;
+	}
+	
 	public int getDominioJuego() {
 		return dominioJuego;
 	}

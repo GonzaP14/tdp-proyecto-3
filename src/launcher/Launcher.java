@@ -19,8 +19,10 @@ public class Launcher {
 		miSplashScreen = new SplashScreen(dominioJuego);
 		miSplashScreen.setBounds(100, 0, 1500, 500);
 		miSplashScreen.setVisible(true);
-		miNivel = new Nivel1();
-		iniciarJuego(miNivel, dominioJuego.getDominioJuego() );
+		if (dominioJuego.getDominioJuego() != 99) {
+			miNivel = new Nivel1();
+			iniciarJuego(miNivel, dominioJuego.getDominioJuego() );
+		}
 	}
 	
 	public static void iniciarJuego(BuilderNivel miNivel, int dominio) {
