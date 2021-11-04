@@ -5,14 +5,14 @@ import entidadesLogicas.Juego;
 import entidadesLogicas.Posicion;
 
 public class Inky extends Enemigo {
-	private EnemigoGrafico miRepresentacionGrafica;
+	
 	private static final Posicion miSpawn = new Posicion(350, 575);
 
 	public Inky(Juego miJuego, String[] imagenes) {
 		this.miJuego = miJuego;
 		miPosicion = new Posicion(miSpawn.getX(), miSpawn.getY()); // Definir: Proximamente.
-		miRepresentacionGrafica = new EnemigoGrafico(imagenes);
-		miRepresentacionGrafica.aparecer(miPosicion);
+		miRepresentacion = new EnemigoGrafico(imagenes);
+		miRepresentacion.aparecer(miPosicion);
 	}
 	
 }

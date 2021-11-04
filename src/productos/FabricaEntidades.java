@@ -7,7 +7,9 @@ import personajes.Enemigo;
 import personajes.Principal;
 
 public abstract class FabricaEntidades {
+	
 	protected Juego miJuego;
+	
 	public abstract Principal getPrincipal();
 	
 	public abstract Enemigo getBlinky();

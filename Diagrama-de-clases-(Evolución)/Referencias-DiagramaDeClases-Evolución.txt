@@ -1,0 +1,7 @@
+Referencias - Evolución de Diagrama de Clases
+
+-> Diagrama de Clases reducido: Etapa 1 y 2.
+-> Diagrama de Clases extendido V1: Etapa 3
+-> Diagrama de Clases extendido V2: Etapa 4.
+-> Diagrama de Clases extendido V3: Etapa 5.
+-> Diagrama de Clases extendido V4: Etapa 6.
