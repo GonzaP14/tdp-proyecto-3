@@ -7,7 +7,7 @@ import entidadesLogicas.Posicion;
 public class PowerPellet extends Elemento {
 	private static final Posicion[] misSpawns = 
 		{
-				new Posicion(650,725), new Posicion(25,725), new Posicion(650,25), new Posicion(25,25)
+			new Posicion(650,575), new Posicion(25,575), new Posicion(650,75), new Posicion(25,75)
 		};
 	public PowerPellet(Juego miJuego, String imagen) {
 		this.miJuego = miJuego;
