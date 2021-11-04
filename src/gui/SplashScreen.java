@@ -17,43 +17,53 @@ public class SplashScreen extends JDialog{
 	
 	public SplashScreen(DominioJuego dominioJuego) {
 		super();
-		setModal(true);
-		// constructor de JDialog & modal en true
+		this.setModal(true);		
+		this.getContentPane().setLayout(null);
 		
-		getContentPane().setLayout(null);
 		
-		// Mario Bros
-		marioButton = new JButton("MARIO");
+		marioButton = new JButton("");
+		marioButton.setBounds(328, 246, 125, 51);
+		ImageIcon botonMario = new ImageIcon(this.getClass().getResource("/recursosMarioBros/botonPlayMario.png"));
+		marioButton.setIcon(new ImageIcon(botonMario.getImage().getScaledInstance(marioButton.getWidth(), marioButton.getHeight(), Image.SCALE_DEFAULT)));
 		marioButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				dominioJuego.setDominioJuego(DominioJuego.dominioMarioBros);
 				setVisible(false);
 			}
 		});
-		marioButton.setBounds(44, 211, 89, 23);
-		getContentPane().add(marioButton);
+		this.getContentPane().add(marioButton);
 		
 		// Memoji
-		memojiButton = new JButton("MEMOJI ");
+		memojiButton = new JButton("");
+		memojiButton.setBounds(1078, 246, 125, 51);
+		ImageIcon botonMemoji = new ImageIcon(this.getClass().getResource("/recursosMemoji/botonPlayMemoji.png"));
+		memojiButton.setIcon(new ImageIcon(botonMemoji.getImage().getScaledInstance(memojiButton.getWidth(), memojiButton.getHeight(), Image.SCALE_DEFAULT)));
 		memojiButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				dominioJuego.setDominioJuego(DominioJuego.dominioMemoji);
 				setVisible(false);
 			}
 		});
-		memojiButton.setBounds(272, 211, 89, 23);
+		
 		getContentPane().add(memojiButton);
 		
-		ImageIcon fotoMario = new ImageIcon(this.getClass().getResource("/recursosMarioBros/fotoMario.png"));
-
-		JLabel lblFotoMario = new JLabel();
-		lblFotoMario.setBounds(44, 102, 89, 98);
-		lblFotoMario.setIcon(new ImageIcon(fotoMario.getImage().getScaledInstance(lblFotoMario.getWidth(), lblFotoMario.getHeight(), Image.SCALE_DEFAULT)));
-		getContentPane().add(lblFotoMario);
 		
+		
+		ImageIcon fotoMario = new ImageIcon(this.getClass().getResource("/recursosMarioBros/portadaMario.jpg"));
+		JLabel lblFotoMario = new JLabel();
+		lblFotoMario.setBounds(0, 0, 750, 500);
+		lblFotoMario.setIcon(new ImageIcon(fotoMario.getImage().getScaledInstance(lblFotoMario.getWidth(), lblFotoMario.getHeight(), Image.SCALE_DEFAULT)));
+		this.getContentPane().add(lblFotoMario);
+		
+		ImageIcon fotoMemoji = new ImageIcon(this.getClass().getResource("/recursosMemoji/portadaMemoji.jpg"));
 		JLabel lblFotoMemoji = new JLabel();
-		lblFotoMemoji.setBounds(288, 102, 89, 98);
+		lblFotoMemoji.setBounds(750, 0, 750, 500);
+		lblFotoMemoji.setIcon(new ImageIcon(fotoMemoji.getImage().getScaledInstance(lblFotoMemoji.getWidth(), lblFotoMemoji.getHeight(), Image.SCALE_DEFAULT)));
+		
 		getContentPane().add(lblFotoMemoji);
+		
+		
+
 		
 	}
 }

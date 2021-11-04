@@ -17,7 +17,7 @@ public class Launcher {
 	public static void main(String[] args) {
 		dominioJuego = new DominioJuego();
 		miSplashScreen = new SplashScreen(dominioJuego);
-		miSplashScreen.setBounds(100, 200, 640, 480);
+		miSplashScreen.setBounds(100, 0, 1500, 500);
 		miSplashScreen.setVisible(true);
 		miNivel = new Nivel1();
 		iniciarJuego(miNivel, dominioJuego.getDominioJuego() );
