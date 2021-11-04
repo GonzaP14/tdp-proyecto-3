@@ -3,14 +3,7 @@ package entidadesLogicas;
 import java.util.ArrayList;
 import java.util.Properties;
 import audio.Audio;
-import entidadesGraficas.EnemigoGrafico;
-import entidadesGraficas.EntidadGrafica;
-import entidadesGraficas.PrincipalGrafico;
 import gui.Ventana;
-import personajes.Blinky;
-import personajes.Enemigo;
-import elementos.*;
-import personajes.Personaje;
 import personajes.Principal;
 import productos.FabricaEntidades;
 import productos.FabricaMarioBros;
@@ -48,13 +41,12 @@ public class Juego {
 		else if(dominio == DominioMemoji) {
 			miFabricaEntidades = new FabricaMemoji(this);
 		}
-		miPersonajePrincipal = miFabricaEntidades.getPrincipal();
-		
+	
 		this.nivelActual = nivelActual;
-		miReloj = new Reloj(1,this);
 		gameOver = false;
-		miReloj.start();
 		miGrilla = new Grilla();
+		misElementos = new ArrayList<Entidad>();
+		misEnemigos = new ArrayList<Entidad>();
 	}
 	
 	// ----------------------------------------      GETTERS     ------------------------------------
@@ -76,6 +68,11 @@ public class Juego {
 
 	public boolean isGameOver() {
 		return gameOver;
+	}
+	
+	// ----------------------------------------       SETTERS      -----------------------------------
+	public void setMiVentana(Ventana miVentana) {
+		this.miVentana = miVentana;
 	}
 
 	// ---------------------------------------- ESTADOS DEL JUEGO ------------------------------------
@@ -128,20 +125,24 @@ public class Juego {
 	}
 	
 	private void spawnearPrincipal() {
-		
+		miPersonajePrincipal = miFabricaEntidades.getPrincipal();
+		miVentana.aparecerEntidad(miPersonajePrincipal.getMiRepresentacion());
 	}
 	
 	public void spawnearFruta() {
-		miFabricaEntidades.getFruta();
+		misElementos.add(miFabricaEntidades.getFruta());
+		miVentana.aparecerEntidad(misElementos.get(misElementos.size()-1).getMiRepresentacion()); // aparece el recien agregado
 		// falta modelar todo lo relacionado al hilo de la fruta y aplicarle el nivel de estrategiaNivel
 	}
 	// ---------------------------------------- INICIO & RESET ------------------------------------
-	private void iniciarJuego() {
-		
+	public void iniciarJuego() {
+		spawnearPrincipal();
+		iniciarReloj();
 	}
 	
 	private void iniciarReloj() {
-		
+		miReloj = new Reloj(1, this);
+		miReloj.start();
 	}
 	
 	public void resetear() {

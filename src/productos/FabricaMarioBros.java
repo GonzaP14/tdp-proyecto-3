@@ -1,9 +1,5 @@
 package productos;
 
-import javax.swing.ImageIcon;
-import entidadesGraficas.ElementoGrafico;
-import entidadesGraficas.EnemigoGrafico;
-import entidadesGraficas.PrincipalGrafico;
 import entidadesLogicas.Juego;
 import personajes.*;
 import elementos.*;

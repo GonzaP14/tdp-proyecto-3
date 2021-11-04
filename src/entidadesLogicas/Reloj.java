@@ -16,7 +16,7 @@ public class Reloj extends Thread{
 					miJuego.operar();
 					Thread.sleep(velocidadTickeo * 50); // 1s
 					ticks++;
-					if (ticks == 300) {
+					if (ticks == 50) {
 						miJuego.spawnearFruta();
 					}
 				} catch (InterruptedException e) {

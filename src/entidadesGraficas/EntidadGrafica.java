@@ -3,9 +3,9 @@ package entidadesGraficas;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import entidadesLogicas.Posicion;
+import gui.Ventana;
 
 public abstract class EntidadGrafica extends JLabel {
-	
 	private static final long serialVersionUID = 1L;
 	
 	protected int miPrioridad;

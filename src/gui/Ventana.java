@@ -2,9 +2,12 @@ package gui;
 
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.util.ArrayList;
+
 import javax.swing.JFrame;
 import javax.swing.JLayeredPane;
 
+import entidadesGraficas.ElementoGrafico;
 import entidadesGraficas.EntidadGrafica;
 import entidadesGraficas.Laberinto;
 import entidadesLogicas.Entidad;
@@ -14,26 +17,26 @@ public class Ventana extends JFrame {
 
     private static final long serialVersionUID = 1L;
     private Juego miJuego;
-    private EntidadGrafica miPrincipalGrafico;
-
+    private ArrayList<EntidadGrafica> misEntidadesGraficas;
     private Laberinto miLaberinto;
     private JLayeredPane layeredPane;
     
     public Ventana(Juego miJuego) {
         this.miJuego = miJuego;
-        miPrincipalGrafico = miJuego.getMiPersonajePrincipal().getMiRepresentacion();
+        miJuego.setMiVentana(this);
+        misEntidadesGraficas = new ArrayList<EntidadGrafica>();
         miLaberinto = new Laberinto (miJuego.getMiGrilla());
         miLaberinto.setLocation(0, 0);
 		miLaberinto.setSize(700, 775);
 		miLaberinto.ConstructorNivel(2);
 		initialize();
+		miJuego.iniciarJuego();
     }
     
     private void initialize() {
     	layeredPane = new JLayeredPane();
 	    layeredPane.setBounds(0,0,1250,850); 
 	    layeredPane.add(miLaberinto,Integer.valueOf(0));
-	    layeredPane.add(miPrincipalGrafico, Integer.valueOf(miPrincipalGrafico.getMiPrioridad())); // Principal // 3 -> Fantasas
 	    this.getContentPane().add(layeredPane);
 	    this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	    this.getContentPane().setLayout(null);
@@ -77,6 +80,11 @@ public class Ventana extends JFrame {
                 
             }
             });
+	}
+
+	public void aparecerEntidad(EntidadGrafica entidadGrafica) {
+		misEntidadesGraficas.add(entidadGrafica);
+		layeredPane.add(entidadGrafica, Integer.valueOf(entidadGrafica.getMiPrioridad())); 
 	}
     
 }
