@@ -7,7 +7,7 @@ import personajes.Enemigo;
 import personajes.Principal;
 
 public class FabricaMemoji extends FabricaEntidades {
-	private Juego miJuego;
+	
 	public FabricaMemoji(Juego miJuego) {
 		this.miJuego = miJuego;
 	}

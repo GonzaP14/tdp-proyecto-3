@@ -9,7 +9,6 @@ import personajes.*;
 import elementos.*;
 
 public class FabricaMarioBros extends FabricaEntidades {
-	private Juego miJuego;
 	public FabricaMarioBros(Juego miJuego) {
 		this.miJuego = miJuego;
 	}

@@ -23,16 +23,11 @@ public class Launcher {
 		miSplashScreen.setBounds(100, 200, 640, 480);
 		miSplashScreen.setVisible(true);
 		miNivel = new Nivel1();
-		if (dominioJuego.getDominioJuego() == DominioJuego.dominioMarioBros) {
-			iniciarJuego(miNivel, new FabricaMarioBros(miJuego));
-		}
-		else if (dominioJuego.getDominioJuego() == DominioJuego.dominioMemoji){
-			iniciarJuego(miNivel, new FabricaMemoji(miJuego));
-		}
+		iniciarJuego(miNivel, dominioJuego.getDominioJuego() );
 	}
 	
-	public static void iniciarJuego(BuilderNivel miNivel, FabricaEntidades fabricaEntidades) {
-		miJuego = new Juego(miNivel, fabricaEntidades);
+	public static void iniciarJuego(BuilderNivel miNivel, int dominio) {
+		miJuego = new Juego(miNivel, dominio);
 		miVentana = new Ventana(miJuego);
 		miVentana.setVisible(true);
 	}

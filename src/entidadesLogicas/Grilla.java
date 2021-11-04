@@ -20,8 +20,9 @@ public class Grilla {
 	
 	// ------------------------------------   Metodos   ------------------------------------------
 	public boolean buscarColisiones(Posicion posiciones) {
-		Posicion posicionBloque = new Posicion(posiciones.getX() / 10 , posiciones.getY() / 10);
-		if(grilla[posicionBloque.getX()][posicionBloque.getY()].isPuedeVisitarse() == false )
+		Posicion izquierdaArriba = new Posicion(posiciones.getX() / 10 , posiciones.getY() / 10);
+		
+		if(grilla[izquierdaArriba.getX()][izquierdaArriba.getY()].isPuedeVisitarse() == false )
 			return true;
 		else
 			return false;

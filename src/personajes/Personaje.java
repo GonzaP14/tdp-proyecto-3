@@ -5,7 +5,6 @@ import entidadesLogicas.Posicion;
 
 public abstract class Personaje extends Entidad {
 	private int velocidadActual;
-	
 	public int getVelocidadActual() {
 		return velocidadActual;
 	}
@@ -27,10 +26,10 @@ public abstract class Personaje extends Entidad {
 		else if(desplazamiento == Entidad.sentidoIzquierda ) {
 			proximaPosicion = new Posicion(miPosicion.getX() - 5, miPosicion.getY() );			
 		}
-//		if(proximaPosicion != null && !miJuego.getMiGrilla().buscarColisiones(proximaPosicion) ) {
+		//if(proximaPosicion != null && !miJuego.getMiGrilla().buscarColisiones(proximaPosicion) ) {
 			miPosicion = proximaPosicion;
 			miRepresentacion.setLocation(miPosicion.getX() , miPosicion.getY());
-//		}
+		//}
 	}
 	
 	private void moverVerticalmente(int desplazamiento) {
@@ -41,10 +40,10 @@ public abstract class Personaje extends Entidad {
 		else if(desplazamiento == Entidad.sentidoAbajo ) {
 			proximaPosicion = new Posicion(miPosicion.getX() , miPosicion.getY() + 5 );
 		}
-//		if(proximaPosicion != null && !miJuego.getMiGrilla().buscarColisiones(proximaPosicion) ) {
+		//if(proximaPosicion != null && !miJuego.getMiGrilla().buscarColisiones(proximaPosicion) ) {
 			miPosicion = proximaPosicion;
 			miRepresentacion.setLocation(miPosicion.getX() , miPosicion.getY());
-//		}
+		//}
 	}
 	
 	public void morir() {

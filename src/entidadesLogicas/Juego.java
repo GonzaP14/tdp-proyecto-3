@@ -13,6 +13,8 @@ import elementos.*;
 import personajes.Personaje;
 import personajes.Principal;
 import productos.FabricaEntidades;
+import productos.FabricaMarioBros;
+import productos.FabricaMemoji;
 
 
 public class Juego {
@@ -39,8 +41,13 @@ public class Juego {
 	public static int DominioMemoji;
 	
 	// ---------------------------------------- CONSTRUCTOR ------------------------------------
-	public Juego(BuilderNivel nivelActual, FabricaEntidades miFabricaEntidades) {
-		this.miFabricaEntidades = miFabricaEntidades;
+	public Juego(BuilderNivel nivelActual, int dominio) {
+		if(dominio == DominioMarioBros) {
+			miFabricaEntidades = new FabricaMarioBros(this);
+		}
+		else if(dominio == DominioMemoji) {
+			miFabricaEntidades = new FabricaMemoji(this);
+		}
 		miPersonajePrincipal = miFabricaEntidades.getPrincipal();
 		
 		this.nivelActual = nivelActual;
