@@ -14,7 +14,7 @@ import entidadesLogicas.Entidad;
 import entidadesLogicas.Juego;
 import javax.swing.JLabel;
 
-public class Ventana extends JFrame {
+public class Ventana extends JFrame implements KeyListener{
 
     private static final long serialVersionUID = 1L;
     private Juego miJuego;
@@ -45,46 +45,47 @@ public class Ventana extends JFrame {
 	    layeredPane.setFocusable(true);
 		setBounds(0, 0, 1250, 850);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		layeredPane.addKeyListener(new KeyListener () {
-            @Override
-            public void keyTyped(KeyEvent e) {
-                // TODO Auto-generated method stub
-                
-            }
-
-            public void keyPressed(KeyEvent e) {
-                switch (e.getKeyCode()) {
-                  case KeyEvent.VK_UP:
-                    miJuego.cambiarSentidoActualPrincipal(Entidad.sentidoArriba);
-                    break;
-                case KeyEvent.VK_DOWN:
-                    miJuego.cambiarSentidoActualPrincipal(Entidad.sentidoAbajo);
-                    break;
-                  case KeyEvent.VK_LEFT:
-                    miJuego.cambiarSentidoActualPrincipal(Entidad.sentidoIzquierda);
-                    break;
-                  case KeyEvent.VK_RIGHT:
-                    miJuego.cambiarSentidoActualPrincipal(Entidad.sentidoDerecha);
-                    break;          
-                  case KeyEvent.VK_P:
-                      break;
-                  case KeyEvent.VK_R:
-                      break;
-                  case KeyEvent.VK_M:                
-                      break;
-              }
-            }
-
-
-            public void keyReleased(KeyEvent e) {
-                // TODO Auto-generated method stub
-                
-            }
-            });
-	}
+		layeredPane.addKeyListener(this);
+    }
 
 	public void aparecerEntidad(EntidadGrafica entidadGrafica) {
 		misEntidadesGraficas.add(entidadGrafica);
 		layeredPane.add(entidadGrafica, Integer.valueOf(entidadGrafica.getMiPrioridad())); 
+	}
+
+	@Override
+	public void keyTyped(KeyEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void keyPressed(KeyEvent e) {
+		switch (e.getKeyCode()) {
+	        case KeyEvent.VK_UP:
+	          miJuego.cambiarSentidoActualPrincipal(Entidad.sentidoArriba);
+	          break;
+	        case KeyEvent.VK_DOWN:
+	          miJuego.cambiarSentidoActualPrincipal(Entidad.sentidoAbajo);
+	          break;
+	        case KeyEvent.VK_LEFT:
+	          miJuego.cambiarSentidoActualPrincipal(Entidad.sentidoIzquierda);
+	          break;
+	        case KeyEvent.VK_RIGHT:
+	          miJuego.cambiarSentidoActualPrincipal(Entidad.sentidoDerecha);
+	          break;          
+	        case KeyEvent.VK_P:
+	            break;
+	        case KeyEvent.VK_R:
+	            break;
+	        case KeyEvent.VK_M:                
+	            break;
+		}
+	}
+
+	@Override
+	public void keyReleased(KeyEvent e) {
+		// TODO Auto-generated method stub
+		
 	}
 }
