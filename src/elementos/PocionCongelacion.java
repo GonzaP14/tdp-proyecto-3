@@ -9,7 +9,7 @@ public class PocionCongelacion extends Pocion {
 	
 	public PocionCongelacion(Juego miJuego, String imagen) {
 		this.miJuego = miJuego;
-		miPosicion = new Posicion(miSpawn.getX(), miSpawn.getY());
+		miPosicion = new Posicion((int) miSpawn.getX(), (int) miSpawn.getY());
 		miRepresentacion = new ElementoGrafico(imagen);
 		miRepresentacion.aparecer(miPosicion);
 		velocidadOtorgada = 0;

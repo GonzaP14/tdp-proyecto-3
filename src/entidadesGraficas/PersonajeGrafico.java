@@ -32,7 +32,7 @@ public abstract class PersonajeGrafico extends EntidadGrafica {
 	}
 	
 	public void aparecer(Posicion miPosicion) {
-		this.setBounds(miPosicion.getX(), miPosicion.getY(), 25, 25);
+		this.setLocation((int) miPosicion.getX(), (int) miPosicion.getY());
 		representacionActual = sentidoDerecha;
 		setIcon(representacionActual);
 	}

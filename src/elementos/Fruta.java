@@ -10,7 +10,7 @@ public class Fruta extends Elemento {
 	public Fruta(Juego miJuego, String imagen, HiloElemento timer) {
 		miRepresentacion = new ElementoGrafico(imagen);
 		this.miJuego = miJuego;
-		miPosicion = new Posicion(miSpawn.getX(), miSpawn.getY());
+		miPosicion = new Posicion((int) miSpawn.getX(), (int) miSpawn.getY());
 		miRepresentacion.aparecer(miPosicion);
 		iniciarTimer(timer);
 	}

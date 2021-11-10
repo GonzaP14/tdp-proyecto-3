@@ -19,13 +19,16 @@ public class Grilla {
 	}
 	
 	// ------------------------------------   Metodos   ------------------------------------------
-	public boolean buscarColisiones(Posicion posiciones) {
-		Posicion izquierdaArriba = new Posicion(posiciones.getX() / 25 , posiciones.getY() / 25);
+	public boolean buscarColisiones(Entidad entidad, Posicion proximaPos, Par offsetBloqueSiguiente) {
+		boolean collisionFound = false;
+
+		System.out.println("Proxima Pos: (" + proximaPos.getX() + ", " + proximaPos.getY() + ")\n");
+		if (
+				grilla[(int) Math.floor((proximaPos.getY() + 12.5 + offsetBloqueSiguiente.getY()) / 25)][(int) Math.floor((proximaPos.getX() + 12.5 + offsetBloqueSiguiente.getX()) / 25)].isPuedeVisitarse() == false )
+			collisionFound = true;
 		
-		if (grilla[izquierdaArriba.getX()][izquierdaArriba.getY()].isPuedeVisitarse() == false )
-			return true;
-		else
-			return false;
+		
+		return collisionFound;
 	}
 	
 	public void resetear() {

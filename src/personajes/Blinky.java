@@ -10,7 +10,7 @@ public class Blinky extends Enemigo {
 	
 	public Blinky(Juego miJuego, String[] imagenes) {
 		this.miJuego = miJuego; 
-		miPosicion = new Posicion(miSpawn.getX(), miSpawn.getY());  // Definir: Proximamente.
+		miPosicion = new Posicion((int) miSpawn.getX(), (int) miSpawn.getY());  // Definir: Proximamente.
 		miRepresentacion = new EnemigoGrafico(imagenes);
 		miRepresentacion.aparecer(miPosicion);
 	}

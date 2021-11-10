@@ -17,7 +17,7 @@ public class Principal extends Personaje {
 		miRepresentacion = new PrincipalGrafico(imagenes);
 		estadoActual = Vivo;
 		this.miJuego = miJuego;
-		miPosicion = new Posicion(miSpawn.getX(), miSpawn.getY());
+		miPosicion = new Posicion((int) miSpawn.getX(), (int) miSpawn.getY());
 		this.miRepresentacion.aparecer(miPosicion);
 	}
 	
