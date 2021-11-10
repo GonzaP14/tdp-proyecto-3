@@ -71,4 +71,12 @@ public class Posicion {
 	public Posicion posicionEsquinaAbajoIzquierda() {
 		return new Posicion(x , y + height);
 	}
+	
+	public boolean equals(Posicion posicion) {
+		return x == posicion.getX() && y == posicion.getY();
+	}
+	
+	public String toString(){
+		return x+","+y;
+	}
 }
