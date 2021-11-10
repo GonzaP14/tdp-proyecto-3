@@ -11,7 +11,7 @@ public class Posicion {
 	}
 	
 	public Posicion(int x , int y) {
-		this(x, y, 25, 25);
+		this(x, y, 25 , 25);
 	}
 	
 	public int getX() {
@@ -54,5 +54,21 @@ public class Posicion {
 	 */
 	public Posicion clone() {
 		return new Posicion (x, y);
+	}
+	
+	public Posicion posicionEsquinaArribaIzquierda() {
+		return new Posicion(x,y);
+	}
+	
+	public Posicion posicionEsquinaArribaDerecha() {
+		return new Posicion(x + width , y);
+	}
+	
+	public Posicion posicionEsquinaAbajoDerecha() {
+		return new Posicion(x + width , y + height);
+	}
+	
+	public Posicion posicionEsquinaAbajoIzquierda() {
+		return new Posicion(x , y + height);
 	}
 }

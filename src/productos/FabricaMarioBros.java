@@ -12,11 +12,11 @@ public class FabricaMarioBros extends FabricaEntidades {
 	@Override
 	public Principal getPrincipal() {
 		String[] imagenes = new String[5];
-		imagenes[0] = "/recursosMarioBros/MarioArriba.gif";
-		imagenes[1] = "/recursosMarioBros/MarioAbajo.gif";
-		imagenes[2] = "/recursosMarioBros/MarioDerecha.gif";
-		imagenes[3] = "/recursosMarioBros/MarioIzquierda.gif";
-		imagenes[4] = "/recursosMarioBros/MarioMuerto.gif";
+		imagenes[0] = "/recursosImagenes/paredLvl2Mario.png";
+		imagenes[1] = "/recursosImagenes/paredLvl2Mario.png";
+		imagenes[2] = "/recursosImagenes/paredLvl2Mario.png";
+		imagenes[3] = "/recursosImagenes/paredLvl2Mario.png";
+		imagenes[4] = "/recursosImagenes/paredLvl2Mario.png";
 		
 		return Principal.getPrincipal(miJuego, imagenes);
 	}
