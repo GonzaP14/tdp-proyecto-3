@@ -30,6 +30,7 @@ public class Juego {
 	private BuilderNivel nivelActual;
 	public static Properties configuration;
 	private int cantidadPacDotsRestantes;
+	private int dominio;
 	
 	// Atributos de clase
 	public static int DominioMarioBros;
@@ -37,6 +38,7 @@ public class Juego {
 	
 	// ---------------------------------------- CONSTRUCTOR ------------------------------------
 	public Juego(BuilderNivel nivelActual, int dominio) {
+		this.dominio=dominio;
 		if(dominio == DominioMarioBros) {
 			miFabricaEntidades = new FabricaMarioBros(this);
 		}
@@ -54,6 +56,10 @@ public class Juego {
 	// ----------------------------------------      GETTERS     ------------------------------------
 	public Principal getMiPersonajePrincipal() {
 		return miPersonajePrincipal;
+	}
+	
+	public int getDominio() {
+		return dominio;
 	}
 
 	public Object getObjetoPausa() {
