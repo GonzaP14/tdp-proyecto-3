@@ -1,6 +1,7 @@
 package personajes;
 
 import entidadesGraficas.PrincipalGrafico;
+import entidadesLogicas.Entidad;
 import entidadesLogicas.Juego;
 import entidadesLogicas.Posicion;
 
@@ -19,6 +20,8 @@ public class Principal extends Personaje {
 		this.miJuego = miJuego;
 		miPosicion = new Posicion((int) miSpawn.getX(), (int) miSpawn.getY());
 		this.miRepresentacion.aparecer(miPosicion);
+		sentidoActual = Entidad.sentidoFijo;
+		sentidoSiguiente = Entidad.sentidoFijo;
 	}
 	
 	@Override

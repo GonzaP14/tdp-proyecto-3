@@ -127,8 +127,14 @@ public class Juego {
     }
     public void cambiarSentidoActualPrincipal( int sentidoMovimiento) {
     	if (!gameOver && !estaPausado) {
-	    	miPersonajePrincipal.setSentidoActual(sentidoMovimiento);
+    		if (miPersonajePrincipal.getSentidoActual() == Entidad.sentidoFijo) {
+    			miPersonajePrincipal.setSentidoActual(sentidoMovimiento);
+    		}
+    		else {
+    			miPersonajePrincipal.setSentidoSiguiente(sentidoMovimiento);
+    		}
     	}
+    	
     }
 	
 	// ---------------------------------------- SPAWNING ------------------------------------

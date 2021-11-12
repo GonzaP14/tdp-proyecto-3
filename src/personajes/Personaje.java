@@ -13,47 +13,138 @@ public abstract class Personaje extends Entidad {
 
 	public abstract void recibirEfecto();
 	
-	public void mover() {	
-		if(sentidoActual == Entidad.sentidoAbajo || sentidoActual == Entidad.sentidoArriba ) 
-			moverVerticalmente(sentidoActual);
-		else if(sentidoActual == Entidad.sentidoDerecha || sentidoActual == Entidad.sentidoIzquierda )
-			moverLateralmente(sentidoActual);
-	}
-	
-	private void moverLateralmente(int desplazamiento) {
-		Posicion proximaPosicion = null;
-		if(desplazamiento == Entidad.sentidoDerecha ) {
-			proximaPosicion = new Posicion( miPosicion.getX() + 5, miPosicion.getY() );
+	public void mover() {
+		if (getSentidoActual() != getSentidoSiguiente()) {
+			// si los sentidos son opuestos (una misma direccion / mismo eje)
+			if (getSentidoActual() == Entidad.sentidoAbajo && getSentidoSiguiente() == Entidad.sentidoArriba  || getSentidoActual() == Entidad.sentidoArriba && getSentidoSiguiente() == Entidad.sentidoAbajo
+					|| getSentidoActual() == Entidad.sentidoIzquierda && getSentidoSiguiente() == Entidad.sentidoDerecha  || getSentidoActual() == Entidad.sentidoDerecha && getSentidoSiguiente() == Entidad.sentidoIzquierda) {
+				setSentidoActual(getSentidoSiguiente());
+			}
 		}
-		else if(desplazamiento == Entidad.sentidoIzquierda ) {
-			proximaPosicion = new Posicion( miPosicion.getX() - 5,  miPosicion.getY() );	
+		
+		if(sentidoActual == Entidad.sentidoAbajo || sentidoActual == Entidad.sentidoArriba ) { 
+			moverVerticalmente();
 		}
-		System.out.println(proximaPosicion);
-		if(proximaPosicion != null && proximaPosicion.equals(new Posicion(-5 , 350))) {
-			miPosicion = new Posicion(670 , 350);
-			miRepresentacion.setLocation( miPosicion.getX() ,  miPosicion.getY());
-		}
-		else if(proximaPosicion != null && proximaPosicion.equals(new Posicion(675 , 350))) {
-			miPosicion = new Posicion(5 , 350);
-			miRepresentacion.setLocation( miPosicion.getX() ,  miPosicion.getY());
-		}
-		else if(proximaPosicion != null && !miJuego.getMiGrilla().buscarColisiones(this, proximaPosicion) ) {
-			miPosicion = proximaPosicion;
-			miRepresentacion.setLocation( miPosicion.getX() ,  miPosicion.getY());
+		else if(sentidoActual == Entidad.sentidoDerecha || sentidoActual == Entidad.sentidoIzquierda ) {
+			moverLateralmente();
 		}
 	}
 	
-	private void moverVerticalmente(int desplazamiento) {
+	
+	
+	private void moverLateralmente() {
 		Posicion proximaPosicion = null;
-		if(desplazamiento == Entidad.sentidoArriba ) {
-			proximaPosicion = new Posicion( miPosicion.getX(), miPosicion.getY() - 5 );
+		Posicion proximaPosicionRounded = null;
+		Posicion proximaPosicionActual = null;
+		System.out.println("actual " + sentidoActual + ", siguiente " + sentidoSiguiente + "\n");
+		// doblar
+		if(sentidoSiguiente == Entidad.sentidoArriba ) {
+			proximaPosicion = new Posicion( miPosicion.getX(), miPosicion.getY() - 5);
 		}
-		else if(desplazamiento == Entidad.sentidoAbajo ) {
-			proximaPosicion = new Posicion( miPosicion.getX(), miPosicion.getY() + 5 );
+		else if(sentidoSiguiente == Entidad.sentidoAbajo ) {
+			proximaPosicion = new Posicion( miPosicion.getX(),  miPosicion.getY() + 5);	
 		}
-		if(proximaPosicion != null && !miJuego.getMiGrilla().buscarColisiones(this, proximaPosicion)) {
+		
+		// Si puede doblar inmediatamente
+		if (proximaPosicion != null && !miJuego.getMiGrilla().buscarColisiones(sentidoSiguiente, proximaPosicion)) {
+			setSentidoActual(getSentidoSiguiente());
 			miPosicion = proximaPosicion;
-			miRepresentacion.setLocation((int) miPosicion.getX() , (int) miPosicion.getY());
+			miRepresentacion.setLocation( miPosicion.getX() ,  miPosicion.getY());
+		} 
+		// ---- 
+		
+		
+		else {
+			if(sentidoActual == Entidad.sentidoDerecha ) {
+				proximaPosicionActual = new Posicion( miPosicion.getX() + 5, miPosicion.getY() );
+			}
+			else if(sentidoActual == Entidad.sentidoIzquierda ) {
+				proximaPosicionActual = new Posicion( miPosicion.getX() - 5,  miPosicion.getY() );	
+			}
+			
+			// Tunnels
+			if(proximaPosicionActual != null && proximaPosicionActual.equals(new Posicion(-5 , 350))) {
+				miPosicion = new Posicion(670 , 350);
+				miRepresentacion.setLocation( miPosicion.getX() ,  miPosicion.getY());
+			}
+			else if(proximaPosicionActual != null && proximaPosicionActual.equals(new Posicion(675 , 350))) {
+				miPosicion = new Posicion(5 , 350);
+				miRepresentacion.setLocation( miPosicion.getX() ,  miPosicion.getY());
+			}
+			
+			else if (proximaPosicionActual != null && !miJuego.getMiGrilla().buscarColisiones(sentidoActual, proximaPosicionActual)) {
+				// avanzo en el sentido actual
+				miPosicion = proximaPosicionActual;
+				miRepresentacion.setLocation( miPosicion.getX() ,  miPosicion.getY());
+				
+				// Se chequea nuevamente si es posible doblar, desde una posicion mas cercana a la curva
+				if(sentidoSiguiente == Entidad.sentidoArriba ) {
+					proximaPosicionRounded = new Posicion( miPosicion.getX(), miPosicion.getY() - 5);
+				}
+				else if(sentidoSiguiente == Entidad.sentidoAbajo ) {
+					proximaPosicionRounded = new Posicion( miPosicion.getX(),  miPosicion.getY() + 5);	
+				}
+				
+				if (proximaPosicionRounded != null && !miJuego.getMiGrilla().buscarColisiones(sentidoSiguiente, proximaPosicionRounded)) {
+					setSentidoActual(getSentidoSiguiente());
+				}
+				else {
+					setSentidoSiguiente(getSentidoActual());
+				}
+			}
+		}
+	}
+	
+	private void moverVerticalmente() {
+		Posicion proximaPosicion = null;
+		Posicion proximaPosicionRounded = null;
+		Posicion proximaPosicionActual = null;
+		
+		// doblar
+		if(sentidoSiguiente == Entidad.sentidoDerecha ) {
+			proximaPosicion = new Posicion( miPosicion.getX() + 5, miPosicion.getY());
+		}
+		else if(sentidoSiguiente == Entidad.sentidoIzquierda ) {
+			proximaPosicion = new Posicion( miPosicion.getX() - 5,  miPosicion.getY());	
+		}
+		
+		// Si puede doblar inmediatamente
+		if (proximaPosicion != null && !miJuego.getMiGrilla().buscarColisiones(sentidoSiguiente, proximaPosicion)) {
+			setSentidoActual(getSentidoSiguiente());
+			miPosicion = proximaPosicion;
+			miRepresentacion.setLocation( miPosicion.getX() ,  miPosicion.getY());
+		} 
+		// ---- 
+		
+		
+		else {
+			if(sentidoActual == Entidad.sentidoArriba ) {
+				proximaPosicionActual = new Posicion( miPosicion.getX(), miPosicion.getY() - 5);
+			}
+			else if(sentidoActual == Entidad.sentidoAbajo ) {
+				proximaPosicionActual = new Posicion( miPosicion.getX(),  miPosicion.getY() + 5);	
+			}
+			
+			if (proximaPosicionActual != null && !miJuego.getMiGrilla().buscarColisiones(sentidoActual, proximaPosicionActual)) {
+				// avanzo en el sentido actual
+				miPosicion = proximaPosicionActual;
+				miRepresentacion.setLocation( miPosicion.getX() ,  miPosicion.getY());
+				
+				// Se chequea nuevamente si es posible doblar, desde una posicion mas cercana a la curva
+				if(sentidoSiguiente == Entidad.sentidoDerecha ) {
+					proximaPosicionRounded = new Posicion( miPosicion.getX() + 5, miPosicion.getY());
+				}
+				else if(sentidoSiguiente == Entidad.sentidoIzquierda ) {
+					proximaPosicionRounded = new Posicion( miPosicion.getX() - 5,  miPosicion.getY());	
+				}
+				
+				if (proximaPosicionRounded != null && !miJuego.getMiGrilla().buscarColisiones(sentidoSiguiente, proximaPosicionRounded)) {
+					setSentidoActual(getSentidoSiguiente());
+				}
+				else {
+					setSentidoSiguiente(getSentidoActual());
+				}
+			}
 		}
 	}
 	

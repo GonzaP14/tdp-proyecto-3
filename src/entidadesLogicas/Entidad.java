@@ -5,7 +5,7 @@ import entidadesGraficas.EntidadGrafica;
 public abstract class Entidad {
 	
 	// Atributos de instancia
-	protected int sentidoActual;
+	protected int sentidoActual, sentidoSiguiente;
 	protected EntidadGrafica miRepresentacion;
 	protected Juego miJuego;
 	protected Posicion miPosicion;
@@ -19,7 +19,6 @@ public abstract class Entidad {
 	
 	
 	// -------------------------------------------- GETTERS ----------------------------------------
-	
 	public int getSentidoActual() {
 		return sentidoActual;
 	}
@@ -33,8 +32,16 @@ public abstract class Entidad {
 		return miRepresentacion;
 	}
 	
+	public int getSentidoSiguiente() {
+		return sentidoSiguiente;
+	}
+
+	public void setSentidoSiguiente(int sentidoSiguiente) {
+		this.sentidoSiguiente = sentidoSiguiente;
+	}
+	
+	
 	// -------------------------------------------- SETTERS ----------------------------------------
-		
 	public void setSentidoActual(int sentido) {
 		sentidoActual = sentido;
 		miRepresentacion.actualizar(sentido);
