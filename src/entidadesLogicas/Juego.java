@@ -139,6 +139,13 @@ public class Juego {
 	
 	// ---------------------------------------- SPAWNING ------------------------------------
 	private void spawnearFantasmas() {
+		misEnemigos.add(miFabricaEntidades.getBlinky());
+		misEnemigos.add(miFabricaEntidades.getInky());
+		misEnemigos.add(miFabricaEntidades.getPinky());
+		misEnemigos.add(miFabricaEntidades.getClyde());
+		for(Entidad fantasmas: misEnemigos) {
+			miVentana.aparecerEntidad(fantasmas.getMiRepresentacion());
+		}
 		
 	}
 	
@@ -175,6 +182,7 @@ public class Juego {
 		spawnearPrincipal();
 		spawnearPacDots();
 		spawnearPowerPellets();
+		spawnearFantasmas();
 		iniciarReloj();
 	}
 	
