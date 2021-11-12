@@ -41,11 +41,11 @@ public class Posicion {
 	
 	public Posicion distanciaEntrePosiciones(Posicion PosicionActual , Posicion PosicionAlQueQuieroIr) {
 		Posicion PosicionARetornar; 		
-		double distanciaX = PosicionActual.getX() - PosicionAlQueQuieroIr.getX();
-		double distanciaY = PosicionActual.getY() - PosicionAlQueQuieroIr.getY();
+		int distanciaX = PosicionActual.getX() - PosicionAlQueQuieroIr.getX();
+		int distanciaY = PosicionActual.getY() - PosicionAlQueQuieroIr.getY();
 		
 		// estos casteos no se si van los agregue para que compile
-		PosicionARetornar = new Posicion((int) distanciaX , (int) distanciaY);
+		PosicionARetornar = new Posicion( distanciaX , distanciaY);
 		return PosicionARetornar;
 	}
 	
