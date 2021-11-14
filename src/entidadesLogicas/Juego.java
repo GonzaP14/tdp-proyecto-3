@@ -3,6 +3,7 @@ package entidadesLogicas;
 import java.util.ArrayList;
 import java.util.Properties;
 import audio.Audio;
+import elementos.Elemento;
 import elementos.PacDot;
 import elementos.PowerPellet;
 import gui.Ventana;
@@ -25,7 +26,7 @@ public class Juego {
 	private Audio miAudio;
 	private Ventana miVentana;
 	private Grilla miGrilla;
-	private ArrayList<Entidad> misElementos, misEnemigos;
+	private ArrayList<Entidad>  misEnemigos;
 	private Principal miPersonajePrincipal;
 	private BuilderNivel nivelActual;
 	public static Properties configuration;
@@ -50,7 +51,7 @@ public class Juego {
 		gameOver = false;
 		miGrilla = new Grilla();
 		miAudio=new Audio(dominio);
-		misElementos = new ArrayList<Entidad>();
+		cantidadPacDotsRestantes = 0;
 		misEnemigos = new ArrayList<Entidad>();
 	}
 	
@@ -163,24 +164,28 @@ public class Juego {
 	}
 	
 	public void spawnearFruta() {
-		misElementos.add(miFabricaEntidades.getFruta());
-		miVentana.aparecerEntidad(misElementos.get(misElementos.size() - 1).getMiRepresentacion()); // aparece el recien agregado
+		Elemento aux;
+		aux = miFabricaEntidades.getFruta();
+		miVentana.aparecerEntidad(aux.getMiRepresentacion());// aparece el recien agregado // aparece el recien agregado
 		// falta modelar todo lo relacionado al hilo de la fruta y aplicarle el nivel de estrategiaNivel
 	}
 	
 	public void spawnearPacDots() {
+		Elemento aux;
 		for (Posicion spawn : PacDot.getMisSpawns()) {
-			misElementos.add(miFabricaEntidades.getPacDot(spawn));
-			misElementos.get(misElementos.size()-1).getMiRepresentacion().aparecer(spawn);
-			miVentana.aparecerEntidad(misElementos.get(misElementos.size()-1).getMiRepresentacion()); // aparece el recien agregado
+			cantidadPacDotsRestantes++;
+			aux = miFabricaEntidades.getPacDot(spawn);
+			aux.getMiRepresentacion().aparecer(spawn);
+			miVentana.aparecerEntidad(aux.getMiRepresentacion()); // aparece el recien agregado
 		}
 	}
 	
 	public void spawnearPowerPellets() {
+		Elemento aux;
 		for (Posicion spawn : PowerPellet.getMisSpawns()) {
-			misElementos.add(miFabricaEntidades.getPowerPellet(spawn));
-			misElementos.get(misElementos.size()-1).getMiRepresentacion().aparecer(spawn);
-			miVentana.aparecerEntidad(misElementos.get(misElementos.size()-1).getMiRepresentacion()); // aparece el recien agregado
+			aux = miFabricaEntidades.getPowerPellet(spawn);
+			aux.getMiRepresentacion().aparecer(spawn);
+			miVentana.aparecerEntidad(aux.getMiRepresentacion()); // aparece el recien agregado
 		}
 	}
  	
