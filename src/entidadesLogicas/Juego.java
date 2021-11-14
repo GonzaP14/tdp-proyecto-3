@@ -101,7 +101,7 @@ public class Juego {
 	}
 	
 	// -------------------------------------- SIMPLES DE ATRIBUTOS ------------------------------------
-	public void aumentarPuntaje() {
+	public void aumentarPuntaje(int puntaje) {
 		
 	}
 	
@@ -162,16 +162,15 @@ public class Juego {
 	
 	public void spawnearPacDots() {
 		for (Posicion spawn : PacDot.getMisSpawns()) {
-			misElementos.add(miFabricaEntidades.getPacDot());
+			misElementos.add(miFabricaEntidades.getPacDot(spawn));
 			misElementos.get(misElementos.size()-1).getMiRepresentacion().aparecer(spawn);
 			miVentana.aparecerEntidad(misElementos.get(misElementos.size()-1).getMiRepresentacion()); // aparece el recien agregado
 		}
-		// falta modelar todo lo relacionado al hilo de la fruta y aplicarle el nivel de estrategiaNivel
 	}
 	
 	public void spawnearPowerPellets() {
 		for (Posicion spawn : PowerPellet.getMisSpawns()) {
-			misElementos.add(miFabricaEntidades.getPowerPellet());
+			misElementos.add(miFabricaEntidades.getPowerPellet(spawn));
 			misElementos.get(misElementos.size()-1).getMiRepresentacion().aparecer(spawn);
 			miVentana.aparecerEntidad(misElementos.get(misElementos.size()-1).getMiRepresentacion()); // aparece el recien agregado
 		}

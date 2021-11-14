@@ -17,7 +17,9 @@ public class Fruta extends Elemento {
 
 	@Override
 	public void afectar() {
-		
+		miJuego.aumentarPuntaje(puntajeOtorgado);
+		miJuego.getMiGrilla().getBloque(miPosicion.getY() / 25 , miPosicion.getX() / 25).agregarAListaRemovidos(this);
+		miRepresentacion.desaparecer();
 	}
 	
 	@Override

@@ -28,6 +28,7 @@ public abstract class Personaje extends Entidad {
 		else if(sentidoActual == Entidad.sentidoDerecha || sentidoActual == Entidad.sentidoIzquierda ) {
 			moverLateralmente();
 		}
+		miJuego.getMiGrilla().buscarColisionesEntidades(this);
 	}
 	
 	
@@ -36,7 +37,6 @@ public abstract class Personaje extends Entidad {
 		Posicion proximaPosicion = null;
 		Posicion proximaPosicionRounded = null;
 		Posicion proximaPosicionActual = null;
-		System.out.println("actual " + sentidoActual + ", siguiente " + sentidoSiguiente + "\n");
 		// doblar
 		if(sentidoSiguiente == Entidad.sentidoArriba ) {
 			proximaPosicion = new Posicion( miPosicion.getX(), miPosicion.getY() - 5);
@@ -47,9 +47,11 @@ public abstract class Personaje extends Entidad {
 		
 		// Si puede doblar inmediatamente
 		if (proximaPosicion != null && !miJuego.getMiGrilla().buscarColisiones(sentidoSiguiente, proximaPosicion)) {
+			miJuego.getMiGrilla().getBloque(miPosicion.getY() / 25 , miPosicion.getX() / 25).borrarDeListaDeEntidades(this);
 			setSentidoActual(getSentidoSiguiente());
 			miPosicion = proximaPosicion;
 			miRepresentacion.setLocation( miPosicion.getX() ,  miPosicion.getY());
+			miJuego.getMiGrilla().getBloque(miPosicion.getY() / 25 , miPosicion.getX() / 25).agregarAListaEntidades(this);
 		} 
 		// ---- 
 		
@@ -64,19 +66,24 @@ public abstract class Personaje extends Entidad {
 			
 			// Tunnels
 			if(proximaPosicionActual != null && proximaPosicionActual.equals(new Posicion(-5 , 350))) {
+				miJuego.getMiGrilla().getBloque(miPosicion.getY() / 25 , miPosicion.getX() / 25).borrarDeListaDeEntidades(this);
 				miPosicion = new Posicion(670 , 350);
 				miRepresentacion.setLocation( miPosicion.getX() ,  miPosicion.getY());
+				miJuego.getMiGrilla().getBloque(miPosicion.getY() / 25 , miPosicion.getX() / 25).agregarAListaEntidades(this);
 			}
 			else if(proximaPosicionActual != null && proximaPosicionActual.equals(new Posicion(675 , 350))) {
+				miJuego.getMiGrilla().getBloque(miPosicion.getY() / 25 , miPosicion.getX() / 25).borrarDeListaDeEntidades(this);
 				miPosicion = new Posicion(5 , 350);
 				miRepresentacion.setLocation( miPosicion.getX() ,  miPosicion.getY());
+				miJuego.getMiGrilla().getBloque(miPosicion.getY() / 25 , miPosicion.getX() / 25).agregarAListaEntidades(this);
 			}
 			
 			else if (proximaPosicionActual != null && !miJuego.getMiGrilla().buscarColisiones(sentidoActual, proximaPosicionActual)) {
+				miJuego.getMiGrilla().getBloque(miPosicion.getY() / 25 , miPosicion.getX() / 25).borrarDeListaDeEntidades(this);
 				// avanzo en el sentido actual
 				miPosicion = proximaPosicionActual;
 				miRepresentacion.setLocation( miPosicion.getX() ,  miPosicion.getY());
-				
+				miJuego.getMiGrilla().getBloque(miPosicion.getY() / 25 , miPosicion.getX() / 25).agregarAListaEntidades(this);
 				// Se chequea nuevamente si es posible doblar, desde una posicion mas cercana a la curva
 				if(sentidoSiguiente == Entidad.sentidoArriba ) {
 					proximaPosicionRounded = new Posicion( miPosicion.getX(), miPosicion.getY() - 5);
@@ -110,9 +117,11 @@ public abstract class Personaje extends Entidad {
 		
 		// Si puede doblar inmediatamente
 		if (proximaPosicion != null && !miJuego.getMiGrilla().buscarColisiones(sentidoSiguiente, proximaPosicion)) {
+			miJuego.getMiGrilla().getBloque(miPosicion.getY() / 25 , miPosicion.getX() / 25).borrarDeListaDeEntidades(this);
 			setSentidoActual(getSentidoSiguiente());
 			miPosicion = proximaPosicion;
 			miRepresentacion.setLocation( miPosicion.getX() ,  miPosicion.getY());
+			miJuego.getMiGrilla().getBloque(miPosicion.getY() / 25 , miPosicion.getX() / 25).agregarAListaEntidades(this);
 		} 
 		// ---- 
 		
@@ -126,9 +135,11 @@ public abstract class Personaje extends Entidad {
 			}
 			
 			if (proximaPosicionActual != null && !miJuego.getMiGrilla().buscarColisiones(sentidoActual, proximaPosicionActual)) {
+				miJuego.getMiGrilla().getBloque(miPosicion.getY() / 25 , miPosicion.getX() / 25).borrarDeListaDeEntidades(this);
 				// avanzo en el sentido actual
 				miPosicion = proximaPosicionActual;
 				miRepresentacion.setLocation( miPosicion.getX() ,  miPosicion.getY());
+				miJuego.getMiGrilla().getBloque(miPosicion.getY() / 25 , miPosicion.getX() / 25).agregarAListaEntidades(this);
 				
 				// Se chequea nuevamente si es posible doblar, desde una posicion mas cercana a la curva
 				if(sentidoSiguiente == Entidad.sentidoDerecha ) {

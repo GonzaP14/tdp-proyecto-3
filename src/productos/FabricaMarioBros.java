@@ -1,6 +1,7 @@
 package productos;
 
 import entidadesLogicas.Juego;
+import entidadesLogicas.Posicion;
 import personajes.*;
 import elementos.*;
 
@@ -95,17 +96,17 @@ public class FabricaMarioBros extends FabricaEntidades {
 	}
 
 	@Override
-	public Elemento getPowerPellet() {
+	public Elemento getPowerPellet(Posicion posicion) {
 		String imagen = ("/recursosMarioBros/Estrella.png");
 		
-		return new PowerPellet(miJuego, imagen);
+		return new PowerPellet(miJuego, imagen , posicion);
 	}
 
 	@Override
-	public Elemento getPacDot() {
+	public Elemento getPacDot(Posicion posicion) {
 		String imagen = ("/recursosMarioBros/Moneda.png");
 		
-		return new PacDot(miJuego, imagen);
+		return new PacDot(miJuego, imagen , posicion);
 	}
 
 }

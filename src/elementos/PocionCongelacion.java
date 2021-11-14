@@ -17,7 +17,7 @@ public class PocionCongelacion extends Pocion {
 
 	@Override
 	public void afectar() {
-		// TODO Auto-generated method stub
+	
 		
 	}
 	

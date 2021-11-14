@@ -22,11 +22,11 @@ public class Principal extends Personaje {
 		this.miRepresentacion.aparecer(miPosicion);
 		sentidoActual = Entidad.sentidoFijo;
 		sentidoSiguiente = Entidad.sentidoFijo;
+		miJuego.getMiGrilla().getBloque(miPosicion.getY() / 25 , miPosicion.getX() / 25).agregarAListaEntidades(this);
 	}
 	
 	@Override
 	public void recibirEfecto() {
-		// TODO Auto-generated method stub
 		
 	}
 	
@@ -43,4 +43,10 @@ public class Principal extends Personaje {
 		// TODO Auto-generated method stub
 		
 	}
+
+	public int getEstadoActual() {
+		return estadoActual;
+	}
+	
+	
 }

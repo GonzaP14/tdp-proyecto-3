@@ -9,10 +9,12 @@ public class PowerPellet extends Elemento {
 		{
 			new Posicion(650,575), new Posicion(25,575), new Posicion(650,75), new Posicion(25,75)
 		};
-	public PowerPellet(Juego miJuego, String imagen) {
+	public PowerPellet(Juego miJuego, String imagen , Posicion posicion) {
 		this.miJuego = miJuego;
 		miRepresentacion = new ElementoGrafico(imagen);
 		puntajeOtorgado = 50;
+		miPosicion = posicion;
+		miJuego.getMiGrilla().getBloque(miPosicion.getY() / 25 , miPosicion.getX() / 25).agregarAListaEntidades(this);
 	}
 
 	@Override
@@ -23,8 +25,9 @@ public class PowerPellet extends Elemento {
 
 	@Override
 	public void afectar() {
-		// TODO Auto-generated method stub
-		
+		miJuego.aumentarPuntaje(puntajeOtorgado);
+		miJuego.getMiGrilla().getBloque(miPosicion.getY() / 25 , miPosicion.getX() / 25).agregarAListaRemovidos(this);
+		miRepresentacion.desaparecer();	
 	}
 	
 	public static Posicion[] getMisSpawns() {

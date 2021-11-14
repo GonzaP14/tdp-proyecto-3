@@ -3,6 +3,7 @@ package productos;
 import elementos.Elemento;
 import elementos.Pocion;
 import entidadesLogicas.Juego;
+import entidadesLogicas.Posicion;
 import personajes.Enemigo;
 import personajes.Principal;
 
@@ -22,13 +23,13 @@ public abstract class FabricaEntidades {
 	
 	public abstract Elemento getFruta();
 	
-	public abstract Elemento getPacDot();
+	public abstract Elemento getPacDot(Posicion posicion);
 	
 	public abstract Pocion getPocionCongelacion();
 	
 	public abstract Pocion getPocionVelocidad();
 	
-	public abstract Elemento getPowerPellet();
+	public abstract Elemento getPowerPellet(Posicion posicion);
 
 	public void setMiJuego(Juego miJuego) {
 		this.miJuego = miJuego;

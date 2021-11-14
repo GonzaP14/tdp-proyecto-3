@@ -72,10 +72,12 @@ public class PacDot extends Elemento {
             new Posicion(150,300 ),
             new Posicion(150,325 )
 	};
-	public PacDot(Juego miJuego, String imagen) {
+	public PacDot(Juego miJuego, String imagen , Posicion miPosicion) {
 		this.miJuego = miJuego;
 		miRepresentacion = new ElementoGrafico(imagen);
 		puntajeOtorgado = 10;
+		this.miPosicion = miPosicion;
+		miJuego.getMiGrilla().getBloque(miPosicion.getY() / 25 , miPosicion.getX() / 25).agregarAListaEntidades(this);
 	}
 
 	
@@ -87,8 +89,9 @@ public class PacDot extends Elemento {
 
 	@Override
 	public void afectar() {
-		// TODO Auto-generated method stub
-		
+		miJuego.aumentarPuntaje(puntajeOtorgado);
+		miJuego.getMiGrilla().getBloque(miPosicion.getY() / 25 , miPosicion.getX() / 25).agregarAListaRemovidos(this);
+		miRepresentacion.desaparecer();
 	}
 
 	public static Posicion[] getMisSpawns() {

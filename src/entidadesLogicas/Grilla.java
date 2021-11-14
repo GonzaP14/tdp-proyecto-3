@@ -80,6 +80,22 @@ public class Grilla {
 		return false;
 	}
 	
+	public void buscarColisionesEntidades(Entidad e) {
+		Posicion posicionActual = e.getPosicion();
+		Bloque bloqueActual = null;
+		bloqueActual = grilla[posicionActual.getY() / 25][posicionActual.getX() / 25];
+		Rectangle rectanguloPosicion = new Rectangle(posicionActual.getX() , posicionActual.getY() );
+		Rectangle rectanguloEntidadBloque ;
+		for(Entidad entidadBloque : bloqueActual.getListaEntidades() ) {
+			rectanguloEntidadBloque = new Rectangle(entidadBloque.getPosicion().getX() , entidadBloque.getPosicion().getY());
+			if(rectanguloEntidadBloque.intersects(rectanguloPosicion)) {
+				entidadBloque.afectar();
+			}
+		}
+		bloqueActual.getListaEntidades().removeAll(bloqueActual.getListaRemovidos());
+		bloqueActual.limpiarListaRemovidos();
+	}
+	
 	public void resetear() {
 	
 	}

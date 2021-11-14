@@ -13,5 +13,6 @@ public class Clyde extends Enemigo {
 		miPosicion = new Posicion((int) miSpawn.getX(), (int) miSpawn.getY()); // Definir: Proximamente.
 		miRepresentacion = new EnemigoGrafico(imagenes);
 		miRepresentacion.aparecer(miPosicion);
+		miJuego.getMiGrilla().getBloque(miPosicion.getY() / 25 , miPosicion.getX() / 25).agregarAListaEntidades(this);
 	}
 }

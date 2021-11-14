@@ -16,12 +16,17 @@ public abstract class Enemigo extends Personaje {
 	
 	@Override
 	public void afectar() {
-		// TODO Auto-generated method stub
+		if(indiceEstado == Frightened) {
+			
+		}
+		else {
+			
+		}
 	}
 	
 	@Override
 	public void recibirEfecto() {
-		// TODO Auto-generated method stub	
+		
 	}
 	
 	public void cambiarEstado (int estado) {

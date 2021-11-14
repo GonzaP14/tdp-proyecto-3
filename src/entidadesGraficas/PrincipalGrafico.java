@@ -3,6 +3,8 @@ package entidadesGraficas;
 import java.awt.Image;
 import javax.swing.ImageIcon;
 
+import entidadesLogicas.Posicion;
+
 public class PrincipalGrafico extends PersonajeGrafico {
 	
 	private static final long serialVersionUID = 1L;
@@ -28,6 +30,12 @@ public class PrincipalGrafico extends PersonajeGrafico {
 	     miPrioridad = 2;
 	     representacionActual = sentidoDerecha;
 	     this.setIcon(representacionActual);
+	}
+
+	@Override
+	public void desaparecer() {
+		// TODO Auto-generated method stub
+		
 	}
 
 }

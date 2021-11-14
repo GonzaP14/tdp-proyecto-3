@@ -3,6 +3,8 @@ package entidadesGraficas;
 import java.awt.Image;
 import javax.swing.ImageIcon;
 
+import entidadesLogicas.Posicion;
+
 public class EnemigoGrafico extends PersonajeGrafico{
 	private static final long serialVersionUID = 1L;
 	
@@ -32,5 +34,11 @@ public class EnemigoGrafico extends PersonajeGrafico{
 		miPrioridad = 2;
 		representacionActual = sentidoDerecha;
 		this.setIcon(representacionActual);
+	}
+
+	@Override
+	public void desaparecer() {
+		// TODO Auto-generated method stub
+		
 	}
 }

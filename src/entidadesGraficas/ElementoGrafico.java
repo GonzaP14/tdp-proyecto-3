@@ -33,5 +33,10 @@ public class ElementoGrafico extends EntidadGrafica {
 		// TODO Auto-generated method stub
 		
 	}
+
+	@Override
+	public void desaparecer() {
+		this.setVisible(false);
+	}
 	
 }

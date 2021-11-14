@@ -3,6 +3,7 @@ package productos;
 import elementos.Elemento;
 import elementos.Pocion;
 import entidadesLogicas.Juego;
+import entidadesLogicas.Posicion;
 import personajes.Enemigo;
 import personajes.Principal;
 
@@ -49,7 +50,7 @@ public class FabricaMemoji extends FabricaEntidades {
 	}
 
 	@Override
-	public Elemento getPacDot() {
+	public Elemento getPacDot(Posicion posicion) {
 		// TODO Auto-generated method stub
 		return null;
 	}
@@ -67,7 +68,7 @@ public class FabricaMemoji extends FabricaEntidades {
 	}
 
 	@Override
-	public Elemento getPowerPellet() {
+	public Elemento getPowerPellet(Posicion posicion) {
 		// TODO Auto-generated method stub
 		return null;
 	}
