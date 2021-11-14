@@ -33,8 +33,8 @@ public class Juego {
 	private int dominio;
 	
 	// Atributos de clase
-	public static int DominioMarioBros;
-	public static int DominioMemoji;
+	public static int DominioMarioBros=0;
+	public static int DominioMemoji=1;
 	
 	// ---------------------------------------- CONSTRUCTOR ------------------------------------
 	public Juego(BuilderNivel nivelActual, int dominio) {
@@ -49,6 +49,7 @@ public class Juego {
 		this.nivelActual = nivelActual;
 		gameOver = false;
 		miGrilla = new Grilla();
+		miAudio=new Audio(dominio);
 		misElementos = new ArrayList<Entidad>();
 		misEnemigos = new ArrayList<Entidad>();
 	}
@@ -82,6 +83,10 @@ public class Juego {
 		return gameOver;
 	}
 	
+	public Player getMiPlayer() {
+		return miPlayer;
+	}
+	
 	// ----------------------------------------       SETTERS      -----------------------------------
 	public void setMiVentana(Ventana miVentana) {
 		this.miVentana = miVentana;
@@ -112,6 +117,9 @@ public class Juego {
 	public void perderVida() {
 		
 	}
+	private void iniciarMusica() {
+        miAudio.iniciarMusica();
+    }
 	//
 	
 	// ---------------------------------------- MOVIMIENTO ------------------------------------
@@ -182,6 +190,7 @@ public class Juego {
 		spawnearPacDots();
 		spawnearPowerPellets();
 		spawnearFantasmas();
+		iniciarMusica();
 		iniciarReloj();
 	}
 	
