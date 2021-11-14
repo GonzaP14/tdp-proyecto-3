@@ -83,7 +83,6 @@ public class PacDot extends Elemento {
 	
 	@Override
 	public void iniciarTimer(HiloElemento timer) {
-		// TODO Auto-generated method stub
 		
 	}
 

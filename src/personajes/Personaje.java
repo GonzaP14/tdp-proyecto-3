@@ -28,7 +28,7 @@ public abstract class Personaje extends Entidad {
 		else if(sentidoActual == Entidad.sentidoDerecha || sentidoActual == Entidad.sentidoIzquierda ) {
 			moverLateralmente();
 		}
-		miJuego.getMiGrilla().buscarColisionesEntidades(this);
+		checkeoColisionesPersonaje();
 	}
 	
 	
@@ -158,6 +158,8 @@ public abstract class Personaje extends Entidad {
 			}
 		}
 	}
+	
+	public abstract void checkeoColisionesPersonaje();
 	
 	public void morir() {
 		

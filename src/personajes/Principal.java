@@ -40,12 +40,16 @@ public class Principal extends Personaje {
 
 	@Override
 	public void afectar() {
-		// TODO Auto-generated method stub
-		
+
 	}
 
 	public int getEstadoActual() {
 		return estadoActual;
+	}
+
+	@Override
+	public void checkeoColisionesPersonaje() {
+		miJuego.getMiGrilla().buscarColisionesEntidades(this);
 	}
 	
 	

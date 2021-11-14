@@ -57,4 +57,8 @@ public abstract class Enemigo extends Personaje {
 		return 0;
 	}
 	
+	public void checkeoColisionesPersonaje() {
+		
+	}
+	
 }
