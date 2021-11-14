@@ -1,8 +1,10 @@
 package entidadesLogicas;
 
 public class Reloj extends Thread{
+	
 	int velocidadTickeo, ticks;
 	Juego miJuego;
+	
 	public Reloj(int velocidadPrincipal, Juego miJuego) {
 		this.miJuego = miJuego;
 		velocidadTickeo = velocidadPrincipal;

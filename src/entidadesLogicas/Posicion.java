@@ -30,23 +30,18 @@ public class Posicion {
 		this.y = y;
 	}
 	
-	public int distanciaEntrePosicionesPitagoras(Posicion PosicionActual , Posicion PosicionAlQueQuieroIr ) {
-		double distanciaX = PosicionActual.getX() - PosicionAlQueQuieroIr.getX();
-		double distanciaY = PosicionActual.getY() - PosicionAlQueQuieroIr.getY();
-		double cuadrado = 2;
-		int distanciaPitagoras = (int) (Math.pow(distanciaX, cuadrado) + Math.pow(distanciaY, cuadrado));
+	public double distanciaEntrePosicionesPitagoras(Posicion destino) {
+		double distanciaX = this.getX() - destino.getX();
+		double distanciaY = this.getY() - destino.getY();
 		
-		return distanciaPitagoras;
+		return Math.sqrt((Math.pow(distanciaX, 2) + Math.pow(distanciaY, 2)));
 	}
 	
-	public Posicion distanciaEntrePosiciones(Posicion PosicionActual , Posicion PosicionAlQueQuieroIr) {
-		Posicion PosicionARetornar; 		
-		int distanciaX = PosicionActual.getX() - PosicionAlQueQuieroIr.getX();
-		int distanciaY = PosicionActual.getY() - PosicionAlQueQuieroIr.getY();
+	public Posicion distanciaEntrePosiciones(Posicion destino) {	
+		int distanciaX = this.getX() - destino.getX();
+		int distanciaY = this.getY() - destino.getY();
 		
-		// estos casteos no se si van los agregue para que compile
-		PosicionARetornar = new Posicion( distanciaX , distanciaY);
-		return PosicionARetornar;
+		return new Posicion( distanciaX , distanciaY);
 	}
 	
 	/**
@@ -70,6 +65,17 @@ public class Posicion {
 	
 	public Posicion posicionEsquinaAbajoIzquierda() {
 		return new Posicion(x , y + height);
+	}
+	
+	public Posicion [] posicionesDestino() {
+		Posicion [] direcciones = new Posicion [4];
+		
+		direcciones [0] = new Posicion (x + 5, y);
+		direcciones [1] = new Posicion (x - 5, y);
+		direcciones [2] = new Posicion (x, y + 5);
+		direcciones [3] = new Posicion (x, y - 5);
+		
+		return direcciones;
 	}
 	
 	public boolean equals(Posicion posicion) {
