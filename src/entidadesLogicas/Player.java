@@ -6,9 +6,9 @@ public class Player implements Comparable<Player>, Serializable{
 	private String nombre;
 	private Integer score;
 	
-	public Player( String name, Integer puntos ) {
-		this.nombre = name;
-		this.score = puntos;
+	public Player(  ) {
+		nombre="";
+		score=0;
 	}
 	
 	public String getNombre () {
@@ -17,6 +17,13 @@ public class Player implements Comparable<Player>, Serializable{
 	
 	public Integer getScore() {
 		return score;
+	}
+	
+	public void setScore(int puntos) {
+		score=score+puntos;
+	}
+	public void setNombre(String nombre) {
+		this.nombre=nombre;
 	}
 	
 	@Override

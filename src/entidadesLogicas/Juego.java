@@ -48,6 +48,7 @@ public class Juego {
 		}
 	
 		this.nivelActual = nivelActual;
+		miPlayer=new Player();
 		gameOver = false;
 		miGrilla = new Grilla();
 		miAudio=new Audio(dominio);
@@ -108,7 +109,8 @@ public class Juego {
 	
 	// -------------------------------------- SIMPLES DE ATRIBUTOS ------------------------------------
 	public void aumentarPuntaje(int puntaje) {
-		
+		miPlayer.setScore(puntaje);
+		miVentana.actualizarPuntaje();
 	}
 	
 	public void aumentarTiempo() {
