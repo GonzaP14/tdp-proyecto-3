@@ -1,5 +1,7 @@
 package personajes;
 
+import entidadesLogicas.Posicion;
+
 public abstract class Enemigo extends Personaje {
 	
 	protected EstadoEnemigo estadoActual; 
@@ -9,10 +11,10 @@ public abstract class Enemigo extends Personaje {
 	protected int velocidad;
 	private static final int puntajeOtorgado = 200;
 	
-	public static final int Frightened = 1;
-	public static final int Chase = 2;
-	public static final int Eaten = 3;
-	public static final int Scatter = 4;
+	public static final int Frightened = 0;
+	public static final int Chase = 1;
+	public static final int Eaten = 2;
+	public static final int Scatter = 3;
 	
 	@Override
 	public void afectar() {
@@ -30,7 +32,17 @@ public abstract class Enemigo extends Personaje {
 	}
 	
 	public void cambiarEstado (int estado) {
+		if (estado == Frightened) {
+			indiceEstado = Frightened;
+		} else if (estado == Chase) {
+			indiceEstado = Chase;
+		} else if (estado == Eaten) {
+			indiceEstado = Eaten;
+		} else if (estado == Scatter) {
+			indiceEstado = Scatter;
+		}
 		
+		estadoActual = estados[indiceEstado];
 	}
 	
 	public void recuperarse () {
@@ -38,27 +50,83 @@ public abstract class Enemigo extends Personaje {
 	}
 	
 	public boolean estaAterrado() {
-		return false;
+		return (indiceEstado == Frightened);
 	}
 	
 	public boolean estaPersiguiendo() {
-		return false;
+		return (indiceEstado == Chase);
 	}
 	
 	public boolean estaComido() {
-		return false;
+		return (indiceEstado == Eaten);
 	}
 	
 	public boolean estaDisperso() {
-		return false;
-	}
-	
-	public double distanciaConPrincipal() {
-		return 0;
+		return (indiceEstado == Scatter);
 	}
 	
 	public void checkeoColisionesPersonaje() {
 		
+	}
+	
+	protected void crearEstados() {
+		estados = new EstadoEnemigo[4];
+		estados[Frightened] = crearEstadoFrightened();
+		estados[Chase] = crearEstadoChase();
+		estados[Eaten] = crearEstadoEaten();
+		estados[Scatter] = crearEstadoScatter();
+	}
+	
+	protected EstadoEnemigo crearEstadoFrightened() {
+		EstadoEnemigo frightened = new Frightened();
+		frightened.setPosicionEnemigo(miPosicion);
+		frightened.setPosicionObjetivo(miJuego.getMiPersonajePrincipal().getPosicion());
+		
+		return frightened;
+	}
+	
+	protected abstract EstadoEnemigo crearEstadoChase();
+	
+	protected EstadoEnemigo crearEstadoEaten() {
+		EstadoEnemigo eaten = new Frightened();
+		eaten.setPosicionEnemigo(miPosicion);
+		eaten.setPosicionObjetivo(miJuego.getMiPersonajePrincipal().getPosicion());
+		
+		return eaten;
+	}
+	
+	protected EstadoEnemigo crearEstadoScatter() {
+		EstadoEnemigo scatter = new Frightened();
+		scatter.setPosicionEnemigo(miPosicion);
+		scatter.setPosicionObjetivo(miJuego.getMiPersonajePrincipal().getPosicion());
+		
+		return scatter;
+	}
+	
+	public void mover() {
+		Posicion destino = estadoActual.siguientePosicion();
+		sentidoActual = calcularSentido(miPosicion, destino);
+		super.mover();
+	}
+
+	private int calcularSentido(Posicion miPosicion, Posicion destino) {
+		int sentidoNuevo = sentidoActual;
+		Posicion resta = destino.distanciaEntrePosiciones(miPosicion);
+		
+		if (resta.getX() > 0) {
+			sentidoNuevo = sentidoDerecha;
+		}
+		else if (resta.getX() < 0) {
+			sentidoNuevo = sentidoIzquierda;
+		}
+		else if (resta.getY() > 0) {
+			sentidoNuevo = sentidoArriba;
+		}
+		else if (resta.getY() < 0) {
+			sentidoActual = sentidoAbajo;
+		}
+		
+		return sentidoNuevo;
 	}
 	
 }
