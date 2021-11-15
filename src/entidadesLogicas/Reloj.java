@@ -22,12 +22,12 @@ public class Reloj extends Thread{
 						miJuego.spawnearFruta();
 					if(ticks == ( 200 + miJuego.getNivel().getDuracionFrutas() ) )
 						miJuego.despawnearFruta();
-					if(ticks == 1) {
+					if(ticks == 400) {
 						miJuego.spawnearPocionCongelacion();
 					}
 					if(ticks == 400 + miJuego.getNivel().getDuracionPociones())
 						miJuego.despawnearPocionCongelacion();
-					if(ticks == 1) {
+					if(ticks == 600) {
 						miJuego.spawnearPocionVelocidad();
 					}
 					if(ticks == 600 + miJuego.getNivel().getDuracionPociones())
