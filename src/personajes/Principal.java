@@ -25,7 +25,7 @@ public class Principal extends Personaje {
 		this.miRepresentacion.aparecer(miPosicion);
 		sentidoActual = Entidad.sentidoFijo;
 		sentidoSiguiente = Entidad.sentidoFijo;
-		miJuego.getMiGrilla().getBloque(miPosicion.getY() / 25 , miPosicion.getX() / 25).agregarAListaEntidades(this);
+		miJuego.getGrilla().getBloque(miPosicion.getY() / 25 , miPosicion.getX() / 25).agregarAListaEntidades(this);
 	}
 	
 	
@@ -48,12 +48,12 @@ public class Principal extends Personaje {
 
 	@Override
 	public void checkeoColisionesPersonaje() {
-		miJuego.getMiGrilla().buscarColisionesEntidades(this);
+		miJuego.getGrilla().buscarColisionesEntidades(this);
 	}
 
 	public void recibirEfecto(Enemigo e) {
 		miJuego.perderVida();
-		miJuego.getMiGrilla().getBloque(miPosicion.getY() / 25 , miPosicion.getX() / 25).agregarAListaRemovidos(this);
+		miJuego.getGrilla().getBloque(miPosicion.getY() / 25 , miPosicion.getX() / 25).agregarAListaRemovidos(this);
 		reaparecer();
 	}
 
@@ -66,7 +66,7 @@ public class Principal extends Personaje {
 		this.miRepresentacion.aparecer(miPosicion);
 		sentidoActual = Entidad.sentidoFijo;
 		sentidoSiguiente = Entidad.sentidoFijo;
-		miJuego.getMiGrilla().getBloque(miPosicion.getY() / 25 , miPosicion.getX() / 25).agregarAListaEntidades(this);
+		miJuego.getGrilla().getBloque(miPosicion.getY() / 25 , miPosicion.getX() / 25).agregarAListaEntidades(this);
 	}
 	
 	

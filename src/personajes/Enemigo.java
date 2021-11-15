@@ -32,7 +32,7 @@ public abstract class Enemigo extends Personaje {
 		else {
 			miJuego.getMiPersonajePrincipal().recibirEfecto(this);
 		}
-		miJuego.getMiGrilla().getBloque(miPosicion.getY() / 25 , miPosicion.getX() / 25).agregarAListaRemovidos(this);
+		miJuego.getGrilla().getBloque(miPosicion.getY() / 25 , miPosicion.getX() / 25).agregarAListaRemovidos(this);
 		reaparecer();
 	}
 
@@ -171,7 +171,7 @@ public abstract class Enemigo extends Personaje {
 		
 		for (Posicion p: miPosicion.posicionesDestino()) { 
 			//System.out.println("Posicion destino = " + p);
-			if (!p.equals(miPosicion) && !sentidosContrarios(sentidoActual, calcularSentido(miPosicion, p)) && miJuego.getMiGrilla().bloqueVisitable(p.getY() / 25, p.getX() / 25)) {
+			if (!p.equals(miPosicion) && !sentidosContrarios(sentidoActual, calcularSentido(miPosicion, p)) && miJuego.getGrilla().bloqueVisitable(p.getY() / 25, p.getX() / 25)) {
 				toReturn.add(p);
 				//System.out.println("Posicion destino (Vistable) = " + p);
 			}

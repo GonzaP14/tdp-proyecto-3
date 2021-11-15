@@ -35,11 +35,11 @@ public class Bloque {
 		this.miPosicion = miPosicion;
 	}
 
-	public boolean isPuedeVisitarse() {
+	public boolean esVisitable() {
 		return puedeVisitarse;
 	}
 
-	public void setPuedeVisitarse(boolean puedeVisitarse) {
+	public void setVisitable(boolean puedeVisitarse) {
 		this.puedeVisitarse = puedeVisitarse;
 	}
 

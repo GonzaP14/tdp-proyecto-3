@@ -14,7 +14,7 @@ public class Clyde extends Enemigo {
 		miPosicion = miSpawn;
 		miRepresentacion = new EnemigoGrafico(imagenes);
 		miRepresentacion.aparecer(miPosicion);
-		miJuego.getMiGrilla().getBloque(miPosicion.getY() / 25 , miPosicion.getX() / 25).agregarAListaEntidades(this);
+		miJuego.getGrilla().getBloque(miPosicion.getY() / 25 , miPosicion.getX() / 25).agregarAListaEntidades(this);
 		crearEstados();
 	}
 
@@ -33,6 +33,6 @@ public class Clyde extends Enemigo {
 		this.miRepresentacion.aparecer(miPosicion);
 		sentidoActual = Entidad.sentidoFijo;
 		sentidoSiguiente = Entidad.sentidoFijo;
-		miJuego.getMiGrilla().getBloque(miPosicion.getY() / 25 , miPosicion.getX() / 25).agregarAListaEntidades(this);
+		miJuego.getGrilla().getBloque(miPosicion.getY() / 25 , miPosicion.getX() / 25).agregarAListaEntidades(this);
 	}
 }

@@ -10,8 +10,13 @@ public class Frightened implements EstadoEnemigo {
 	@Override
 	public Posicion siguientePosicion() {
 		Posicion toReturn = miEnemigo.getPosicion();
-		double distanciaMaxima = toReturn.distanciaEntrePosicionesPitagoras(posicionPrincipal);
+		double distanciaMaxima = Double.MIN_VALUE;
 		double distanciaActual;
+		
+		/* Asumo que la distancia actual con el principal es la maxima posible.
+		   Esto se realiza para no quedar que el enemigo e no quede en la misma posición, ya que cualquier
+		   otra distancia sera menor con respecto a esta.
+		*/ 
 		
 		for (Posicion pos: miEnemigo.posicionesDestino()) {
 			distanciaActual = pos.distanciaEntrePosicionesPitagoras(posicionPrincipal);

@@ -14,14 +14,14 @@ public class PocionCongelacion extends Pocion {
 		miRepresentacion = new ElementoGrafico(imagen);
 		miRepresentacion.aparecer(miPosicion);
 		velocidadOtorgada = 0;
-		miJuego.getMiGrilla().getBloque(miPosicion.getY() / 25 , miPosicion.getX() / 25).agregarAListaEntidades(this);
+		miJuego.getGrilla().getBloque(miPosicion.getY() / 25 , miPosicion.getX() / 25).agregarAListaEntidades(this);
 	}
 
 	@Override
 	public void afectar() {
 		for(Enemigo e : miJuego.getMisEnemigos())
 			e.recibirEfecto(this);
-		miJuego.getMiGrilla().getBloque(miPosicion.getY() / 25 , miPosicion.getX() / 25).agregarAListaRemovidos(this);
+		miJuego.getGrilla().getBloque(miPosicion.getY() / 25 , miPosicion.getX() / 25).agregarAListaRemovidos(this);
 		miRepresentacion.desaparecer();
 	}
 	

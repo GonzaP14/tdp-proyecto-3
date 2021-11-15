@@ -4,18 +4,18 @@ public class DominioJuego {
 	
 	public static final int dominioMarioBros = 0;
 	public static final int dominioMemoji = 1;
-	private int dominioJuego;
+	private int dominio;
 
 	public DominioJuego() {
-		dominioJuego = 99;
+		dominio = 99;
 	}
 	
 	public int getDominioJuego() {
-		return dominioJuego;
+		return dominio;
 	}
 
 	public void setDominioJuego(int dominioJuego) {
-		this.dominioJuego = dominioJuego;
+		this.dominio = dominioJuego;
 	}
 	
 }

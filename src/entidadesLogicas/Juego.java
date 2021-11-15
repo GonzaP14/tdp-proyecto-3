@@ -30,30 +30,27 @@ public class Juego {
 	private Grilla miGrilla;
 	private ArrayList<Enemigo>  misEnemigos;
 	private Principal miPersonajePrincipal;
-	private BuilderNivel nivelActual;
+	private BuilderNivel miBuilder;
+	private Nivel miNivel;
 	public static Properties configuration;
 	private int cantidadPacDotsRestantes , cantidadFantasmasComidos;
-	private int dominio;
-	
-	// Atributos de clase
-	public static int DominioMarioBros=0;
-	public static int DominioMemoji=1;
+	private DominioJuego miDominio;
 	
 	// ---------------------------------------- CONSTRUCTOR ------------------------------------
-	public Juego(BuilderNivel nivelActual, int dominio) {
-		this.dominio=dominio;
-		if(dominio == DominioMarioBros) {
+	public Juego(DominioJuego dominio) {
+		this.miDominio = dominio;
+		
+		if(dominio.getDominioJuego() == DominioJuego.dominioMarioBros) {
 			miFabricaEntidades = new FabricaMarioBros(this);
 		}
-		else if(dominio == DominioMemoji) {
+		else if(dominio.getDominioJuego() == DominioJuego.dominioMemoji) {
 			miFabricaEntidades = new FabricaMemoji(this);
 		}
 	
-		this.nivelActual = nivelActual;
 		miPlayer=new Player();
 		gameOver = false;
 		miGrilla = new Grilla();
-		miAudio=new Audio(dominio);
+		miAudio=new Audio(dominio.getDominioJuego());
 		cantidadPacDotsRestantes = 0;
 		misEnemigos = new ArrayList<Enemigo>();
 		cantidadFantasmasComidos = 0;
@@ -65,8 +62,8 @@ public class Juego {
 		return miPersonajePrincipal;
 	}
 	
-	public int getDominio() {
-		return dominio;
+	public DominioJuego getDominio() {
+		return miDominio;
 	}
 
 	public Object getObjetoPausa() {
@@ -77,19 +74,19 @@ public class Juego {
 		return estaPausado;
 	}
 	
-	public Grilla getMiGrilla() {
+	public Grilla getGrilla() {
 		return miGrilla;
 	}
 
-	public BuilderNivel getNivelActual() {
-		return nivelActual;
+	public Nivel getNivel() {
+		return miNivel;
 	}
 
 	public boolean isGameOver() {
 		return gameOver;
 	}
 	
-	public Player getMiPlayer() {
+	public Player getPlayer() {
 		return miPlayer;
 	}
 	
@@ -114,7 +111,12 @@ public class Juego {
 	public void setMiVentana(Ventana miVentana) {
 		this.miVentana = miVentana;
 	}
-
+	
+	public void setBuilder(BuilderNivel builder) {
+		this.miBuilder = builder;
+		this.miNivel = miBuilder.getProduct();
+	}
+	
 	public void setCantidadFantasmasComidos(int cantidadFantasmasComidos) {
 		this.cantidadFantasmasComidos = cantidadFantasmasComidos;
 	}

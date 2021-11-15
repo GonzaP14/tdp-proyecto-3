@@ -13,13 +13,13 @@ public class PocionVelocidad extends Pocion {
 		miRepresentacion = new ElementoGrafico(imagen);
 		miRepresentacion.aparecer(miPosicion);
 		velocidadOtorgada = 2;
-		miJuego.getMiGrilla().getBloque(miPosicion.getY() / 25 , miPosicion.getX() / 25).agregarAListaEntidades(this);
+		miJuego.getGrilla().getBloque(miPosicion.getY() / 25 , miPosicion.getX() / 25).agregarAListaEntidades(this);
 	}
 
 	@Override
 	public void afectar() {
 		miJuego.getMiPersonajePrincipal().recibirEfecto(this);
-		miJuego.getMiGrilla().getBloque(miPosicion.getY() / 25 , miPosicion.getX() / 25).agregarAListaRemovidos(this);
+		miJuego.getGrilla().getBloque(miPosicion.getY() / 25 , miPosicion.getX() / 25).agregarAListaRemovidos(this);
 		miRepresentacion.desaparecer();
 	}
 	

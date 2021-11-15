@@ -77,7 +77,7 @@ public class PacDot extends Elemento {
 		miRepresentacion = new ElementoGrafico(imagen);
 		puntajeOtorgado = 10;
 		this.miPosicion = miPosicion;
-		miJuego.getMiGrilla().getBloque(miPosicion.getY() / 25 , miPosicion.getX() / 25).agregarAListaEntidades(this);
+		miJuego.getGrilla().getBloque(miPosicion.getY() / 25 , miPosicion.getX() / 25).agregarAListaEntidades(this);
 	}
 
 	
@@ -90,7 +90,7 @@ public class PacDot extends Elemento {
 	public void afectar() {
 		miJuego.aumentarPuntaje(puntajeOtorgado);
 		miJuego.decrementarCantidadPacDots();
-		miJuego.getMiGrilla().getBloque(miPosicion.getY() / 25 , miPosicion.getX() / 25).agregarAListaRemovidos(this);
+		miJuego.getGrilla().getBloque(miPosicion.getY() / 25 , miPosicion.getX() / 25).agregarAListaRemovidos(this);
 		miRepresentacion.desaparecer();
 	}
 

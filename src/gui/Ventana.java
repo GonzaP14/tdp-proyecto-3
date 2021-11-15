@@ -43,7 +43,7 @@ public class Ventana extends JFrame implements KeyListener{
         this.miJuego = miJuego;
         miJuego.setMiVentana(this);
         misEntidadesGraficas = new ArrayList<EntidadGrafica>();    
-        miLaberinto = miJuego.getNivelActual().getLaberinto(miJuego.getMiGrilla(),miJuego.getDominio());
+        miLaberinto = miJuego.getNivel().getLaberinto();
 		initialize();
 		miJuego.iniciarJuego();
     }
@@ -174,7 +174,7 @@ public class Ventana extends JFrame implements KeyListener{
 	}
 	
 	public void actualizarPuntaje() {
-		puntajeNum.setText(String.valueOf(miJuego.getMiPlayer().getScore()));		
+		puntajeNum.setText(String.valueOf(miJuego.getPlayer().getScore()));		
 	}
 	
 	public void actualizarVidasActuales(int vidasActuales) {

@@ -13,13 +13,13 @@ public class Fruta extends Elemento {
 		this.miJuego = miJuego;
 		miPosicion = new Posicion((int) miSpawn.getX(), (int) miSpawn.getY());
 		miRepresentacion.aparecer(miPosicion);
-		miJuego.getMiGrilla().getBloque(miPosicion.getY() / 25 , miPosicion.getX() / 25).agregarAListaEntidades(this);
+		miJuego.getGrilla().getBloque(miPosicion.getY() / 25 , miPosicion.getX() / 25).agregarAListaEntidades(this);
 	}
 
 	@Override
 	public void afectar() {
 		miJuego.aumentarPuntaje(puntajeOtorgado);
-		miJuego.getMiGrilla().getBloque(miPosicion.getY() / 25 , miPosicion.getX() / 25).agregarAListaRemovidos(this);
+		miJuego.getGrilla().getBloque(miPosicion.getY() / 25 , miPosicion.getX() / 25).agregarAListaRemovidos(this);
 		miRepresentacion.desaparecer();
 	}
 	

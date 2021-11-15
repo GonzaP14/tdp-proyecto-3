@@ -15,7 +15,7 @@ public class PowerPellet extends Elemento {
 		miRepresentacion = new ElementoGrafico(imagen);
 		puntajeOtorgado = 50;
 		miPosicion = posicion;
-		miJuego.getMiGrilla().getBloque(miPosicion.getY() / 25 , miPosicion.getX() / 25).agregarAListaEntidades(this);
+		miJuego.getGrilla().getBloque(miPosicion.getY() / 25 , miPosicion.getX() / 25).agregarAListaEntidades(this);
 	}
 
 	@Override
@@ -25,11 +25,11 @@ public class PowerPellet extends Elemento {
 
 	@Override
 	public void afectar() {
-		iniciarTimer(new HiloElemento(miJuego,miJuego.getNivelActual().getDuracionPowerPellet()) );
+		iniciarTimer(new HiloElemento(miJuego, miJuego.getNivel().getDuracionPowerPellet()) );
 		for(Enemigo e : miJuego.getMisEnemigos())
 			e.recibirEfecto(this);
 		miJuego.aumentarPuntaje(puntajeOtorgado);
-		miJuego.getMiGrilla().getBloque(miPosicion.getY() / 25 , miPosicion.getX() / 25).agregarAListaRemovidos(this);
+		miJuego.getGrilla().getBloque(miPosicion.getY() / 25 , miPosicion.getX() / 25).agregarAListaRemovidos(this);
 		miRepresentacion.desaparecer();	
 	}
 	
