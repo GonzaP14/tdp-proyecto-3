@@ -5,7 +5,7 @@ import entidadesLogicas.Juego;
 import entidadesLogicas.Posicion;
 
 public class PocionVelocidad extends Pocion {
-	private static final Posicion miSpawn = new Posicion(350, 575);
+	private static final Posicion miSpawn = new Posicion(375, 425);//Debe ser abajo de la casa de los fantasmas
 	
 	public PocionVelocidad(Juego miJuego, String imagen) {
 		this.miJuego = miJuego;
@@ -13,12 +13,14 @@ public class PocionVelocidad extends Pocion {
 		miRepresentacion = new ElementoGrafico(imagen);
 		miRepresentacion.aparecer(miPosicion);
 		velocidadOtorgada = 2;
+		miJuego.getMiGrilla().getBloque(miPosicion.getY() / 25 , miPosicion.getX() / 25).agregarAListaEntidades(this);
 	}
 
 	@Override
 	public void afectar() {
-		// TODO Auto-generated method stub
-		
+		miJuego.getMiPersonajePrincipal().recibirEfecto(this);
+		miJuego.getMiGrilla().getBloque(miPosicion.getY() / 25 , miPosicion.getX() / 25).agregarAListaRemovidos(this);
+		miRepresentacion.desaparecer();
 	}
 	
 }

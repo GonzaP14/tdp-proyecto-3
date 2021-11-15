@@ -3,6 +3,7 @@ package elementos;
 import entidadesGraficas.ElementoGrafico;
 import entidadesLogicas.Juego;
 import entidadesLogicas.Posicion;
+import personajes.Enemigo;
 
 public class PowerPellet extends Elemento {
 	private static final Posicion[] misSpawns = 
@@ -24,8 +25,8 @@ public class PowerPellet extends Elemento {
 
 	@Override
 	public void afectar() {
-		
-		miJuego.getMiPersonajePrincipal().recibirEfecto(this);
+		for(Enemigo e : miJuego.getMisEnemigos())
+			e.recibirEfecto(this);
 		miJuego.aumentarPuntaje(puntajeOtorgado);
 		miJuego.getMiGrilla().getBloque(miPosicion.getY() / 25 , miPosicion.getX() / 25).agregarAListaRemovidos(this);
 		miRepresentacion.desaparecer();	

@@ -7,6 +7,7 @@ import elementos.Elemento;
 import elementos.PacDot;
 import elementos.PowerPellet;
 import gui.Ventana;
+import personajes.Enemigo;
 import personajes.Principal;
 import productos.FabricaEntidades;
 import productos.FabricaMarioBros;
@@ -26,7 +27,7 @@ public class Juego {
 	private Audio miAudio;
 	private Ventana miVentana;
 	private Grilla miGrilla;
-	private ArrayList<Entidad>  misEnemigos;
+	private ArrayList<Enemigo>  misEnemigos;
 	private Principal miPersonajePrincipal;
 	private BuilderNivel nivelActual;
 	public static Properties configuration;
@@ -53,7 +54,7 @@ public class Juego {
 		miGrilla = new Grilla();
 		miAudio=new Audio(dominio);
 		cantidadPacDotsRestantes = 0;
-		misEnemigos = new ArrayList<Entidad>();
+		misEnemigos = new ArrayList<Enemigo>();
 		cantidadFantasmasComidos = 0;
 		vidasActuales = 3;
 	}
@@ -101,6 +102,11 @@ public class Juego {
 
 	public int getVidasActuales() {
 		return vidasActuales;
+	}
+
+	
+	public ArrayList<Enemigo> getMisEnemigos() {
+		return misEnemigos;
 	}
 
 	// ----------------------------------------       SETTERS      -----------------------------------

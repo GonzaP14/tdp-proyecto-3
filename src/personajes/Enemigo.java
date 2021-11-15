@@ -31,21 +31,13 @@ public abstract class Enemigo extends Personaje {
 		}
 	}
 	
-	@Override
+
     public void recibirEfecto(PowerPellet p) {
-
+		
     }
 
-    @Override
+
     public void recibirEfecto(PocionCongelacion p) {
-        // TODO Auto-generated method stub
-
-    }
-
-
-    @Override
-    public void recibirEfecto(PocionVelocidad p) {
-        // TODO Auto-generated method stub
 
     }
 	

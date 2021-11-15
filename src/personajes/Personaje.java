@@ -13,12 +13,6 @@ public abstract class Personaje extends Entidad {
 	public int getVelocidadActual() {
 		return velocidadActual;
 	}
-
-	public abstract void recibirEfecto(PowerPellet p);
-	
-	public abstract void recibirEfecto(PocionCongelacion p);
-	
-	public abstract void recibirEfecto(PocionVelocidad p);
 	
 	public void mover() {
 		if (getSentidoActual() != getSentidoSiguiente()) {

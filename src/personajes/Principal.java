@@ -51,26 +51,12 @@ public class Principal extends Personaje {
 		miJuego.getMiGrilla().buscarColisionesEntidades(this);
 	}
 
-
-	@Override
-	public void recibirEfecto(PowerPellet p) {
-		
-	}
-
 	public void recibirEfecto(Enemigo e) {
 		miJuego.perderVida();
 		miJuego.getMiGrilla().getBloque(miPosicion.getY() / 25 , miPosicion.getX() / 25).agregarAListaRemovidos(this);
 		reaparecer();
 	}
 
-
-	@Override
-	public void recibirEfecto(PocionCongelacion p) {
-
-	}
-
-
-	@Override
 	public void recibirEfecto(PocionVelocidad p) {
 
 	}

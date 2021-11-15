@@ -3,9 +3,10 @@ package elementos;
 import entidadesGraficas.ElementoGrafico;
 import entidadesLogicas.Juego;
 import entidadesLogicas.Posicion;
+import personajes.Enemigo;
 
 public class PocionCongelacion extends Pocion {
-	private static final Posicion miSpawn = new Posicion(350, 575);
+	private static final Posicion miSpawn = new Posicion(325, 425);//Debe ser abajo de la casa de los fantasmas
 	
 	public PocionCongelacion(Juego miJuego, String imagen) {
 		this.miJuego = miJuego;
@@ -13,12 +14,15 @@ public class PocionCongelacion extends Pocion {
 		miRepresentacion = new ElementoGrafico(imagen);
 		miRepresentacion.aparecer(miPosicion);
 		velocidadOtorgada = 0;
+		miJuego.getMiGrilla().getBloque(miPosicion.getY() / 25 , miPosicion.getX() / 25).agregarAListaEntidades(this);
 	}
 
 	@Override
 	public void afectar() {
-	
-		
+		for(Enemigo e : miJuego.getMisEnemigos())
+			e.recibirEfecto(this);
+		miJuego.getMiGrilla().getBloque(miPosicion.getY() / 25 , miPosicion.getX() / 25).agregarAListaRemovidos(this);
+		miRepresentacion.desaparecer();
 	}
 	
 }
