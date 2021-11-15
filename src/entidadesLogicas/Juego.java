@@ -129,7 +129,9 @@ public class Juego {
 	}
 	
 	public void gameOver() {
-		
+		miAudio.apagar();
+		miVentana.gameOver();
+		gameOver=true;
 	}
 	
 	// -------------------------------------- SIMPLES DE ATRIBUTOS ------------------------------------
@@ -144,9 +146,9 @@ public class Juego {
 	
 	public void perderVida() {
 		vidasActuales--;
-		miVentana.actualizarVidasActuales();
+		miVentana.actualizarVidasActuales(vidasActuales);
 		if(vidasActuales == 0)
-			gameOver = true;
+			gameOver();
 	}
 	private void iniciarMusica() {
         miAudio.iniciarMusica();
