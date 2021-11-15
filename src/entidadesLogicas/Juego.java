@@ -12,7 +12,7 @@ import personajes.Personaje;
 import personajes.Principal;
 import productos.FabricaEntidades;
 import productos.FabricaMarioBros;
-import productos.FabricaMemoji;
+import productos.FabricaSonic;
 
 
 public class Juego {
@@ -44,7 +44,7 @@ public class Juego {
 			miFabricaEntidades = new FabricaMarioBros(this);
 		}
 		else if(dominio.getDominioJuego() == DominioJuego.dominioMemoji) {
-			miFabricaEntidades = new FabricaMemoji(this);
+			miFabricaEntidades = new FabricaSonic(this);
 		}
 	
 		miPlayer=new Player();

@@ -31,8 +31,8 @@ public class Audio {
 		
 		else {
 			try {
-				miMusica= AudioSystem.getAudioInputStream(getClass().getResource("/recursosAudio/musicaMemoji.wav"));
-				sonidoGameOver=AudioSystem.getAudioInputStream(getClass().getResource("/recursosAudio/gameOverMemoji.wav"));
+				miMusica= AudioSystem.getAudioInputStream(getClass().getResource("/recursosAudio/musicaSonic.wav"));
+				sonidoGameOver=AudioSystem.getAudioInputStream(getClass().getResource("/recursosAudio/gameOverSonic.wav"));
 				miClip = AudioSystem.getClip();
 			} catch (UnsupportedAudioFileException | IOException | LineUnavailableException e) {
 				// TODO Auto-generated catch block

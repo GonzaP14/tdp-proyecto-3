@@ -677,6 +677,7 @@ public class Nivel {
 	}
 	
 	private void constuirBloques() {
+		
 		for (int i = 0; i < Grilla.Filas; i ++) {
 			for (int j = 0; j < Grilla.Columnas; j ++) {
 				
@@ -690,8 +691,7 @@ public class Nivel {
    				}
    				else if(mapa[i][j] == casaFantasma) {
    					miGrilla.getBloque(i,j).setVisitable(false);
-   				}
-				
+   				}				
 			}
 		}
 	}
