@@ -26,15 +26,15 @@ public class FabricaMarioBros extends FabricaEntidades {
 	public Enemigo getBlinky() {
 		String[] imagenes = new String[9];
 		
-		imagenes[0] = ("/recursosMarioBros/GoompaArriba.gif");
-		imagenes[1] = ("/recursosMarioBros/GoompaAbajo.gif");
-		imagenes[2] = ("/recursosMarioBros/GoompaDerecha.gif");
-		imagenes[3] = ("/recursosMarioBros/GoompaIzquierda.gif");
-		imagenes[4] = ("/recursosMarioBros/GoompaMuerto.gif");
-		imagenes[5] = ("/recursosMarioBros/GoompaArribaEscapando.gif");
-		imagenes[6] = ("/recursosMarioBros/GoompaAbajoEscapando.gif");
-		imagenes[7] = ("/recursosMarioBros/GoompaDerechaEscapando.gif");
-		imagenes[8] = ("/recursosMarioBros/GoompaIzquierdaEscapando.gif");
+		imagenes[0] = ("/recursosMarioBros/Goompa.gif");
+		imagenes[1] = ("/recursosMarioBros/Goompa.gif");
+		imagenes[2] = ("/recursosMarioBros/Goompa.gif");
+		imagenes[3] = ("/recursosMarioBros/Goompa.gif");
+		imagenes[4] = ("/recursosMarioBros/Goompa.gif");
+		imagenes[5] = ("/recursosMarioBros/GoompaEscapando.gif");
+		imagenes[6] = ("/recursosMarioBros/GoompaEscapando.gif");
+		imagenes[7] = ("/recursosMarioBros/GoompaEscapando.gif");
+		imagenes[8] = ("/recursosMarioBros/GoompaEscapando.gif");
 
 		return new Blinky(miJuego, imagenes);
 	}
