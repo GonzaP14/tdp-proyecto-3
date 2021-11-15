@@ -15,13 +15,11 @@ public class HiloEnemigo extends Thread {
 	}
 	
 	public void run() {
-		while (!miJuego.isGameOver()) {
-			
-			if (!miJuego.estaPausado()) {
-				
+		while (!miJuego.isGameOver()) {	
+			if (!miJuego.estaPausado()) {			
 				try {
 					miJuego.operar(miEnemigo);
-					Thread.sleep(velocidadTickeo * 50);
+					Thread.sleep(500/velocidadTickeo);
 				} catch (InterruptedException e) {
 					e.printStackTrace();
 				}
@@ -41,5 +39,11 @@ public class HiloEnemigo extends Thread {
 				
 		}
 	}
+
+	public void setVelocidadTickeo(int velocidadTickeo) {
+		this.velocidadTickeo = velocidadTickeo;
+	}
+	
+	
 	
 }

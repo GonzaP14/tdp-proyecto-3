@@ -4,7 +4,10 @@ import java.util.ArrayList;
 import java.util.Properties;
 import audio.Audio;
 import elementos.Elemento;
+import elementos.Fruta;
 import elementos.PacDot;
+import elementos.PocionCongelacion;
+import elementos.PocionVelocidad;
 import elementos.PowerPellet;
 import gui.Ventana;
 import personajes.Enemigo;
@@ -32,6 +35,8 @@ public class Juego {
 	private Principal miPersonajePrincipal;
 	private BuilderNivel miBuilder;
 	private Nivel miNivel;
+	private ArrayList<Elemento> misPociones;
+	private Elemento miFruta;
 	public static Properties configuration;
 	private int cantidadPacDotsRestantes , cantidadFantasmasComidos;
 	private DominioJuego miDominio;
@@ -55,6 +60,7 @@ public class Juego {
 		misEnemigos = new ArrayList<Enemigo>();
 		cantidadFantasmasComidos = 0;
 		vidasActuales = 3;
+		misPociones = new ArrayList<Elemento>();
 	}
 	
 	// ----------------------------------------      GETTERS     ------------------------------------
@@ -105,6 +111,10 @@ public class Juego {
 	
 	public ArrayList<Enemigo> getMisEnemigos() {
 		return misEnemigos;
+	}
+	
+	public Reloj getMiReloj() {
+		return miReloj;
 	}
 
 	// ----------------------------------------       SETTERS      -----------------------------------
@@ -199,6 +209,20 @@ public class Juego {
 		
 	}
 	
+	public void spawnearPocionCongelacion() {
+		Elemento aux;
+		aux = miFabricaEntidades.getPocionCongelacion();
+		misPociones.add(0, aux);
+		miVentana.aparecerEntidad(aux.getMiRepresentacion());
+	}
+	
+	public void spawnearPocionVelocidad() {
+		Elemento aux;
+		aux = miFabricaEntidades.getPocionVelocidad();
+		misPociones.add(1, aux);
+		miVentana.aparecerEntidad(aux.getMiRepresentacion());
+	}
+	
 	private void spawnearPrincipal() {
 		miPersonajePrincipal = miFabricaEntidades.getPrincipal();
 		miVentana.aparecerEntidad(miPersonajePrincipal.getMiRepresentacion());
@@ -207,6 +231,7 @@ public class Juego {
 	public void spawnearFruta() {
 		Elemento aux;
 		aux = miFabricaEntidades.getFruta();
+		miFruta = aux;
 		miVentana.aparecerEntidad(aux.getMiRepresentacion());// aparece el recien agregado 
 		// falta modelar todo lo relacionado al hilo de la fruta y aplicarle el nivel de estrategiaNivel
 	}
@@ -229,6 +254,27 @@ public class Juego {
 			miVentana.aparecerEntidad(aux.getMiRepresentacion()); // aparece el recien agregado
 		}
 	}
+	
+	public void despawnearFruta() {
+		Bloque bloqueFruta = miGrilla.getBloque(Fruta.getMispawn().getY() / 25, Fruta.getMispawn().getX() / 25);
+		miFruta.despawnear();
+		bloqueFruta.getListaEntidades().removeAll(bloqueFruta.getListaRemovidos());
+		bloqueFruta.limpiarListaRemovidos();
+	}
+	
+	public void despawnearPocionCongelacion() {
+		Bloque bloquePocion = miGrilla.getBloque(PocionCongelacion.getMispawn().getY() / 25, PocionCongelacion.getMispawn().getX() / 25);
+		misPociones.get(0).despawnear();
+		bloquePocion.getListaEntidades().removeAll(bloquePocion.getListaRemovidos());
+		bloquePocion.limpiarListaRemovidos();
+	}
+	
+	public void despawnearPocionVelocidad() {
+		Bloque bloquePocion = miGrilla.getBloque(PocionVelocidad.getMispawn().getY() / 25, PocionVelocidad.getMispawn().getX() / 25);
+		misPociones.get(1).despawnear();
+		bloquePocion.getListaEntidades().removeAll(bloquePocion.getListaRemovidos());
+		bloquePocion.limpiarListaRemovidos();
+	}
  	
 	// ---------------------------------------- INICIO & RESET ------------------------------------
 	public void iniciarJuego() {
@@ -241,7 +287,7 @@ public class Juego {
 	}
 	
 	private void iniciarReloj() {
-		miReloj = new Reloj(1, this);
+		miReloj = new Reloj(miPersonajePrincipal.getVelocidadActual(), this);
 		miReloj.start();
 	}
 	

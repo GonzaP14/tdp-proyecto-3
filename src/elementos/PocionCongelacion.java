@@ -13,7 +13,7 @@ public class PocionCongelacion extends Pocion {
 		miPosicion = new Posicion((int) miSpawn.getX(), (int) miSpawn.getY());
 		miRepresentacion = new ElementoGrafico(imagen);
 		miRepresentacion.aparecer(miPosicion);
-		velocidadOtorgada = 0;
+		velocidadOtorgada = 1;
 		miJuego.getGrilla().getBloque(miPosicion.getY() / 25 , miPosicion.getX() / 25).agregarAListaEntidades(this);
 	}
 
@@ -24,5 +24,15 @@ public class PocionCongelacion extends Pocion {
 		miJuego.getGrilla().getBloque(miPosicion.getY() / 25 , miPosicion.getX() / 25).agregarAListaRemovidos(this);
 		miRepresentacion.desaparecer();
 	}
+
+	@Override
+	public void operacionEnHilo() {
+		
+	}
+
+	public static Posicion getMispawn() {
+		return miSpawn;
+	}
+	
 	
 }

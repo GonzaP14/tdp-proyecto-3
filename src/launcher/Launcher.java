@@ -34,10 +34,12 @@ public class Launcher {
 		miNivel.setGrilla(miJuego.getGrilla());
 		miNivel.setDominio(miJuego.getDominio());
 		miNivel.setNivelActual(nivelActual);
-		miNivel.setVelocidadEnemigos(0);
-		miNivel.setDuracionPowerPellet(150);
-		miNivel.setDuracionPociones(10000);
-		miNivel.setDuracionFrutas(15000);
+		if(nivelActual == 1) 
+			construirNivel1();
+		else if(nivelActual == 2)
+			construirNivel2();
+		else
+			construirNivel3();
 		
 		miJuego.setBuilder(miNivel);
 	}
@@ -49,6 +51,27 @@ public class Launcher {
 	public static void iniciarVentana() {
 		miVentana = new Ventana(miJuego);
 		miVentana.setVisible(true);
+	}
+	
+	private static void construirNivel1() {
+		miNivel.setVelocidadEnemigos(8);
+		miNivel.setDuracionFrutas(100);
+		miNivel.setDuracionPowerPellet(100);
+		miNivel.setDuracionPociones(100);
+	}
+	
+	private static void construirNivel2() {
+		miNivel.setVelocidadEnemigos(9);
+		miNivel.setDuracionFrutas(75);
+		miNivel.setDuracionPowerPellet(100);
+		miNivel.setDuracionPociones(100);
+	}
+	
+	private static void construirNivel3() {
+		miNivel.setVelocidadEnemigos(10);
+		miNivel.setDuracionFrutas(50);
+		miNivel.setDuracionPowerPellet(100);
+		miNivel.setDuracionPociones(100);
 	}
 
 }

@@ -14,7 +14,6 @@ public abstract class Enemigo extends Personaje {
 	protected EstadoEnemigo [] estados;
 	protected int indiceEstado;
 	protected int tiempoEstado;
-	protected int velocidad;
 	private static final int puntajeOtorgado = 200;
 	
 	public static final int Frightened = 0;
@@ -42,7 +41,8 @@ public abstract class Enemigo extends Personaje {
 
 
     public void recibirEfecto(PocionCongelacion p) {
-
+    	velocidadActual = p.getVelocidadOtorgada();
+    	miHilo.setVelocidadTickeo(velocidadActual);
     }
 	
 	public void cambiarEstado (int estado) {
@@ -159,7 +159,7 @@ public abstract class Enemigo extends Personaje {
 	}
 	
 	protected void crearHilo (Enemigo e) {
-		miHilo = new HiloEnemigo(1, miJuego, e);
+		miHilo = new HiloEnemigo(velocidadActual, miJuego, e);
 	}
 
 	public void iniciarHilo() {

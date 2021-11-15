@@ -8,11 +8,13 @@ public class HiloElemento extends Thread {
 	private Juego miJuego;
 	private int cantidadTicks;
 	private boolean romper;
-	public HiloElemento(Juego miJuego , int ticks ) {
+	private Elemento miElemento;
+	public HiloElemento(Juego miJuego , int ticks , Elemento e ) {
 		this.miJuego = miJuego;
 		this.ticks = ticks;
 		cantidadTicks = 0;
 		romper = false;
+		miElemento = e;
 	}
 	
 	public void run() {
@@ -21,10 +23,7 @@ public class HiloElemento extends Thread {
 	        	try {
 					Thread.sleep(50); // 1s
 					if(cantidadTicks == ticks) {
-						miJuego.setCantidadFantasmasComidos(0);
-						for(Enemigo e : miJuego.getMisEnemigos()) {
-							e.cambiarEstado(Enemigo.Chase);
-						}
+						miElemento.operacionEnHilo();
 						romper = true;
 					}
 					else

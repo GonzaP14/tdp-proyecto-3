@@ -18,6 +18,7 @@ public class Blinky extends Enemigo {
 		crearEstados();
 		indiceEstado = Chase;
 		estadoActual = estados[indiceEstado];
+		velocidadActual=miJuego.getNivel().getVelocidadEnemigos();
 		crearHilo(this);
 	}
 

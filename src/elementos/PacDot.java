@@ -98,4 +98,18 @@ public class PacDot extends Elemento {
 		return misSpawns;
 	}
 
+
+	@Override
+	public void operacionEnHilo() {
+		// TODO Auto-generated method stub
+		
+	}
+
+
+	@Override
+	public void despawnear() {
+		// TODO Auto-generated method stub
+		
+	}
+
 }

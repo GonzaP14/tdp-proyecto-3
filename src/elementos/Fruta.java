@@ -26,4 +26,19 @@ public class Fruta extends Elemento {
 	@Override
 	protected void iniciarTimer(HiloElemento timer) {
 	}
+
+	@Override
+	public void operacionEnHilo() {
+
+	}
+	
+	public void despawnear() {
+		miJuego.getGrilla().getBloque(miPosicion.getY() / 25 , miPosicion.getX() / 25).agregarAListaRemovidos(this);
+		miRepresentacion.desaparecer();
+	}
+
+	public static Posicion getMispawn() {
+		return miSpawn;
+	}
+	
 }

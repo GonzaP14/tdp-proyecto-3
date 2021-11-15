@@ -61,7 +61,4 @@ public abstract class Entidad {
 	// -------------------------------------------- ACCIONES ----------------------------------------
 	public abstract void afectar();
 	
-	public void desaparecer() {
-		
-	}
 }

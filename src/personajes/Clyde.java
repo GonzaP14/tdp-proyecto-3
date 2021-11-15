@@ -16,6 +16,10 @@ public class Clyde extends Enemigo {
 		miRepresentacion.aparecer(miPosicion);
 		miJuego.getGrilla().getBloque(miPosicion.getY() / 25 , miPosicion.getX() / 25).agregarAListaEntidades(this);
 		crearEstados();
+		indiceEstado = Chase;
+		estadoActual = estados[indiceEstado];
+		velocidadActual=miJuego.getNivel().getVelocidadEnemigos();
+		crearHilo(this);
 	}
 
 	@Override

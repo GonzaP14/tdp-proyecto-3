@@ -24,6 +24,7 @@ public class Principal extends Personaje {
 		sentidoActual = Entidad.sentidoFijo;
 		sentidoSiguiente = Entidad.sentidoFijo;
 		miJuego.getGrilla().getBloque(miPosicion.getY() / 25 , miPosicion.getX() / 25).agregarAListaEntidades(this);
+		velocidadActual = 10;
 	}
 	
 	
@@ -56,7 +57,8 @@ public class Principal extends Personaje {
 	}
 
 	public void recibirEfecto(PocionVelocidad p) {
-
+		velocidadActual = p.getVelocidadOtorgada();
+		miJuego.getMiReloj().setVelocidadTickeo(p.getVelocidadOtorgada());
 	}
 	
 	private void reaparecer() {

@@ -25,7 +25,7 @@ public class PowerPellet extends Elemento {
 
 	@Override
 	public void afectar() {
-		iniciarTimer(new HiloElemento(miJuego, miJuego.getNivel().getDuracionPowerPellet()) );
+		iniciarTimer(new HiloElemento(miJuego, miJuego.getNivel().getDuracionPowerPellet() , this) );
 		for(Enemigo e : miJuego.getMisEnemigos())
 			e.recibirEfecto(this);
 		miJuego.aumentarPuntaje(puntajeOtorgado);
@@ -35,5 +35,17 @@ public class PowerPellet extends Elemento {
 	
 	public static Posicion[] getMisSpawns() {
 		return misSpawns;
+	}
+	
+	public void operacionEnHilo() {
+		miJuego.setCantidadFantasmasComidos(0);
+		for(Enemigo e : miJuego.getMisEnemigos()) {
+			e.cambiarEstado(Enemigo.Chase);
+		}
+	}
+
+	@Override
+	public void despawnear() {
+		
 	}
 }

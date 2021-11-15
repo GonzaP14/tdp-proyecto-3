@@ -5,7 +5,7 @@ import entidadesLogicas.Posicion;
 
 public abstract class Personaje extends Entidad {
 	
-	private int velocidadActual;
+	protected int velocidadActual;
 	
 	public int getVelocidadActual() {
 		return velocidadActual;
