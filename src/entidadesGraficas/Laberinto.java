@@ -26,7 +26,7 @@ public class Laberinto extends JPanel{
         for (int i = 0; i < Grilla.Filas; i++) {
         	for (int j = 0; j < Grilla.Columnas; j ++) {
         	
-        		JLabel auxiliar = miGrillaLogica.getBloque(i, j).getMiRepresentacion();
+        		JLabel auxiliar = miGrillaLogica.getBloque(i, j).getRepresentacionGrafica();
         		
         		misLabels.add(auxiliar);
         		this.add(auxiliar);

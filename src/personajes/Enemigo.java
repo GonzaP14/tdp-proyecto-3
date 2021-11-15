@@ -171,7 +171,9 @@ public abstract class Enemigo extends Personaje {
 		
 		for (Posicion p: miPosicion.posicionesDestino()) { 
 			//System.out.println("Posicion destino = " + p);
-			if (!p.equals(miPosicion) && !sentidosContrarios(sentidoActual, calcularSentido(miPosicion, p)) && miJuego.getGrilla().bloqueVisitable(p.getY() / 25, p.getX() / 25)) {
+			// !p.equals(miPosicion) && -> No es necesario
+			
+			if (!sentidosContrarios(sentidoActual, calcularSentido(miPosicion, p)) && miJuego.getGrilla().bloqueVisitable(p.getY() / 25, p.getX() / 25)) {
 				toReturn.add(p);
 				//System.out.println("Posicion destino (Vistable) = " + p);
 			}

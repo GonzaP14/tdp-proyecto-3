@@ -43,11 +43,11 @@ public class Bloque {
 		this.puedeVisitarse = puedeVisitarse;
 	}
 
-	public BloqueGrafico getMiRepresentacion() {
+	public BloqueGrafico getRepresentacionGrafica() {
 		return miRepresentacion;
 	}
 
-	public void setMiRepresentacion(BloqueGrafico miRepresentacion) {
+	public void setRepresentacionGrafica(BloqueGrafico miRepresentacion) {
 		this.miRepresentacion = miRepresentacion;
 	}
 
