@@ -147,7 +147,6 @@ public class Juego {
 	public void perderVida() {
 		vidasActuales--;
 		miVentana.actualizarVidasActuales(vidasActuales);
-		miAudio.resetMusica();
 		if(vidasActuales == 0)
 			gameOver();
 	}

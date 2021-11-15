@@ -13,7 +13,7 @@ public class Audio {
 	
 	protected Clip miClip;
 	protected AudioInputStream miMusica;
-	protected AudioInputStream sonido;
+	protected AudioInputStream sonidoGameOver;
 	
 	protected static final int continuidadMusica = Clip.LOOP_CONTINUOUSLY;
 	
@@ -21,6 +21,7 @@ public class Audio {
 		if(dominio==0) {
 			try {
 				miMusica= AudioSystem.getAudioInputStream(getClass().getResource("/recursosAudio/musicaMarioBros.wav"));
+				sonidoGameOver=AudioSystem.getAudioInputStream(getClass().getResource("/recursosAudio/gameOverMarioBros.wav"));
 				miClip = AudioSystem.getClip();
 			} catch (UnsupportedAudioFileException | IOException | LineUnavailableException e) {
 				// TODO Auto-generated catch block
@@ -31,6 +32,7 @@ public class Audio {
 		else {
 			try {
 				miMusica= AudioSystem.getAudioInputStream(getClass().getResource("/recursosAudio/musicaMemoji.wav"));
+				sonidoGameOver=AudioSystem.getAudioInputStream(getClass().getResource("/recursosAudio/gameOverMemoji.wav"));
 				miClip = AudioSystem.getClip();
 			} catch (UnsupportedAudioFileException | IOException | LineUnavailableException e) {
 				// TODO Auto-generated catch block
@@ -38,20 +40,7 @@ public class Audio {
 			}
 		}
 		
-	}
-	public void resetMusica() {
-		try {
-			miClip.close();
-			miMusica= AudioSystem.getAudioInputStream(getClass().getResource("/recursosAudio/musicaMarioBros.wav"));
-			miClip.open(miMusica);
-			FloatControl gainControl = (FloatControl) miClip.getControl(FloatControl.Type.MASTER_GAIN);
-			gainControl.setValue(-15.0f); // Reduce el volumen en 15 decibeles.
-			miClip.loop(continuidadMusica);
-			miClip.start();	
-		} catch (IOException | LineUnavailableException | UnsupportedAudioFileException e) {
-			e.printStackTrace();
-		}
-	}
+	}	
 	public void iniciarMusica() {
 		try {
 			miClip.open(miMusica);
@@ -72,28 +61,12 @@ public class Audio {
 		miClip.stop();
 	}
 
-	public void sonidoPerderVida() {
-		 try {			 
-			miClip.close();
-			Clip clip= AudioSystem.getClip();
-			sonido=AudioSystem.getAudioInputStream(getClass().getResource("/recursosAudio/perderVida.wav"));
-			clip.open(sonido);
-			clip.start();
-			
-			
-		} catch (UnsupportedAudioFileException | IOException | LineUnavailableException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		 
-	}
 	public void sonidoGameOver() {
 		 try {
 			miClip.close();
-			sonido=AudioSystem.getAudioInputStream(getClass().getResource("/recursosAudio/gameOverMarioBros.wav"));
-			miClip.open(sonido);
+			miClip.open(sonidoGameOver);
 			miClip.start();	
-		} catch (UnsupportedAudioFileException | IOException | LineUnavailableException e) {
+		} catch (IOException | LineUnavailableException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
@@ -103,12 +76,4 @@ public class Audio {
 		miClip.loop(Clip.LOOP_CONTINUOUSLY);
 		miClip.start();
 	}
-	
-	public void sonidoComerFantasmas() {
-		
-	}
-	public void soindoPowerPelet() {
-		
-	}
-	
 }
