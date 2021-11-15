@@ -19,6 +19,7 @@ public class PocionCongelacion extends Pocion {
 
 	@Override
 	public void afectar() {
+		iniciarTimer(new HiloElemento(miJuego, miJuego.getNivel().getDuracionPociones() , this) );
 		for(Enemigo e : miJuego.getMisEnemigos())
 			e.recibirEfecto(this);
 		miJuego.getGrilla().getBloque(miPosicion.getY() / 25 , miPosicion.getX() / 25).agregarAListaRemovidos(this);
@@ -27,7 +28,10 @@ public class PocionCongelacion extends Pocion {
 
 	@Override
 	public void operacionEnHilo() {
-		
+		for(Enemigo e : miJuego.getMisEnemigos()) {
+			e.setVelocidadActual(miJuego.getNivel().getVelocidadEnemigos());
+			e.getMiHilo().setVelocidadTickeo(miJuego.getNivel().getVelocidadEnemigos());
+		}
 	}
 
 	public static Posicion getMispawn() {

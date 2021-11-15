@@ -27,8 +27,8 @@ public class FabricaSonic extends FabricaEntidades {
 		String[] imagenes = new String[5];
         imagenes[0] = "/recursosSonic/sonicArriba.gif";
         imagenes[1] = "/recursosSonic/sonicAbajo.gif";
-        imagenes[2] = "/recursosSonic/sonicDerecha.gif";
-        imagenes[3] = "/recursosSonic/sonicIzquierda.gif";
+        imagenes[2] = "/recursosSonic/sonicIzquierda.gif";
+        imagenes[3] = "/recursosSonic/sonicDerecha.gif";
         imagenes[4] = "/recursosSonic/sonicDerecha.gif";
         
         return Principal.getPrincipal(miJuego, imagenes);
@@ -121,7 +121,7 @@ public class FabricaSonic extends FabricaEntidades {
 
 	@Override
 	public Pocion getPocionVelocidad() {
-		String imagen = ("/recursoSonic/gemaVerde.png");
+		String imagen = ("/recursosSonic/gemaVerde.png");
 		
 		return new PocionVelocidad(miJuego, imagen);
 	}

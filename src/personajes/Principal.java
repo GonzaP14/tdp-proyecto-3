@@ -70,4 +70,5 @@ public class Principal extends Personaje {
 	}
 	
 	
+	
 }

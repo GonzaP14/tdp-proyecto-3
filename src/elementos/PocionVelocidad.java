@@ -18,6 +18,7 @@ public class PocionVelocidad extends Pocion {
 
 	@Override
 	public void afectar() {
+		iniciarTimer(new HiloElemento(miJuego, miJuego.getNivel().getDuracionPociones() , this) );
 		miJuego.getMiPersonajePrincipal().recibirEfecto(this);
 		miJuego.getGrilla().getBloque(miPosicion.getY() / 25 , miPosicion.getX() / 25).agregarAListaRemovidos(this);
 		miRepresentacion.desaparecer();
@@ -25,8 +26,8 @@ public class PocionVelocidad extends Pocion {
 
 	@Override
 	public void operacionEnHilo() {
-		// TODO Auto-generated method stub
-		
+		miJuego.getMiPersonajePrincipal().setVelocidadActual(10);
+		miJuego.getMiReloj().setVelocidadTickeo(10);
 	}
 
 	public static Posicion getMispawn() {

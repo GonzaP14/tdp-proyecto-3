@@ -194,5 +194,12 @@ public abstract class Enemigo extends Personaje {
 	}
 	
 	protected abstract void reaparecer();
+
+
+	public HiloEnemigo getMiHilo() {
+		return miHilo;
+	}
+	
+	
 	
 }

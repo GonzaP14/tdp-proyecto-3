@@ -11,6 +11,10 @@ public abstract class Personaje extends Entidad {
 		return velocidadActual;
 	}
 	
+	public void setVelocidadActual(int velocidadActual) {
+		this.velocidadActual = velocidadActual;
+	}
+
 	public void mover() {
 		if (getSentidoActual() != getSentidoSiguiente()) {
 			// si los sentidos son opuestos (una misma direccion / mismo eje)
