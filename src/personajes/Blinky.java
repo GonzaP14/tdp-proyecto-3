@@ -17,13 +17,14 @@ public class Blinky extends Enemigo {
 		crearEstados();
 		indiceEstado = Chase;
 		estadoActual = estados[indiceEstado];
+		crearHilo(this);
 	}
 
 	@Override
 	protected EstadoEnemigo crearEstadoChase() {
 		EstadoEnemigo chase = new Chase(new ChaseBlinky());
-		chase.setPosicionEnemigo(miPosicion);
-		chase.setPosicionObjetivo(miJuego.getMiPersonajePrincipal().getPosicion());
+		chase.setEnemigo(this);
+		chase.setPrincipal(miJuego.getMiPersonajePrincipal());
 		
 		return chase;
 	}

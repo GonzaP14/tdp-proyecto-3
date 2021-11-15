@@ -1,12 +1,15 @@
 package personajes;
 
+import java.util.ArrayList;
+
 import elementos.PocionCongelacion;
-import elementos.PocionVelocidad;
 import elementos.PowerPellet;
+import entidadesLogicas.Entidad;
 import entidadesLogicas.Posicion;
 
 public abstract class Enemigo extends Personaje {
 	
+	protected HiloEnemigo miHilo;
 	protected EstadoEnemigo estadoActual; 
 	protected EstadoEnemigo [] estados;
 	protected int indiceEstado;
@@ -89,7 +92,7 @@ public abstract class Enemigo extends Personaje {
 	
 	protected EstadoEnemigo crearEstadoFrightened() {
 		EstadoEnemigo frightened = new Frightened();
-		frightened.setPosicionEnemigo(miPosicion);
+		frightened.setEnemigo(this);
 		frightened.setPosicionObjetivo(miJuego.getMiPersonajePrincipal().getPosicion());
 		
 		return frightened;
@@ -99,7 +102,7 @@ public abstract class Enemigo extends Personaje {
 	
 	protected EstadoEnemigo crearEstadoEaten() {
 		EstadoEnemigo eaten = new Frightened();
-		eaten.setPosicionEnemigo(miPosicion);
+		eaten.setEnemigo(this);
 		eaten.setPosicionObjetivo(miJuego.getMiPersonajePrincipal().getPosicion());
 		
 		return eaten;
@@ -107,7 +110,7 @@ public abstract class Enemigo extends Personaje {
 	
 	protected EstadoEnemigo crearEstadoScatter() {
 		EstadoEnemigo scatter = new Frightened();
-		scatter.setPosicionEnemigo(miPosicion);
+		scatter.setEnemigo(this);
 		scatter.setPosicionObjetivo(miJuego.getMiPersonajePrincipal().getPosicion());
 		
 		return scatter;
@@ -115,13 +118,25 @@ public abstract class Enemigo extends Personaje {
 	
 	public void mover() {
 		Posicion destino = estadoActual.siguientePosicion();
-		sentidoActual = calcularSentido(miPosicion, destino);
+		int sentidoDestino = calcularSentido(miPosicion, destino);
+		
+    	if (this.getSentidoActual() == Entidad.sentidoFijo) {
+    		this.setSentidoActual(sentidoDestino);
+    	}
+    	else {
+    		this.setSentidoSiguiente(sentidoDestino);
+    	}
+		
 		super.mover();
+		System.out.println("Movimiento - Enemigo: " + destino);
 	}
 
 	private int calcularSentido(Posicion miPosicion, Posicion destino) {
 		int sentidoNuevo = sentidoActual;
 		Posicion resta = destino.distanciaEntrePosiciones(miPosicion);
+		
+		// Destino = B - A
+		// B - A (x) < 0
 		
 		if (resta.getX() > 0) {
 			sentidoNuevo = sentidoDerecha;
@@ -130,13 +145,39 @@ public abstract class Enemigo extends Personaje {
 			sentidoNuevo = sentidoIzquierda;
 		}
 		else if (resta.getY() > 0) {
-			sentidoNuevo = sentidoArriba;
+			sentidoNuevo = sentidoAbajo;
 		}
 		else if (resta.getY() < 0) {
-			sentidoActual = sentidoAbajo;
+			sentidoNuevo = sentidoArriba;
 		}
 		
 		return sentidoNuevo;
+	}
+	
+	protected void crearHilo (Enemigo e) {
+		miHilo = new HiloEnemigo(1, miJuego, e);
+	}
+
+	public void iniciarHilo() {
+		miHilo.start();
+	}
+
+	public ArrayList <Posicion> posicionesDestino() {
+		ArrayList<Posicion> toReturn = new ArrayList<Posicion>();
+
+		//System.out.println("Posicion actual = " + miPosicion);
+		//System.out.println("Bloque " + miPosicion.getY() / 25 + " " + miPosicion.getX() / 25);
+		
+		for (Posicion p: miPosicion.posicionesDestino()) { 
+			//System.out.println("Posicion destino = " + p);
+			
+			if (miJuego.getMiGrilla().bloqueVisitable(p.getY() / 25, p.getX() / 25)) {
+				toReturn.add(p);
+				//System.out.println("Posicion destino (Vistable) = " + p);
+			}
+		}
+		
+		return toReturn;
 	}
 	
 }

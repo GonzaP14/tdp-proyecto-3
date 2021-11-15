@@ -8,6 +8,7 @@ import elementos.PacDot;
 import elementos.PowerPellet;
 import gui.Ventana;
 import personajes.Enemigo;
+import personajes.Personaje;
 import personajes.Principal;
 import productos.FabricaEntidades;
 import productos.FabricaMarioBros;
@@ -163,9 +164,9 @@ public class Juego {
      * Mueve un personaje, en un sentido
      * @param personaje El personaje que se movera
      */
-    public synchronized void operar() {
+    public synchronized void operar(Personaje p) {
     	if (!gameOver && !estaPausado) {
-	    	miPersonajePrincipal.mover();
+	    	p.mover();
     	}
     }
     public void cambiarSentidoActualPrincipal( int sentidoMovimiento) {
@@ -189,6 +190,8 @@ public class Juego {
 		for(Entidad fantasmas: misEnemigos) {
 			miVentana.aparecerEntidad(fantasmas.getMiRepresentacion());
 		}
+		
+		misEnemigos.get(0).iniciarHilo();
 		
 	}
 	
