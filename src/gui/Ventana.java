@@ -112,7 +112,7 @@ public class Ventana extends JFrame implements KeyListener{
 		
     	hub = new JLabel("", SwingConstants.CENTER);
 		hub.setBounds(700, 0, 300, 775);
-    	ImageIcon ico = new ImageIcon(Toolkit.getDefaultToolkit().getImage(this.getClass().getResource("/recursosImagenes/hudFondoPacMan.png")));	
+    	ImageIcon ico = new ImageIcon(Toolkit.getDefaultToolkit().getImage(this.getClass().getResource("/recursosImagenes/hudFondoPacman.png")));	
 		ImageIcon img = new ImageIcon(ico.getImage().getScaledInstance(hub.getWidth(), hub.getHeight(), Image.SCALE_SMOOTH));
 		hub.setIcon(img);
 		this.getContentPane().add(hub);

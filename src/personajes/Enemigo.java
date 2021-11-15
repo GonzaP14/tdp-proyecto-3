@@ -35,9 +35,9 @@ public abstract class Enemigo extends Personaje {
 			reaparecer();
 		}
 	}
-	
 
-    public void recibirEfecto(PowerPellet p) {
+
+	public void recibirEfecto(PowerPellet p) {
 		
     }
 
@@ -172,14 +172,21 @@ public abstract class Enemigo extends Personaje {
 		
 		for (Posicion p: miPosicion.posicionesDestino()) { 
 			//System.out.println("Posicion destino = " + p);
-			
-			if (miJuego.getMiGrilla().bloqueVisitable(p.getY() / 25, p.getX() / 25)) {
+			if (!p.equals(miPosicion) && !sentidosContrarios(sentidoActual, calcularSentido(miPosicion, p)) && miJuego.getMiGrilla().bloqueVisitable(p.getY() / 25, p.getX() / 25)) {
 				toReturn.add(p);
 				//System.out.println("Posicion destino (Vistable) = " + p);
 			}
 		}
 		
 		return toReturn;
+	}
+	
+	private boolean sentidosContrarios(int sentidoActual, int sentidoNuevo) {
+		boolean contrarios = false;
+		if ((sentidoActual == Entidad.sentidoAbajo && sentidoNuevo == Entidad.sentidoArriba) || (sentidoActual == Entidad.sentidoArriba && sentidoNuevo == Entidad.sentidoAbajo) || (sentidoActual == Entidad.sentidoIzquierda && sentidoNuevo == Entidad.sentidoDerecha) || (sentidoActual == Entidad.sentidoDerecha && sentidoNuevo == Entidad.sentidoIzquierda)) {
+			contrarios = true;
+		}
+		return contrarios;
 	}
 	
 	protected abstract void reaparecer();
