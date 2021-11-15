@@ -24,4 +24,12 @@ public abstract class EntidadGrafica extends JLabel {
 	public abstract void aparecer(Posicion miPosicion);
 	
 	public abstract void desaparecer();
+
+	public void asustarse() {
+		
+	}
+	
+	public void perseguir() {
+		
+	}
 }

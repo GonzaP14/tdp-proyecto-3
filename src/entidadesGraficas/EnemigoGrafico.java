@@ -1,38 +1,40 @@
 package entidadesGraficas;
 
 import java.awt.Image;
-import javax.swing.ImageIcon;
+import java.util.ArrayList;
 
-import entidadesLogicas.Posicion;
+import javax.swing.ImageIcon;
 
 public class EnemigoGrafico extends PersonajeGrafico{
 	private static final long serialVersionUID = 1L;
 	
-	protected ImageIcon escapando;
+	protected ArrayList<ImageIcon> sentidosChase, sentidosFrightened;
 	
 	public EnemigoGrafico(String[] imagenes) {
 		setBounds(25, 25, 25, 25);
+		ImageIcon scalingAuxImage;
+		sentidosEstado = new ArrayList<ImageIcon>();
+		sentidosChase = new ArrayList<ImageIcon>();
+		sentidosFrightened = new ArrayList<ImageIcon>();
 		
-		sentidoArriba = new ImageIcon(this.getClass().getResource(imagenes[0]));
-		sentidoArriba = new ImageIcon(sentidoArriba.getImage().getScaledInstance(getWidth(), getHeight(), Image.SCALE_DEFAULT));
+		for (int imagenesIndice = 0; imagenesIndice < 4; imagenesIndice++) {
+			scalingAuxImage = new ImageIcon(this.getClass().getResource(imagenes[imagenesIndice]));
+			scalingAuxImage = new ImageIcon(scalingAuxImage.getImage().getScaledInstance(getWidth(), getHeight(), Image.SCALE_DEFAULT));
+			sentidosChase.add(scalingAuxImage); 
+		}
 		
-		sentidoAbajo = new ImageIcon(this.getClass().getResource(imagenes[1]));
-		sentidoAbajo = new ImageIcon(sentidoAbajo.getImage().getScaledInstance(getWidth(), getHeight(), Image.SCALE_DEFAULT));
+		scalingAuxImage = new ImageIcon(this.getClass().getResource(imagenes[4]));
+		muerto = new ImageIcon(scalingAuxImage.getImage().getScaledInstance(getWidth(), getHeight(), Image.SCALE_DEFAULT));
 		
-		sentidoDerecha = new ImageIcon(this.getClass().getResource(imagenes[2]));
-		sentidoDerecha = new ImageIcon(sentidoDerecha.getImage().getScaledInstance(getWidth(), getHeight(), Image.SCALE_DEFAULT));
+		for (int imagenesIndice = 5; imagenesIndice < 9; imagenesIndice++) {
+			scalingAuxImage = new ImageIcon(this.getClass().getResource(imagenes[imagenesIndice]));
+			scalingAuxImage = new ImageIcon(scalingAuxImage.getImage().getScaledInstance(getWidth(), getHeight(), Image.SCALE_DEFAULT));
+			sentidosFrightened.add(scalingAuxImage); 
+		}
 		
-		sentidoIzquierda = new ImageIcon(this.getClass().getResource(imagenes[3]));
-		sentidoIzquierda = new ImageIcon(sentidoIzquierda.getImage().getScaledInstance(getWidth(), getHeight(), Image.SCALE_DEFAULT));
-		
-		muerto = new ImageIcon(this.getClass().getResource(imagenes[4]));
-		muerto = new ImageIcon(muerto.getImage().getScaledInstance(getWidth(), getHeight(), Image.SCALE_DEFAULT));
-		
-		escapando = new ImageIcon(this.getClass().getResource(imagenes[5]));
-		escapando = new ImageIcon(escapando.getImage().getScaledInstance(getWidth(), getHeight(), Image.SCALE_DEFAULT));
-	
+		sentidosEstado = sentidosChase;
 		miPrioridad = 2;
-		representacionActual = sentidoDerecha;
+		representacionActual = sentidosEstado.get(2);
 		this.setIcon(representacionActual);
 	}
 
@@ -40,5 +42,13 @@ public class EnemigoGrafico extends PersonajeGrafico{
 	public void desaparecer() {
 		// TODO Auto-generated method stub
 		
+	}
+	
+	public void asustarse() {
+		sentidosEstado = sentidosFrightened;
+	}
+	
+	public void perseguir() {
+		sentidosEstado = sentidosChase;
 	}
 }

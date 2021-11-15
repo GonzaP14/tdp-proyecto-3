@@ -1,8 +1,5 @@
 package personajes;
 
-import elementos.PocionCongelacion;
-import elementos.PocionVelocidad;
-import elementos.PowerPellet;
 import entidadesLogicas.Entidad;
 import entidadesLogicas.Posicion;
 

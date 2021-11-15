@@ -15,8 +15,8 @@ public class FabricaMarioBros extends FabricaEntidades {
 		String[] imagenes = new String[5];
 		imagenes[0] = "/recursosMarioBros/MarioArriba.gif";
 		imagenes[1] = "/recursosMarioBros/MarioAbajo.gif";
-		imagenes[2] = "/recursosMarioBros/MarioDerecha.gif";
-		imagenes[3] = "/recursosMarioBros/MarioIzquierda.gif";
+		imagenes[2] = "/recursosMarioBros/MarioIzquierda.gif";
+		imagenes[3] = "/recursosMarioBros/MarioDerecha.gif";
 		imagenes[4] = "/recursosMarioBros/MarioDerecha.gif";
 		
 		return Principal.getPrincipal(miJuego, imagenes);

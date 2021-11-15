@@ -27,7 +27,6 @@ public abstract class Enemigo extends Personaje {
 		if(indiceEstado == Frightened) {
 			miJuego.setCantidadFantasmasComidos(miJuego.getCantidadFantasmasComidos() + 1);
 			miJuego.aumentarPuntaje(200 * miJuego.getCantidadFantasmasComidos());
-			cambiarEstado(Chase);
 		}
 		else {
 			miJuego.getMiPersonajePrincipal().recibirEfecto(this);
@@ -49,8 +48,10 @@ public abstract class Enemigo extends Personaje {
 	public void cambiarEstado (int estado) {
 		if (estado == Frightened) {
 			indiceEstado = Frightened;
+			miRepresentacion.asustarse();
 		} else if (estado == Chase) {
 			indiceEstado = Chase;
+			miRepresentacion.perseguir();
 		} else if (estado == Eaten) {
 			indiceEstado = Eaten;
 		} else if (estado == Scatter) {
@@ -58,6 +59,8 @@ public abstract class Enemigo extends Personaje {
 		}
 		
 		estadoActual = estados[indiceEstado];
+		
+		
 	}
 	
 	public void recuperarse () {

@@ -36,6 +36,7 @@ public class Blinky extends Enemigo {
 		this.miRepresentacion.aparecer(miPosicion);
 		sentidoActual = Entidad.sentidoFijo;
 		sentidoSiguiente = Entidad.sentidoFijo;
+		cambiarEstado(Chase);
 		miJuego.getGrilla().getBloque(miPosicion.getY() / 25 , miPosicion.getX() / 25).agregarAListaEntidades(this);
 	}
 	

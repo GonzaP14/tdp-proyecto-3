@@ -1,5 +1,7 @@
 package entidadesGraficas;
 
+import java.util.ArrayList;
+
 import javax.swing.ImageIcon;
 
 import entidadesLogicas.Entidad;
@@ -9,31 +11,29 @@ public abstract class PersonajeGrafico extends EntidadGrafica {
 	
 	private static final long serialVersionUID = 1L;
 
-	protected ImageIcon sentidoIzquierda;
-	protected ImageIcon sentidoDerecha;
-	protected ImageIcon sentidoArriba;
-	protected ImageIcon sentidoAbajo;
+	protected ArrayList<ImageIcon> sentidosEstado;
 	protected ImageIcon muerto;
 	
 	public void actualizar (int i) {
-		if (i == Entidad.sentidoDerecha) {
-			representacionActual = sentidoDerecha;
-		}
-		else if (i == Entidad.sentidoIzquierda) {
-			representacionActual = sentidoIzquierda;
-		}
-		else if (i == Entidad.sentidoAbajo) {
-			representacionActual = sentidoAbajo;
-		}
-		else if (i == Entidad.sentidoArriba) {
-			representacionActual = sentidoArriba;
-		}
+//		if (i == Entidad.sentidoDerecha) {
+//			representacionActual = sentidosEstado.get(0);
+//		}
+//		else if (i == Entidad.sentidoIzquierda) {
+//			representacionActual = sentidosEstado.get(1);
+//		}
+//		else if (i == Entidad.sentidoAbajo) {
+//			representacionActual = sentidosEstado.get(2);
+//		}
+//		else if (i == Entidad.sentidoArriba) {
+//			representacionActual = sentidosEstado.get(3);
+//		}
+		representacionActual = sentidosEstado.get(i-1);
 		setIcon(representacionActual);
 	}
 	
 	public void aparecer(Posicion miPosicion) {
 		this.setLocation((int) miPosicion.getX(), (int) miPosicion.getY());
-		representacionActual = sentidoDerecha;
+		representacionActual = sentidosEstado.get(3);
 		setIcon(representacionActual);
 	}
 	
