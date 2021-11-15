@@ -129,7 +129,7 @@ public class Juego {
 	}
 	
 	public void gameOver() {
-		miAudio.apagar();
+		miAudio.sonidoGameOver();
 		miVentana.gameOver();
 		gameOver=true;
 	}
@@ -147,6 +147,7 @@ public class Juego {
 	public void perderVida() {
 		vidasActuales--;
 		miVentana.actualizarVidasActuales(vidasActuales);
+		miAudio.resetMusica();
 		if(vidasActuales == 0)
 			gameOver();
 	}
