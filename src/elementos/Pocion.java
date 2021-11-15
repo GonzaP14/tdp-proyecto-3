@@ -3,7 +3,7 @@ package elementos;
 public abstract class Pocion extends Elemento {
 	protected int velocidadOtorgada;
 	@Override
-	public void iniciarTimer(HiloElemento timer) {
+	protected void iniciarTimer(HiloElemento timer) {
 		// TODO Auto-generated method stub
 		
 	}

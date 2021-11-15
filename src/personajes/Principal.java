@@ -1,5 +1,8 @@
 package personajes;
 
+import elementos.PocionCongelacion;
+import elementos.PocionVelocidad;
+import elementos.PowerPellet;
 import entidadesGraficas.PrincipalGrafico;
 import entidadesLogicas.Entidad;
 import entidadesLogicas.Juego;
@@ -25,10 +28,6 @@ public class Principal extends Personaje {
 		miJuego.getMiGrilla().getBloque(miPosicion.getY() / 25 , miPosicion.getX() / 25).agregarAListaEntidades(this);
 	}
 	
-	@Override
-	public void recibirEfecto() {
-		
-	}
 	
 	public static Principal getPrincipal(Juego miJuego, String[] imagenes) {
 		if (original == null) {
@@ -50,6 +49,38 @@ public class Principal extends Personaje {
 	@Override
 	public void checkeoColisionesPersonaje() {
 		miJuego.getMiGrilla().buscarColisionesEntidades(this);
+	}
+
+
+	@Override
+	public void recibirEfecto(PowerPellet p) {
+		
+	}
+
+	public void recibirEfecto(Enemigo e) {
+		miJuego.perderVida();
+		miJuego.getMiGrilla().getBloque(miPosicion.getY() / 25 , miPosicion.getX() / 25).agregarAListaRemovidos(this);
+		reaparecer();
+	}
+
+
+	@Override
+	public void recibirEfecto(PocionCongelacion p) {
+
+	}
+
+
+	@Override
+	public void recibirEfecto(PocionVelocidad p) {
+
+	}
+	
+	private void reaparecer() {
+		miPosicion = new Posicion((int) miSpawn.getX(), (int) miSpawn.getY());
+		this.miRepresentacion.aparecer(miPosicion);
+		sentidoActual = Entidad.sentidoFijo;
+		sentidoSiguiente = Entidad.sentidoFijo;
+		miJuego.getMiGrilla().getBloque(miPosicion.getY() / 25 , miPosicion.getX() / 25).agregarAListaEntidades(this);
 	}
 	
 	

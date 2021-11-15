@@ -33,6 +33,7 @@ public class Ventana extends JFrame implements KeyListener{
     private JLabel level;
     private JLabel lifes;
     private JLabel leaderBoard;
+    private JLabel vidasActuales;
     
     public Ventana(Juego miJuego) {
         this.miJuego = miJuego;
@@ -56,14 +57,12 @@ public class Ventana extends JFrame implements KeyListener{
 		puntajeNum.setForeground(Color.WHITE);
 		puntajeNum.setBounds(780, 50, 130, 50);
 		this.getContentPane().add(puntajeNum);
-				
-		
+						
 		level = new JLabel("LEVEL",SwingConstants.CENTER);
 		level.setFont(new Font("Power Red and Green", Font.BOLD, 40));
 		level.setForeground(Color.WHITE);
 		level.setBounds(780, 150, 130, 50);
-		this.getContentPane().add(level);
-		
+		this.getContentPane().add(level);	
 		
 		lifes = new JLabel("LIFES",SwingConstants.CENTER);
 		lifes.setFont(new Font("Power Red and Green", Font.BOLD, 40));
@@ -71,7 +70,12 @@ public class Ventana extends JFrame implements KeyListener{
 		lifes.setBounds(780, 300, 130, 50);
 		this.getContentPane().add(lifes);
 		
-		
+		vidasActuales = new JLabel("3",SwingConstants.CENTER);
+		vidasActuales.setFont(new Font("Power Red and Green", Font.BOLD, 40));
+		vidasActuales.setForeground(Color.WHITE);
+		vidasActuales.setBounds(780, 350, 130, 50);
+		this.getContentPane().add(vidasActuales);
+			
 		leaderBoard = new JLabel("LEADER BOARD",SwingConstants.CENTER);
 		leaderBoard.setFont(new Font("Power Red and Green", Font.BOLD, 40));
 		leaderBoard.setForeground(Color.WHITE);
@@ -143,5 +147,9 @@ public class Ventana extends JFrame implements KeyListener{
 	
 	public void actualizarPuntaje() {
 		puntajeNum.setText(String.valueOf(miJuego.getMiPlayer().getScore()));		
+	}
+	
+	public void actualizarVidasActuales() {
+		vidasActuales.setText(String.valueOf(miJuego.getVidasActuales()));	
 	}
 }

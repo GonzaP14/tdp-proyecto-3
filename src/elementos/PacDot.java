@@ -82,13 +82,14 @@ public class PacDot extends Elemento {
 
 	
 	@Override
-	public void iniciarTimer(HiloElemento timer) {
+	protected void iniciarTimer(HiloElemento timer) {
 		
 	}
 
 	@Override
 	public void afectar() {
 		miJuego.aumentarPuntaje(puntajeOtorgado);
+		miJuego.decrementarCantidadPacDots();
 		miJuego.getMiGrilla().getBloque(miPosicion.getY() / 25 , miPosicion.getX() / 25).agregarAListaRemovidos(this);
 		miRepresentacion.desaparecer();
 	}

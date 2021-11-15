@@ -13,6 +13,7 @@ public class Fruta extends Elemento {
 		miPosicion = new Posicion((int) miSpawn.getX(), (int) miSpawn.getY());
 		miRepresentacion.aparecer(miPosicion);
 		iniciarTimer(timer);
+		miJuego.getMiGrilla().getBloque(miPosicion.getY() / 25 , miPosicion.getX() / 25).agregarAListaEntidades(this);
 	}
 
 	@Override
@@ -23,7 +24,7 @@ public class Fruta extends Elemento {
 	}
 	
 	@Override
-	public void iniciarTimer(HiloElemento timer) {
+	protected void iniciarTimer(HiloElemento timer) {
 		timer.start();
 	}
 }

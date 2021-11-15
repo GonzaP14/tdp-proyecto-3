@@ -30,7 +30,7 @@ public class Juego {
 	private Principal miPersonajePrincipal;
 	private BuilderNivel nivelActual;
 	public static Properties configuration;
-	private int cantidadPacDotsRestantes;
+	private int cantidadPacDotsRestantes , cantidadFantasmasComidos;
 	private int dominio;
 	
 	// Atributos de clase
@@ -54,6 +54,8 @@ public class Juego {
 		miAudio=new Audio(dominio);
 		cantidadPacDotsRestantes = 0;
 		misEnemigos = new ArrayList<Entidad>();
+		cantidadFantasmasComidos = 0;
+		vidasActuales = 3;
 	}
 	
 	// ----------------------------------------      GETTERS     ------------------------------------
@@ -89,9 +91,25 @@ public class Juego {
 		return miPlayer;
 	}
 	
+	public int getCantidadPacDotsRestantes() {
+		return cantidadPacDotsRestantes;
+	}
+
+	public int getCantidadFantasmasComidos() {
+		return cantidadFantasmasComidos;
+	}
+
+	public int getVidasActuales() {
+		return vidasActuales;
+	}
+
 	// ----------------------------------------       SETTERS      -----------------------------------
 	public void setMiVentana(Ventana miVentana) {
 		this.miVentana = miVentana;
+	}
+
+	public void setCantidadFantasmasComidos(int cantidadFantasmasComidos) {
+		this.cantidadFantasmasComidos = cantidadFantasmasComidos;
 	}
 
 	// ---------------------------------------- ESTADOS DEL JUEGO ------------------------------------
@@ -118,11 +136,19 @@ public class Juego {
 	}
 	
 	public void perderVida() {
-		
+		vidasActuales--;
+		miVentana.actualizarVidasActuales();
+		if(vidasActuales == 0)
+			gameOver = true;
 	}
 	private void iniciarMusica() {
         miAudio.iniciarMusica();
     }
+	
+	public void decrementarCantidadPacDots() {
+        cantidadPacDotsRestantes--;
+    }
+	
 	//
 	
 	// ---------------------------------------- MOVIMIENTO ------------------------------------
@@ -168,7 +194,7 @@ public class Juego {
 	public void spawnearFruta() {
 		Elemento aux;
 		aux = miFabricaEntidades.getFruta();
-		miVentana.aparecerEntidad(aux.getMiRepresentacion());// aparece el recien agregado // aparece el recien agregado
+		miVentana.aparecerEntidad(aux.getMiRepresentacion());// aparece el recien agregado 
 		// falta modelar todo lo relacionado al hilo de la fruta y aplicarle el nivel de estrategiaNivel
 	}
 	

@@ -18,13 +18,14 @@ public class PowerPellet extends Elemento {
 	}
 
 	@Override
-	public void iniciarTimer(HiloElemento timer) {
-		// TODO Auto-generated method stub
+	protected void iniciarTimer(HiloElemento timer) {
 		
 	}
 
 	@Override
 	public void afectar() {
+		
+		miJuego.getMiPersonajePrincipal().recibirEfecto(this);
 		miJuego.aumentarPuntaje(puntajeOtorgado);
 		miJuego.getMiGrilla().getBloque(miPosicion.getY() / 25 , miPosicion.getX() / 25).agregarAListaRemovidos(this);
 		miRepresentacion.desaparecer();	

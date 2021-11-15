@@ -1,5 +1,8 @@
 package personajes;
 
+import elementos.PocionCongelacion;
+import elementos.PocionVelocidad;
+import elementos.PowerPellet;
 import entidadesLogicas.Posicion;
 
 public abstract class Enemigo extends Personaje {
@@ -19,17 +22,32 @@ public abstract class Enemigo extends Personaje {
 	@Override
 	public void afectar() {
 		if(indiceEstado == Frightened) {
-			
+			miJuego.setCantidadFantasmasComidos(miJuego.getCantidadFantasmasComidos() + 1);
+			miJuego.aumentarPuntaje(200 * miJuego.getCantidadFantasmasComidos());
+			miRepresentacion.desaparecer();
 		}
 		else {
-			
+			miJuego.getMiPersonajePrincipal().recibirEfecto(this);
 		}
 	}
 	
 	@Override
-	public void recibirEfecto() {
-		
-	}
+    public void recibirEfecto(PowerPellet p) {
+
+    }
+
+    @Override
+    public void recibirEfecto(PocionCongelacion p) {
+        // TODO Auto-generated method stub
+
+    }
+
+
+    @Override
+    public void recibirEfecto(PocionVelocidad p) {
+        // TODO Auto-generated method stub
+
+    }
 	
 	public void cambiarEstado (int estado) {
 		if (estado == Frightened) {
