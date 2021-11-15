@@ -1,6 +1,7 @@
 package personajes;
 
 import entidadesGraficas.EnemigoGrafico;
+import entidadesLogicas.Entidad;
 import entidadesLogicas.Juego;
 import entidadesLogicas.Posicion;
 
@@ -24,5 +25,14 @@ public class Clyde extends Enemigo {
 		chase.setPosicionObjetivo(miJuego.getMiPersonajePrincipal().getPosicion());
 		
 		return chase;
+	}
+	
+	@Override
+	protected void reaparecer() {
+		miPosicion = new Posicion((int) miSpawn.getX(), (int) miSpawn.getY());
+		this.miRepresentacion.aparecer(miPosicion);
+		sentidoActual = Entidad.sentidoFijo;
+		sentidoSiguiente = Entidad.sentidoFijo;
+		miJuego.getMiGrilla().getBloque(miPosicion.getY() / 25 , miPosicion.getX() / 25).agregarAListaEntidades(this);
 	}
 }

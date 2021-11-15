@@ -31,6 +31,8 @@ public abstract class Enemigo extends Personaje {
 		}
 		else {
 			miJuego.getMiPersonajePrincipal().recibirEfecto(this);
+			miJuego.getMiGrilla().getBloque(miPosicion.getY() / 25 , miPosicion.getX() / 25).agregarAListaRemovidos(this);
+			reaparecer();
 		}
 	}
 	
@@ -179,5 +181,7 @@ public abstract class Enemigo extends Personaje {
 		
 		return toReturn;
 	}
+	
+	protected abstract void reaparecer();
 	
 }
