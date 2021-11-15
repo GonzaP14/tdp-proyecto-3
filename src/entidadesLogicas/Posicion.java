@@ -70,10 +70,10 @@ public class Posicion {
 	public Posicion [] posicionesDestino() {
 		Posicion [] direcciones = new Posicion [4];
 		
-		direcciones [0] = new Posicion (x + 5, y);
-		direcciones [1] = new Posicion (x - 5, y);
-		direcciones [2] = new Posicion (x, y + 5);
-		direcciones [3] = new Posicion (x, y - 5);
+		direcciones [0] = new Posicion (x + 25, y);
+		direcciones [1] = new Posicion (x - 25, y);
+		direcciones [2] = new Posicion (x, y + 25);
+		direcciones [3] = new Posicion (x, y - 25);
 		
 		return direcciones;
 	}
@@ -83,6 +83,7 @@ public class Posicion {
 	}
 	
 	public String toString(){
-		return x+","+y;
+		return "(" + x + "," + y + ")";
 	}
+	
 }

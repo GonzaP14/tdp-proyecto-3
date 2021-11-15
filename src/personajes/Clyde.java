@@ -20,7 +20,7 @@ public class Clyde extends Enemigo {
 	@Override
 	protected EstadoEnemigo crearEstadoChase() {
 		EstadoEnemigo chase = new Chase(new ChaseClyde());
-		chase.setPosicionEnemigo(miPosicion);
+		chase.setEnemigo(this);
 		chase.setPosicionObjetivo(miJuego.getMiPersonajePrincipal().getPosicion());
 		
 		return chase;

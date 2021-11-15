@@ -104,4 +104,10 @@ public class Grilla {
 		return grilla[x][y];
 	}
 	
+	public boolean bloqueVisitable (int i, int j) {
+		System.out.println("Bloque " + i + " " + j + " " + grilla[i][j].isPuedeVisitarse());
+		
+		return grilla[i][j].isPuedeVisitarse();
+	}
+	
 }

@@ -4,16 +4,16 @@ import entidadesLogicas.Posicion;
 
 public class Eaten implements EstadoEnemigo {
 	
-	private Posicion posicionEnemigo;
+	private Enemigo miEnemigo;
 	private Posicion posicionRecuperacion;
 	
 	@Override
 	public Posicion siguientePosicion() {
-		Posicion toReturn = posicionEnemigo;
-		double distanciaMinima = posicionEnemigo.distanciaEntrePosicionesPitagoras(posicionRecuperacion);
+		Posicion toReturn = miEnemigo.getPosicion();
+		double distanciaMinima = toReturn.distanciaEntrePosicionesPitagoras(posicionRecuperacion);
 		double distanciaActual;
 		
-		for (Posicion pos: posicionEnemigo.posicionesDestino()) {
+		for (Posicion pos: miEnemigo.posicionesDestino()) {
 			distanciaActual = pos.distanciaEntrePosicionesPitagoras(posicionRecuperacion);
 			
 			if (distanciaActual < distanciaMinima) {
@@ -26,13 +26,19 @@ public class Eaten implements EstadoEnemigo {
 	}
 
 	@Override
-	public void setPosicionEnemigo(Posicion posicionEnemigo) {
-		this.posicionEnemigo = posicionEnemigo;
+	public void setEnemigo(Enemigo e) {
+		miEnemigo = e;
 	}
 
 	@Override
 	public void setPosicionObjetivo(Posicion posicionObjetivo) {
 		this.posicionRecuperacion = posicionObjetivo;
+	}
+
+	@Override
+	public void setPrincipal(Principal p) {
+		// TODO Auto-generated method stub
+		
 	}
 
 

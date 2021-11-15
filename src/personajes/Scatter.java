@@ -14,7 +14,7 @@ public class Scatter implements EstadoEnemigo {
 	}
 
 	@Override
-	public void setPosicionEnemigo(Posicion posicionEnemigo) {
+	public void setEnemigo(Enemigo e) {
 		// TODO Auto-generated method stub
 		
 	}
@@ -25,5 +25,10 @@ public class Scatter implements EstadoEnemigo {
 		
 	}
 
-
+	@Override
+	public void setPrincipal(Principal p) {
+		// TODO Auto-generated method stub
+		
+	}
+	
 }

@@ -5,7 +5,8 @@ import entidadesLogicas.Posicion;
 public class Chase implements EstadoEnemigo {
 	
 	protected ChaseIA miInteligencia;
-	protected Posicion posicionEnemigo;
+	protected Enemigo miEnemigo;
+	protected Principal miDestino;
 	protected Posicion posicionPrincipal;
 	
 	public Chase(ChaseIA miInteligencia) {
@@ -14,17 +15,22 @@ public class Chase implements EstadoEnemigo {
 	
 	@Override
 	public Posicion siguientePosicion() {
-		return miInteligencia.calcularSiguientePosicion(posicionEnemigo, posicionPrincipal);
+		return miInteligencia.calcularSiguientePosicion(miEnemigo, miDestino.getPosicion());
 	}
-
-	@Override
-	public void setPosicionEnemigo(Posicion posicionEnemigo) {
-		this.posicionEnemigo = posicionEnemigo;
-	}
-
+	
 	@Override
 	public void setPosicionObjetivo(Posicion posicionObjetivo) {
 		this.posicionPrincipal = posicionObjetivo;
+	}
+
+	@Override
+	public void setEnemigo(Enemigo e) {
+		this.miEnemigo = e;
+	}
+
+	@Override
+	public void setPrincipal(Principal p) {
+		miDestino = p;	
 	}
 
 }
