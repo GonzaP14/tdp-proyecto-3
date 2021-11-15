@@ -33,7 +33,11 @@ public class Ventana extends JFrame implements KeyListener{
     private JLabel level;
     private JLabel lifes;
     private JLabel leaderBoard;
-    private JLabel vidasActuales;
+    private JLabel gameOver;
+    private JLabel vida1;
+    private JLabel vida2;
+    private JLabel vida3;
+    
     
     public Ventana(Juego miJuego) {
         this.miJuego = miJuego;
@@ -45,6 +49,13 @@ public class Ventana extends JFrame implements KeyListener{
     }
     
     private void initialize() {
+    	gameOver = new JLabel("GAME OVER",SwingConstants.CENTER);
+		gameOver.setFont(new Font("Power Red and Green", Font.BOLD, 75));
+		gameOver.setForeground(Color.WHITE);
+		gameOver.setBounds(150, 225, 400, 275);
+		gameOver.setVisible(false);
+		this.getContentPane().add(gameOver);
+		
     	score = new JLabel("SCORE",SwingConstants.CENTER);
 		score.setFont(new Font("Power Red and Green", Font.BOLD, 40));
 		score.setForeground(Color.WHITE);
@@ -69,12 +80,6 @@ public class Ventana extends JFrame implements KeyListener{
 		lifes.setForeground(Color.WHITE);
 		lifes.setBounds(780, 300, 130, 50);
 		this.getContentPane().add(lifes);
-		
-		vidasActuales = new JLabel("3",SwingConstants.CENTER);
-		vidasActuales.setFont(new Font("Power Red and Green", Font.BOLD, 40));
-		vidasActuales.setForeground(Color.WHITE);
-		vidasActuales.setBounds(780, 350, 130, 50);
-		this.getContentPane().add(vidasActuales);
 			
 		leaderBoard = new JLabel("LEADER BOARD",SwingConstants.CENTER);
 		leaderBoard.setFont(new Font("Power Red and Green", Font.BOLD, 40));
@@ -83,12 +88,35 @@ public class Ventana extends JFrame implements KeyListener{
 		this.getContentPane().add(leaderBoard);
 		
 		
+		vida1 = new JLabel("", SwingConstants.CENTER);
+		vida1.setBounds(775, 375, 50, 50);
+    	ImageIcon icovida1 = new ImageIcon(Toolkit.getDefaultToolkit().getImage(this.getClass().getResource("/recursosMarioBros/Mario.png")));	
+		ImageIcon imgvida1 = new ImageIcon(icovida1.getImage().getScaledInstance(vida1.getWidth(), vida1.getHeight(), Image.SCALE_SMOOTH));
+		vida1.setIcon(imgvida1);
+		this.getContentPane().add(vida1);
+
+		vida2 = new JLabel("", SwingConstants.CENTER);
+		vida2.setBounds(825, 375, 50, 50);
+    	ImageIcon icovida2 = new ImageIcon(Toolkit.getDefaultToolkit().getImage(this.getClass().getResource("/recursosMarioBros/Mario.png")));	
+		ImageIcon imgvida2 = new ImageIcon(icovida2.getImage().getScaledInstance(vida2.getWidth(), vida2.getHeight(), Image.SCALE_SMOOTH));
+		vida2.setIcon(imgvida2);
+		this.getContentPane().add(vida2);
+		
+		vida3 = new JLabel("", SwingConstants.CENTER);
+		vida3.setBounds(875, 375, 50, 50);
+    	ImageIcon icovida3 = new ImageIcon(Toolkit.getDefaultToolkit().getImage(this.getClass().getResource("/recursosMarioBros/Mario.png")));	
+		ImageIcon imgvida3 = new ImageIcon(icovida3.getImage().getScaledInstance(vida3.getWidth(), vida3.getHeight(), Image.SCALE_SMOOTH));
+		vida3.setIcon(imgvida3);
+		this.getContentPane().add(vida3);
+		
+		
     	hub = new JLabel("", SwingConstants.CENTER);
 		hub.setBounds(700, 0, 300, 775);
     	ImageIcon ico = new ImageIcon(Toolkit.getDefaultToolkit().getImage(this.getClass().getResource("/recursosImagenes/hudFondoPacMan.png")));	
 		ImageIcon img = new ImageIcon(ico.getImage().getScaledInstance(hub.getWidth(), hub.getHeight(), Image.SCALE_SMOOTH));
 		hub.setIcon(img);
 		this.getContentPane().add(hub);
+		
 		
 		
     	layeredPane = new JLayeredPane();
@@ -149,7 +177,18 @@ public class Ventana extends JFrame implements KeyListener{
 		puntajeNum.setText(String.valueOf(miJuego.getMiPlayer().getScore()));		
 	}
 	
-	public void actualizarVidasActuales() {
-		vidasActuales.setText(String.valueOf(miJuego.getVidasActuales()));	
+	public void actualizarVidasActuales(int vidasActuales) {
+		if(vidasActuales==2) {
+			vida3.setVisible(false);
+		}
+		else if(vidasActuales==1) {
+			vida2.setVisible(false);
+		}
+		else if(vidasActuales==0) {
+			vida1.setVisible(false);
+		}
+	}
+	public void gameOver() {		
+		gameOver.setVisible(true);		
 	}
 }

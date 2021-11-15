@@ -39,10 +39,20 @@ public class Audio {
 		}
 		
 	}
-	
+	public void resetMusica() {
+		try {
+			miMusica= AudioSystem.getAudioInputStream(getClass().getResource("/recursosAudio/musicaMarioBros.wav"));
+			miClip.open(miMusica);
+			FloatControl gainControl = (FloatControl) miClip.getControl(FloatControl.Type.MASTER_GAIN);
+			gainControl.setValue(-15.0f); // Reduce el volumen en 15 decibeles.
+			miClip.loop(continuidadMusica);
+			miClip.start();	
+		} catch (IOException | LineUnavailableException | UnsupportedAudioFileException e) {
+			e.printStackTrace();
+		}
+	}
 	public void iniciarMusica() {
 		try {
-			
 			miClip.open(miMusica);
 			FloatControl gainControl = (FloatControl) miClip.getControl(FloatControl.Type.MASTER_GAIN);
 			gainControl.setValue(-15.0f); // Reduce el volumen en 15 decibeles.
@@ -60,10 +70,25 @@ public class Audio {
 	public void pausar() {
 		miClip.stop();
 	}
+	public void apagar() {
+		miClip.close();
+	}
 	
-	public void sonidoMuerte() {
+	public void sonidoPerderVida() {
 		 try {
-			sonido=AudioSystem.getAudioInputStream(getClass().getResource("/recursosAudio/muerteMarioBros.wav"));
+			miClip.close();
+			sonido=AudioSystem.getAudioInputStream(getClass().getResource("/recursosAudio/perderVida.wav"));
+			miClip.open(sonido);
+			miClip.start();	
+		} catch (UnsupportedAudioFileException | IOException | LineUnavailableException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	public void sonidoGameOver() {
+		 try {
+			miClip.close();
+			sonido=AudioSystem.getAudioInputStream(getClass().getResource("/recursosAudio/gameOver.wav"));
 			miClip.open(sonido);
 			miClip.start();	
 		} catch (UnsupportedAudioFileException | IOException | LineUnavailableException e) {
@@ -78,24 +103,10 @@ public class Audio {
 	}
 	
 	public void sonidoComerFantasmas() {
-		try {
-			sonido=AudioSystem.getAudioInputStream(getClass().getResource("/recursosAudio/comerMarioBros.wav"));
-			miClip.open(sonido);
-			miClip.start();			
-		} catch (UnsupportedAudioFileException | IOException | LineUnavailableException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		
 	}
 	public void soindoPowerPelet() {
-		try {
-			sonido=AudioSystem.getAudioInputStream(getClass().getResource("/recursosAudio/powerPeletMarioBros.wav"));
-			miClip.open(sonido);
-			miClip.start();			
-		} catch (UnsupportedAudioFileException | IOException | LineUnavailableException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		
 	}
 	
 }
