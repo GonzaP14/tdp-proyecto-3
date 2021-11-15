@@ -20,11 +20,12 @@ public class PowerPellet extends Elemento {
 
 	@Override
 	protected void iniciarTimer(HiloElemento timer) {
-		
+		timer.start();
 	}
 
 	@Override
 	public void afectar() {
+		iniciarTimer(new HiloElemento(miJuego,miJuego.getNivelActual().getDuracionPowerPellet()) );
 		for(Enemigo e : miJuego.getMisEnemigos())
 			e.recibirEfecto(this);
 		miJuego.aumentarPuntaje(puntajeOtorgado);

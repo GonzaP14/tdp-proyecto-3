@@ -450,7 +450,7 @@ public class Nivel1 implements BuilderNivel {
 
 	@Override
 	public int getDuracionPowerPellet() {
-		return 0;
+		return 150;
 	}
 
 	@Override

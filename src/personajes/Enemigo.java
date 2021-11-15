@@ -27,18 +27,18 @@ public abstract class Enemigo extends Personaje {
 		if(indiceEstado == Frightened) {
 			miJuego.setCantidadFantasmasComidos(miJuego.getCantidadFantasmasComidos() + 1);
 			miJuego.aumentarPuntaje(200 * miJuego.getCantidadFantasmasComidos());
-			miRepresentacion.desaparecer();
+			cambiarEstado(Chase);
 		}
 		else {
 			miJuego.getMiPersonajePrincipal().recibirEfecto(this);
-			miJuego.getMiGrilla().getBloque(miPosicion.getY() / 25 , miPosicion.getX() / 25).agregarAListaRemovidos(this);
-			reaparecer();
 		}
+		miJuego.getMiGrilla().getBloque(miPosicion.getY() / 25 , miPosicion.getX() / 25).agregarAListaRemovidos(this);
+		reaparecer();
 	}
 
 
 	public void recibirEfecto(PowerPellet p) {
-		
+		cambiarEstado(Frightened);
     }
 
 
@@ -130,7 +130,6 @@ public abstract class Enemigo extends Personaje {
     	}
 		
 		super.mover();
-		System.out.println("Movimiento - Enemigo: " + destino);
 	}
 
 	private int calcularSentido(Posicion miPosicion, Posicion destino) {

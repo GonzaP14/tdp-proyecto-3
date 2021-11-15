@@ -18,10 +18,7 @@ public class ChaseBlinky extends ChaseIA {
 				toReturn = pos;
 			}
 			
-			System.out.println("PosicionDestino = " + pos + " distanciaActual = " + distanciaActual);
 		}
-		
-		System.out.println("toReturn = " + toReturn + " distanciaMinima = " + distanciaMinima);
 		
 		return toReturn;
 	}

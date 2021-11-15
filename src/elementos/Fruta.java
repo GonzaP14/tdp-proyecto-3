@@ -7,13 +7,12 @@ import entidadesLogicas.Posicion;
 public class Fruta extends Elemento {
 	private static final Posicion miSpawn = new Posicion(350, 425);//Debe ser abajo de la casa de los fantasmas
 	
-	public Fruta(Juego miJuego, String imagen, HiloElemento timer) {
+	public Fruta(Juego miJuego, String imagen) {
 		puntajeOtorgado = 100;
 		miRepresentacion = new ElementoGrafico(imagen);
 		this.miJuego = miJuego;
 		miPosicion = new Posicion((int) miSpawn.getX(), (int) miSpawn.getY());
 		miRepresentacion.aparecer(miPosicion);
-		iniciarTimer(timer);
 		miJuego.getMiGrilla().getBloque(miPosicion.getY() / 25 , miPosicion.getX() / 25).agregarAListaEntidades(this);
 	}
 
@@ -26,6 +25,5 @@ public class Fruta extends Elemento {
 	
 	@Override
 	protected void iniciarTimer(HiloElemento timer) {
-		timer.start();
 	}
 }

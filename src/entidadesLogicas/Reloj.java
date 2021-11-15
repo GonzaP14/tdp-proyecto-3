@@ -39,4 +39,9 @@ public class Reloj extends Thread{
 	        }
 		}
 	}
+
+	public void setVelocidadTickeo(int velocidadTickeo) {
+		this.velocidadTickeo = velocidadTickeo;
+	}
+
 }
