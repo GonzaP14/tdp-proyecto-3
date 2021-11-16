@@ -1,41 +1,22 @@
-package productos;
+package entidadesLogicas;
 
-import elementos.Elemento;
-import elementos.Fruta;
-import elementos.PacDot;
-import elementos.Pocion;
-import elementos.PocionCongelacion;
-import elementos.PocionVelocidad;
-import elementos.PowerPellet;
-import entidadesLogicas.Juego;
-import entidadesLogicas.Posicion;
-import personajes.Blinky;
-import personajes.Clyde;
-import personajes.Enemigo;
-import personajes.Inky;
-import personajes.Pinky;
-import personajes.Principal;
+public class DominioSonic implements DominioJuego {
 
-public class FabricaSonic extends FabricaEntidades {
-	
-	public FabricaSonic(Juego miJuego) {
-		this.miJuego = miJuego;
-	}
-	
 	@Override
-	public Principal getPrincipal() {
+	public String[] getSkinsPrincipal() {
 		String[] imagenes = new String[5];
-        imagenes[0] = "/recursosSonic/sonicArriba.gif";
+        
+		imagenes[0] = "/recursosSonic/sonicArriba.gif";
         imagenes[1] = "/recursosSonic/sonicAbajo.gif";
         imagenes[2] = "/recursosSonic/sonicIzquierda.gif";
         imagenes[3] = "/recursosSonic/sonicDerecha.gif";
         imagenes[4] = "/recursosSonic/sonicDerecha.gif";
         
-        return Principal.getPrincipal(miJuego, imagenes);
+        return imagenes;
 	}
 
 	@Override
-	public Enemigo getBlinky() {
+	public String[] getSkinsBlinky() {
 		String[] imagenes = new String[9];
 		
 		imagenes[0] = ("/recursosSonic/cangrejo1.gif");
@@ -47,13 +28,14 @@ public class FabricaSonic extends FabricaEntidades {
 		imagenes[6] = ("/recursosSonic/cangrejo1Escapando.gif");
 		imagenes[7] = ("/recursosSonic/cangrejo1Escapando.gif");
 		imagenes[8] = ("/recursosSonic/cangrejo1Escapando.gif");
-
-		return new Blinky(miJuego, imagenes);
+		
+		return imagenes;
 	}
 
 	@Override
-	public Enemigo getPinky() {
+	public String[] getSkinsPinky() {
 		String[] imagenes = new String[9];
+		
 		imagenes[0] = ("/recursosSonic/cangrejo2.gif");
 		imagenes[1] = ("/recursosSonic/cangrejo2.gif");
 		imagenes[2] = ("/recursosSonic/cangrejo2.gif");
@@ -64,12 +46,13 @@ public class FabricaSonic extends FabricaEntidades {
 		imagenes[7] = ("/recursosSonic/cangrejo2Escapando.gif");
 		imagenes[8] = ("/recursosSonic/cangrejo2Escapando.gif");
 		
-		return new Pinky(miJuego, imagenes);
+		return imagenes;
 	}
 
 	@Override
-	public Enemigo getInky() {
+	public String[] getSkinsInky() {
 		String[] imagenes = new String[9];
+		
 		imagenes[0] = ("/recursosSonic/shadowArriba.gif");
 		imagenes[1] = ("/recursosSonic/shadowAbajo.gif");
 		imagenes[2] = ("/recursosSonic/shadowDerecha.gif");
@@ -80,12 +63,13 @@ public class FabricaSonic extends FabricaEntidades {
 		imagenes[7] = ("/recursosSonic/shadowDerechaEscapando.gif");
 		imagenes[8] = ("/recursosSonic/shadowIzquierdaEscapando.gif");
 		
-		return new Inky(miJuego, imagenes);
+		return imagenes;
 	}
 
 	@Override
-	public Enemigo getClyde() {
+	public String[] getSkinsClyde() {
 		String[] imagenes = new String[9];
+		
 		imagenes[0] = ("/recursosSonic/eggManArriba.gif");
 		imagenes[1] = ("/recursosSonic/eggManAbajo.gif");
 		imagenes[2] = ("/recursosSonic/eggManDerecha.gif");
@@ -96,41 +80,67 @@ public class FabricaSonic extends FabricaEntidades {
 		imagenes[7] = ("/recursosSonic/eggManDerechaEscapando.gif");
 		imagenes[8] = ("/recursosSonic/eggManIzquierdaEscapando.gif");
 		
-		return new Clyde(miJuego, imagenes);
+		return imagenes;
 	}
 
 	@Override
-	public Elemento getFruta() {
-		String imagen = ("/recursosSonic/gemaAzul.png");		
-		return new Fruta(miJuego, imagen);
+	public String getFruta() {
+		return new String("/recursosSonic/gemaAzul.png");	
 	}
 
 	@Override
-	public Elemento getPacDot(Posicion posicion) {
-		String imagen = ("/recursosSonic/Anillo.png");
-		
-		return new PacDot(miJuego, imagen , posicion);
+	public String getPocionVelocidad() {
+		return new String("/recursosSonic/gemaVerde.png");
 	}
 
 	@Override
-	public Pocion getPocionCongelacion() {
-		String imagen = ("/recursosSonic/gemaCeleste.png");
-		
-		return new PocionCongelacion(miJuego, imagen);
+	public String getPocionCongelacion() {
+		return new String("/recursosSonic/gemaCeleste.png");
 	}
 
 	@Override
-	public Pocion getPocionVelocidad() {
-		String imagen = ("/recursosSonic/gemaVerde.png");
-		
-		return new PocionVelocidad(miJuego, imagen);
+	public String getPowerPellet() {
+		return new String("/recursosSonic/estrellasSonic.png");
 	}
 
 	@Override
-	public Elemento getPowerPellet(Posicion posicion) {
-		String imagen = ("/recursosSonic/estrellasSonic.png");
-		
-		return new PowerPellet(miJuego, imagen , posicion);
+	public String getPacDot() {
+		return new String("/recursosSonic/Anillo.png");
+	}
+
+	@Override
+	public String getMusica() {
+		return new String("/recursosAudio/musicaSonic.wav");
+	}
+
+	@Override
+	public String getSonidoGameOver() {
+		return new String("/recursosAudio/gameOverSonic.wav");
+	}
+
+	@Override
+	public String getParedNivel1() {
+		return new String("/recursosSonic/paredLvl1Sonic.png");
+	}
+
+	@Override
+	public String getParedNivel2() {
+		return new String("/recursosSonic/paredLvl2Sonic.png");
+	}
+
+	@Override
+	public String getParedNivel3() {
+		return new String("/recursosSonic/paredLvl3Sonic.png");
+	}
+
+	@Override
+	public String getPuerta() {
+		return new String("/recursosSonic/puertaSonic.png");
+	}
+
+	@Override
+	public String getImagenVidas() {
+		return new String("/recursosSonic/Sonic.png");
 	}
 
 }

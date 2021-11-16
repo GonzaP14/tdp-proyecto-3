@@ -16,17 +16,15 @@ public class Launcher {
 	private static int nivelActual;
 	
 	public static void main(String[] args) {
-		dominioJuego = new DominioJuego();
-		miSplashScreen = new SplashScreen(dominioJuego);
+		miSplashScreen = new SplashScreen();
 		miSplashScreen.setBounds(100, 0, 1500, 500);
 		miSplashScreen.setVisible(true);
 		nivelActual = 1;
+		dominioJuego = miSplashScreen.getDominio();
 		
-		if (dominioJuego.getDominioJuego() != 99) {		
-			iniciarJuego(dominioJuego);
-			construirNivel();
-			iniciarVentana();
-		}
+		iniciarJuego(dominioJuego);
+		construirNivel();
+		iniciarVentana();
 	}
 	
 	private static void construirNivel() {
@@ -34,12 +32,16 @@ public class Launcher {
 		miNivel.setGrilla(miJuego.getGrilla());
 		miNivel.setDominio(miJuego.getDominio());
 		miNivel.setNivelActual(nivelActual);
-		if(nivelActual == 1) 
+		
+		if (nivelActual == 1) { 
 			construirNivel1();
-		else if(nivelActual == 2)
+		}
+		else if (nivelActual == 2) {
 			construirNivel2();
-		else
+		}
+		else if (nivelActual == 3) {
 			construirNivel3();
+		}
 		
 		miJuego.setBuilder(miNivel);
 	}
@@ -49,7 +51,7 @@ public class Launcher {
 	}
 	
 	public static void iniciarVentana() {
-		miVentana = new Ventana(miJuego);
+		miVentana = new Ventana(miJuego, dominioJuego);
 		miVentana.setVisible(true);
 	}
 	

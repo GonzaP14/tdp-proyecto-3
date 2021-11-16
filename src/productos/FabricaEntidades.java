@@ -2,14 +2,11 @@ package productos;
 
 import elementos.Elemento;
 import elementos.Pocion;
-import entidadesLogicas.Juego;
 import entidadesLogicas.Posicion;
 import personajes.Enemigo;
 import personajes.Principal;
 
-public abstract class FabricaEntidades {
-	
-	protected Juego miJuego;
+public interface FabricaEntidades {
 	
 	public abstract Principal getPrincipal();
 	
@@ -30,9 +27,5 @@ public abstract class FabricaEntidades {
 	public abstract Pocion getPocionVelocidad();
 	
 	public abstract Elemento getPowerPellet(Posicion posicion);
-
-	public void setMiJuego(Juego miJuego) {
-		this.miJuego = miJuego;
-	}
 	
 }

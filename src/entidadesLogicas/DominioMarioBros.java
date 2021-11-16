@@ -1,31 +1,24 @@
-package productos;
+package entidadesLogicas;
 
-import entidadesLogicas.Juego;
-import entidadesLogicas.Posicion;
-import personajes.*;
-import elementos.*;
+public class DominioMarioBros implements DominioJuego {
 
-public class FabricaMarioBros extends FabricaEntidades {
-	public FabricaMarioBros(Juego miJuego) {
-		this.miJuego = miJuego;
-	}
-	
 	@Override
-	public Principal getPrincipal() {
+	public String[] getSkinsPrincipal() {
 		String[] imagenes = new String[5];
+		
 		imagenes[0] = "/recursosMarioBros/MarioArriba.gif";
 		imagenes[1] = "/recursosMarioBros/MarioAbajo.gif";
 		imagenes[2] = "/recursosMarioBros/MarioIzquierda.gif";
 		imagenes[3] = "/recursosMarioBros/MarioDerecha.gif";
 		imagenes[4] = "/recursosMarioBros/MarioDerecha.gif";
 		
-		return Principal.getPrincipal(miJuego, imagenes);
+		return imagenes;
 	}
-	
+
 	@Override
-	public Enemigo getBlinky() {
+	public String[] getSkinsBlinky() {
 		String[] imagenes = new String[9];
-		
+
 		imagenes[0] = ("/recursosMarioBros/Goompa.gif");
 		imagenes[1] = ("/recursosMarioBros/Goompa.gif");
 		imagenes[2] = ("/recursosMarioBros/Goompa.gif");
@@ -35,13 +28,14 @@ public class FabricaMarioBros extends FabricaEntidades {
 		imagenes[6] = ("/recursosMarioBros/GoompaEscapando.gif");
 		imagenes[7] = ("/recursosMarioBros/GoompaEscapando.gif");
 		imagenes[8] = ("/recursosMarioBros/GoompaEscapando.gif");
-
-		return new Blinky(miJuego, imagenes);
+		
+		return imagenes;
 	}
-	
+
 	@Override
-	public Enemigo getPinky() {
+	public String[] getSkinsPinky() {
 		String[] imagenes = new String[9];
+		
 		imagenes[0] = ("/recursosMarioBros/BooArriba.gif");
 		imagenes[1] = ("/recursosMarioBros/BooAbajo.gif");
 		imagenes[2] = ("/recursosMarioBros/BooDerecha.gif");
@@ -51,13 +45,14 @@ public class FabricaMarioBros extends FabricaEntidades {
 		imagenes[6] = ("/recursosMarioBros/BooAbajoEscapando.gif");
 		imagenes[7] = ("/recursosMarioBros/BooDerechaEscapando.gif");
 		imagenes[8] = ("/recursosMarioBros/BooIzquierdaEscapando.gif");
-		
-		return new Pinky(miJuego, imagenes);
-	}	
+	
+		return imagenes;
+	}
 
 	@Override
-	public Enemigo getInky() {
+	public String[] getSkinsInky() {
 		String[] imagenes = new String[9];
+		
 		imagenes[0] = ("/recursosMarioBros/BowserArriba.gif");
 		imagenes[1] = ("/recursosMarioBros/BowserAbajo.gif");
 		imagenes[2] = ("/recursosMarioBros/BowserDerecha.gif");
@@ -67,13 +62,14 @@ public class FabricaMarioBros extends FabricaEntidades {
 		imagenes[6] = ("/recursosMarioBros/BowserAbajoEscapando.gif");
 		imagenes[7] = ("/recursosMarioBros/BowserDerechaEscapando.gif");
 		imagenes[8] = ("/recursosMarioBros/BowserIzquierdaEscapando.gif");
-		
-		return new Inky(miJuego, imagenes);
+
+		return imagenes;
 	}
 
 	@Override
-	public Enemigo getClyde() {
+	public String[] getSkinsClyde() {
 		String[] imagenes = new String[9];
+		
 		imagenes[0] = ("/recursosMarioBros/KoopaTroopaArriba.gif");
 		imagenes[1] = ("/recursosMarioBros/KoopaTroopaAbajo.gif");
 		imagenes[2] = ("/recursosMarioBros/KoopaTroopaDerecha.gif");
@@ -83,42 +79,68 @@ public class FabricaMarioBros extends FabricaEntidades {
 		imagenes[6] = ("/recursosMarioBros/KoopaTroopaAbajoEscapando.gif");
 		imagenes[7] = ("/recursosMarioBros/KoopaTroopaDerechaEscapando.gif");
 		imagenes[8] = ("/recursosMarioBros/KoopaTroopaIzquierdaEscapando.gif");
-		
-		return new Clyde(miJuego, imagenes);
+	
+		return imagenes;
 	}
 
 	@Override
-	public Elemento getFruta() {
-		String imagen = ("/recursosMarioBros/Flor.png");
-		
-		return new Fruta(miJuego, imagen);
+	public String getFruta() {
+		return new String ("/recursosMarioBros/Flor.png");
+	}
+
+	@Override
+	public String getPocionVelocidad() {
+		return new String ("/recursosMarioBros/HongoVerde.png");
+	}
+
+	@Override
+	public String getPocionCongelacion() {
+		return new String ("/recursosMarioBros/HongoRojo.png");
+	}
+
+	@Override
+	public String getPowerPellet() {
+		return new String ("/recursosMarioBros/Estrella.png");
+	}
+
+	@Override
+	public String getPacDot() {
+		return new String ("/recursosMarioBros/Moneda.png");
+	}
+
+	@Override
+	public String getMusica() {
+		return new String("/recursosAudio/musicaMarioBros.wav");
+	}
+
+	@Override
+	public String getSonidoGameOver() {
+		return new String("/recursosAudio/gameOverMarioBros.wav");
+	}
+
+	@Override
+	public String getParedNivel1() {
+		return new String("/recursosMarioBros/paredLvl1Mario.png");
+	}
+
+	@Override
+	public String getParedNivel2() {
+		return new String("/recursosMarioBros/paredLvl2Mario.png");
+	}
+
+	@Override
+	public String getParedNivel3() {
+		return new String("/recursosMarioBros/paredLvl3Mario.png");
+	}
+
+	@Override
+	public String getPuerta() {
+		return new String("/recursosMarioBros/puertaMario.png");
+	}
+
+	@Override
+	public String getImagenVidas() {
+		return new String("/recursosMarioBros/Mario.png");
 	}
 	
-	public Pocion getPocionVelocidad() {
-		String imagen = ("/recursosMarioBros/HongoVerde.png");
-		
-		return new PocionVelocidad(miJuego, imagen);
-	}
-	
-	@Override
-	public Pocion getPocionCongelacion() {
-		String imagen = ("/recursosMarioBros/HongoRojo.png");
-		
-		return new PocionCongelacion(miJuego, imagen);
-	}
-
-	@Override
-	public Elemento getPowerPellet(Posicion posicion) {
-		String imagen = ("/recursosMarioBros/Estrella.png");
-		
-		return new PowerPellet(miJuego, imagen , posicion);
-	}
-
-	@Override
-	public Elemento getPacDot(Posicion posicion) {
-		String imagen = ("/recursosMarioBros/Moneda.png");
-		
-		return new PacDot(miJuego, imagen , posicion);
-	}
-
 }

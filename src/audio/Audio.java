@@ -9,44 +9,33 @@ import javax.sound.sampled.FloatControl;
 import javax.sound.sampled.LineUnavailableException;
 import javax.sound.sampled.UnsupportedAudioFileException;
 
+import entidadesLogicas.DominioJuego;
+
 public class Audio {
 	
 	protected Clip miClip;
 	protected AudioInputStream miMusica;
 	protected AudioInputStream sonidoGameOver;
+	protected DominioJuego miDominio;
 	
-	protected static final int continuidadMusica = Clip.LOOP_CONTINUOUSLY;
-	
-	public Audio(int dominio) {
-		if(dominio==0) {
-			try {
-				miMusica= AudioSystem.getAudioInputStream(getClass().getResource("/recursosAudio/musicaMarioBros.wav"));
-				sonidoGameOver=AudioSystem.getAudioInputStream(getClass().getResource("/recursosAudio/gameOverMarioBros.wav"));
-				miClip = AudioSystem.getClip();
-			} catch (UnsupportedAudioFileException | IOException | LineUnavailableException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}	
-		}
+	public Audio(DominioJuego miDominio) {
+		this.miDominio = miDominio;
 		
-		else {
-			try {
-				miMusica= AudioSystem.getAudioInputStream(getClass().getResource("/recursosAudio/musicaSonic.wav"));
-				sonidoGameOver=AudioSystem.getAudioInputStream(getClass().getResource("/recursosAudio/gameOverSonic.wav"));
-				miClip = AudioSystem.getClip();
-			} catch (UnsupportedAudioFileException | IOException | LineUnavailableException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-		}
+		try {
+			miMusica= AudioSystem.getAudioInputStream(getClass().getResource(miDominio.getMusica()));
+			sonidoGameOver=AudioSystem.getAudioInputStream(getClass().getResource(miDominio.getSonidoGameOver()));
+			miClip = AudioSystem.getClip();
+		} catch (UnsupportedAudioFileException | IOException | LineUnavailableException e) {
+			e.printStackTrace();
+		}	
+	}
 		
-	}	
 	public void iniciarMusica() {
 		try {
 			miClip.open(miMusica);
 			FloatControl gainControl = (FloatControl) miClip.getControl(FloatControl.Type.MASTER_GAIN);
 			gainControl.setValue(-15.0f); // Reduce el volumen en 15 decibeles.
-			miClip.loop(continuidadMusica);
+			miClip.loop(Clip.LOOP_CONTINUOUSLY);
 			miClip.start();	
 		} catch (IOException | LineUnavailableException e) {
 			e.printStackTrace();
@@ -67,7 +56,6 @@ public class Audio {
 			miClip.open(sonidoGameOver);
 			miClip.start();	
 		} catch (IOException | LineUnavailableException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}

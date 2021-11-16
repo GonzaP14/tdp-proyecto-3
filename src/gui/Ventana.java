@@ -2,20 +2,18 @@ package gui;
 
 import java.awt.Font;
 import java.awt.Image;
-import java.awt.SystemColor;
 import java.awt.Toolkit;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.util.ArrayList;
-
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JLayeredPane;
 import javax.swing.SwingConstants;
-
 import entidadesGraficas.EntidadGrafica;
 import entidadesGraficas.Laberinto;
+import entidadesLogicas.DominioJuego;
 import entidadesLogicas.Entidad;
 import entidadesLogicas.Juego;
 import java.awt.Color;
@@ -24,6 +22,7 @@ public class Ventana extends JFrame implements KeyListener{
 
     private static final long serialVersionUID = 1L;
     private Juego miJuego;
+    private DominioJuego miDominio;
     private ArrayList<EntidadGrafica> misEntidadesGraficas;
     private Laberinto miLaberinto;
     private JLayeredPane layeredPane;
@@ -39,8 +38,9 @@ public class Ventana extends JFrame implements KeyListener{
     private JLabel vida3;
     
     
-    public Ventana(Juego miJuego) {
+    public Ventana(Juego miJuego, DominioJuego miDominio) {
         this.miJuego = miJuego;
+        this.miDominio = miDominio;
         miJuego.setMiVentana(this);
         misEntidadesGraficas = new ArrayList<EntidadGrafica>();    
         miLaberinto = miJuego.getNivel().getLaberinto();
@@ -87,51 +87,26 @@ public class Ventana extends JFrame implements KeyListener{
 		leaderBoard.setBounds(700, 450, 300, 50);
 		this.getContentPane().add(leaderBoard);
 		
-		if(miJuego.getDominio().getDominioJuego()==0) {		
-			vida1 = new JLabel("", SwingConstants.CENTER);
-			vida1.setBounds(775, 375, 50, 50);
-	    	ImageIcon icovida1 = new ImageIcon(Toolkit.getDefaultToolkit().getImage(this.getClass().getResource("/recursosMarioBros/Mario.png")));	
-			ImageIcon imgvida1 = new ImageIcon(icovida1.getImage().getScaledInstance(vida1.getWidth(), vida1.getHeight(), Image.SCALE_SMOOTH));
-			vida1.setIcon(imgvida1);
-			this.getContentPane().add(vida1);
-	
-			vida2 = new JLabel("", SwingConstants.CENTER);
-			vida2.setBounds(825, 375, 50, 50);
-	    	ImageIcon icovida2 = new ImageIcon(Toolkit.getDefaultToolkit().getImage(this.getClass().getResource("/recursosMarioBros/Mario.png")));	
-			ImageIcon imgvida2 = new ImageIcon(icovida2.getImage().getScaledInstance(vida2.getWidth(), vida2.getHeight(), Image.SCALE_SMOOTH));
-			vida2.setIcon(imgvida2);
-			this.getContentPane().add(vida2);
-			
-			vida3 = new JLabel("", SwingConstants.CENTER);
-			vida3.setBounds(875, 375, 50, 50);
-	    	ImageIcon icovida3 = new ImageIcon(Toolkit.getDefaultToolkit().getImage(this.getClass().getResource("/recursosMarioBros/Mario.png")));	
-			ImageIcon imgvida3 = new ImageIcon(icovida3.getImage().getScaledInstance(vida3.getWidth(), vida3.getHeight(), Image.SCALE_SMOOTH));
-			vida3.setIcon(imgvida3);
-			this.getContentPane().add(vida3);
-		}
-		else {
-			vida1 = new JLabel("", SwingConstants.CENTER);
-			vida1.setBounds(775, 375, 50, 50);
-	    	ImageIcon icovida1 = new ImageIcon(Toolkit.getDefaultToolkit().getImage(this.getClass().getResource("/recursosSonic/sonic.png")));	
-			ImageIcon imgvida1 = new ImageIcon(icovida1.getImage().getScaledInstance(vida1.getWidth(), vida1.getHeight(), Image.SCALE_SMOOTH));
-			vida1.setIcon(imgvida1);
-			this.getContentPane().add(vida1);
-	
-			vida2 = new JLabel("", SwingConstants.CENTER);
-			vida2.setBounds(825, 375, 50, 50);
-	    	ImageIcon icovida2 = new ImageIcon(Toolkit.getDefaultToolkit().getImage(this.getClass().getResource("/recursosSonic/sonic.png")));	
-			ImageIcon imgvida2 = new ImageIcon(icovida2.getImage().getScaledInstance(vida2.getWidth(), vida2.getHeight(), Image.SCALE_SMOOTH));
-			vida2.setIcon(imgvida2);
-			this.getContentPane().add(vida2);
-			
-			vida3 = new JLabel("", SwingConstants.CENTER);
-			vida3.setBounds(875, 375, 50, 50);
-	    	ImageIcon icovida3 = new ImageIcon(Toolkit.getDefaultToolkit().getImage(this.getClass().getResource("/recursosSonic/sonic.png")));	
-			ImageIcon imgvida3 = new ImageIcon(icovida3.getImage().getScaledInstance(vida3.getWidth(), vida3.getHeight(), Image.SCALE_SMOOTH));
-			vida3.setIcon(imgvida3);
-			this.getContentPane().add(vida3);
-			
-		}
+		vida1 = new JLabel("", SwingConstants.CENTER);
+		vida1.setBounds(775, 375, 50, 50);
+    	ImageIcon icovida1 = new ImageIcon(Toolkit.getDefaultToolkit().getImage(this.getClass().getResource(miDominio.getImagenVidas())));	
+		ImageIcon imgvida1 = new ImageIcon(icovida1.getImage().getScaledInstance(vida1.getWidth(), vida1.getHeight(), Image.SCALE_SMOOTH));
+		vida1.setIcon(imgvida1);
+		this.getContentPane().add(vida1);
+
+		vida2 = new JLabel("", SwingConstants.CENTER);
+		vida2.setBounds(825, 375, 50, 50);
+    	ImageIcon icovida2 = new ImageIcon(Toolkit.getDefaultToolkit().getImage(this.getClass().getResource(miDominio.getImagenVidas())));	
+		ImageIcon imgvida2 = new ImageIcon(icovida2.getImage().getScaledInstance(vida2.getWidth(), vida2.getHeight(), Image.SCALE_SMOOTH));
+		vida2.setIcon(imgvida2);
+		this.getContentPane().add(vida2);
+		
+		vida3 = new JLabel("", SwingConstants.CENTER);
+		vida3.setBounds(875, 375, 50, 50);
+    	ImageIcon icovida3 = new ImageIcon(Toolkit.getDefaultToolkit().getImage(this.getClass().getResource(miDominio.getImagenVidas())));	
+		ImageIcon imgvida3 = new ImageIcon(icovida3.getImage().getScaledInstance(vida3.getWidth(), vida3.getHeight(), Image.SCALE_SMOOTH));
+		vida3.setIcon(imgvida3);
+		this.getContentPane().add(vida3);
 		
     	hub = new JLabel("", SwingConstants.CENTER);
 		hub.setBounds(700, 0, 300, 775);
@@ -139,8 +114,6 @@ public class Ventana extends JFrame implements KeyListener{
 		ImageIcon img = new ImageIcon(ico.getImage().getScaledInstance(hub.getWidth(), hub.getHeight(), Image.SCALE_SMOOTH));
 		hub.setIcon(img);
 		this.getContentPane().add(hub);
-		
-		
 		
     	layeredPane = new JLayeredPane();
 	    layeredPane.setBounds(0,0,1250,850); 

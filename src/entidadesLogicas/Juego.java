@@ -14,9 +14,7 @@ import personajes.Enemigo;
 import personajes.Personaje;
 import personajes.Principal;
 import productos.FabricaEntidades;
-import productos.FabricaMarioBros;
-import productos.FabricaSonic;
-
+import productos.FabricaGeneral;
 
 public class Juego {
 	
@@ -44,18 +42,11 @@ public class Juego {
 	// ---------------------------------------- CONSTRUCTOR ------------------------------------
 	public Juego(DominioJuego dominio) {
 		this.miDominio = dominio;
-		
-		if(dominio.getDominioJuego() == DominioJuego.dominioMarioBros) {
-			miFabricaEntidades = new FabricaMarioBros(this);
-		}
-		else if(dominio.getDominioJuego() == DominioJuego.dominioMemoji) {
-			miFabricaEntidades = new FabricaSonic(this);
-		}
-	
+		miFabricaEntidades = new FabricaGeneral(this, miDominio);
 		miPlayer=new Player();
 		gameOver = false;
 		miGrilla = new Grilla();
-		miAudio=new Audio(dominio.getDominioJuego());
+		miAudio= new Audio(miDominio);
 		cantidadPacDotsRestantes = 0;
 		misEnemigos = new ArrayList<Enemigo>();
 		cantidadFantasmasComidos = 0;

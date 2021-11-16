@@ -682,11 +682,11 @@ public class Nivel {
 			for (int j = 0; j < Grilla.Columnas; j ++) {
 				
 				if(mapa[i][j] == pared) {
-   					miGrilla.getBloque(i,j).getRepresentacionGrafica().setPared(nivelActual, dominio.getDominioJuego());
+   					miGrilla.getBloque(i,j).getRepresentacionGrafica().setPared(nivelActual, dominio);
    					miGrilla.getBloque(i,j).setVisitable(false);
    				}
    				else if(mapa[i][j] == puerta){
-   					miGrilla.getBloque(i,j).getRepresentacionGrafica().setPuerta(dominio.getDominioJuego());
+   					miGrilla.getBloque(i,j).getRepresentacionGrafica().setPuerta(dominio);
    					miGrilla.getBloque(i,j).setVisitable(false);
    				}
    				else if(mapa[i][j] == casaFantasma) {

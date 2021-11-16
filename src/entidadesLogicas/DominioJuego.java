@@ -1,21 +1,39 @@
 package entidadesLogicas;
 
-public class DominioJuego {
+public interface DominioJuego {
 	
-	public static final int dominioMarioBros = 0;
-	public static final int dominioMemoji = 1;
-	private int dominio;
-
-	public DominioJuego() {
-		dominio = 99;
-	}
+	public String [] getSkinsPrincipal();
+ 	
+	public String [] getSkinsBlinky();
 	
-	public int getDominioJuego() {
-		return dominio;
-	}
-
-	public void setDominioJuego(int dominioJuego) {
-		this.dominio = dominioJuego;
-	}
+	public String [] getSkinsPinky();
+	
+	public String [] getSkinsInky();
+	
+	public String [] getSkinsClyde();
+	
+	public String getFruta();
+	
+	public String getPocionVelocidad();
+	
+	public String getPocionCongelacion();
+	
+	public String getPowerPellet();
+	
+	public String getPacDot();
+	
+	public String getMusica();
+	
+	public String getSonidoGameOver();
+	
+	public String getParedNivel1();
+	
+	public String getParedNivel2();
+	
+	public String getParedNivel3();
+	
+	public String getPuerta();
+	
+	public String getImagenVidas();
 	
 }

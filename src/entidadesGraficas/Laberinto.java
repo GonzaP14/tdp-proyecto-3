@@ -11,9 +11,7 @@ public class Laberinto extends JPanel{
 		
 	private static final long serialVersionUID = 1L;
 	
-    //atributos de instancia
     protected final List<JLabel> misLabels = new LinkedList<JLabel>();
-    
     protected Grilla miGrillaLogica;
     
     public Laberinto(Grilla miGrillaLogica) {
@@ -26,8 +24,7 @@ public class Laberinto extends JPanel{
         for (int i = 0; i < Grilla.Filas; i++) {
         	for (int j = 0; j < Grilla.Columnas; j ++) {
         	
-        		JLabel auxiliar = miGrillaLogica.getBloque(i, j).getRepresentacionGrafica();
-        		
+        		JLabel auxiliar = miGrillaLogica.getBloque(i, j).getRepresentacionGrafica();    		
         		misLabels.add(auxiliar);
         		this.add(auxiliar);
         	}
