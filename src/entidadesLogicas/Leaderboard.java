@@ -30,14 +30,14 @@ public class Leaderboard implements Serializable{
 	public String getLeaderboard() {
 		recuperarLeaderboard();
 		ordenar();
-		String toReturn = "";
+		String toReturn = "<html>";
 		int i = 0;
 		for(Player p : this.ranking) {
-			toReturn += p.getNombre() + " " + p.getScore() + "\n"; 
+			toReturn += p.getNombre() + " " + p.getScore() + "<br>"; 
 			if( i== 5 ) break;
 			i++;
 		}
-		return toReturn;
+		return toReturn+="</html>";
 	}
 
 	private void ordenar() {
@@ -68,13 +68,7 @@ public class Leaderboard implements Serializable{
 		    ranking = (List<Player>) objectInputStream.readObject();
 		    objectInputStream.close();
 		}
-		catch(FileNotFoundException e) {
-			
-		}
-		catch(IOException e) {
-			e.printStackTrace();
-		}
-		catch(ClassNotFoundException e) {
+		catch(Exception e) {
 			e.printStackTrace();
 		}
 	}

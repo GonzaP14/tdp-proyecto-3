@@ -298,6 +298,7 @@ public class Juego {
 	
 	// ---------------------------------------- PLAYER->NOMBRE ------------------------------------
 	private String getNombrePlayer() {
+//		return miVentana.mostrarVentanaEpica();
 		return null;
 	}
 	
