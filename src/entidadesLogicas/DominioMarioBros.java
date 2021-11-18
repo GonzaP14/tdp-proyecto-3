@@ -10,7 +10,7 @@ public class DominioMarioBros implements DominioJuego {
 		imagenes[1] = "/recursosMarioBros/MarioAbajo.gif";
 		imagenes[2] = "/recursosMarioBros/MarioIzquierda.gif";
 		imagenes[3] = "/recursosMarioBros/MarioDerecha.gif";
-		imagenes[4] = "/recursosMarioBros/MarioDerecha.gif";
+		imagenes[4] = "/recursosMarioBros/muerto.gif";
 		
 		return imagenes;
 	}
@@ -23,7 +23,7 @@ public class DominioMarioBros implements DominioJuego {
 		imagenes[1] = ("/recursosMarioBros/Goompa.gif");
 		imagenes[2] = ("/recursosMarioBros/Goompa.gif");
 		imagenes[3] = ("/recursosMarioBros/Goompa.gif");
-		imagenes[4] = ("/recursosMarioBros/Goompa.gif");
+		imagenes[4] = ("/recursosMarioBros/muerto.gif");
 		imagenes[5] = ("/recursosMarioBros/GoompaEscapando.gif");
 		imagenes[6] = ("/recursosMarioBros/GoompaEscapando.gif");
 		imagenes[7] = ("/recursosMarioBros/GoompaEscapando.gif");
@@ -40,7 +40,7 @@ public class DominioMarioBros implements DominioJuego {
 		imagenes[1] = ("/recursosMarioBros/BooAbajo.gif");
 		imagenes[2] = ("/recursosMarioBros/BooDerecha.gif");
 		imagenes[3] = ("/recursosMarioBros/BooIzquierda.gif"); 
-		imagenes[4] = ("/recursosMarioBros/BooMuerto.gif"); 
+		imagenes[4] = ("/recursosMarioBros/muerto.gif"); 
 		imagenes[5] = ("/recursosMarioBros/BooArribaEscapando.gif");
 		imagenes[6] = ("/recursosMarioBros/BooAbajoEscapando.gif");
 		imagenes[7] = ("/recursosMarioBros/BooDerechaEscapando.gif");
@@ -57,7 +57,7 @@ public class DominioMarioBros implements DominioJuego {
 		imagenes[1] = ("/recursosMarioBros/BowserAbajo.gif");
 		imagenes[2] = ("/recursosMarioBros/BowserDerecha.gif");
 		imagenes[3] = ("/recursosMarioBros/BowserIzquierda.gif"); 
-		imagenes[4] = ("/recursosMarioBros/BowserMuerto.gif"); 
+		imagenes[4] = ("/recursosMarioBros/muerto.gif"); 
 		imagenes[5] = ("/recursosMarioBros/BowserArribaEscapando.gif");
 		imagenes[6] = ("/recursosMarioBros/BowserAbajoEscapando.gif");
 		imagenes[7] = ("/recursosMarioBros/BowserDerechaEscapando.gif");
@@ -74,7 +74,7 @@ public class DominioMarioBros implements DominioJuego {
 		imagenes[1] = ("/recursosMarioBros/KoopaTroopaAbajo.gif");
 		imagenes[2] = ("/recursosMarioBros/KoopaTroopaDerecha.gif");
 		imagenes[3] = ("/recursosMarioBros/KoopaTroopaIzquierda.gif"); 
-		imagenes[4] = ("/recursosMarioBros/KoopaTroopaMuerto.gif"); 
+		imagenes[4] = ("/recursosMarioBros/muerto.gif"); 
 		imagenes[5] = ("/recursosMarioBros/KoopaTroopaArribaEscapando.gif");
 		imagenes[6] = ("/recursosMarioBros/KoopaTroopaAbajoEscapando.gif");
 		imagenes[7] = ("/recursosMarioBros/KoopaTroopaDerechaEscapando.gif");

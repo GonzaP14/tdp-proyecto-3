@@ -95,7 +95,7 @@ public class DominioSonic implements DominioJuego {
 
 	@Override
 	public String getPocionCongelacion() {
-		return new String("/recursosSonic/gemaCeleste.png");
+		return new String("/recursosSonic/gemaRoja.png");
 	}
 
 	@Override
