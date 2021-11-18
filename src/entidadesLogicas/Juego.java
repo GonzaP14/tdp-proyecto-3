@@ -1,5 +1,8 @@
 package entidadesLogicas;
 
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.Properties;
 import audio.Audio;
@@ -52,6 +55,8 @@ public class Juego {
 		cantidadFantasmasComidos = 0;
 		vidasActuales = 3;
 		misPociones = new ArrayList<Elemento>();
+		miLeaderboard = new Leaderboard();
+		loadConfiguration();
 	}
 	
 	// ----------------------------------------      GETTERS     ------------------------------------
@@ -108,6 +113,10 @@ public class Juego {
 		return miReloj;
 	}
 
+	public Leaderboard getMiLeaderboard() {
+		return miLeaderboard;
+	}
+
 	// ----------------------------------------       SETTERS      -----------------------------------
 	public void setMiVentana(Ventana miVentana) {
 		this.miVentana = miVentana;
@@ -133,6 +142,7 @@ public class Juego {
 	
 	public void gameOver() {
 		miAudio.sonidoGameOver();
+		procesarPuntaje();
 		miVentana.gameOver();
 		gameOver=true;
 	}
@@ -293,6 +303,17 @@ public class Juego {
 	
 	// ---------------------------------------- CONFIGURATION ------------------------------------
 	private static void loadConfiguration() {
-		
+		try (InputStream input = new FileInputStream("./configuration.properties")) {
+            Juego.configuration = new Properties();
+            Juego.configuration.load(input);
+	    } 
+		catch (IOException ex) {
+            ex.printStackTrace();
+        }
+	}
+	
+	private void procesarPuntaje() {
+		miPlayer.setNombre("Juansito");
+		miLeaderboard.addPlayer(miPlayer);
 	}
 }

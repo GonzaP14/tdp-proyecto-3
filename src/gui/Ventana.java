@@ -5,6 +5,10 @@ import java.awt.Image;
 import java.awt.Toolkit;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
@@ -17,6 +21,7 @@ import entidadesLogicas.DominioJuego;
 import entidadesLogicas.Entidad;
 import entidadesLogicas.Juego;
 import java.awt.Color;
+import javax.swing.border.EmptyBorder;
 
 public class Ventana extends JFrame implements KeyListener{
 
@@ -36,6 +41,7 @@ public class Ventana extends JFrame implements KeyListener{
     private JLabel vida1;
     private JLabel vida2;
     private JLabel vida3;
+    private JLabel leaderboardPuntaje;
     
     
     public Ventana(Juego miJuego, DominioJuego miDominio) {
@@ -81,11 +87,19 @@ public class Ventana extends JFrame implements KeyListener{
 		lifes.setBounds(780, 300, 130, 50);
 		this.getContentPane().add(lifes);
 			
-		leaderBoard = new JLabel("LEADER BOARD",SwingConstants.CENTER);
+		leaderBoard = new JLabel("LEADERBOARD",SwingConstants.CENTER);
 		leaderBoard.setFont(new Font("Power Red and Green", Font.BOLD, 40));
 		leaderBoard.setForeground(Color.WHITE);
 		leaderBoard.setBounds(700, 450, 300, 50);
 		this.getContentPane().add(leaderBoard);
+		
+		leaderboardPuntaje = new JLabel("",SwingConstants.CENTER);
+		leaderboardPuntaje.setBorder(new EmptyBorder(0, 0, 0, 0));
+		leaderboardPuntaje.setFont(new Font("Power Red and Green", Font.BOLD, 40));
+		leaderboardPuntaje.setForeground(Color.WHITE);
+		leaderboardPuntaje.setBounds(700, 490, 300, 280);
+		this.getContentPane().add(leaderboardPuntaje);
+		mostrarLeaderboard();
 		
 		vida1 = new JLabel("", SwingConstants.CENTER);
 		vida1.setBounds(775, 375, 50, 50);
@@ -106,7 +120,7 @@ public class Ventana extends JFrame implements KeyListener{
     	ImageIcon icovida3 = new ImageIcon(Toolkit.getDefaultToolkit().getImage(this.getClass().getResource(miDominio.getImagenVidas())));	
 		ImageIcon imgvida3 = new ImageIcon(icovida3.getImage().getScaledInstance(vida3.getWidth(), vida3.getHeight(), Image.SCALE_SMOOTH));
 		vida3.setIcon(imgvida3);
-		this.getContentPane().add(vida3);
+		this.getContentPane().add(vida3);		
 		
     	hub = new JLabel("", SwingConstants.CENTER);
 		hub.setBounds(700, 0, 300, 775);
@@ -186,5 +200,9 @@ public class Ventana extends JFrame implements KeyListener{
 	}
 	public void gameOver() {		
 		gameOver.setVisible(true);		
+	}
+	
+	private void mostrarLeaderboard() {
+		leaderboardPuntaje.setText(miJuego.getMiLeaderboard().getLeaderboard());
 	}
 }

@@ -1,6 +1,12 @@
 package entidadesLogicas;
 
 import java.util.List;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -16,18 +22,60 @@ public class Leaderboard implements Serializable{
 	}
 	
 	public void addPlayer( Player p ) {
+		recuperarLeaderboard();
 		ranking.add(p);
+		actualizarLeaderboard();
 	}
 	
-	public void printPlayers() {
-		Collections.sort(this.ranking, Collections.reverseOrder());
-		System.out.println();
-		System.out.println("Mejores Jugadores");
+	public String getLeaderboard() {
+		recuperarLeaderboard();
+		ordenar();
+		String toReturn = "";
 		int i = 0;
-		for(Player p : ranking) {
-			System.out.println(p.getNombre() + " " + p.getScore());
+		for(Player p : this.ranking) {
+			toReturn += p.getNombre() + " " + p.getScore() + "\n"; 
 			if( i== 5 ) break;
 			i++;
+		}
+		return toReturn;
+	}
+
+	private void ordenar() {
+		Collections.sort(this.ranking, Collections.reverseOrder());
+	}
+
+	
+	public void actualizarLeaderboard() {
+		try {
+			FileOutputStream fileOutputStream = new FileOutputStream(Juego.configuration.getProperty("file"));
+		    ObjectOutputStream objectOutputStream = new ObjectOutputStream(fileOutputStream);
+		    objectOutputStream.writeObject(ranking);
+		    objectOutputStream.flush();
+		    objectOutputStream.close();
+		}
+		catch(FileNotFoundException e) {
+			e.printStackTrace();
+		}
+		catch(IOException e) {
+			e.printStackTrace();
+		}
+	} 
+	
+	public void recuperarLeaderboard() {
+		try {
+			FileInputStream fileInputStream = new FileInputStream(Juego.configuration.getProperty("file"));
+		    ObjectInputStream objectInputStream = new ObjectInputStream(fileInputStream);
+		    ranking = (List<Player>) objectInputStream.readObject();
+		    objectInputStream.close();
+		}
+		catch(FileNotFoundException e) {
+			
+		}
+		catch(IOException e) {
+			e.printStackTrace();
+		}
+		catch(ClassNotFoundException e) {
+			e.printStackTrace();
 		}
 	}
 }
