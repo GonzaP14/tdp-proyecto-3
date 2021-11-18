@@ -23,7 +23,7 @@ public class DominioSonic implements DominioJuego {
 		imagenes[1] = ("/recursosSonic/cangrejo1.gif");
 		imagenes[2] = ("/recursosSonic/cangrejo1.gif");
 		imagenes[3] = ("/recursosSonic/cangrejo1.gif");
-		imagenes[4] = ("/recursosSonic/cangrejo1.gif");
+		imagenes[4] = ("/recursosSonic/fantasmaMuerto.gif");
 		imagenes[5] = ("/recursosSonic/cangrejo1Escapando.gif");
 		imagenes[6] = ("/recursosSonic/cangrejo1Escapando.gif");
 		imagenes[7] = ("/recursosSonic/cangrejo1Escapando.gif");
@@ -40,7 +40,7 @@ public class DominioSonic implements DominioJuego {
 		imagenes[1] = ("/recursosSonic/cangrejo2.gif");
 		imagenes[2] = ("/recursosSonic/cangrejo2.gif");
 		imagenes[3] = ("/recursosSonic/cangrejo2.gif");
-		imagenes[4] = ("/recursosSonic/cangrejo2.gif");
+		imagenes[4] = ("/recursosSonic/fantasmaMuerto.gif");
 		imagenes[5] = ("/recursosSonic/cangrejo2Escapando.gif");
 		imagenes[6] = ("/recursosSonic/cangrejo2Escapando.gif");
 		imagenes[7] = ("/recursosSonic/cangrejo2Escapando.gif");
@@ -57,7 +57,7 @@ public class DominioSonic implements DominioJuego {
 		imagenes[1] = ("/recursosSonic/shadowAbajo.gif");
 		imagenes[2] = ("/recursosSonic/shadowDerecha.gif");
 		imagenes[3] = ("/recursosSonic/shadowIzquierda.gif"); 
-		imagenes[4] = ("/recursosSonic/shadowDerecha.gif"); 
+		imagenes[4] = ("/recursosSonic/fantasmaMuerto.gif"); 
 		imagenes[5] = ("/recursosSonic/shadowArribaEscapando.gif");
 		imagenes[6] = ("/recursosSonic/shadowAbajoEscapando.gif");
 		imagenes[7] = ("/recursosSonic/shadowDerechaEscapando.gif");
@@ -74,7 +74,7 @@ public class DominioSonic implements DominioJuego {
 		imagenes[1] = ("/recursosSonic/eggManAbajo.gif");
 		imagenes[2] = ("/recursosSonic/eggManDerecha.gif");
 		imagenes[3] = ("/recursosSonic/eggManIzquierda.gif"); 
-		imagenes[4] = ("/recursosSonic/eggManDerecha.gif"); 
+		imagenes[4] = ("/recursosSonic/fantasmaMuerto.gif"); 
 		imagenes[5] = ("/recursosSonic/eggManArribaEscapando.gif");
 		imagenes[6] = ("/recursosSonic/eggManAbajoEscapando.gif");
 		imagenes[7] = ("/recursosSonic/eggManDerechaEscapando.gif");
