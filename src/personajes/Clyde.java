@@ -8,7 +8,7 @@ import gui.Ventana;
 
 public class Clyde extends Enemigo {
 	
-	private static final Posicion miSpawn = new Posicion(400, 325);
+	private static final Posicion miSpawn = new Posicion(400, 275);
 
 	public Clyde(Juego miJuego, String[] imagenes) {
 		this.miJuego = miJuego;
@@ -27,8 +27,7 @@ public class Clyde extends Enemigo {
 	protected EstadoEnemigo crearEstadoChase() {
 		EstadoEnemigo chase = new Chase(new ChaseClyde());
 		chase.setEnemigo(this);
-		chase.setPosicionObjetivo(miJuego.getMiPersonajePrincipal().getPosicion());
-		
+		chase.setPrincipal(miJuego.getMiPersonajePrincipal());
 		return chase;
 	}
 	
@@ -38,6 +37,7 @@ public class Clyde extends Enemigo {
 		this.miRepresentacion.aparecer(miPosicion);
 		sentidoActual = Entidad.sentidoFijo;
 		sentidoSiguiente = Entidad.sentidoFijo;
+		cambiarEstado(Chase);
 		miJuego.getGrilla().getBloque(miPosicion.getY() / Ventana.pixelesBloque , miPosicion.getX() / Ventana.pixelesBloque).agregarAListaEntidades(this);
 	}
 

@@ -33,7 +33,7 @@ public class ElementoGrafico extends EntidadGrafica {
 	
 	@Override
 	public void actualizar(int sentido) {
-		representacionActual = sentidosEstado.get(sentido-1);
+		representacionActual = sentidosEstado.get(sentido);
 		setIcon(representacionActual);
 	}	
 }

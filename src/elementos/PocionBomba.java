@@ -26,8 +26,7 @@ public class PocionBomba extends Pocion {
 		// Inicia la cuenta regresiva de la bomba
 		iniciarTimer(new HiloElemento(miJuego, 25, this)); // en 5 ticks explota
 		// Cambia su representacion grafica adecuadamente
-		miRepresentacion.setIcon(miJuego.getMiPersonajePrincipal().getMiRepresentacion().getIcon()); // foto bomba aca
-		
+		miRepresentacion.actualizar(1);
 		miJuego.getGrilla().getBloque(miPosicion.getY() / Ventana.pixelesBloque , miPosicion.getX() / Ventana.pixelesBloque).borrarDeListaDeEntidades(this);
 	}
 
