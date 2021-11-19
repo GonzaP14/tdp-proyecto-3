@@ -7,7 +7,7 @@ public abstract class Elemento extends Entidad {
 	
 	protected abstract void iniciarTimer(HiloElemento timer);
  	
-	public abstract void operacionEnHilo();
+	public abstract void finPocion();
 	
 	public abstract void despawnear();
 }

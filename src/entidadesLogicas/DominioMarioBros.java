@@ -84,28 +84,49 @@ public class DominioMarioBros implements DominioJuego {
 	}
 
 	@Override
-	public String getFruta() {
-		return new String ("/recursosMarioBros/Flor.png");
+	public String[] getFruta() {
+		String[] imagenes = new String[1];
+
+		imagenes[0] = ("/recursosMarioBros/Flor.png");
+
+		return imagenes;
 	}
 
 	@Override
-	public String getPocionVelocidad() {
-		return new String ("/recursosMarioBros/HongoVerde.png");
+	public String[] getPocionVelocidad() {
+		String[] imagenes = new String[1];
+
+		imagenes[0] = ("/recursosMarioBros/HongoVerde.png");
+
+		return imagenes;
 	}
 
 	@Override
-	public String getPocionCongelacion() {
-		return new String ("/recursosMarioBros/HongoRojo.png");
+	public String[] getPocionBomba() {
+		String[] imagenes = new String[2];
+
+		imagenes[0] = ("/recursosMarioBros/HongoRojo.png");
+		imagenes[1] = ("/recursosMarioBros/Flor.png"); // aca va el bombucha.gif
+		
+		return imagenes;
 	}
 
 	@Override
-	public String getPowerPellet() {
-		return new String ("/recursosMarioBros/Estrella.png");
+	public String[] getPowerPellet() {
+		String[] imagenes = new String[1];
+
+		imagenes[0] = ("/recursosMarioBros/Estrella.png");
+
+		return imagenes;
 	}
 
 	@Override
-	public String getPacDot() {
-		return new String ("/recursosMarioBros/Moneda.png");
+	public String[] getPacDot() {
+		String[] imagenes = new String[1];
+
+		imagenes[0] = ("/recursosMarioBros/Moneda.png");
+
+		return imagenes;
 	}
 
 	@Override

@@ -1,5 +1,6 @@
 package entidadesLogicas;
 
+import elementos.PocionBomba;
 import entidadesGraficas.EntidadGrafica;
 
 public abstract class Entidad {
@@ -41,6 +42,7 @@ public abstract class Entidad {
 	}
 	
 	
+	
 	// -------------------------------------------- SETTERS ----------------------------------------
 	public void setSentidoActual(int sentido) {
 		sentidoActual = sentido;
@@ -60,5 +62,9 @@ public abstract class Entidad {
 
 	// -------------------------------------------- ACCIONES ----------------------------------------
 	public abstract void afectar();
+	
+	public void recibirEfecto(PocionBomba p) {
+		
+	}
 	
 }

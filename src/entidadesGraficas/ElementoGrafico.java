@@ -1,37 +1,40 @@
 package entidadesGraficas;
 
 import java.awt.Image;
+import java.util.ArrayList;
 
 import javax.swing.ImageIcon;
-
 import entidadesLogicas.Posicion;
 
 public class ElementoGrafico extends EntidadGrafica {
 	
 	private static final long serialVersionUID = 1L;
 	
-	protected ImageIcon sentidoFijo;
+	protected ArrayList<ImageIcon> sentidosEstado;
 	
-	public ElementoGrafico (String imagen) {
+	public ElementoGrafico (String[] imagenes) {
 		setBounds(25, 25, 25, 25);
-		sentidoFijo = new ImageIcon(this.getClass().getResource(imagen));
-		sentidoFijo = new ImageIcon(sentidoFijo.getImage().getScaledInstance(getWidth(), getHeight(), Image.SCALE_DEFAULT));
+		ImageIcon imagen;
+		sentidosEstado = new ArrayList<ImageIcon>();
+		for (int i = 0; i < imagenes.length; i++) {
+			imagen = new ImageIcon(this.getClass().getResource(imagenes[i]));
+			imagen = new ImageIcon(imagen.getImage().getScaledInstance(getWidth(), getHeight(), Image.SCALE_DEFAULT));
+			sentidosEstado.add(imagen);
+		}
 		
 		miPrioridad = 1;
-		representacionActual = sentidoFijo;
-		this.setIcon(representacionActual);
 	}
 	
 	public void aparecer(Posicion miPosicion) {
 		this.setLocation((int) miPosicion.getX(), (int) miPosicion.getY());
-		representacionActual = sentidoFijo;
+		representacionActual = sentidosEstado.get(0);
 		setIcon(representacionActual);
 	}
 	
 	@Override
 	public void actualizar(int sentido) {
-		// TODO Auto-generated method stub
-		
+		representacionActual = sentidosEstado.get(sentido-1);
+		setIcon(representacionActual);
 	}
 
 	@Override

@@ -84,28 +84,49 @@ public class DominioSonic implements DominioJuego {
 	}
 
 	@Override
-	public String getFruta() {
-		return new String("/recursosSonic/gemaAzul.png");	
+	public String[] getFruta() {
+		String[] imagenes = new String[1];
+
+		imagenes[0] = ("/recursosSonic/gemaAzul.png");
+
+		return imagenes;
 	}
 
 	@Override
-	public String getPocionVelocidad() {
-		return new String("/recursosSonic/gemaVerde.png");
+	public String[] getPocionVelocidad() {
+		String[] imagenes = new String[1];
+
+		imagenes[0] = ("/recursosSonic/gemaVerde.png");
+
+		return imagenes;
 	}
 
 	@Override
-	public String getPocionCongelacion() {
-		return new String("/recursosSonic/gemaRoja.png");
+	public String[] getPocionBomba() {
+		String[] imagenes = new String[2];
+
+		imagenes[0] = ("/recursosSonic/gemaRoja.png");
+		imagenes[1] = ("/recursosMarioBros/Flor.png"); // aca va el bombucha.gif
+		
+		return imagenes;
 	}
 
 	@Override
-	public String getPowerPellet() {
-		return new String("/recursosSonic/estrellasSonic.png");
+	public String[] getPowerPellet() {
+		String[] imagenes = new String[1];
+
+		imagenes[0] = ("/recursosSonic/estrellasSonic.png");
+
+		return imagenes;
 	}
 
 	@Override
-	public String getPacDot() {
-		return new String("/recursosSonic/Anillo.png");
+	public String[] getPacDot() {
+		String[] imagenes = new String[1];
+
+		imagenes[0] = ("/recursosSonic/Anillo.png");
+
+		return imagenes;
 	}
 
 	@Override

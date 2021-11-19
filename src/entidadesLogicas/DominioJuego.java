@@ -12,15 +12,15 @@ public interface DominioJuego {
 	
 	public String [] getSkinsClyde();
 	
-	public String getFruta();
+	public String[] getFruta();
 	
-	public String getPocionVelocidad();
+	public String[] getPocionVelocidad();
 	
-	public String getPocionCongelacion();
+	public String[] getPocionBomba();
 	
-	public String getPowerPellet();
+	public String[] getPowerPellet();
 	
-	public String getPacDot();
+	public String[] getPacDot();
 	
 	public String getMusica();
 	

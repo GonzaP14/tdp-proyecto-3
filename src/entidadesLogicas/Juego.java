@@ -9,7 +9,7 @@ import audio.Audio;
 import elementos.Elemento;
 import elementos.Fruta;
 import elementos.PacDot;
-import elementos.PocionCongelacion;
+import elementos.PocionBomba;
 import elementos.PocionVelocidad;
 import elementos.PowerPellet;
 import gui.Ventana;
@@ -23,7 +23,7 @@ public class Juego {
 	
 	// Atributos de instancia 
 	private boolean gameOver, estaPausado;
-	private int minuto, segundos, vidasActuales;
+	private int vidasActuales;
 	private Object objetoPausa;
 	private FabricaEntidades miFabricaEntidades;
 	private Reloj miReloj;
@@ -210,9 +210,9 @@ public class Juego {
 		
 	}
 	
-	public void spawnearPocionCongelacion() {
+	public void spawnearPocionBomba() {
 		Elemento aux;
-		aux = miFabricaEntidades.getPocionCongelacion();
+		aux = miFabricaEntidades.getPocionBomba();
 		misPociones.add(0, aux);
 		miVentana.aparecerEntidad(aux.getMiRepresentacion());
 	}
@@ -263,8 +263,8 @@ public class Juego {
 		bloqueFruta.limpiarListaRemovidos();
 	}
 	
-	public void despawnearPocionCongelacion() {
-		Bloque bloquePocion = miGrilla.getBloque(PocionCongelacion.getMispawn().getY() / 25, PocionCongelacion.getMispawn().getX() / 25);
+	public void despawnearPocionBomba() {
+		Bloque bloquePocion = miGrilla.getBloque(PocionBomba.getMispawn().getY() / 25, PocionBomba.getMispawn().getX() / 25);
 		misPociones.get(0).despawnear();
 		bloquePocion.getListaEntidades().removeAll(bloquePocion.getListaRemovidos());
 		bloquePocion.limpiarListaRemovidos();

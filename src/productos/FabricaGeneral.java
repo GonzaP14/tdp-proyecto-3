@@ -4,7 +4,7 @@ import elementos.Elemento;
 import elementos.Fruta;
 import elementos.PacDot;
 import elementos.Pocion;
-import elementos.PocionCongelacion;
+import elementos.PocionBomba;
 import elementos.PocionVelocidad;
 import elementos.PowerPellet;
 import entidadesLogicas.DominioJuego;
@@ -63,8 +63,8 @@ public class FabricaGeneral implements FabricaEntidades {
 	}
 
 	@Override
-	public Pocion getPocionCongelacion() {
-		return new PocionCongelacion(miJuego, miDominio.getPocionCongelacion());
+	public Pocion getPocionBomba() {
+		return new PocionBomba(miJuego, miDominio.getPocionBomba());
 	}
 
 	@Override

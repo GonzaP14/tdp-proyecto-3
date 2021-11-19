@@ -21,9 +21,9 @@ public class HiloElemento extends Thread {
 		while (!miJuego.isGameOver() && !romper) {
 	        if(!miJuego.estaPausado()) {
 	        	try {
-					Thread.sleep(50); // 1s
+					Thread.sleep(50);
 					if(cantidadTicks == ticks) {
-						miElemento.operacionEnHilo();
+						miElemento.finPocion();
 						romper = true;
 					}
 					else

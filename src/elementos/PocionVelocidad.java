@@ -7,10 +7,10 @@ import entidadesLogicas.Posicion;
 public class PocionVelocidad extends Pocion {
 	private static final Posicion miSpawn = new Posicion(375, 425);//Debe ser abajo de la casa de los fantasmas
 	
-	public PocionVelocidad(Juego miJuego, String imagen) {
+	public PocionVelocidad(Juego miJuego, String[] imagenes) {
 		this.miJuego = miJuego;
 		miPosicion = new Posicion((int) miSpawn.getX(), (int) miSpawn.getY());
-		miRepresentacion = new ElementoGrafico(imagen);
+		miRepresentacion = new ElementoGrafico(imagenes);
 		miRepresentacion.aparecer(miPosicion);
 		velocidadOtorgada = 12;
 		miJuego.getGrilla().getBloque(miPosicion.getY() / 25 , miPosicion.getX() / 25).agregarAListaEntidades(this);
@@ -25,7 +25,7 @@ public class PocionVelocidad extends Pocion {
 	}
 
 	@Override
-	public void operacionEnHilo() {
+	public void finPocion() {
 		miJuego.getMiPersonajePrincipal().setVelocidadActual(10);
 		miJuego.getMiReloj().setVelocidadTickeo(10);
 	}

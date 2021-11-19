@@ -1,10 +1,7 @@
 package entidadesGraficas;
 
 import java.util.ArrayList;
-
 import javax.swing.ImageIcon;
-
-import entidadesLogicas.Entidad;
 import entidadesLogicas.Posicion;
 
 public abstract class PersonajeGrafico extends EntidadGrafica {

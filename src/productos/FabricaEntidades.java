@@ -22,7 +22,7 @@ public interface FabricaEntidades {
 	
 	public abstract Elemento getPacDot(Posicion posicion);
 	
-	public abstract Pocion getPocionCongelacion();
+	public abstract Pocion getPocionBomba();
 	
 	public abstract Pocion getPocionVelocidad();
 	

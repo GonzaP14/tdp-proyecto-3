@@ -1,7 +1,7 @@
 package elementos;
 
 public abstract class Pocion extends Elemento {
-	protected int velocidadOtorgada;
+	protected int velocidadOtorgada, puntajeOtorgado;
 	@Override
 	protected void iniciarTimer(HiloElemento timer) {
 		timer.start();
@@ -17,6 +17,10 @@ public abstract class Pocion extends Elemento {
 
 	public int getVelocidadOtorgada() {
 		return velocidadOtorgada;
+	}
+	
+	public int getPuntajeOtorgado() {
+		return puntajeOtorgado;
 	}
 	
 	

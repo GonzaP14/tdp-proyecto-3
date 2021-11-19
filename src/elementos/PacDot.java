@@ -72,9 +72,9 @@ public class PacDot extends Elemento {
             new Posicion(150,300 ),
             new Posicion(150,325 )
 	};
-	public PacDot(Juego miJuego, String imagen , Posicion miPosicion) {
+	public PacDot(Juego miJuego, String[] imagenes , Posicion miPosicion) {
 		this.miJuego = miJuego;
-		miRepresentacion = new ElementoGrafico(imagen);
+		miRepresentacion = new ElementoGrafico(imagenes);
 		puntajeOtorgado = 10;
 		this.miPosicion = miPosicion;
 		miJuego.getGrilla().getBloque(miPosicion.getY() / 25 , miPosicion.getX() / 25).agregarAListaEntidades(this);
@@ -100,7 +100,7 @@ public class PacDot extends Elemento {
 
 
 	@Override
-	public void operacionEnHilo() {
+	public void finPocion() {
 		// TODO Auto-generated method stub
 		
 	}

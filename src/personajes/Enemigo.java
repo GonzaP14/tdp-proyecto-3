@@ -2,7 +2,7 @@ package personajes;
 
 import java.util.ArrayList;
 
-import elementos.PocionCongelacion;
+import elementos.PocionBomba;
 import elementos.PowerPellet;
 import entidadesLogicas.Entidad;
 import entidadesLogicas.Posicion;
@@ -40,9 +40,9 @@ public abstract class Enemigo extends Personaje {
     }
 
 
-    public void recibirEfecto(PocionCongelacion p) {
-    	velocidadActual = p.getVelocidadOtorgada();
-    	miHilo.setVelocidadTickeo(velocidadActual);
+    public void recibirEfecto(PocionBomba p) {
+    	miJuego.aumentarPuntaje(p.getPuntajeOtorgado());
+		reaparecer();
     }
 	
 	public void cambiarEstado (int estado) {
