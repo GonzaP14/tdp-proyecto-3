@@ -72,8 +72,8 @@ public class DominioMarioBros implements DominioJuego {
 		
 		imagenes[0] = ("/recursosMarioBros/KoopaTroopaArriba.gif");
 		imagenes[1] = ("/recursosMarioBros/KoopaTroopaAbajo.gif");
-		imagenes[2] = ("/recursosMarioBros/KoopaTroopaDerecha.gif");
-		imagenes[3] = ("/recursosMarioBros/KoopaTroopaIzquierda.gif"); 
+		imagenes[2] = ("/recursosMarioBros/KoopaTroopaIzquierda.gif");
+		imagenes[3] = ("/recursosMarioBros/KoopaTroopaDerecha.gif"); 
 		imagenes[4] = ("/recursosMarioBros/muerto.gif"); 
 		imagenes[5] = ("/recursosMarioBros/KoopaTroopaArribaEscapando.gif");
 		imagenes[6] = ("/recursosMarioBros/KoopaTroopaAbajoEscapando.gif");
@@ -104,9 +104,10 @@ public class DominioMarioBros implements DominioJuego {
 	@Override
 	public String[] getPocionBomba() {
 		String[] imagenes = new String[2];
-
-		imagenes[0] = ("/recursosMarioBros/HongoRojo.png");
-		imagenes[1] = ("/recursosMarioBros/Flor.png"); // aca va el bombucha.gif
+		
+		imagenes[0] = ("/recursosMarioBros/bomba.png");
+		imagenes[1] = ("/recursosMarioBros/bomba.gif");
+		
 		
 		return imagenes;
 	}

@@ -12,7 +12,7 @@ public class ChaseClyde extends ChaseIA {
 		
 		for (Posicion posiblePos: enemigoLigado.posicionesDestino()) {
 			distanciaPosiblePos = posiblePos.distanciaEntrePosicionesPitagoras(principal.getPosicion());
-			System.out.println(distanciaPosiblePos);
+
 			if (distanciaPosiblePos <= 8.0 * Ventana.pixelesBloque) { // 8 bloques
 				// entra en scatter mode
 				// siguientePosicion = ScatterClyde.getInicio();

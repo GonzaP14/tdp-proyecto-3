@@ -103,10 +103,11 @@ public class DominioSonic implements DominioJuego {
 
 	@Override
 	public String[] getPocionBomba() {
-		String[] imagenes = new String[2];
+		String[] imagenes = new String[1];
 
-		imagenes[0] = ("/recursosSonic/gemaRoja.png");
-		imagenes[1] = ("/recursosMarioBros/Flor.png"); // aca va el bombucha.gif
+		imagenes[0] = ("/recursosSonic/bomba.png");
+		imagenes[1] = ("/recursosSonic/bomba.gif");
+		
 		
 		return imagenes;
 	}
