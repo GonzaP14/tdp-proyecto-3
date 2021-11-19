@@ -1,13 +1,17 @@
 package gui;
 
 import java.awt.Font;
+import java.awt.FontFormatException;
 import java.awt.Image;
 import java.awt.Toolkit;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.io.BufferedInputStream;
+import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 import javax.swing.ImageIcon;
@@ -42,6 +46,8 @@ public class Ventana extends JFrame implements KeyListener{
     private JLabel vida2;
     private JLabel vida3;
     private JLabel leaderboardPuntaje;
+    private Font fuente = null; 
+    private InputStream myStream = null;
     
     
     public Ventana(Juego miJuego, DominioJuego miDominio) {
@@ -55,47 +61,54 @@ public class Ventana extends JFrame implements KeyListener{
     }
     
     private void initialize() {
+    	try {
+			myStream = new BufferedInputStream(new FileInputStream("src/fuentes/Pixeled.ttf"));
+			fuente = Font.createFont(Font.TRUETYPE_FONT, myStream);
+	        fuente = fuente.deriveFont(Font.PLAIN, 26);
+		} catch (IOException | FontFormatException e) {
+			e.printStackTrace();
+		}      
     	gameOver = new JLabel("GAME OVER",SwingConstants.CENTER);
-		gameOver.setFont(new Font("Power Red and Green", Font.BOLD, 75));
+		gameOver.setFont(fuente);
 		gameOver.setForeground(Color.WHITE);
 		gameOver.setBounds(150, 225, 400, 275);
 		gameOver.setVisible(false);
 		this.getContentPane().add(gameOver);
 		
     	score = new JLabel("SCORE",SwingConstants.CENTER);
-		score.setFont(new Font("Power Red and Green", Font.BOLD, 40));
+		score.setFont(fuente);
 		score.setForeground(Color.WHITE);
 		score.setBounds(780, 0, 130, 50);
 		this.getContentPane().add(score);
 		
 		
     	puntajeNum = new JLabel("0",SwingConstants.CENTER);
-    	puntajeNum.setFont(new Font("Power Red and Green", Font.BOLD, 40));
+    	puntajeNum.setFont(fuente);
 		puntajeNum.setForeground(Color.WHITE);
 		puntajeNum.setBounds(780, 50, 130, 50);
 		this.getContentPane().add(puntajeNum);
 						
 		level = new JLabel("LEVEL",SwingConstants.CENTER);
-		level.setFont(new Font("Power Red and Green", Font.BOLD, 40));
+		level.setFont(fuente);
 		level.setForeground(Color.WHITE);
-		level.setBounds(780, 150, 130, 50);
+		level.setBounds(780, 150, 160, 50);
 		this.getContentPane().add(level);	
 		
 		lifes = new JLabel("LIFES",SwingConstants.CENTER);
-		lifes.setFont(new Font("Power Red and Green", Font.BOLD, 40));
+		lifes.setFont(fuente);
 		lifes.setForeground(Color.WHITE);
 		lifes.setBounds(780, 300, 130, 50);
 		this.getContentPane().add(lifes);
 			
 		leaderBoard = new JLabel("LEADERBOARD",SwingConstants.CENTER);
-		leaderBoard.setFont(new Font("Power Red and Green", Font.BOLD, 40));
+		leaderBoard.setFont(fuente);
 		leaderBoard.setForeground(Color.WHITE);
 		leaderBoard.setBounds(700, 450, 300, 50);
 		this.getContentPane().add(leaderBoard);
 		
 		leaderboardPuntaje = new JLabel("",SwingConstants.CENTER);
 		leaderboardPuntaje.setBorder(new EmptyBorder(0, 0, 0, 0));
-		leaderboardPuntaje.setFont(new Font("Power Red and Green", Font.BOLD, 40));
+		leaderboardPuntaje.setFont(fuente);
 		leaderboardPuntaje.setForeground(Color.WHITE);
 		leaderboardPuntaje.setBounds(700, 490, 300, 280);
 		this.getContentPane().add(leaderboardPuntaje);
