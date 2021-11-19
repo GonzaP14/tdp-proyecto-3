@@ -201,15 +201,11 @@ public class Juego {
 		misEnemigos.add(miFabricaEntidades.getInky());
 		misEnemigos.add(miFabricaEntidades.getPinky());
 		misEnemigos.add(miFabricaEntidades.getClyde());
-		// FOR CORRECTO, USAR SOLO CUANDO SE TENGA LA IA DE LOS 4 FANTASMAS 
-//		for(Enemigo fantasma: misEnemigos) {
-//			miVentana.aparecerEntidad(fantasma.getMiRepresentacion());
-//			fantasma.iniciarHilo();
-//		}
+		for(Enemigo fantasma: misEnemigos) {
+			miVentana.aparecerEntidad(fantasma.getMiRepresentacion());
+			fantasma.iniciarHilo();
+		}
 		
-//		// ESTO BORRARLO DESPUES
-		miVentana.aparecerEntidad(misEnemigos.get(0).getMiRepresentacion());
-		misEnemigos.get(0).iniciarHilo();
 	}
 	
 	public void spawnearPocionBomba() {
