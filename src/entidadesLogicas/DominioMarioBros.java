@@ -10,7 +10,7 @@ public class DominioMarioBros implements DominioJuego {
 		imagenes[1] = "/recursosMarioBros/MarioAbajo.gif";
 		imagenes[2] = "/recursosMarioBros/MarioIzquierda.gif";
 		imagenes[3] = "/recursosMarioBros/MarioDerecha.gif";
-		imagenes[4] = "/recursosMarioBros/muerto.gif";
+		imagenes[4] = "/recursosMarioBros/MarioDerecha.gif";
 		
 		return imagenes;
 	}
@@ -163,5 +163,7 @@ public class DominioMarioBros implements DominioJuego {
 	public String getImagenVidas() {
 		return new String("/recursosMarioBros/Mario.png");
 	}
+
+
 	
 }

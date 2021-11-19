@@ -164,4 +164,6 @@ public class DominioSonic implements DominioJuego {
 		return new String("/recursosSonic/Sonic.png");
 	}
 
+	
+
 }

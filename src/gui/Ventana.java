@@ -45,7 +45,7 @@ public class Ventana extends JFrame implements KeyListener{
     private JLabel lifes;
     private JLabel leaderBoard;
     private JLabel leaderBoard2;
-    private JPanel end;
+    private JPanel endGameOver;
     private JLabel vida1;
     private JLabel vida2;
     private JLabel vida3;
@@ -57,6 +57,10 @@ public class Ventana extends JFrame implements KeyListener{
     private InputStream myStream = null;
     private JTextField txtName;
     private JButton Load;
+    private JLabel imagenMuertoMario;
+    private JLabel imagenLogoBowser;
+    private JLabel imagenDrEggman;
+    private JLabel imagenSonicMuerto;
 
     
     
@@ -80,33 +84,33 @@ public class Ventana extends JFrame implements KeyListener{
 			e.printStackTrace();
 		}      	
     	
-    	end = new JPanel();
-    	end.setBounds(0, 0, 992, 770);
-    	end.setBackground(Color.BLACK);
-    	end.setOpaque(true);
-    	end.setVisible(false);
-		this.getContentPane().add(end);
-		end.setLayout(null);
+    	endGameOver = new JPanel();
+    	endGameOver.setBounds(0, 0, 992, 770);
+    	endGameOver.setBackground(Color.BLACK);
+    	endGameOver.setOpaque(true);
+    	endGameOver.setVisible(false);
+		this.getContentPane().add(endGameOver);
+		endGameOver.setLayout(null);
 		
 		
 		GameOver = new JLabel("GAME OVER");
-		GameOver.setForeground(Color.WHITE);
+		GameOver.setForeground(Color.RED);
 		GameOver.setFont(fuenteTitulo);
 		GameOver.setBounds(315, 41, 375, 133);
-		end.add(GameOver);
+		endGameOver.add(GameOver);
 		
 		txtName = new JTextField();
 		txtName.setForeground(Color.WHITE);
 		txtName.setBackground(Color.BLACK);
 		txtName.setFont(fuente);
 		txtName.setBounds(350, 172, 291, 72);
-		end.add(txtName);
+		endGameOver.add(txtName);
 		txtName.setColumns(10);
 		
 		Load = new JButton("LOAD NAME");
 		Load.setBounds(350, 274, 296, 72);
 		Load.setFont(fuente);
-		end.add(Load);
+		endGameOver.add(Load);
 		Load.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {		
 			miJuego.procesarPuntaje(txtName.getText());
@@ -121,7 +125,7 @@ public class Ventana extends JFrame implements KeyListener{
 		leaderBoard2.setFont(fuente);
 		leaderBoard2.setForeground(Color.WHITE);
 		leaderBoard2.setBounds(350, 425, 300, 50);
-		end.add(leaderBoard2);
+		endGameOver.add(leaderBoard2);
 		
 		leaderboardPuntaje2 = new JLabel("",SwingConstants.CENTER);
 		leaderboardPuntaje2.setBorder(new EmptyBorder(0, 0, 0, 0));
@@ -129,7 +133,36 @@ public class Ventana extends JFrame implements KeyListener{
 		leaderboardPuntaje2.setForeground(Color.WHITE);
 		leaderboardPuntaje2.setBounds(350, 468, 300, 280);
 		//mostrarLeaderboard();
-		end.add(leaderboardPuntaje2);
+		endGameOver.add(leaderboardPuntaje2);
+		
+		imagenMuertoMario = new JLabel("");
+		imagenMuertoMario.setBounds(89, 428, 198, 205);
+    	ImageIcon icoMario = new ImageIcon(Toolkit.getDefaultToolkit().getImage(this.getClass().getResource("/recursosMarioBros/marioMuerto.png")));	
+		ImageIcon imgMario = new ImageIcon(icoMario.getImage().getScaledInstance(imagenMuertoMario.getWidth(), imagenMuertoMario.getHeight(), Image.SCALE_SMOOTH));
+		imagenMuertoMario.setIcon(imgMario);
+		endGameOver.add(imagenMuertoMario);
+		
+		imagenLogoBowser = new JLabel("");
+		imagenLogoBowser.setBounds(64, 96, 203, 192);
+		ImageIcon icoLogoBowser = new ImageIcon(Toolkit.getDefaultToolkit().getImage(this.getClass().getResource("/recursosMarioBros/logoBowser.png")));	
+		ImageIcon imgLogoBowser = new ImageIcon(icoLogoBowser.getImage().getScaledInstance(imagenLogoBowser.getWidth(), imagenLogoBowser.getHeight(), Image.SCALE_SMOOTH));
+		imagenLogoBowser.setIcon(imgLogoBowser);
+		endGameOver.add(imagenLogoBowser);
+		
+
+		imagenDrEggman = new JLabel("");
+		imagenDrEggman.setBounds(742, 66, 181, 280);
+		ImageIcon icoEggman = new ImageIcon(Toolkit.getDefaultToolkit().getImage(this.getClass().getResource("/recursosSonic/Dr_Eggman.png")));	
+		ImageIcon imgEggman= new ImageIcon(icoEggman.getImage().getScaledInstance(imagenDrEggman.getWidth(), imagenDrEggman.getHeight(), Image.SCALE_SMOOTH));
+		imagenDrEggman.setIcon(imgEggman);
+		endGameOver.add(imagenDrEggman);
+		
+		imagenSonicMuerto = new JLabel("");
+		imagenSonicMuerto.setBounds(727, 425, 191, 205);
+		ImageIcon icoSonicMuerto = new ImageIcon(Toolkit.getDefaultToolkit().getImage(this.getClass().getResource("/recursosSonic/sonicMuerto.png")));	
+		ImageIcon imgSonicMuerto= new ImageIcon(icoSonicMuerto.getImage().getScaledInstance(imagenSonicMuerto.getWidth(), imagenSonicMuerto.getHeight(), Image.SCALE_SMOOTH));
+		imagenSonicMuerto.setIcon(imgSonicMuerto);
+		endGameOver.add(imagenSonicMuerto);
 		
 		
 		
@@ -273,7 +306,7 @@ public class Ventana extends JFrame implements KeyListener{
 		}
 	}
 	public void gameOver() {		
-		end.setVisible(true);		
+		endGameOver.setVisible(true);		
 	}
 	
 	private void mostrarLeaderboard() {
