@@ -27,7 +27,7 @@ public class Pinky extends Enemigo {
 	protected EstadoEnemigo crearEstadoChase() {
 		EstadoEnemigo chase = new Chase(new ChasePinky());
 		chase.setEnemigo(this);
-		chase.setPosicionObjetivo(miJuego.getMiPersonajePrincipal().getPosicion());
+		chase.setPrincipal(miJuego.getMiPersonajePrincipal());
 		
 		return chase;
 	}
