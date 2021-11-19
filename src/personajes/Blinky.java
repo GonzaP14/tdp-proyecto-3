@@ -40,5 +40,19 @@ public class Blinky extends Enemigo {
 		cambiarEstado(Chase);
 		miJuego.getGrilla().getBloque(miPosicion.getY() / 25 , miPosicion.getX() / 25).agregarAListaEntidades(this);
 	}
+
+	@Override
+	protected EstadoEnemigo crearEstadoEaten() {
+		EstadoEnemigo eaten = new Eaten();
+		eaten.setEnemigo(this);
+		eaten.setPosicionObjetivo(miSpawn);
+		
+		return eaten;
+	}
+
+	@Override
+	public Posicion getSpawn() {
+		return miSpawn;
+	}
 	
 }

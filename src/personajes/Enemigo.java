@@ -106,9 +106,9 @@ public abstract class Enemigo extends Personaje {
 	protected abstract EstadoEnemigo crearEstadoChase();
 	
 	protected EstadoEnemigo crearEstadoEaten() {
-		EstadoEnemigo eaten = new Frightened();
+		EstadoEnemigo eaten = new Eaten();
 		eaten.setEnemigo(this);
-		eaten.setPosicionObjetivo(miJuego.getMiPersonajePrincipal().getPosicion());
+		eaten.setPosicionObjetivo(getSpawn());
 		
 		return eaten;
 	}
@@ -200,6 +200,6 @@ public abstract class Enemigo extends Personaje {
 		return miHilo;
 	}
 	
-	
+	public abstract Posicion getSpawn();
 	
 }

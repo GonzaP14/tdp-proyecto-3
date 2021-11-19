@@ -11,7 +11,7 @@ public class Eaten implements EstadoEnemigo {
 	public Posicion siguientePosicion() {
 		Posicion toReturn = miEnemigo.getPosicion();
 		double distanciaMinima = toReturn.distanciaEntrePosicionesPitagoras(posicionRecuperacion);
-		double distanciaActual;
+		double distanciaActual = Double.MAX_VALUE;
 		
 		for (Posicion pos: miEnemigo.posicionesDestino()) {
 			distanciaActual = pos.distanciaEntrePosicionesPitagoras(posicionRecuperacion);
@@ -40,6 +40,5 @@ public class Eaten implements EstadoEnemigo {
 		// TODO Auto-generated method stub
 		
 	}
-
 
 }

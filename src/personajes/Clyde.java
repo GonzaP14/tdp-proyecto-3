@@ -39,4 +39,9 @@ public class Clyde extends Enemigo {
 		sentidoSiguiente = Entidad.sentidoFijo;
 		miJuego.getGrilla().getBloque(miPosicion.getY() / 25 , miPosicion.getX() / 25).agregarAListaEntidades(this);
 	}
+
+	@Override
+	public Posicion getSpawn() {
+		return miSpawn;
+	}
 }
