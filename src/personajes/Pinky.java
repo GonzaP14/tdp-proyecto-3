@@ -40,6 +40,16 @@ public class Pinky extends Enemigo {
 		sentidoSiguiente = Entidad.sentidoFijo;
 		miJuego.getGrilla().getBloque(miPosicion.getY() / Ventana.pixelesBloque , miPosicion.getX() / Ventana.pixelesBloque).agregarAListaEntidades(this);
 	}
+	
+	@Override
+	protected EstadoEnemigo crearEstadoEaten() {
+		EstadoEnemigo eaten = new Eaten();
+		eaten.setEnemigo(this);
+		eaten.setPosicionObjetivo(miSpawn);
+		
+		return eaten;
+	}
+
 
 	public Posicion getSpawn() {
 		return miSpawn;

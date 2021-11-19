@@ -15,7 +15,7 @@ public class Chase implements EstadoEnemigo {
 	
 	@Override
 	public Posicion siguientePosicion() {
-		return miInteligencia.calcularSiguientePosicion(miEnemigo, miDestino.getPosicion());
+		return miInteligencia.calcularSiguientePosicion(miEnemigo, miDestino);
 	}
 	
 	@Override

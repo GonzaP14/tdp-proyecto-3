@@ -3,7 +3,6 @@ package entidadesLogicas;
 import java.io.Serializable;
 
 public class Player implements Comparable<Player>, Serializable{
-	private static final long serialVersionUID = 1L;
 	
 	private String nombre;
 	private Integer score;
