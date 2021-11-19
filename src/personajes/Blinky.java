@@ -14,7 +14,7 @@ public class Blinky extends Enemigo {
 		miPosicion = miSpawn;
 		miRepresentacion = new EnemigoGrafico(imagenes);
 		miRepresentacion.aparecer(miPosicion);
-		miJuego.getGrilla().getBloque(miPosicion.getY() / 25 , miPosicion.getX() / 25).agregarAListaEntidades(this);
+		miJuego.getGrilla().getBloque(miPosicion.getY() / Ventana.pixelesBloque , miPosicion.getX() / Ventana.pixelesBloque).agregarAListaEntidades(this);
 		crearEstados();
 		indiceEstado = Chase;
 		estadoActual = estados[indiceEstado];
@@ -38,7 +38,7 @@ public class Blinky extends Enemigo {
 		sentidoActual = Entidad.sentidoFijo;
 		sentidoSiguiente = Entidad.sentidoFijo;
 		cambiarEstado(Chase);
-		miJuego.getGrilla().getBloque(miPosicion.getY() / 25 , miPosicion.getX() / 25).agregarAListaEntidades(this);
+		miJuego.getGrilla().getBloque(miPosicion.getY() / Ventana.pixelesBloque , miPosicion.getX() / Ventana.pixelesBloque).agregarAListaEntidades(this);
 	}
 
 	@Override
