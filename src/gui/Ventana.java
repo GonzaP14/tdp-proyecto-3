@@ -4,6 +4,8 @@ import java.awt.Font;
 import java.awt.FontFormatException;
 import java.awt.Image;
 import java.awt.Toolkit;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.io.BufferedInputStream;
@@ -18,14 +20,19 @@ import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JLayeredPane;
+import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 import entidadesGraficas.EntidadGrafica;
 import entidadesGraficas.Laberinto;
 import entidadesLogicas.DominioJuego;
 import entidadesLogicas.Entidad;
 import entidadesLogicas.Juego;
+import entidadesLogicas.Player;
+
 import java.awt.Color;
 import javax.swing.border.EmptyBorder;
+import javax.swing.JTextField;
+import javax.swing.JButton;
 
 public class Ventana extends JFrame implements KeyListener{
 
@@ -41,13 +48,20 @@ public class Ventana extends JFrame implements KeyListener{
     private JLabel level;
     private JLabel lifes;
     private JLabel leaderBoard;
-    private JLabel gameOver;
+    private JLabel leaderBoard2;
+    private JPanel end;
     private JLabel vida1;
     private JLabel vida2;
     private JLabel vida3;
+    private JLabel GameOver;
     private JLabel leaderboardPuntaje;
+    private JLabel leaderboardPuntaje2;
     private Font fuente = null; 
+    private Font fuenteTitulo = null; 
     private InputStream myStream = null;
+    private JTextField txtName;
+    private JButton Load;
+
     
     
     public Ventana(Juego miJuego, DominioJuego miDominio) {
@@ -65,33 +79,84 @@ public class Ventana extends JFrame implements KeyListener{
 			myStream = new BufferedInputStream(new FileInputStream("src/fuentes/Pixeled.ttf"));
 			fuente = Font.createFont(Font.TRUETYPE_FONT, myStream);
 	        fuente = fuente.deriveFont(Font.PLAIN, 26);
+	        fuenteTitulo = fuente.deriveFont(Font.PLAIN, 60);
 		} catch (IOException | FontFormatException e) {
 			e.printStackTrace();
-		}      
-    	gameOver = new JLabel("GAME OVER",SwingConstants.CENTER);
-		gameOver.setFont(fuente);
-		gameOver.setForeground(Color.WHITE);
-		gameOver.setBounds(150, 225, 400, 275);
-		gameOver.setVisible(false);
-		this.getContentPane().add(gameOver);
+		}      	
+    	
+    	end = new JPanel();
+    	end.setBounds(0, 0, 992, 770);
+    	end.setBackground(Color.BLACK);
+    	end.setOpaque(true);
+    	end.setVisible(false);
+		this.getContentPane().add(end);
+		end.setLayout(null);
+		
+		
+		GameOver = new JLabel("GAME OVER");
+		GameOver.setForeground(Color.WHITE);
+		GameOver.setFont(fuenteTitulo);
+		GameOver.setBounds(315, 41, 375, 133);
+		end.add(GameOver);
+		
+		txtName = new JTextField();
+		txtName.setForeground(Color.WHITE);
+		txtName.setBackground(Color.BLACK);
+		txtName.setFont(fuente);
+		txtName.setBounds(350, 172, 291, 72);
+		end.add(txtName);
+		txtName.setColumns(10);
+		
+		Load = new JButton("LOAD NAME");
+		Load.setBounds(350, 274, 296, 72);
+		Load.setFont(fuente);
+		end.add(Load);
+		Load.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {		
+			miJuego.procesarPuntaje(txtName.getText());
+			txtName.setText("");
+			txtName.setEditable(false);
+			mostrarLeaderboard();			
+			}
+		});
+		
+		
+		leaderBoard2 = new JLabel("LEADERBOARD",SwingConstants.CENTER);
+		leaderBoard2.setFont(fuente);
+		leaderBoard2.setForeground(Color.WHITE);
+		leaderBoard2.setBounds(350, 425, 300, 50);
+		end.add(leaderBoard2);
+		
+		leaderboardPuntaje2 = new JLabel("",SwingConstants.CENTER);
+		leaderboardPuntaje2.setBorder(new EmptyBorder(0, 0, 0, 0));
+		leaderboardPuntaje2.setFont(fuente);
+		leaderboardPuntaje2.setForeground(Color.WHITE);
+		leaderboardPuntaje2.setBounds(350, 468, 300, 280);
+		//mostrarLeaderboard();
+		end.add(leaderboardPuntaje2);
+		
+		
+		
+		
+		
+		
 		
     	score = new JLabel("SCORE",SwingConstants.CENTER);
 		score.setFont(fuente);
 		score.setForeground(Color.WHITE);
-		score.setBounds(780, 0, 130, 50);
+		score.setBounds(780, 50, 130, 50);
 		this.getContentPane().add(score);
-		
 		
     	puntajeNum = new JLabel("0",SwingConstants.CENTER);
     	puntajeNum.setFont(fuente);
 		puntajeNum.setForeground(Color.WHITE);
-		puntajeNum.setBounds(780, 50, 130, 50);
+		puntajeNum.setBounds(780, 100, 130, 50);
 		this.getContentPane().add(puntajeNum);
 						
 		level = new JLabel("LEVEL",SwingConstants.CENTER);
 		level.setFont(fuente);
 		level.setForeground(Color.WHITE);
-		level.setBounds(780, 150, 160, 50);
+		level.setBounds(780, 175, 130, 50);
 		this.getContentPane().add(level);	
 		
 		lifes = new JLabel("LIFES",SwingConstants.CENTER);
@@ -150,7 +215,7 @@ public class Ventana extends JFrame implements KeyListener{
 	    this.getContentPane().setLayout(null);
 	    this.setVisible(true);
 	    layeredPane.setFocusable(true);
-		setBounds(0, 0, 1250, 850);
+		setBounds(0, 0, 1008, 806);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		layeredPane.addKeyListener(this);
     }
@@ -212,10 +277,12 @@ public class Ventana extends JFrame implements KeyListener{
 		}
 	}
 	public void gameOver() {		
-		gameOver.setVisible(true);		
+		end.setVisible(true);		
 	}
 	
 	private void mostrarLeaderboard() {
 		leaderboardPuntaje.setText(miJuego.getMiLeaderboard().getLeaderboard());
+		leaderboardPuntaje2.setText(miJuego.getMiLeaderboard().getLeaderboard());
 	}
+	
 }

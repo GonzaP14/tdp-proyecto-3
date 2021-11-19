@@ -56,6 +56,9 @@ public class Launcher {
 		miVentana.setVisible(true);
 	}
 	
+	
+	
+	
 	private static void construirNivel1() {
 		miNivel.setVelocidadEnemigos(8);
 		miNivel.setDuracionFrutas(100);

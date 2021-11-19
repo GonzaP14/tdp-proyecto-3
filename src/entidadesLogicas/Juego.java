@@ -142,7 +142,6 @@ public class Juego {
 	
 	public void gameOver() {
 		miAudio.sonidoGameOver();
-		procesarPuntaje();
 		miVentana.gameOver();
 		gameOver=true;
 	}
@@ -313,8 +312,8 @@ public class Juego {
         }
 	}
 	
-	private void procesarPuntaje() {
-		miPlayer.setNombre("Juansito");
+	public void procesarPuntaje(String nombre) {
+		miPlayer.setNombre(nombre);
 		miLeaderboard.addPlayer(miPlayer);
 	}
 }
