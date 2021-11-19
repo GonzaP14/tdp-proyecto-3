@@ -55,13 +55,13 @@ public class DominioSonic implements DominioJuego {
 		
 		imagenes[0] = ("/recursosSonic/shadowArriba.gif");
 		imagenes[1] = ("/recursosSonic/shadowAbajo.gif");
-		imagenes[2] = ("/recursosSonic/shadowDerecha.gif");
-		imagenes[3] = ("/recursosSonic/shadowIzquierda.gif"); 
+		imagenes[2] = ("/recursosSonic/shadowIzquierda.gif");
+		imagenes[3] = ("/recursosSonic/shadowDerecha.gif"); 
 		imagenes[4] = ("/recursosSonic/fantasmaMuerto.gif"); 
 		imagenes[5] = ("/recursosSonic/shadowArribaEscapando.gif");
 		imagenes[6] = ("/recursosSonic/shadowAbajoEscapando.gif");
-		imagenes[7] = ("/recursosSonic/shadowDerechaEscapando.gif");
-		imagenes[8] = ("/recursosSonic/shadowIzquierdaEscapando.gif");
+		imagenes[7] = ("/recursosSonic/shadowIzquierdaEscapando.gif");
+		imagenes[8] = ("/recursosSonic/shadowDerechaEscapando.gif");
 		
 		return imagenes;
 	}
@@ -77,8 +77,8 @@ public class DominioSonic implements DominioJuego {
 		imagenes[4] = ("/recursosSonic/fantasmaMuerto.gif"); 
 		imagenes[5] = ("/recursosSonic/eggManArribaEscapando.gif");
 		imagenes[6] = ("/recursosSonic/eggManAbajoEscapando.gif");
-		imagenes[7] = ("/recursosSonic/eggManDerechaEscapando.gif");
-		imagenes[8] = ("/recursosSonic/eggManIzquierdaEscapando.gif");
+		imagenes[7] = ("/recursosSonic/eggManIzquierdaEscapando.gif");
+		imagenes[8] = ("/recursosSonic/eggManDerechaEscapando.gif");
 		
 		return imagenes;
 	}
@@ -103,7 +103,7 @@ public class DominioSonic implements DominioJuego {
 
 	@Override
 	public String[] getPocionBomba() {
-		String[] imagenes = new String[1];
+		String[] imagenes = new String[2];
 
 		imagenes[0] = ("/recursosSonic/bomba.png");
 		imagenes[1] = ("/recursosSonic/bomba.gif");
