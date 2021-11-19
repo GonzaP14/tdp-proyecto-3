@@ -30,7 +30,6 @@ public class ChasePinky extends ChaseIA {
 		else {
 			siguientePosicion = new Posicion(posicionPrincipal.getX() + (4 * Ventana.pixelesBloque) , posicionPrincipal.getY() );
 		}
-		System.out.println(siguientePosicion);
 		
 		for (Posicion pos: miEnemigo.posicionesDestino()) { // Direcciones posibles de pinky
 			distanciaActual = pos.distanciaEntrePosicionesPitagoras(siguientePosicion);

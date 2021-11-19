@@ -48,10 +48,10 @@ public abstract class Enemigo extends Personaje {
 	public void cambiarEstado (int estado) {
 		if (estado == Frightened) {
 			indiceEstado = Frightened;
-			miRepresentacion.asustarse();
+			miRepresentacion.asustarse(sentidoActual);
 		} else if (estado == Chase) {
 			indiceEstado = Chase;
-			miRepresentacion.perseguir();
+			miRepresentacion.perseguir(sentidoActual);
 		} else if (estado == Eaten) {
 			indiceEstado = Eaten;
 		} else if (estado == Scatter) {

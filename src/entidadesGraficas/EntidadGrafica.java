@@ -26,11 +26,11 @@ public abstract class EntidadGrafica extends JLabel {
 		this.setVisible(false);
 	}
 
-	public void asustarse() {
+	public void asustarse(int sentidoActual) {
 		
 	}
 	
-	public void perseguir() {
+	public void perseguir(int sentidoActual) {
 		
 	}
 }

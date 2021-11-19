@@ -37,8 +37,7 @@ public class Inky extends Enemigo {
 	protected void reaparecer() {
 		miPosicion = new Posicion((int) miSpawn.getX(), (int) miSpawn.getY());
 		this.miRepresentacion.aparecer(miPosicion);
-		sentidoActual = Entidad.sentidoFijo;
-		sentidoSiguiente = Entidad.sentidoFijo;
+		cambiarEstado(Chase);
 		miJuego.getGrilla().getBloque(miPosicion.getY() / Ventana.pixelesBloque , miPosicion.getX() / Ventana.pixelesBloque).agregarAListaEntidades(this);
 	}
 

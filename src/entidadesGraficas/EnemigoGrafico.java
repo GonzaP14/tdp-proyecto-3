@@ -38,11 +38,13 @@ public class EnemigoGrafico extends PersonajeGrafico{
 		this.setIcon(representacionActual);
 	}
 
-	public void asustarse() {
+	public void asustarse(int sentidoActual) {
 		sentidosEstado = sentidosFrightened;
+		this.actualizar(sentidoActual);
 	}
 	
-	public void perseguir() {
+	public void perseguir(int sentidoActual) {
 		sentidosEstado = sentidosChase;
+		this.actualizar(sentidoActual);
 	}
 }
