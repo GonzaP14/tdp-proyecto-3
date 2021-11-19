@@ -38,13 +38,13 @@ public class DominioMarioBros implements DominioJuego {
 		
 		imagenes[0] = ("/recursosMarioBros/BooArriba.gif");
 		imagenes[1] = ("/recursosMarioBros/BooAbajo.gif");
-		imagenes[2] = ("/recursosMarioBros/BooDerecha.gif");
-		imagenes[3] = ("/recursosMarioBros/BooIzquierda.gif"); 
+		imagenes[2] = ("/recursosMarioBros/BooIzquierda.gif");
+		imagenes[3] = ("/recursosMarioBros/BooDerecha.gif"); 
 		imagenes[4] = ("/recursosMarioBros/muerto.gif"); 
 		imagenes[5] = ("/recursosMarioBros/BooArribaEscapando.gif");
 		imagenes[6] = ("/recursosMarioBros/BooAbajoEscapando.gif");
-		imagenes[7] = ("/recursosMarioBros/BooDerechaEscapando.gif");
-		imagenes[8] = ("/recursosMarioBros/BooIzquierdaEscapando.gif");
+		imagenes[7] = ("/recursosMarioBros/BooIzquierdaEscapando.gif");
+		imagenes[8] = ("/recursosMarioBros/BooDerechaEscapando.gif");
 	
 		return imagenes;
 	}
@@ -55,13 +55,13 @@ public class DominioMarioBros implements DominioJuego {
 		
 		imagenes[0] = ("/recursosMarioBros/BowserArriba.gif");
 		imagenes[1] = ("/recursosMarioBros/BowserAbajo.gif");
-		imagenes[2] = ("/recursosMarioBros/BowserDerecha.gif");
-		imagenes[3] = ("/recursosMarioBros/BowserIzquierda.gif"); 
+		imagenes[2] = ("/recursosMarioBros/BowserIzquierda.gif");
+		imagenes[3] = ("/recursosMarioBros/BowserDerecha.gif"); 
 		imagenes[4] = ("/recursosMarioBros/muerto.gif"); 
 		imagenes[5] = ("/recursosMarioBros/BowserArribaEscapando.gif");
 		imagenes[6] = ("/recursosMarioBros/BowserAbajoEscapando.gif");
-		imagenes[7] = ("/recursosMarioBros/BowserDerechaEscapando.gif");
-		imagenes[8] = ("/recursosMarioBros/BowserIzquierdaEscapando.gif");
+		imagenes[7] = ("/recursosMarioBros/BowserIzquierdaEscapando.gif");
+		imagenes[8] = ("/recursosMarioBros/BowserDerechaEscapando.gif");
 
 		return imagenes;
 	}
@@ -77,8 +77,8 @@ public class DominioMarioBros implements DominioJuego {
 		imagenes[4] = ("/recursosMarioBros/muerto.gif"); 
 		imagenes[5] = ("/recursosMarioBros/KoopaTroopaArribaEscapando.gif");
 		imagenes[6] = ("/recursosMarioBros/KoopaTroopaAbajoEscapando.gif");
-		imagenes[7] = ("/recursosMarioBros/KoopaTroopaDerechaEscapando.gif");
-		imagenes[8] = ("/recursosMarioBros/KoopaTroopaIzquierdaEscapando.gif");
+		imagenes[7] = ("/recursosMarioBros/KoopaTroopaIzquierdaEscapando.gif");
+		imagenes[8] = ("/recursosMarioBros/KoopaTroopaDerechaEscapando.gif");
 	
 		return imagenes;
 	}

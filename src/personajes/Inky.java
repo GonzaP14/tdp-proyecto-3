@@ -8,7 +8,8 @@ import gui.Ventana;
 
 public class Inky extends Enemigo {
 	
-	private static final Posicion miSpawn = new Posicion(275, 325);
+
+	private static final Posicion miSpawn = new Posicion(275, 275);
 
 	public Inky(Juego miJuego, String[] imagenes) {
 		this.miJuego = miJuego;
@@ -25,9 +26,9 @@ public class Inky extends Enemigo {
 
 	@Override
 	protected EstadoEnemigo crearEstadoChase() {
-		EstadoEnemigo chase = new Chase(new ChaseInky());
+		EstadoEnemigo chase = new Chase(new ChaseInky(miJuego.getMisEnemigos().get(0)));
 		chase.setEnemigo(this);
-		chase.setPosicionObjetivo(miJuego.getMiPersonajePrincipal().getPosicion());
+		chase.setPrincipal(miJuego.getMiPersonajePrincipal());
 		
 		return chase;
 	}
