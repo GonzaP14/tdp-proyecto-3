@@ -24,56 +24,56 @@ public class Grilla {
 	
 	// ------------------------------------   Metodos   ------------------------------------------
 	public boolean buscarColisiones(int sentidoEntidad, Posicion proximaPos) {
-		Rectangle p = new Rectangle(proximaPos.getY() , proximaPos.getX() , 25 , 25);	
-        Bloque carlitos;
-        Rectangle bloque ;
+		Rectangle rectanguloPosicionPj = new Rectangle(proximaPos.getY() , proximaPos.getX() , 25 , 25);	
+        Bloque bloqueNecesario;
+        Rectangle rectanguloBloque;
         
         if(sentidoEntidad == Personaje.sentidoIzquierda ) {
         	Posicion izquierdaArribaBloque = new Posicion(proximaPos.getY() / 25 , proximaPos.getX() / 25);
-        	carlitos = grilla[izquierdaArribaBloque.getX()][izquierdaArribaBloque.getY()];
-        	bloque = new Rectangle(carlitos.getMiPosicion().getX(),carlitos.getMiPosicion().getY(),25,25);
-        	if(carlitos.esVisitable() == false && bloque.intersects(p) ) 
+        	bloqueNecesario = grilla[izquierdaArribaBloque.getX()][izquierdaArribaBloque.getY()];
+        	rectanguloBloque = new Rectangle(bloqueNecesario.getMiPosicion().getX(),bloqueNecesario.getMiPosicion().getY(),25,25);
+        	if(bloqueNecesario.esVisitable() == false && rectanguloBloque.intersects(rectanguloPosicionPj) ) 
         		return true;
         	Posicion izquierdaAbajoBloque = new Posicion(proximaPos.posicionEsquinaAbajoIzquierda().getY() / 25 , proximaPos.posicionEsquinaAbajoIzquierda().getX() / 25);
-        	carlitos = grilla[izquierdaAbajoBloque.getX()][izquierdaAbajoBloque.getY()];
-        	bloque = new Rectangle(carlitos.getMiPosicion().getX(),carlitos.getMiPosicion().getY(),25,25);
-        	if(carlitos.esVisitable() == false && bloque.intersects(p) ) 
+        	bloqueNecesario = grilla[izquierdaAbajoBloque.getX()][izquierdaAbajoBloque.getY()];
+        	rectanguloBloque = new Rectangle(bloqueNecesario.getMiPosicion().getX(),bloqueNecesario.getMiPosicion().getY(),25,25);
+        	if(bloqueNecesario.esVisitable() == false && rectanguloBloque.intersects(rectanguloPosicionPj) ) 
         		return true;        	
 		}
         else if(sentidoEntidad == Personaje.sentidoDerecha) {
         	Posicion derechaArribaBloque = new Posicion(proximaPos.posicionEsquinaArribaDerecha().getY() / 25 , proximaPos.posicionEsquinaArribaDerecha().getX() / 25);
-        	carlitos = grilla[derechaArribaBloque.getX()][derechaArribaBloque.getY()];
-        	bloque = new Rectangle(carlitos.getMiPosicion().getX(),carlitos.getMiPosicion().getY(),25,25);
-        	if(carlitos.esVisitable() == false && bloque.intersects(p) ) 
+        	bloqueNecesario = grilla[derechaArribaBloque.getX()][derechaArribaBloque.getY()];
+        	rectanguloBloque = new Rectangle(bloqueNecesario.getMiPosicion().getX(),bloqueNecesario.getMiPosicion().getY(),25,25);
+        	if(bloqueNecesario.esVisitable() == false && rectanguloBloque.intersects(rectanguloPosicionPj) ) 
         		return true;
         	Posicion derechaAbajoBloque = new Posicion(proximaPos.posicionEsquinaAbajoDerecha().getY() / 25 , proximaPos.posicionEsquinaAbajoDerecha().getX() / 25);
-        	carlitos = grilla[derechaAbajoBloque.getX()][derechaAbajoBloque.getY()];
-        	bloque = new Rectangle(carlitos.getMiPosicion().getX(),carlitos.getMiPosicion().getY(),25,25);
-        	if(carlitos.esVisitable() == false && bloque.intersects(p) ) 
+        	bloqueNecesario = grilla[derechaAbajoBloque.getX()][derechaAbajoBloque.getY()];
+        	rectanguloBloque = new Rectangle(bloqueNecesario.getMiPosicion().getX(),bloqueNecesario.getMiPosicion().getY(),25,25);
+        	if(bloqueNecesario.esVisitable() == false && rectanguloBloque.intersects(rectanguloPosicionPj) ) 
         		return true;
         }
         else if(sentidoEntidad == Personaje.sentidoArriba) {
         	Posicion derechaArribaBloque = new Posicion(proximaPos.posicionEsquinaArribaDerecha().getY() / 25 , proximaPos.posicionEsquinaArribaDerecha().getX() / 25);
-        	carlitos = grilla[derechaArribaBloque.getX()][derechaArribaBloque.getY()];
-        	bloque = new Rectangle(carlitos.getMiPosicion().getX(),carlitos.getMiPosicion().getY(),25,25);
-        	if(carlitos.esVisitable() == false && bloque.intersects(p) ) 
+        	bloqueNecesario = grilla[derechaArribaBloque.getX()][derechaArribaBloque.getY()];
+        	rectanguloBloque = new Rectangle(bloqueNecesario.getMiPosicion().getX(),bloqueNecesario.getMiPosicion().getY(),25,25);
+        	if(bloqueNecesario.esVisitable() == false && rectanguloBloque.intersects(rectanguloPosicionPj) ) 
         		return true;
         	Posicion izquierdaArribaBloque = new Posicion(proximaPos.getY() / 25 , proximaPos.getX() / 25);
-        	carlitos = grilla[izquierdaArribaBloque.getX()][izquierdaArribaBloque.getY()];
-        	bloque = new Rectangle(carlitos.getMiPosicion().getX(),carlitos.getMiPosicion().getY(),25,25);
-        	if(carlitos.esVisitable() == false && bloque.intersects(p) ) 
+        	bloqueNecesario = grilla[izquierdaArribaBloque.getX()][izquierdaArribaBloque.getY()];
+        	rectanguloBloque = new Rectangle(bloqueNecesario.getMiPosicion().getX(),bloqueNecesario.getMiPosicion().getY(),25,25);
+        	if(bloqueNecesario.esVisitable() == false && rectanguloBloque.intersects(rectanguloPosicionPj) ) 
         		return true;
         }
         else if(sentidoEntidad == Personaje.sentidoAbajo) {
         	Posicion derechaAbajoBloque = new Posicion(proximaPos.posicionEsquinaAbajoDerecha().getY() / 25 , proximaPos.posicionEsquinaAbajoDerecha().getX() / 25);
-        	carlitos = grilla[derechaAbajoBloque.getX()][derechaAbajoBloque.getY()];
-        	bloque = new Rectangle(carlitos.getMiPosicion().getX(),carlitos.getMiPosicion().getY(),25,25);
-        	if(carlitos.esVisitable() == false && bloque.intersects(p) ) 
+        	bloqueNecesario = grilla[derechaAbajoBloque.getX()][derechaAbajoBloque.getY()];
+        	rectanguloBloque = new Rectangle(bloqueNecesario.getMiPosicion().getX(),bloqueNecesario.getMiPosicion().getY(),25,25);
+        	if(bloqueNecesario.esVisitable() == false && rectanguloBloque.intersects(rectanguloPosicionPj) ) 
         		return true;
         	Posicion izquierdaAbajoBloque = new Posicion(proximaPos.posicionEsquinaAbajoIzquierda().getY() / 25 , proximaPos.posicionEsquinaAbajoIzquierda().getX() / 25);
-        	carlitos = grilla[izquierdaAbajoBloque.getX()][izquierdaAbajoBloque.getY()];
-        	bloque = new Rectangle(carlitos.getMiPosicion().getX(),carlitos.getMiPosicion().getY(),25,25);
-        	if(carlitos.esVisitable() == false && bloque.intersects(p) ) 
+        	bloqueNecesario = grilla[izquierdaAbajoBloque.getX()][izquierdaAbajoBloque.getY()];
+        	rectanguloBloque = new Rectangle(bloqueNecesario.getMiPosicion().getX(),bloqueNecesario.getMiPosicion().getY(),25,25);
+        	if(bloqueNecesario.esVisitable() == false && rectanguloBloque.intersects(rectanguloPosicionPj) ) 
         		return true;
         }
         
