@@ -8,7 +8,7 @@ import gui.Ventana;
 
 public class Pinky extends Enemigo {
 	
-	private static final Posicion miSpawn = new Posicion(350, 325);
+	private static final Posicion miSpawn = new Posicion(25, 25);
 	
 	public Pinky(Juego miJuego, String[] imagenes) {
 		this.miJuego = miJuego;

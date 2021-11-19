@@ -2,6 +2,7 @@ package personajes;
 
 import entidadesLogicas.Entidad;
 import entidadesLogicas.Posicion;
+import gui.Ventana;
 
 public class ChasePinky extends ChaseIA {
 
@@ -18,18 +19,18 @@ public class ChasePinky extends ChaseIA {
 		*/ 
 		double distanciaActual;
 		if(sentidoPrincipal == Entidad.sentidoAbajo ) {
-			siguientePosicion = new Posicion(posicionPrincipal.getX() , posicionPrincipal.getY() + 4 );
+			siguientePosicion = new Posicion(posicionPrincipal.getX() , posicionPrincipal.getY() + (4 * Ventana.pixelesBloque) );
 		}
 		else if(sentidoPrincipal == Entidad.sentidoArriba) {
-			siguientePosicion = new Posicion(posicionPrincipal.getX() + 2 , posicionPrincipal.getY() - 4 );
+			siguientePosicion = new Posicion(posicionPrincipal.getX() - (2 * Ventana.pixelesBloque) , posicionPrincipal.getY() - (4 * Ventana.pixelesBloque) );
 		}
 		else if(sentidoPrincipal == Entidad.sentidoIzquierda) {
-			siguientePosicion = new Posicion(posicionPrincipal.getX() - 4, posicionPrincipal.getY() );
+			siguientePosicion = new Posicion(posicionPrincipal.getX() - (4 * Ventana.pixelesBloque), posicionPrincipal.getY() );
 		}
 		else {
-			siguientePosicion = new Posicion(posicionPrincipal.getX() + 4 , posicionPrincipal.getY() );
+			siguientePosicion = new Posicion(posicionPrincipal.getX() + (4 * Ventana.pixelesBloque) , posicionPrincipal.getY() );
 		}
-		
+		System.out.println(siguientePosicion);
 		
 		for (Posicion pos: miEnemigo.posicionesDestino()) { // Direcciones posibles de pinky
 			distanciaActual = pos.distanciaEntrePosicionesPitagoras(siguientePosicion);
