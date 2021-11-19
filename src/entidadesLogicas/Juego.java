@@ -201,26 +201,25 @@ public class Juego {
 		misEnemigos.add(miFabricaEntidades.getInky());
 		misEnemigos.add(miFabricaEntidades.getPinky());
 		misEnemigos.add(miFabricaEntidades.getClyde());
-		for(Entidad fantasmas: misEnemigos) {
-			miVentana.aparecerEntidad(fantasmas.getMiRepresentacion());
-		}
+		// FOR CORRECTO, USAR SOLO CUANDO SE TENGA LA IA DE LOS 4 FANTASMAS 
+//		for(Enemigo fantasma: misEnemigos) {
+//			miVentana.aparecerEntidad(fantasma.getMiRepresentacion());
+//			fantasma.iniciarHilo();
+//		}
 		
+//		// ESTO BORRARLO DESPUES
+		miVentana.aparecerEntidad(misEnemigos.get(0).getMiRepresentacion());
 		misEnemigos.get(0).iniciarHilo();
-		
 	}
 	
 	public void spawnearPocionBomba() {
-		Elemento aux;
-		aux = miFabricaEntidades.getPocionBomba();
-		misPociones.add(0, aux);
-		miVentana.aparecerEntidad(aux.getMiRepresentacion());
+		misPociones.add(0, miFabricaEntidades.getPocionBomba());
+		miVentana.aparecerEntidad(misPociones.get(0).getMiRepresentacion());
 	}
 	
 	public void spawnearPocionVelocidad() {
-		Elemento aux;
-		aux = miFabricaEntidades.getPocionVelocidad();
-		misPociones.add(1, aux);
-		miVentana.aparecerEntidad(aux.getMiRepresentacion());
+		misPociones.add(1, miFabricaEntidades.getPocionVelocidad());
+		miVentana.aparecerEntidad(misPociones.get(1).getMiRepresentacion());
 	}
 	
 	private void spawnearPrincipal() {
@@ -229,11 +228,8 @@ public class Juego {
 	}
 	
 	public void spawnearFruta() {
-		Elemento aux;
-		aux = miFabricaEntidades.getFruta();
-		miFruta = aux;
-		miVentana.aparecerEntidad(aux.getMiRepresentacion());// aparece el recien agregado 
-		// falta modelar todo lo relacionado al hilo de la fruta y aplicarle el nivel de estrategiaNivel
+		miFruta = miFabricaEntidades.getFruta();
+		miVentana.aparecerEntidad(miFruta.getMiRepresentacion());
 	}
 	
 	public void spawnearPacDots() {
@@ -261,6 +257,7 @@ public class Juego {
 		bloqueFruta.getListaEntidades().removeAll(bloqueFruta.getListaRemovidos());
 		bloqueFruta.limpiarListaRemovidos();
 	}
+	
 	
 	public void despawnearPocionBomba() {
 		Bloque bloquePocion = miGrilla.getBloque(PocionBomba.getMispawn().getY() / 25, PocionBomba.getMispawn().getX() / 25);
@@ -293,12 +290,6 @@ public class Juego {
 	
 	public void resetear() {
 	
-	}
-	
-	// ---------------------------------------- PLAYER->NOMBRE ------------------------------------
-	private String getNombrePlayer() {
-//		return miVentana.mostrarVentanaEpica();
-		return null;
 	}
 	
 	// ---------------------------------------- CONFIGURATION ------------------------------------

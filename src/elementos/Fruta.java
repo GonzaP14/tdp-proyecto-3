@@ -31,11 +31,6 @@ public class Fruta extends Elemento {
 	public void finPocion() {
 
 	}
-	
-	public void despawnear() {
-		miJuego.getGrilla().getBloque(miPosicion.getY() / 25 , miPosicion.getX() / 25).agregarAListaRemovidos(this);
-		miRepresentacion.desaparecer();
-	}
 
 	public static Posicion getMispawn() {
 		return miSpawn;

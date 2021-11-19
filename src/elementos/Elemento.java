@@ -9,5 +9,8 @@ public abstract class Elemento extends Entidad {
  	
 	public abstract void finPocion();
 	
-	public abstract void despawnear();
+	public void despawnear() {
+		miJuego.getGrilla().getBloque(miPosicion.getY() / 25 , miPosicion.getX() / 25).agregarAListaRemovidos(this);
+		miRepresentacion.desaparecer();
+	}
 }

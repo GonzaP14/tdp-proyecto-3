@@ -43,9 +43,4 @@ public class PowerPellet extends Elemento {
 			e.cambiarEstado(Enemigo.Chase);
 		}
 	}
-
-	@Override
-	public void despawnear() {
-		
-	}
 }
