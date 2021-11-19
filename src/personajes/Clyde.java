@@ -4,6 +4,7 @@ import entidadesGraficas.EnemigoGrafico;
 import entidadesLogicas.Entidad;
 import entidadesLogicas.Juego;
 import entidadesLogicas.Posicion;
+import gui.Ventana;
 
 public class Clyde extends Enemigo {
 	

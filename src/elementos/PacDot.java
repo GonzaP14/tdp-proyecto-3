@@ -3,6 +3,7 @@ package elementos;
 import entidadesGraficas.ElementoGrafico;
 import entidadesLogicas.Juego;
 import entidadesLogicas.Posicion;
+import gui.Ventana;
 
 public class PacDot extends Elemento {
 	private static final Posicion[] misSpawns = 
@@ -77,7 +78,7 @@ public class PacDot extends Elemento {
 		miRepresentacion = new ElementoGrafico(imagenes);
 		puntajeOtorgado = 10;
 		this.miPosicion = miPosicion;
-		miJuego.getGrilla().getBloque(miPosicion.getY() / 25 , miPosicion.getX() / 25).agregarAListaEntidades(this);
+		miJuego.getGrilla().getBloque(miPosicion.getY() / Ventana.pixelesBloque , miPosicion.getX() / Ventana.pixelesBloque).agregarAListaEntidades(this);
 	}
 
 	
@@ -90,7 +91,7 @@ public class PacDot extends Elemento {
 	public void afectar() {
 		miJuego.aumentarPuntaje(puntajeOtorgado);
 		miJuego.decrementarCantidadPacDots();
-		miJuego.getGrilla().getBloque(miPosicion.getY() / 25 , miPosicion.getX() / 25).agregarAListaRemovidos(this);
+		miJuego.getGrilla().getBloque(miPosicion.getY() / Ventana.pixelesBloque , miPosicion.getX() / Ventana.pixelesBloque).agregarAListaRemovidos(this);
 		miRepresentacion.desaparecer();
 	}
 

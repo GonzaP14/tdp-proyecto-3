@@ -3,6 +3,7 @@ package elementos;
 import entidadesGraficas.ElementoGrafico;
 import entidadesLogicas.Juego;
 import entidadesLogicas.Posicion;
+import gui.Ventana;
 import personajes.Enemigo;
 
 public class PowerPellet extends Elemento {
@@ -15,7 +16,7 @@ public class PowerPellet extends Elemento {
 		miRepresentacion = new ElementoGrafico(imagenes);
 		puntajeOtorgado = 50;
 		miPosicion = posicion;
-		miJuego.getGrilla().getBloque(miPosicion.getY() / 25 , miPosicion.getX() / 25).agregarAListaEntidades(this);
+		miJuego.getGrilla().getBloque(miPosicion.getY() / Ventana.pixelesBloque , miPosicion.getX() / Ventana.pixelesBloque).agregarAListaEntidades(this);
 	}
 
 	@Override
@@ -29,7 +30,7 @@ public class PowerPellet extends Elemento {
 		for(Enemigo e : miJuego.getMisEnemigos())
 			e.recibirEfecto(this);
 		miJuego.aumentarPuntaje(puntajeOtorgado);
-		miJuego.getGrilla().getBloque(miPosicion.getY() / 25 , miPosicion.getX() / 25).agregarAListaRemovidos(this);
+		miJuego.getGrilla().getBloque(miPosicion.getY() / Ventana.pixelesBloque , miPosicion.getX() / Ventana.pixelesBloque).agregarAListaRemovidos(this);
 		miRepresentacion.desaparecer();	
 	}
 	

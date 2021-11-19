@@ -2,9 +2,11 @@ package personajes;
 
 import elementos.PocionVelocidad;
 import entidadesGraficas.PrincipalGrafico;
+import entidadesLogicas.Bloque;
 import entidadesLogicas.Entidad;
 import entidadesLogicas.Juego;
 import entidadesLogicas.Posicion;
+import gui.Ventana;
 
 public class Principal extends Personaje {
 	
@@ -62,11 +64,17 @@ public class Principal extends Personaje {
 	}
 	
 	private void reaparecer() {
-		miPosicion = new Posicion((int) miSpawn.getX(), (int) miSpawn.getY());
+		Bloque bloqueRespawn, bloquePrevioARespawn = miJuego.getGrilla().getBloque(miPosicion.getY() / Ventana.pixelesBloque , miPosicion.getX() / Ventana.pixelesBloque);
+		miPosicion.setX(miSpawn.getX());
+		miPosicion.setY(miSpawn.getY());
 		this.miRepresentacion.aparecer(miPosicion);
 		sentidoActual = Entidad.sentidoFijo;
 		sentidoSiguiente = Entidad.sentidoFijo;
-		miJuego.getGrilla().getBloque(miPosicion.getY() / Ventana.pixelesBloque , miPosicion.getX() / Ventana.pixelesBloque).agregarAListaEntidades(this);
+		
+		bloqueRespawn = miJuego.getGrilla().getBloque(miPosicion.getY() / Ventana.pixelesBloque , miPosicion.getX() / Ventana.pixelesBloque);
+		if (bloqueRespawn != bloquePrevioARespawn) {
+			miJuego.getGrilla().getBloque(miPosicion.getY() / Ventana.pixelesBloque , miPosicion.getX() / Ventana.pixelesBloque).agregarAListaEntidades(this);
+		}
 	}
 	
 	

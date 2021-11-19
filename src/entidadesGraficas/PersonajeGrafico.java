@@ -12,18 +12,6 @@ public abstract class PersonajeGrafico extends EntidadGrafica {
 	protected ImageIcon muerto;
 	
 	public void actualizar (int i) {
-//		if (i == Entidad.sentidoDerecha) {
-//			representacionActual = sentidosEstado.get(0);
-//		}
-//		else if (i == Entidad.sentidoIzquierda) {
-//			representacionActual = sentidosEstado.get(1);
-//		}
-//		else if (i == Entidad.sentidoAbajo) {
-//			representacionActual = sentidosEstado.get(2);
-//		}
-//		else if (i == Entidad.sentidoArriba) {
-//			representacionActual = sentidosEstado.get(3);
-//		}
 		representacionActual = sentidosEstado.get(i-1);
 		setIcon(representacionActual);
 	}

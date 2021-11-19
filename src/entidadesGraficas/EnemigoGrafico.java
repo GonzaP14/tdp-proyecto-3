@@ -38,12 +38,6 @@ public class EnemigoGrafico extends PersonajeGrafico{
 		this.setIcon(representacionActual);
 	}
 
-	@Override
-	public void desaparecer() {
-		// TODO Auto-generated method stub
-		
-	}
-	
 	public void asustarse() {
 		sentidosEstado = sentidosFrightened;
 	}

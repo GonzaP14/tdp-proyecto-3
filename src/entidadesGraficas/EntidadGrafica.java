@@ -9,7 +9,6 @@ public abstract class EntidadGrafica extends JLabel {
 	
 	protected int miPrioridad;
 	protected ImageIcon representacionActual;
-	protected Posicion miPosicionLogica;
 	
 	public int getMiPrioridad() {
 		return miPrioridad;
@@ -23,7 +22,9 @@ public abstract class EntidadGrafica extends JLabel {
 	
 	public abstract void aparecer(Posicion miPosicion);
 	
-	public abstract void desaparecer();
+	public void desaparecer() {
+		this.setVisible(false);
+	}
 
 	public void asustarse() {
 		

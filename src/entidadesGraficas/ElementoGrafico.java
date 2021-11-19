@@ -35,11 +35,5 @@ public class ElementoGrafico extends EntidadGrafica {
 	public void actualizar(int sentido) {
 		representacionActual = sentidosEstado.get(sentido-1);
 		setIcon(representacionActual);
-	}
-
-	@Override
-	public void desaparecer() {
-		this.setVisible(false);
-	}
-	
+	}	
 }

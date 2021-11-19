@@ -1,6 +1,7 @@
 package elementos;
 
 import entidadesLogicas.Entidad;
+import gui.Ventana;
 
 public abstract class Elemento extends Entidad {
 	protected int puntajeOtorgado;
@@ -10,7 +11,7 @@ public abstract class Elemento extends Entidad {
 	public abstract void finPocion();
 	
 	public void despawnear() {
-		miJuego.getGrilla().getBloque(miPosicion.getY() / 25 , miPosicion.getX() / 25).agregarAListaRemovidos(this);
+		miJuego.getGrilla().getBloque(miPosicion.getY() / Ventana.pixelesBloque , miPosicion.getX() / Ventana.pixelesBloque).agregarAListaRemovidos(this);
 		miRepresentacion.desaparecer();
 	}
 }

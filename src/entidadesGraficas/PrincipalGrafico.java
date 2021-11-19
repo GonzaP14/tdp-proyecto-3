@@ -25,11 +25,4 @@ public class PrincipalGrafico extends PersonajeGrafico {
 	     miPrioridad = 2;
 	     this.setIcon(representacionActual);
 	}
-
-	@Override
-	public void desaparecer() {
-		// TODO Auto-generated method stub
-		
-	}
-
 }

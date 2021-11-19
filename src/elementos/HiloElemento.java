@@ -1,7 +1,6 @@
 package elementos;
 
 import entidadesLogicas.Juego;
-import personajes.Enemigo;
 
 public class HiloElemento extends Thread {
 	private int ticks;

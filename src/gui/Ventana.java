@@ -10,11 +10,8 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.io.BufferedInputStream;
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
-import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
@@ -27,16 +24,15 @@ import entidadesGraficas.Laberinto;
 import entidadesLogicas.DominioJuego;
 import entidadesLogicas.Entidad;
 import entidadesLogicas.Juego;
-import entidadesLogicas.Player;
-
 import java.awt.Color;
 import javax.swing.border.EmptyBorder;
 import javax.swing.JTextField;
 import javax.swing.JButton;
 
 public class Ventana extends JFrame implements KeyListener{
-
+	public static final int pixelesBloque = 25;
     private static final long serialVersionUID = 1L;
+    
     private Juego miJuego;
     private DominioJuego miDominio;
     private ArrayList<EntidadGrafica> misEntidadesGraficas;

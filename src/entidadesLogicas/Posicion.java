@@ -1,5 +1,7 @@
 package entidadesLogicas;
 
+import gui.Ventana;
+
 public class Posicion {
 	int x, y, width, height;
 	
@@ -11,7 +13,7 @@ public class Posicion {
 	}
 	
 	public Posicion(int x , int y) {
-		this(x, y, 25 , 25);
+		this(x, y, Ventana.pixelesBloque, Ventana.pixelesBloque);
 	}
 	
 	public int getX() {
@@ -70,10 +72,10 @@ public class Posicion {
 	public Posicion [] posicionesDestino() {
 		Posicion [] direcciones = new Posicion [4];
 		
-		direcciones [0] = new Posicion (x + 25, y);
-		direcciones [1] = new Posicion (x - 25, y);
-		direcciones [2] = new Posicion (x, y + 25);
-		direcciones [3] = new Posicion (x, y - 25);
+		direcciones [0] = new Posicion (x + Ventana.pixelesBloque, y);
+		direcciones [1] = new Posicion (x - Ventana.pixelesBloque, y);
+		direcciones [2] = new Posicion (x, y + Ventana.pixelesBloque);
+		direcciones [3] = new Posicion (x, y - Ventana.pixelesBloque);
 		
 		return direcciones;
 	}

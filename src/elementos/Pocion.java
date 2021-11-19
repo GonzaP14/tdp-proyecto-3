@@ -1,5 +1,7 @@
 package elementos;
 
+import gui.Ventana;
+
 public abstract class Pocion extends Elemento {
 	protected int velocidadOtorgada, puntajeOtorgado;
 	@Override
@@ -11,7 +13,7 @@ public abstract class Pocion extends Elemento {
 	public abstract void afectar();
 	
 	public void despawnear() {
-		miJuego.getGrilla().getBloque(miPosicion.getY() / 25 , miPosicion.getX() / 25).agregarAListaRemovidos(this);
+		miJuego.getGrilla().getBloque(miPosicion.getY() / Ventana.pixelesBloque , miPosicion.getX() / Ventana.pixelesBloque).agregarAListaRemovidos(this);
 		miRepresentacion.desaparecer();
 	}
 

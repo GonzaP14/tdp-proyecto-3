@@ -252,7 +252,7 @@ public class Juego {
 	}
 	
 	public void despawnearFruta() {
-		Bloque bloqueFruta = miGrilla.getBloque(Fruta.getMispawn().getY() / 25, Fruta.getMispawn().getX() / 25);
+		Bloque bloqueFruta = miGrilla.getBloque(Fruta.getMispawn().getY() / Ventana.pixelesBloque, Fruta.getMispawn().getX() / Ventana.pixelesBloque);
 		miFruta.despawnear();
 		bloqueFruta.getListaEntidades().removeAll(bloqueFruta.getListaRemovidos());
 		bloqueFruta.limpiarListaRemovidos();
@@ -260,14 +260,14 @@ public class Juego {
 	
 	
 	public void despawnearPocionBomba() {
-		Bloque bloquePocion = miGrilla.getBloque(PocionBomba.getMispawn().getY() / 25, PocionBomba.getMispawn().getX() / 25);
+		Bloque bloquePocion = miGrilla.getBloque(PocionBomba.getMispawn().getY() / Ventana.pixelesBloque, PocionBomba.getMispawn().getX() / Ventana.pixelesBloque);
 		misPociones.get(0).despawnear();
 		bloquePocion.getListaEntidades().removeAll(bloquePocion.getListaRemovidos());
 		bloquePocion.limpiarListaRemovidos();
 	}
 	
 	public void despawnearPocionVelocidad() {
-		Bloque bloquePocion = miGrilla.getBloque(PocionVelocidad.getMispawn().getY() / 25, PocionVelocidad.getMispawn().getX() / 25);
+		Bloque bloquePocion = miGrilla.getBloque(PocionVelocidad.getMispawn().getY() / Ventana.pixelesBloque, PocionVelocidad.getMispawn().getX() / Ventana.pixelesBloque);
 		misPociones.get(1).despawnear();
 		bloquePocion.getListaEntidades().removeAll(bloquePocion.getListaRemovidos());
 		bloquePocion.limpiarListaRemovidos();

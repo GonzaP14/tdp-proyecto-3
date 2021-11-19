@@ -3,6 +3,7 @@ package elementos;
 import entidadesGraficas.ElementoGrafico;
 import entidadesLogicas.Juego;
 import entidadesLogicas.Posicion;
+import gui.Ventana;
 
 public class PocionVelocidad extends Pocion {
 	private static final Posicion miSpawn = new Posicion(375, 425);//Debe ser abajo de la casa de los fantasmas
@@ -13,14 +14,14 @@ public class PocionVelocidad extends Pocion {
 		miRepresentacion = new ElementoGrafico(imagenes);
 		miRepresentacion.aparecer(miPosicion);
 		velocidadOtorgada = 12;
-		miJuego.getGrilla().getBloque(miPosicion.getY() / 25 , miPosicion.getX() / 25).agregarAListaEntidades(this);
+		miJuego.getGrilla().getBloque(miPosicion.getY() / Ventana.pixelesBloque , miPosicion.getX() / Ventana.pixelesBloque).agregarAListaEntidades(this);
 	}
 
 	@Override
 	public void afectar() {
 		iniciarTimer(new HiloElemento(miJuego, miJuego.getNivel().getDuracionPociones() , this) );
 		miJuego.getMiPersonajePrincipal().recibirEfecto(this);
-		miJuego.getGrilla().getBloque(miPosicion.getY() / 25 , miPosicion.getX() / 25).agregarAListaRemovidos(this);
+		miJuego.getGrilla().getBloque(miPosicion.getY() / Ventana.pixelesBloque , miPosicion.getX() / Ventana.pixelesBloque).agregarAListaRemovidos(this);
 		miRepresentacion.desaparecer();
 	}
 
