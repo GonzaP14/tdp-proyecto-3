@@ -9,6 +9,7 @@ import gui.Ventana;
 public class Clyde extends Enemigo {
 	
 	private static final Posicion miSpawn = new Posicion(400, 275);
+	private static final Posicion posicionScatter = new Posicion(25 , 750);
 
 	public Clyde(Juego miJuego, String[] imagenes) {
 		this.miJuego = miJuego;
@@ -17,7 +18,7 @@ public class Clyde extends Enemigo {
 		miRepresentacion.aparecer(miPosicion);
 		miJuego.getGrilla().getBloque(miPosicion.getY() / Ventana.pixelesBloque , miPosicion.getX() / Ventana.pixelesBloque).agregarAListaEntidades(this);
 		crearEstados();
-		indiceEstado = Chase;
+		indiceEstado = Scatter;
 		estadoActual = estados[indiceEstado];
 		velocidadActual=miJuego.getNivel().getVelocidadEnemigos();
 		crearHilo(this);
@@ -42,5 +43,10 @@ public class Clyde extends Enemigo {
 	@Override
 	public Posicion getSpawn() {
 		return miSpawn;
+	}
+
+	@Override
+	public Posicion getPosicionScatter() {
+		return posicionScatter;
 	}
 }

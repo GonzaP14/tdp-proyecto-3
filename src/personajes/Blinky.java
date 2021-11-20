@@ -9,6 +9,8 @@ import gui.Ventana;
 public class Blinky extends Enemigo {
 	
 	private static final Posicion miSpawn = new Posicion(350, 275);
+	private static final Posicion posicionScatter = new Posicion(675 , -75);
+	
 	
 	public Blinky(Juego miJuego, String[] imagenes) {
 		this.miJuego = miJuego; 
@@ -17,7 +19,7 @@ public class Blinky extends Enemigo {
 		miRepresentacion.aparecer(miPosicion);
 		miJuego.getGrilla().getBloque(miPosicion.getY() / Ventana.pixelesBloque , miPosicion.getX() / Ventana.pixelesBloque).agregarAListaEntidades(this);
 		crearEstados();
-		indiceEstado = Chase;
+		indiceEstado = Scatter;
 		estadoActual = estados[indiceEstado];
 		velocidadActual=miJuego.getNivel().getVelocidadEnemigos();
 		crearHilo(this);
@@ -53,5 +55,9 @@ public class Blinky extends Enemigo {
 	public Posicion getSpawn() {
 		return miSpawn;
 	}
-	
+
+	@Override
+	public Posicion getPosicionScatter() {
+		return posicionScatter;
+	}
 }

@@ -26,7 +26,7 @@ public class Frightened implements EstadoEnemigo {
 				toReturn = pos;
 			}
 		}
-		
+		System.out.println(toReturn);
 		return toReturn;		
 	}
 

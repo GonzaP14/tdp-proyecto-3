@@ -114,7 +114,7 @@ public abstract class Enemigo extends Personaje {
 	}
 	
 	protected EstadoEnemigo crearEstadoScatter() {
-		EstadoEnemigo scatter = new Frightened();
+		EstadoEnemigo scatter = new Scatter(this , this.getPosicionScatter());
 		scatter.setEnemigo(this);
 		scatter.setPosicionObjetivo(miJuego.getMiPersonajePrincipal().getPosicion());
 		
@@ -201,5 +201,7 @@ public abstract class Enemigo extends Personaje {
 	}
 	
 	public abstract Posicion getSpawn();
+	
+	public abstract Posicion getPosicionScatter();
 	
 }

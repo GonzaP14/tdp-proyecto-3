@@ -9,6 +9,7 @@ import gui.Ventana;
 public class Pinky extends Enemigo {
 	
 	private static final Posicion miSpawn = new Posicion(25, 25);
+	private static final Posicion posicionScatter = new Posicion(25 , -75);
 	
 	public Pinky(Juego miJuego, String[] imagenes) {
 		this.miJuego = miJuego;
@@ -17,7 +18,7 @@ public class Pinky extends Enemigo {
 		miRepresentacion.aparecer(miPosicion);
 		miJuego.getGrilla().getBloque(miPosicion.getY() / Ventana.pixelesBloque , miPosicion.getX() / Ventana.pixelesBloque).agregarAListaEntidades(this);
 		crearEstados();
-		indiceEstado = Chase;
+		indiceEstado = Scatter;
 		estadoActual = estados[indiceEstado];
 		velocidadActual=miJuego.getNivel().getVelocidadEnemigos();
 		crearHilo(this);
@@ -52,6 +53,11 @@ public class Pinky extends Enemigo {
 
 	public Posicion getSpawn() {
 		return miSpawn;
+	}
+
+	@Override
+	public Posicion getPosicionScatter() {
+		return posicionScatter;
 	}
 	
 }
