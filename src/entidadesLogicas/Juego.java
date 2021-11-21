@@ -4,15 +4,15 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 import java.util.Properties;
 import audio.Audio;
 import elementos.Elemento;
-import elementos.Fruta;
 import elementos.PacDot;
-import elementos.PocionBomba;
-import elementos.PocionVelocidad;
 import elementos.PowerPellet;
 import gui.Ventana;
+import launcher.Launcher;
 import personajes.Enemigo;
 import personajes.Personaje;
 import personajes.Principal;
@@ -24,7 +24,7 @@ public class Juego {
 	// Atributos de instancia 
 	private boolean gameOver, estaPausado;
 	private int vidasActuales;
-	private Object objetoPausa;
+	private static final Object objetoReloj = new Object();
 	private FabricaEntidades miFabricaEntidades;
 	private Reloj miReloj;
 	private Player miPlayer;
@@ -32,29 +32,32 @@ public class Juego {
 	private Audio miAudio;
 	private Ventana miVentana;
 	private Grilla miGrilla;
-	private ArrayList<Enemigo>  misEnemigos;
+	private List<Enemigo>  misEnemigos;
 	private Principal miPersonajePrincipal;
-	private BuilderNivel miBuilder;
 	private Nivel miNivel;
-	private ArrayList<Elemento> misPociones;
+	private List<Elemento> misPociones, misPacDots, misPowerPellets;
 	private Elemento miFruta;
 	public static Properties configuration;
-	private int cantidadPacDotsRestantes , cantidadFantasmasComidos;
+	private int cantidadFantasmasComidos;
 	private DominioJuego miDominio;
 	
 	// ---------------------------------------- CONSTRUCTOR ------------------------------------
 	public Juego(DominioJuego dominio) {
 		this.miDominio = dominio;
 		miFabricaEntidades = new FabricaGeneral(this, miDominio);
-		miPlayer=new Player();
+		miPlayer = new Player();
 		gameOver = false;
 		miGrilla = new Grilla();
-		miAudio= new Audio(miDominio);
-		cantidadPacDotsRestantes = 0;
-		misEnemigos = new ArrayList<Enemigo>();
+		miAudio = new Audio(miDominio);
 		cantidadFantasmasComidos = 0;
 		vidasActuales = 3;
-		misPociones = new ArrayList<Elemento>();
+		estaPausado = false;
+		
+		misEnemigos = Collections.synchronizedList(new ArrayList<Enemigo>());
+		misPociones = Collections.synchronizedList(new ArrayList<Elemento>());
+		misPacDots = Collections.synchronizedList(new ArrayList<Elemento>());
+		misPowerPellets = Collections.synchronizedList(new ArrayList<Elemento>());
+		
 		miLeaderboard = new Leaderboard();
 		loadConfiguration();
 	}
@@ -68,12 +71,16 @@ public class Juego {
 		return miDominio;
 	}
 
-	public Object getObjetoPausa() {
-		return objetoPausa;
+	public Object getObjetoReloj() {
+		return objetoReloj;
 	}
 
 	public boolean estaPausado() {
 		return estaPausado;
+	}
+	
+	public List<Elemento> getMisPacDots() {
+		return misPacDots;
 	}
 	
 	public Grilla getGrilla() {
@@ -91,10 +98,6 @@ public class Juego {
 	public Player getPlayer() {
 		return miPlayer;
 	}
-	
-	public int getCantidadPacDotsRestantes() {
-		return cantidadPacDotsRestantes;
-	}
 
 	public int getCantidadFantasmasComidos() {
 		return cantidadFantasmasComidos;
@@ -105,7 +108,7 @@ public class Juego {
 	}
 
 	
-	public ArrayList<Enemigo> getMisEnemigos() {
+	public List<Enemigo> getMisEnemigos() {
 		return misEnemigos;
 	}
 	
@@ -120,11 +123,6 @@ public class Juego {
 	// ----------------------------------------       SETTERS      -----------------------------------
 	public void setMiVentana(Ventana miVentana) {
 		this.miVentana = miVentana;
-	}
-	
-	public void setBuilder(BuilderNivel builder) {
-		this.miBuilder = builder;
-		this.miNivel = miBuilder.getProduct();
 	}
 	
 	public void setCantidadFantasmasComidos(int cantidadFantasmasComidos) {
@@ -166,10 +164,22 @@ public class Juego {
         miAudio.iniciarMusica();
     }
 	
-	public void decrementarCantidadPacDots() {
-        cantidadPacDotsRestantes--;
-    }
-	
+	public void procesarPuntaje(String nombre) {
+		miPlayer.setNombre(nombre);
+		miLeaderboard.addPlayer(miPlayer);
+	}
+
+	public void removerPacDot(Elemento pacDotARemover) {
+		misPacDots.remove(pacDotARemover);
+		if (misPacDots.size() == 0) {
+			if (miNivel.getNivelActual() == 2) {
+				congratulations();
+			}
+			else {
+				Launcher.pasarNivel();
+			}
+		}
+	}
 	//
 	
 	// ---------------------------------------- MOVIMIENTO ------------------------------------
@@ -205,7 +215,6 @@ public class Juego {
 			miVentana.aparecerEntidad(fantasma.getMiRepresentacion());
 			fantasma.iniciarHilo();
 		}
-		
 	}
 	
 	public void spawnearPocionBomba() {
@@ -228,45 +237,54 @@ public class Juego {
 		miVentana.aparecerEntidad(miFruta.getMiRepresentacion());
 	}
 	
-	public void spawnearPacDots() {
-		Elemento aux;
+	private void spawnearPacDots() {
+		Elemento nuevoPacDot;
 		for (Posicion spawn : PacDot.getMisSpawns()) {
-			cantidadPacDotsRestantes++;
-			aux = miFabricaEntidades.getPacDot(spawn);
-			aux.getMiRepresentacion().aparecer(spawn);
-			miVentana.aparecerEntidad(aux.getMiRepresentacion()); // aparece el recien agregado
+			nuevoPacDot = miFabricaEntidades.getPacDot(spawn);
+			misPacDots.add(nuevoPacDot);
+			nuevoPacDot.getMiRepresentacion().aparecer(spawn);
+			miVentana.aparecerEntidad(nuevoPacDot.getMiRepresentacion()); // aparece el recien agregado
 		}
 	}
 	
-	public void spawnearPowerPellets() {
+	private void spawnearPowerPellets() {
 		Elemento aux;
 		for (Posicion spawn : PowerPellet.getMisSpawns()) {
 			aux = miFabricaEntidades.getPowerPellet(spawn);
+			misPowerPellets.add(aux);
 			aux.getMiRepresentacion().aparecer(spawn);
 			miVentana.aparecerEntidad(aux.getMiRepresentacion()); // aparece el recien agregado
 		}
 	}
 	
+	
+	
 	public void despawnearFruta() {
-		Bloque bloqueFruta = miGrilla.getBloque(Fruta.getMispawn().getY() / Ventana.pixelesBloque, Fruta.getMispawn().getX() / Ventana.pixelesBloque);
 		miFruta.despawnear();
-		bloqueFruta.getListaEntidades().removeAll(bloqueFruta.getListaRemovidos());
-		bloqueFruta.limpiarListaRemovidos();
+		miGrilla.getBloque(miFruta.getPosicion().getY() / Ventana.pixelesBloque, miFruta.getPosicion().getX() / Ventana.pixelesBloque).agregarAListaRemovidos(miFruta);
+		miGrilla.getBloque(miFruta.getPosicion().getY() / Ventana.pixelesBloque, miFruta.getPosicion().getX() / Ventana.pixelesBloque).getListaEntidades().removeAll(miGrilla.getBloque(miFruta.getPosicion().getY() / Ventana.pixelesBloque, miFruta.getPosicion().getX() / Ventana.pixelesBloque).getListaRemovidos());
+		miGrilla.getBloque(miFruta.getPosicion().getY() / Ventana.pixelesBloque, miFruta.getPosicion().getX() / Ventana.pixelesBloque).limpiarListaRemovidos();
 	}
 	
 	
 	public void despawnearPocionBomba() {
-		Bloque bloquePocion = miGrilla.getBloque(PocionBomba.getMispawn().getY() / Ventana.pixelesBloque, PocionBomba.getMispawn().getX() / Ventana.pixelesBloque);
 		misPociones.get(0).despawnear();
-		bloquePocion.getListaEntidades().removeAll(bloquePocion.getListaRemovidos());
-		bloquePocion.limpiarListaRemovidos();
+		miGrilla.getBloque(misPociones.get(0).getPosicion().getY() / Ventana.pixelesBloque, misPociones.get(0).getPosicion().getX() / Ventana.pixelesBloque).agregarAListaRemovidos(misPociones.get(0));
+		miGrilla.getBloque(misPociones.get(0).getPosicion().getY() / Ventana.pixelesBloque, misPociones.get(0).getPosicion().getX() / Ventana.pixelesBloque).getListaEntidades().removeAll(miGrilla.getBloque(misPociones.get(0).getPosicion().getY() / Ventana.pixelesBloque, misPociones.get(0).getPosicion().getX() / Ventana.pixelesBloque).getListaRemovidos());
+		miGrilla.getBloque(misPociones.get(0).getPosicion().getY() / Ventana.pixelesBloque, misPociones.get(0).getPosicion().getX() / Ventana.pixelesBloque).limpiarListaRemovidos();
 	}
 	
 	public void despawnearPocionVelocidad() {
-		Bloque bloquePocion = miGrilla.getBloque(PocionVelocidad.getMispawn().getY() / Ventana.pixelesBloque, PocionVelocidad.getMispawn().getX() / Ventana.pixelesBloque);
 		misPociones.get(1).despawnear();
-		bloquePocion.getListaEntidades().removeAll(bloquePocion.getListaRemovidos());
-		bloquePocion.limpiarListaRemovidos();
+		miGrilla.getBloque(misPociones.get(1).getPosicion().getY() / Ventana.pixelesBloque, misPociones.get(1).getPosicion().getX() / Ventana.pixelesBloque).agregarAListaRemovidos(misPociones.get(1));
+		miGrilla.getBloque(misPociones.get(1).getPosicion().getY() / Ventana.pixelesBloque, misPociones.get(1).getPosicion().getX() / Ventana.pixelesBloque).getListaEntidades().removeAll(miGrilla.getBloque(misPociones.get(1).getPosicion().getY() / Ventana.pixelesBloque, misPociones.get(1).getPosicion().getX() / Ventana.pixelesBloque).getListaRemovidos());
+		miGrilla.getBloque(misPociones.get(1).getPosicion().getY() / Ventana.pixelesBloque, misPociones.get(1).getPosicion().getX() / Ventana.pixelesBloque).limpiarListaRemovidos();
+	}
+	
+	public void respawnearEnemigos() {
+		for (Enemigo enemigo : misEnemigos) {
+			enemigo.reaparecer();
+		}
 	}
  	
 	// ---------------------------------------- INICIO & RESET ------------------------------------
@@ -288,6 +306,61 @@ public class Juego {
 	
 	}
 	
+
+	public void reiniciarNivel() {
+		pausarDespausarRelojes();
+		
+//		desaparecerEntidadesRestantes();
+		
+//		miVentana.pasarNivel();
+		misEnemigos = Collections.synchronizedList(new ArrayList<Enemigo>());
+		misPociones = Collections.synchronizedList(new ArrayList<Elemento>());
+		misPacDots = Collections.synchronizedList(new ArrayList<Elemento>());
+		misPowerPellets = Collections.synchronizedList(new ArrayList<Elemento>());
+		
+		spawnearPrincipal();
+		spawnearPacDots();
+		spawnearPowerPellets();
+		spawnearFantasmas();
+		
+		pausarDespausarRelojes();
+	}
+	
+	public void setNivel(Nivel nivel) {
+		this.miNivel = nivel;
+	}
+
+	private void desaparecerEntidadesRestantes() {
+		miPersonajePrincipal.getMiRepresentacion().desaparecer();
+		for (Enemigo enemigo : misEnemigos) {
+			enemigo.getMiRepresentacion().desaparecer();
+		}
+		for (Elemento pacDot : misPacDots) {
+			pacDot.getMiRepresentacion().desaparecer();
+		}
+		for (Elemento powerPellet : misPowerPellets) {
+			powerPellet.getMiRepresentacion().desaparecer();
+		}
+		for (Elemento pocion : misPociones) {
+			pocion.getMiRepresentacion().desaparecer();
+		}
+		if (miFruta != null) {
+			miFruta.getMiRepresentacion().desaparecer();
+		}
+	}
+
+	public void pausarDespausarRelojes() {
+		if (!estaPausado) {
+			estaPausado = true;
+		}
+		else {
+			synchronized (objetoReloj) {
+				estaPausado = false;
+				objetoReloj.notifyAll();
+			}
+		}
+	}
+	
 	// ---------------------------------------- CONFIGURATION ------------------------------------
 	private static void loadConfiguration() {
 		try (InputStream input = new FileInputStream("./configuration.properties")) {
@@ -297,10 +370,5 @@ public class Juego {
 		catch (IOException ex) {
             ex.printStackTrace();
         }
-	}
-	
-	public void procesarPuntaje(String nombre) {
-		miPlayer.setNombre(nombre);
-		miLeaderboard.addPlayer(miPlayer);
 	}
 }

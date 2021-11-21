@@ -6,11 +6,11 @@ import entidadesLogicas.Posicion;
 import gui.Ventana;
 
 public class PocionVelocidad extends Pocion {
-	private static final Posicion miSpawn = new Posicion(375, 425);//Debe ser abajo de la casa de los fantasmas
 	
 	public PocionVelocidad(Juego miJuego, String[] imagenes) {
 		this.miJuego = miJuego;
-		miPosicion = new Posicion((int) miSpawn.getX(), (int) miSpawn.getY());
+		miSpawn = new Posicion(375, 425);
+		miPosicion = new Posicion(miSpawn.getX(), miSpawn.getY());
 		miRepresentacion = new ElementoGrafico(imagenes);
 		miRepresentacion.aparecer(miPosicion);
 		velocidadOtorgada = 12;
@@ -21,8 +21,8 @@ public class PocionVelocidad extends Pocion {
 	public void afectar() {
 		iniciarTimer(new HiloElemento(miJuego, miJuego.getNivel().getDuracionPociones() , this) );
 		miJuego.getMiPersonajePrincipal().recibirEfecto(this);
-		miJuego.getGrilla().getBloque(miPosicion.getY() / Ventana.pixelesBloque , miPosicion.getX() / Ventana.pixelesBloque).agregarAListaRemovidos(this);
 		miRepresentacion.desaparecer();
+		miJuego.getGrilla().getBloque(miPosicion.getY() / Ventana.pixelesBloque , miPosicion.getX() / Ventana.pixelesBloque).agregarAListaRemovidos(this);
 	}
 
 	@Override
@@ -30,11 +30,4 @@ public class PocionVelocidad extends Pocion {
 		miJuego.getMiPersonajePrincipal().setVelocidadActual(10);
 		miJuego.getMiReloj().setVelocidadTickeo(10);
 	}
-
-	public static Posicion getMispawn() {
-		return miSpawn;
-	}
-	
-	
-	
 }

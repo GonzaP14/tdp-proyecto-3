@@ -2,6 +2,7 @@ package entidadesLogicas;
 
 import elementos.PocionBomba;
 import entidadesGraficas.EntidadGrafica;
+import gui.Ventana;
 
 public abstract class Entidad {
 	
@@ -10,6 +11,7 @@ public abstract class Entidad {
 	protected EntidadGrafica miRepresentacion;
 	protected Juego miJuego;
 	protected Posicion miPosicion;
+	protected Posicion miSpawn;
 	
 	// Atributos de clase
 	public static final int sentidoFijo = 0;
@@ -28,6 +30,9 @@ public abstract class Entidad {
 		return miPosicion;
 	}
 	
+	public Posicion getSpawn() {
+		return miSpawn;
+	}
 	
 	public EntidadGrafica getMiRepresentacion() {
 		return miRepresentacion;
@@ -67,4 +72,19 @@ public abstract class Entidad {
 		
 	}
 	
+	public void reaparecer() {
+		Bloque bloqueAnterior, bloqueRespawn;
+		bloqueAnterior = miJuego.getGrilla().getBloque(miPosicion.getY() / Ventana.pixelesBloque , miPosicion.getX() / Ventana.pixelesBloque);
+		
+		miPosicion.setX(miSpawn.getX());
+		miPosicion.setY(miSpawn.getY());
+		this.miRepresentacion.aparecer(miPosicion);
+		bloqueRespawn = miJuego.getGrilla().getBloque(miSpawn.getY() / Ventana.pixelesBloque , miSpawn.getX() / Ventana.pixelesBloque);
+		
+		if (bloqueAnterior != bloqueRespawn) {
+			bloqueAnterior.agregarAListaRemovidos(this);
+			bloqueRespawn.agregarAListaEntidades(this);
+		}
+		
+	}
 }

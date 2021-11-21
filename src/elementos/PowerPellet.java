@@ -11,11 +11,12 @@ public class PowerPellet extends Elemento {
 		{
 			new Posicion(650,575), new Posicion(25,575), new Posicion(650,75), new Posicion(25,75)
 		};
-	public PowerPellet(Juego miJuego, String[] imagenes, Posicion posicion) {
+	public PowerPellet(Juego miJuego, String[] imagenes, Posicion spawn) {
 		this.miJuego = miJuego;
 		miRepresentacion = new ElementoGrafico(imagenes);
 		puntajeOtorgado = 50;
-		miPosicion = posicion;
+		miSpawn = spawn;
+		miPosicion = new Posicion(miSpawn.getX(), miSpawn.getY());
 		miJuego.getGrilla().getBloque(miPosicion.getY() / Ventana.pixelesBloque , miPosicion.getX() / Ventana.pixelesBloque).agregarAListaEntidades(this);
 	}
 
@@ -30,8 +31,8 @@ public class PowerPellet extends Elemento {
 		for(Enemigo e : miJuego.getMisEnemigos())
 			e.recibirEfecto(this);
 		miJuego.aumentarPuntaje(puntajeOtorgado);
-		miJuego.getGrilla().getBloque(miPosicion.getY() / Ventana.pixelesBloque , miPosicion.getX() / Ventana.pixelesBloque).agregarAListaRemovidos(this);
 		miRepresentacion.desaparecer();	
+		miJuego.getGrilla().getBloque(miPosicion.getY() / Ventana.pixelesBloque , miPosicion.getX() / Ventana.pixelesBloque).agregarAListaRemovidos(this);
 	}
 	
 	public static Posicion[] getMisSpawns() {

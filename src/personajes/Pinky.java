@@ -1,19 +1,19 @@
 package personajes;
 
 import entidadesGraficas.EnemigoGrafico;
-import entidadesLogicas.Entidad;
 import entidadesLogicas.Juego;
 import entidadesLogicas.Posicion;
 import gui.Ventana;
 
 public class Pinky extends Enemigo {
 	
-	private static final Posicion miSpawn = new Posicion(25, 25);
 	private static final Posicion posicionScatter = new Posicion(25 , -75);
 	
+
 	public Pinky(Juego miJuego, String[] imagenes) {
 		this.miJuego = miJuego;
-		miPosicion = miSpawn;
+		miSpawn = new Posicion(25, 25);
+		miPosicion = new Posicion(miSpawn.getX(), miSpawn.getY());
 		miRepresentacion = new EnemigoGrafico(imagenes);
 		miRepresentacion.aparecer(miPosicion);
 		miJuego.getGrilla().getBloque(miPosicion.getY() / Ventana.pixelesBloque , miPosicion.getX() / Ventana.pixelesBloque).agregarAListaEntidades(this);
@@ -34,25 +34,12 @@ public class Pinky extends Enemigo {
 	}
 	
 	@Override
-	protected void reaparecer() {
-		miPosicion = new Posicion((int) miSpawn.getX(), (int) miSpawn.getY());
-		this.miRepresentacion.aparecer(miPosicion);
-		cambiarEstado(Chase);
-		miJuego.getGrilla().getBloque(miPosicion.getY() / Ventana.pixelesBloque , miPosicion.getX() / Ventana.pixelesBloque).agregarAListaEntidades(this);
-	}
-	
-	@Override
 	protected EstadoEnemigo crearEstadoEaten() {
 		EstadoEnemigo eaten = new Eaten();
 		eaten.setEnemigo(this);
 		eaten.setPosicionObjetivo(miSpawn);
 		
 		return eaten;
-	}
-
-
-	public Posicion getSpawn() {
-		return miSpawn;
 	}
 
 	@Override

@@ -1,5 +1,6 @@
 package personajes;
 
+import entidadesLogicas.Bloque;
 import entidadesLogicas.Entidad;
 import entidadesLogicas.Posicion;
 
@@ -34,10 +35,15 @@ public abstract class Personaje extends Entidad {
 	}
 	
 	private void traslacionEfectiva(Posicion nuevaPosicion) {
-		miJuego.getGrilla().getBloque(miPosicion.getY() / 25 , miPosicion.getX() / 25).borrarDeListaDeEntidades(this);
+		Bloque bloqueAnterior = miJuego.getGrilla().getBloque(miPosicion.getY() / 25 , miPosicion.getX() / 25);
+		Bloque bloqueNuevo = miJuego.getGrilla().getBloque(nuevaPosicion.getY() / 25, nuevaPosicion.getX() / 25);
+		
+		if (bloqueAnterior != bloqueNuevo) {
+			miJuego.getGrilla().getBloque(miPosicion.getY() / 25 , miPosicion.getX() / 25).borrarDeListaDeEntidades(this);
+			miJuego.getGrilla().getBloque(nuevaPosicion.getY() / 25 , nuevaPosicion.getX() / 25).agregarAListaEntidades(this);
+		}
 		miPosicion = nuevaPosicion;
 		miRepresentacion.setLocation( miPosicion.getX() ,  miPosicion.getY());
-		miJuego.getGrilla().getBloque(miPosicion.getY() / 25 , miPosicion.getX() / 25).agregarAListaEntidades(this);
 	}
 	
 	private Posicion calcularProximaPosicionX(int sentidoLigado) {
@@ -132,10 +138,6 @@ public abstract class Personaje extends Entidad {
 	}
 	
 	public abstract void checkeoColisionesPersonaje();
-	
-	public void morir() {
-		
-	}
 }
 
 

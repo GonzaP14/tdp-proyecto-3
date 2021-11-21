@@ -25,10 +25,10 @@ public class HiloEnemigo extends Thread {
 				}
 				
 			} else {
-				synchronized(miJuego.getObjetoPausa()) {
+				synchronized(miJuego.getObjetoReloj()) {
                     while (miJuego.estaPausado()) {
                     	try {
-                    		miJuego.getObjetoPausa().wait();
+                    		miJuego.getObjetoReloj().wait();
                         }
                     	catch(InterruptedException e) {
                     		e.printStackTrace();
@@ -43,7 +43,5 @@ public class HiloEnemigo extends Thread {
 	public void setVelocidadTickeo(int velocidadTickeo) {
 		this.velocidadTickeo = velocidadTickeo;
 	}
-	
-	
 	
 }

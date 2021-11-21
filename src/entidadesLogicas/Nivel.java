@@ -653,6 +653,10 @@ public class Nivel {
 		this.velocidadEnemigos = v;
 	}
 	
+	public int getNivelActual() {
+		return nivelActual;
+	}
+	
 	public int getDuracionPowerPellet() {
 		return duracionPowerPellet;
 	}

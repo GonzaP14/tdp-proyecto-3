@@ -37,10 +37,11 @@ public class Reloj extends Thread{
 				}
 	        }
 	        else {
-	        	synchronized(miJuego.getObjetoPausa()) {
+	        	synchronized(miJuego.getObjetoReloj()) {
                     while (miJuego.estaPausado()) {
+                    	
                     	try {
-                    		miJuego.getObjetoPausa().wait();
+                    		miJuego.getObjetoReloj().wait();
                         }
                     	catch(InterruptedException e) {
                     		e.printStackTrace();

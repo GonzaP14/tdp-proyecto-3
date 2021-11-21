@@ -3,6 +3,7 @@ package launcher;
 import entidadesLogicas.DominioJuego;
 import entidadesLogicas.BuilderNivel;
 import entidadesLogicas.Juego;
+import entidadesLogicas.Nivel;
 import gui.SplashScreen;
 import gui.Ventana;
 
@@ -19,7 +20,7 @@ public class Launcher {
 		miSplashScreen = new SplashScreen();
 		miSplashScreen.setBounds(100, 0, 1500, 500);
 		miSplashScreen.setVisible(true);
-		nivelActual = 1;
+		nivelActual = 0;
 		dominioJuego = miSplashScreen.getDominio();
 		if (dominioJuego != null) { // si el dominio es nulo, se cerro la splashscreen desde el exit button sin seleccionar un dominio
 			iniciarJuego(dominioJuego);
@@ -28,11 +29,16 @@ public class Launcher {
 		}
 	}
 	
+	private void iniciarJuego(Nivel miNivel, Juego juego) {
+		
+	}
+	
 	private static void construirNivel() {
+		nivelActual++;
 		miNivel = new BuilderNivel();
+		miNivel.setNivelActual(nivelActual);
 		miNivel.setGrilla(miJuego.getGrilla());
 		miNivel.setDominio(miJuego.getDominio());
-		miNivel.setNivelActual(nivelActual);
 		
 		if (nivelActual == 1) { 
 			construirNivel1();
@@ -45,6 +51,11 @@ public class Launcher {
 		}
 		
 		miJuego.setBuilder(miNivel);
+	}
+	
+	public static void pasarNivel() {
+		construirNivel();
+		miJuego.reiniciarNivel();
 	}
 
 	public static void iniciarJuego(DominioJuego dominio) {

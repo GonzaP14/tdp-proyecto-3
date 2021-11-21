@@ -1,6 +1,9 @@
 package entidadesLogicas;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+
 import entidadesGraficas.BloqueGrafico;
 
 public class Bloque {
@@ -8,14 +11,14 @@ public class Bloque {
 	private Posicion miPosicion;
 	private boolean puedeVisitarse;
 	private BloqueGrafico miRepresentacion;
-	private ArrayList<Entidad> listaEntidades,listaRemovidos;
+	private List<Entidad> listaEntidades, listaRemovidos;
 
 	public Bloque(int x , int y , boolean puedeVisitarse ) {
 		miPosicion = new Posicion(x , y);
 		this.puedeVisitarse = puedeVisitarse;
 		miRepresentacion = new BloqueGrafico();
-		listaEntidades = new ArrayList<Entidad>();
-		listaRemovidos = new ArrayList<Entidad>();
+		listaEntidades = Collections.synchronizedList(new ArrayList<Entidad>());
+		listaRemovidos = Collections.synchronizedList(new ArrayList<Entidad>());
 	}
 	
 
@@ -25,6 +28,14 @@ public class Bloque {
 	
 	public void borrarDeListaDeEntidades(Entidad entidadAAgregar) {
 		listaEntidades.remove(entidadAAgregar);
+	}
+	
+	public void agregarAListaRemovidos(Entidad entidadABorrar) {	
+		listaRemovidos.add(entidadABorrar);
+	}
+	
+	public void limpiarListaRemovidos() {
+		listaRemovidos.clear();
 	}
 
 	public Posicion getMiPosicion() {
@@ -51,22 +62,12 @@ public class Bloque {
 		this.miRepresentacion = miRepresentacion;
 	}
 
-
-	public ArrayList<Entidad> getListaEntidades() {
+	public List<Entidad> getListaEntidades() {
 		return listaEntidades;
 	}
 
 
-	public ArrayList<Entidad> getListaRemovidos() {
+	public List<Entidad>  getListaRemovidos() {
 		return listaRemovidos;
 	}
-	
-	public void agregarAListaRemovidos(Entidad entidadABorrar ) {	
-		listaRemovidos.add(entidadABorrar);
-	}
-	
-	public void limpiarListaRemovidos() {
-		listaRemovidos = new ArrayList<Entidad>();
-	}
-	
 }

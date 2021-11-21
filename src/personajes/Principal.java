@@ -13,7 +13,6 @@ public class Principal extends Personaje {
 	protected static Principal original;
 	protected static final int Vivo = 1;
 	protected static final int Muerto = 2;
-	private static final Posicion miSpawn = new Posicion(350, 575);
 	
 	protected int estadoActual;
 	
@@ -21,7 +20,8 @@ public class Principal extends Personaje {
 		miRepresentacion = new PrincipalGrafico(imagenes);
 		estadoActual = Vivo;
 		this.miJuego = miJuego;
-		miPosicion = new Posicion((int) miSpawn.getX(), (int) miSpawn.getY());
+		miSpawn = new Posicion(350, 575);
+		miPosicion = new Posicion(miSpawn.getX(), miSpawn.getY());
 		this.miRepresentacion.aparecer(miPosicion);
 		sentidoActual = Entidad.sentidoFijo;
 		sentidoSiguiente = Entidad.sentidoFijo;
@@ -54,7 +54,6 @@ public class Principal extends Personaje {
 
 	public void recibirEfecto(Enemigo e) {
 		miJuego.perderVida();
-		miJuego.getGrilla().getBloque(miPosicion.getY() / Ventana.pixelesBloque , miPosicion.getX() / Ventana.pixelesBloque).agregarAListaRemovidos(this);
 		reaparecer();
 	}
 
@@ -62,21 +61,26 @@ public class Principal extends Personaje {
 		velocidadActual = p.getVelocidadOtorgada();
 		miJuego.getMiReloj().setVelocidadTickeo(p.getVelocidadOtorgada());
 	}
-	
-	private void reaparecer() {
-		Bloque bloqueRespawn, bloquePrevioARespawn = miJuego.getGrilla().getBloque(miPosicion.getY() / Ventana.pixelesBloque , miPosicion.getX() / Ventana.pixelesBloque);
-		miPosicion.setX(miSpawn.getX());
-		miPosicion.setY(miSpawn.getY());
-		this.miRepresentacion.aparecer(miPosicion);
+
+	public void reaparecer() {
+//		miJuego.pausarDespausarRelojes();
+//		Bloque previoARespawn = miJuego.getGrilla().getBloque(miPosicion.getY() / 25, miPosicion.getX() / 25);
+//		System.out.println(previoARespawn);
+//		System.out.println(" bloque moneda antes de respawn: " + previoARespawn.getListaEntidades() + "\n \n");
+		
+		super.reaparecer();
+		miJuego.respawnearEnemigos();
+		
 		sentidoActual = Entidad.sentidoFijo;
 		sentidoSiguiente = Entidad.sentidoFijo;
-		
-		bloqueRespawn = miJuego.getGrilla().getBloque(miPosicion.getY() / Ventana.pixelesBloque , miPosicion.getX() / Ventana.pixelesBloque);
-		if (bloqueRespawn != bloquePrevioARespawn) {
-			miJuego.getGrilla().getBloque(miPosicion.getY() / Ventana.pixelesBloque , miPosicion.getX() / Ventana.pixelesBloque).agregarAListaEntidades(this);
-		}
+//		System.out.println(previoARespawn);
+//		System.out.println(" bloque moneda dsp de respawn: " + previoARespawn.getListaEntidades() + "\n\n");
+//		
+//		
+//		Bloque dspDeRespawn = miJuego.getGrilla().getBloque(miPosicion.getY() / 25, miPosicion.getX() / 25);
+//		System.out.println(dspDeRespawn);
+//		System.out.println(" bloque mario dsp de respawn: " + dspDeRespawn.getListaEntidades() + "\n \n");
+//		miJuego.pausarDespausarRelojes();
 	}
-	
-	
 	
 }

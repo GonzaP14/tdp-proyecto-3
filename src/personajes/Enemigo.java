@@ -15,7 +15,6 @@ public abstract class Enemigo extends Personaje {
 	protected int indiceEstado;
 	protected int tiempoEstado;
 	private static final int puntajeOtorgado = 200;
-	
 	public static final int Frightened = 0;
 	public static final int Chase = 1;
 	public static final int Eaten = 2;
@@ -26,12 +25,11 @@ public abstract class Enemigo extends Personaje {
 		if(indiceEstado == Frightened) {
 			miJuego.setCantidadFantasmasComidos(miJuego.getCantidadFantasmasComidos() + 1);
 			miJuego.aumentarPuntaje(200 * miJuego.getCantidadFantasmasComidos());
+			// morir()
 		}
 		else {
 			miJuego.getMiPersonajePrincipal().recibirEfecto(this);
 		}
-		miJuego.getGrilla().getBloque(miPosicion.getY() / 25 , miPosicion.getX() / 25).agregarAListaRemovidos(this);
-		reaparecer();
 	}
 
 
@@ -108,7 +106,7 @@ public abstract class Enemigo extends Personaje {
 	protected EstadoEnemigo crearEstadoEaten() {
 		EstadoEnemigo eaten = new Eaten();
 		eaten.setEnemigo(this);
-		eaten.setPosicionObjetivo(getSpawn());
+		eaten.setPosicionObjetivo(miSpawn);
 		
 		return eaten;
 	}
@@ -192,16 +190,16 @@ public abstract class Enemigo extends Personaje {
 		}
 		return contrarios;
 	}
-	
-	protected abstract void reaparecer();
-
 
 	public HiloEnemigo getMiHilo() {
 		return miHilo;
 	}
-	
-	public abstract Posicion getSpawn();
+
 	
 	public abstract Posicion getPosicionScatter();
-	
+
+	public void reaparecer() {
+		super.reaparecer();
+		cambiarEstado(Chase);
+	}	
 }

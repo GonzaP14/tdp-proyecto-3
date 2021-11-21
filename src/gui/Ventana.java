@@ -74,6 +74,11 @@ public class Ventana extends JFrame implements KeyListener{
 		miJuego.iniciarJuego();
     }
     
+    public void pasarNivel() {
+    	misEntidadesGraficas = new ArrayList<EntidadGrafica>();
+    	miLaberinto = miJuego.getNivel().getLaberinto();
+    }
+    
     private void initialize() {
     	try {
 			myStream = new BufferedInputStream(new FileInputStream("src/fuentes/Pixeled.ttf"));

@@ -1,19 +1,18 @@
 package personajes;
 
 import entidadesGraficas.EnemigoGrafico;
-import entidadesLogicas.Entidad;
 import entidadesLogicas.Juego;
 import entidadesLogicas.Posicion;
 import gui.Ventana;
 
 public class Clyde extends Enemigo {
 	
-	private static final Posicion miSpawn = new Posicion(400, 275);
 	private static final Posicion posicionScatter = new Posicion(25 , 750);
 
 	public Clyde(Juego miJuego, String[] imagenes) {
 		this.miJuego = miJuego;
-		miPosicion = miSpawn;
+		miSpawn = new Posicion(400, 275);
+		miPosicion = new Posicion(miSpawn.getX(), miSpawn.getY());
 		miRepresentacion = new EnemigoGrafico(imagenes);
 		miRepresentacion.aparecer(miPosicion);
 		miJuego.getGrilla().getBloque(miPosicion.getY() / Ventana.pixelesBloque , miPosicion.getX() / Ventana.pixelesBloque).agregarAListaEntidades(this);
@@ -30,19 +29,6 @@ public class Clyde extends Enemigo {
 		chase.setEnemigo(this);
 		chase.setPrincipal(miJuego.getMiPersonajePrincipal());
 		return chase;
-	}
-	
-	@Override
-	protected void reaparecer() {
-		miPosicion = new Posicion((int) miSpawn.getX(), (int) miSpawn.getY());
-		this.miRepresentacion.aparecer(miPosicion);
-		cambiarEstado(Chase);
-		miJuego.getGrilla().getBloque(miPosicion.getY() / Ventana.pixelesBloque , miPosicion.getX() / Ventana.pixelesBloque).agregarAListaEntidades(this);
-	}
-
-	@Override
-	public Posicion getSpawn() {
-		return miSpawn;
 	}
 
 	@Override

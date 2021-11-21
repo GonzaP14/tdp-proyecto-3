@@ -13,7 +13,7 @@ public abstract class Pocion extends Elemento {
 	public abstract void afectar();
 	
 	public void despawnear() {
-		miJuego.getGrilla().getBloque(miPosicion.getY() / Ventana.pixelesBloque , miPosicion.getX() / Ventana.pixelesBloque).agregarAListaRemovidos(this);
+		miJuego.getGrilla().getBloque(miPosicion.getY() / Ventana.pixelesBloque , miPosicion.getX() / Ventana.pixelesBloque).borrarDeListaDeEntidades(this);
 		miRepresentacion.desaparecer();
 	}
 

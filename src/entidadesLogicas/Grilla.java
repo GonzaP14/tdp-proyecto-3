@@ -1,7 +1,6 @@
 package entidadesLogicas;
 
 import java.awt.Rectangle;
-
 import gui.Ventana;
 import personajes.Personaje;
 
@@ -87,14 +86,19 @@ public class Grilla {
 		bloqueActual = grilla[posicionActual.getY() / Ventana.pixelesBloque][posicionActual.getX() / Ventana.pixelesBloque];
 		Rectangle rectanguloPosicion = new Rectangle(posicionActual.getX() , posicionActual.getY() );
 		Rectangle rectanguloEntidadBloque ;
-		for(Entidad entidadBloque : bloqueActual.getListaEntidades() ) {
+
+		for (int i = 0; i < bloqueActual.getListaEntidades().size(); i++) {
+			Entidad entidadBloque = bloqueActual.getListaEntidades().get(i);
 			rectanguloEntidadBloque = new Rectangle(entidadBloque.getPosicion().getX() , entidadBloque.getPosicion().getY());
 			if(rectanguloEntidadBloque.intersects(rectanguloPosicion)) {
 				entidadBloque.afectar();
 			}
 		}
+		
+		System.out.println(bloqueActual.getListaRemovidos());
 		bloqueActual.getListaEntidades().removeAll(bloqueActual.getListaRemovidos());
 		bloqueActual.limpiarListaRemovidos();
+		System.out.println(bloqueActual.getListaRemovidos());
 	}
 	
 	public void resetear() {
