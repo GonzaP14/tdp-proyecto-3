@@ -2,7 +2,6 @@ package personajes;
 
 import elementos.PocionVelocidad;
 import entidadesGraficas.PrincipalGrafico;
-import entidadesLogicas.Bloque;
 import entidadesLogicas.Entidad;
 import entidadesLogicas.Juego;
 import entidadesLogicas.Posicion;
@@ -63,24 +62,11 @@ public class Principal extends Personaje {
 	}
 
 	public void reaparecer() {
-//		miJuego.pausarDespausarRelojes();
-//		Bloque previoARespawn = miJuego.getGrilla().getBloque(miPosicion.getY() / 25, miPosicion.getX() / 25);
-//		System.out.println(previoARespawn);
-//		System.out.println(" bloque moneda antes de respawn: " + previoARespawn.getListaEntidades() + "\n \n");
-		
 		super.reaparecer();
 		miJuego.respawnearEnemigos();
 		
 		sentidoActual = Entidad.sentidoFijo;
 		sentidoSiguiente = Entidad.sentidoFijo;
-//		System.out.println(previoARespawn);
-//		System.out.println(" bloque moneda dsp de respawn: " + previoARespawn.getListaEntidades() + "\n\n");
-//		
-//		
-//		Bloque dspDeRespawn = miJuego.getGrilla().getBloque(miPosicion.getY() / 25, miPosicion.getX() / 25);
-//		System.out.println(dspDeRespawn);
-//		System.out.println(" bloque mario dsp de respawn: " + dspDeRespawn.getListaEntidades() + "\n \n");
-//		miJuego.pausarDespausarRelojes();
 	}
 	
 }

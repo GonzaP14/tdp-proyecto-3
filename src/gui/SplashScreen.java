@@ -23,7 +23,9 @@ public class SplashScreen extends JDialog{
 		this.setModal(true);		
 		this.getContentPane().setLayout(null);
 		crearBotonMario();
-		crearBotonSonic();		
+		crearBotonSonic();	
+		setBounds(100, 0, 1500, 500);
+		setVisible(true);
 	}
 
 	

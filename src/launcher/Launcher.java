@@ -18,8 +18,6 @@ public class Launcher {
 	
 	public static void main(String[] args) {
 		miSplashScreen = new SplashScreen();
-		miSplashScreen.setBounds(100, 0, 1500, 500);
-		miSplashScreen.setVisible(true);
 		nivelActual = 0;
 		dominioJuego = miSplashScreen.getDominio();
 		if (dominioJuego != null) { // si el dominio es nulo, se cerro la splashscreen desde el exit button sin seleccionar un dominio
@@ -27,10 +25,6 @@ public class Launcher {
 			construirNivel();
 			iniciarVentana();
 		}
-	}
-	
-	private void iniciarJuego(Nivel miNivel, Juego juego) {
-		
 	}
 	
 	private static void construirNivel() {
@@ -50,7 +44,7 @@ public class Launcher {
 			construirNivel3();
 		}
 		
-		miJuego.setBuilder(miNivel);
+		miJuego.setNivel(miNivel.getProduct());
 	}
 	
 	public static void pasarNivel() {
@@ -66,9 +60,6 @@ public class Launcher {
 		miVentana = new Ventana(miJuego, dominioJuego);
 		miVentana.setVisible(true);
 	}
-	
-	
-	
 	
 	private static void construirNivel1() {
 		miNivel.setVelocidadEnemigos(8);

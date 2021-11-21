@@ -4,8 +4,11 @@ import java.util.ArrayList;
 
 import elementos.PocionBomba;
 import elementos.PowerPellet;
+import entidadesGraficas.EnemigoGrafico;
 import entidadesLogicas.Entidad;
+import entidadesLogicas.Juego;
 import entidadesLogicas.Posicion;
+import gui.Ventana;
 
 public abstract class Enemigo extends Personaje {
 	
@@ -32,6 +35,19 @@ public abstract class Enemigo extends Personaje {
 		}
 	}
 
+	protected void crearEnemigo(Juego miJuego, Posicion spawn, String[] imagenes) {
+		this.miJuego = miJuego;
+		miSpawn = spawn;
+		miPosicion = new Posicion(miSpawn.getX(), miSpawn.getY());
+		miRepresentacion = new EnemigoGrafico(imagenes);
+		miRepresentacion.aparecer(miPosicion);
+		miJuego.getGrilla().getBloque(miPosicion.getY() / Ventana.pixelesBloque , miPosicion.getX() / Ventana.pixelesBloque).agregarAListaEntidades(this);
+		crearEstados();
+		indiceEstado = Scatter;
+		estadoActual = estados[indiceEstado];
+		velocidadActual=miJuego.getNivel().getVelocidadEnemigos();
+		crearHilo(this);
+	}
 
 	public void recibirEfecto(PowerPellet p) {
 		cambiarEstado(Frightened);
@@ -88,7 +104,7 @@ public abstract class Enemigo extends Personaje {
 	protected void crearEstados() {
 		estados = new EstadoEnemigo[4];
 		estados[Frightened] = crearEstadoFrightened();
-		estados[Chase] = crearEstadoChase();
+		estados[Chase] = crearEstadoChase(crearChaseIA(), this);
 		estados[Eaten] = crearEstadoEaten();
 		estados[Scatter] = crearEstadoScatter();
 	}
@@ -100,8 +116,6 @@ public abstract class Enemigo extends Personaje {
 		
 		return frightened;
 	}
-	
-	protected abstract EstadoEnemigo crearEstadoChase();
 	
 	protected EstadoEnemigo crearEstadoEaten() {
 		EstadoEnemigo eaten = new Eaten();
@@ -119,16 +133,26 @@ public abstract class Enemigo extends Personaje {
 		return scatter;
 	}
 	
+	public EstadoEnemigo crearEstadoChase(ChaseIA chaseIA, Enemigo enemigoLigado) {
+		EstadoEnemigo chase = new Chase(chaseIA);
+		chase.setEnemigo(enemigoLigado);
+		chase.setPrincipal(miJuego.getMiPersonajePrincipal());
+		return chase;
+	}
+	
+	public abstract ChaseIA crearChaseIA();
+	
 	public void mover() {
 		Posicion destino = estadoActual.siguientePosicion();
 		int sentidoDestino = calcularSentido(miPosicion, destino);
+
 		
-    	if (this.getSentidoActual() == Entidad.sentidoFijo) {
-    		this.setSentidoActual(sentidoDestino);
-    	}
-    	else {
-    		this.setSentidoSiguiente(sentidoDestino);
-    	}
+		if (this.getSentidoActual() == Entidad.sentidoFijo) {
+            this.setSentidoActual(sentidoDestino);
+        }
+        else {
+            this.setSentidoSiguiente(sentidoDestino);
+        }
 		
 		super.mover();
 	}
@@ -201,5 +225,6 @@ public abstract class Enemigo extends Personaje {
 	public void reaparecer() {
 		super.reaparecer();
 		cambiarEstado(Chase);
-	}	
+	}
+	
 }
