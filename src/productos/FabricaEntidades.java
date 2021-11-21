@@ -20,12 +20,12 @@ public interface FabricaEntidades {
 	
 	public abstract Elemento getFruta();
 	
-	public abstract Elemento getPacDot(Posicion posicion);
+	public abstract Elemento getPacDot(Posicion p);
 	
 	public abstract Pocion getPocionBomba();
 	
 	public abstract Pocion getPocionVelocidad();
 	
-	public abstract Elemento getPowerPellet(Posicion posicion);
+	public abstract Elemento getPowerPellet(Posicion p);
 	
 }

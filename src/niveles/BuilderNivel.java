@@ -1,4 +1,6 @@
-package entidadesLogicas;
+package niveles;
+
+import entidadesLogicas.DominioJuego;
 
 public class BuilderNivel implements Builder {
 	
@@ -12,11 +14,6 @@ public class BuilderNivel implements Builder {
 	public void reset() {
 		nivel = new Nivel();
 	}
-	
-	@Override
-	public void setGrilla(Grilla g) {
-		nivel.setGrilla(g);
-	}	
 
 	@Override
 	public void setDominio(DominioJuego d) {

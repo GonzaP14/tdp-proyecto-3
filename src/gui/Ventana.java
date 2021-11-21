@@ -67,11 +67,9 @@ public class Ventana extends JFrame implements KeyListener{
     public Ventana(Juego miJuego, DominioJuego miDominio) {
         this.miJuego = miJuego;
         this.miDominio = miDominio;
-        miJuego.setMiVentana(this);
         misEntidadesGraficas = new ArrayList<EntidadGrafica>();    
         miLaberinto = miJuego.getNivel().getLaberinto();
 		initialize();
-		miJuego.iniciarJuego();
     }
     
     public void pasarNivel() {
@@ -256,7 +254,7 @@ public class Ventana extends JFrame implements KeyListener{
 
 	public void aparecerEntidad(EntidadGrafica entidadGrafica) {
 		misEntidadesGraficas.add(entidadGrafica);
-		layeredPane.add(entidadGrafica, Integer.valueOf(entidadGrafica.getMiPrioridad())); 
+		layeredPane.add(entidadGrafica, Integer.valueOf(entidadGrafica.getMiPrioridad()));
 	}
 
 	@Override

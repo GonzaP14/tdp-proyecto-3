@@ -95,10 +95,8 @@ public class Grilla {
 			}
 		}
 		
-		System.out.println(bloqueActual.getListaRemovidos());
 		bloqueActual.getListaEntidades().removeAll(bloqueActual.getListaRemovidos());
 		bloqueActual.limpiarListaRemovidos();
-		System.out.println(bloqueActual.getListaRemovidos());
 	}
 	
 	public void resetear() {

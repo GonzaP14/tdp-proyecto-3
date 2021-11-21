@@ -13,6 +13,7 @@ import elementos.PacDot;
 import elementos.PowerPellet;
 import gui.Ventana;
 import launcher.Launcher;
+import niveles.Nivel;
 import personajes.Enemigo;
 import personajes.Personaje;
 import personajes.Principal;
@@ -21,7 +22,6 @@ import productos.FabricaGeneral;
 
 public class Juego {
 	
-	// Atributos de instancia 
 	private boolean gameOver, estaPausado;
 	private int vidasActuales;
 	private static final Object objetoReloj = new Object();
@@ -41,28 +41,83 @@ public class Juego {
 	private int cantidadFantasmasComidos;
 	private DominioJuego miDominio;
 	
-	// ---------------------------------------- CONSTRUCTOR ------------------------------------
 	public Juego(DominioJuego dominio) {
 		this.miDominio = dominio;
-		miFabricaEntidades = new FabricaGeneral(this, miDominio);
-		miPlayer = new Player();
-		gameOver = false;
-		miGrilla = new Grilla();
 		miAudio = new Audio(miDominio);
-		cantidadFantasmasComidos = 0;
-		vidasActuales = 3;
-		estaPausado = false;
-		
-		misEnemigos = Collections.synchronizedList(new ArrayList<Enemigo>());
-		misPociones = Collections.synchronizedList(new ArrayList<Elemento>());
-		misPacDots = Collections.synchronizedList(new ArrayList<Elemento>());
-		misPowerPellets = Collections.synchronizedList(new ArrayList<Elemento>());
-		
+		miPlayer = new Player();
 		miLeaderboard = new Leaderboard();
 		loadConfiguration();
+		cantidadFantasmasComidos = 0;
+		vidasActuales = 3;
+		gameOver = false;
+		estaPausado = false;
+	}
+
+	// Comandos.
+	
+	public void reset() {
+		miFabricaEntidades = new FabricaGeneral(this, miDominio);
+		crearPersonajePrincipal();
+		crearEnemigos();
+		crearPociones();
+		spawnearPacDots();
+		spawnearPowerPellets();
+		crearFrutas();
+	}	
+
+	public void crearPersonajePrincipal() {
+		miPersonajePrincipal = miFabricaEntidades.getPrincipal();
 	}
 	
-	// ----------------------------------------      GETTERS     ------------------------------------
+	private void crearEnemigos() {
+		misEnemigos = Collections.synchronizedList(new ArrayList<Enemigo>());
+		misEnemigos.add(miFabricaEntidades.getBlinky());
+		misEnemigos.add(miFabricaEntidades.getInky());
+		misEnemigos.add(miFabricaEntidades.getPinky());
+		misEnemigos.add(miFabricaEntidades.getClyde());
+	}
+	
+	private void crearPociones() {
+		misPociones = Collections.synchronizedList(new ArrayList<Elemento>());
+		misPociones.add(0, miFabricaEntidades.getPocionBomba());
+		misPociones.add(1, miFabricaEntidades.getPocionVelocidad());
+	}
+	
+	/*
+	private void crearPacDots() {
+		misPacDots = Collections.synchronizedList(new ArrayList<Elemento>());
+		
+		for (int i = 0; i < PacDot.cantidadPacDots; i ++) {
+			misPacDots.add(miFabricaEntidades.getPacDot());
+		}
+		
+	}
+	
+	private void crearPowerPellets() {
+		misPowerPellets = Collections.synchronizedList(new ArrayList<Elemento>());
+		
+		for (int i = 0; i < PowerPellet.cantidadPowerPellets; i ++) {
+			misPowerPellets.add(miFabricaEntidades.getPowerPellet());
+		}
+	}
+	*/
+	
+	private void crearFrutas() {
+		miFruta = miFabricaEntidades.getFruta();
+	}
+	
+	// Setters.
+		
+	public void setVentana(Ventana miVentana) {
+		this.miVentana = miVentana;
+	}
+		
+	public void setCantidadFantasmasComidos(int cantidadFantasmasComidos) {
+		this.cantidadFantasmasComidos = cantidadFantasmasComidos;
+	}
+	
+	// Getters
+	
 	public Principal getMiPersonajePrincipal() {
 		return miPersonajePrincipal;
 	}
@@ -120,18 +175,13 @@ public class Juego {
 		return miLeaderboard;
 	}
 
-	// ----------------------------------------       SETTERS      -----------------------------------
-	public void setMiVentana(Ventana miVentana) {
-		this.miVentana = miVentana;
-	}
+	// Estados del juego.
 	
-	public void setCantidadFantasmasComidos(int cantidadFantasmasComidos) {
-		this.cantidadFantasmasComidos = cantidadFantasmasComidos;
-	}
-
-	// ---------------------------------------- ESTADOS DEL JUEGO ------------------------------------
 	public void pausar_despausar() {
-		
+		//System.out.println("Pausado/Despausado");
+		//pausarDespausarRelojes();
+		miAudio.despausar();
+		miVentana.setVisible(false);
 	}
 	
 	public void congratulations() {
@@ -206,11 +256,19 @@ public class Juego {
     }
 	
 	// ---------------------------------------- SPAWNING ------------------------------------
-	private void spawnearFantasmas() {
-		misEnemigos.add(miFabricaEntidades.getBlinky());
-		misEnemigos.add(miFabricaEntidades.getInky());
-		misEnemigos.add(miFabricaEntidades.getPinky());
-		misEnemigos.add(miFabricaEntidades.getClyde());
+	
+    public void spawnearEntidades() {
+		spawnearPrincipal();
+		spawnearEnemigos();
+		spawnearPacDots();
+		spawnearPowerPellets();
+	}
+    
+    private void spawnearPrincipal() {
+		miVentana.aparecerEntidad(miPersonajePrincipal.getMiRepresentacion());
+	}
+    
+    private void spawnearEnemigos() {
 		for(Enemigo fantasma: misEnemigos) {
 			miVentana.aparecerEntidad(fantasma.getMiRepresentacion());
 			fantasma.iniciarHilo();
@@ -218,54 +276,76 @@ public class Juego {
 	}
 	
 	public void spawnearPocionBomba() {
-		misPociones.add(0, miFabricaEntidades.getPocionBomba());
 		miVentana.aparecerEntidad(misPociones.get(0).getMiRepresentacion());
 	}
 	
 	public void spawnearPocionVelocidad() {
-		misPociones.add(1, miFabricaEntidades.getPocionVelocidad());
 		miVentana.aparecerEntidad(misPociones.get(1).getMiRepresentacion());
 	}
 	
-	private void spawnearPrincipal() {
-		miPersonajePrincipal = miFabricaEntidades.getPrincipal();
-		miVentana.aparecerEntidad(miPersonajePrincipal.getMiRepresentacion());
-	}
-	
 	public void spawnearFruta() {
-		miFruta = miFabricaEntidades.getFruta();
 		miVentana.aparecerEntidad(miFruta.getMiRepresentacion());
 	}
 	
 	private void spawnearPacDots() {
-		Elemento nuevoPacDot;
+		misPacDots = Collections.synchronizedList(new ArrayList<Elemento>());
+		
+        Elemento nuevoPacDot;
+        for (Posicion spawn : PacDot.getMisSpawns()) {
+            nuevoPacDot = miFabricaEntidades.getPacDot(spawn);
+            misPacDots.add(nuevoPacDot);
+            nuevoPacDot.getMiRepresentacion().aparecer(spawn);
+            miVentana.aparecerEntidad(nuevoPacDot.getMiRepresentacion()); // aparece el recien agregado
+        }
+    }
+
+    private void spawnearPowerPellets() {
+    	misPowerPellets = Collections.synchronizedList(new ArrayList<Elemento>());
+    	
+        Elemento aux;
+        for (Posicion spawn : PowerPellet.getMisSpawns()) {
+            aux = miFabricaEntidades.getPowerPellet(spawn);
+            misPowerPellets.add(aux);
+            aux.getMiRepresentacion().aparecer(spawn);
+            miVentana.aparecerEntidad(aux.getMiRepresentacion()); // aparece el recien agregado
+        }
+    }
+
+    
+	/*
+	private void spawnearPacDots() {
+		Elemento actual;
+		int index = 0;
+		
 		for (Posicion spawn : PacDot.getMisSpawns()) {
-			nuevoPacDot = miFabricaEntidades.getPacDot(spawn);
-			misPacDots.add(nuevoPacDot);
-			nuevoPacDot.getMiRepresentacion().aparecer(spawn);
-			miVentana.aparecerEntidad(nuevoPacDot.getMiRepresentacion()); // aparece el recien agregado
+			actual = misPacDots.get(index);
+			actual.spawnear(spawn);
+			actual.getMiRepresentacion().aparecer(spawn);
+			miVentana.aparecerEntidad(actual.getMiRepresentacion());
+			index ++;
 		}
 	}
 	
 	private void spawnearPowerPellets() {
-		Elemento aux;
+		Elemento actual;
+		int index = 0;
+		
 		for (Posicion spawn : PowerPellet.getMisSpawns()) {
-			aux = miFabricaEntidades.getPowerPellet(spawn);
-			misPowerPellets.add(aux);
-			aux.getMiRepresentacion().aparecer(spawn);
-			miVentana.aparecerEntidad(aux.getMiRepresentacion()); // aparece el recien agregado
+			actual = misPacDots.get(index);
+			actual.spawnear(spawn);
+			actual.getMiRepresentacion().aparecer(actual.getSpawn());
+			miVentana.aparecerEntidad(actual.getMiRepresentacion());
+			index ++;
 		}
 	}
-	
-	
-	
+	*/
+    
 	public void despawnearFruta() {
 		miFruta.despawnear();
 		miGrilla.getBloque(miFruta.getPosicion().getY() / Ventana.pixelesBloque, miFruta.getPosicion().getX() / Ventana.pixelesBloque).agregarAListaRemovidos(miFruta);
 		miGrilla.getBloque(miFruta.getPosicion().getY() / Ventana.pixelesBloque, miFruta.getPosicion().getX() / Ventana.pixelesBloque).getListaEntidades().removeAll(miGrilla.getBloque(miFruta.getPosicion().getY() / Ventana.pixelesBloque, miFruta.getPosicion().getX() / Ventana.pixelesBloque).getListaRemovidos());
 		miGrilla.getBloque(miFruta.getPosicion().getY() / Ventana.pixelesBloque, miFruta.getPosicion().getX() / Ventana.pixelesBloque).limpiarListaRemovidos();
 	}
-	
 	
 	public void despawnearPocionBomba() {
 		misPociones.get(0).despawnear();
@@ -289,10 +369,8 @@ public class Juego {
  	
 	// ---------------------------------------- INICIO & RESET ------------------------------------
 	public void iniciarJuego() {
-		spawnearPrincipal();
-		spawnearPacDots();
-		spawnearPowerPellets();
-		spawnearFantasmas();
+		this.reset();
+		spawnearEntidades();
 		iniciarMusica();
 		iniciarReloj();
 	}
@@ -302,53 +380,11 @@ public class Juego {
 		miReloj.start();
 	}
 	
-	public void resetear() {
-	
-	}
-	
-
-	public void reiniciarNivel() {
-		pausarDespausarRelojes();
-		
-//		desaparecerEntidadesRestantes();
-		
-//		miVentana.pasarNivel();
-		misEnemigos = Collections.synchronizedList(new ArrayList<Enemigo>());
-		misPociones = Collections.synchronizedList(new ArrayList<Elemento>());
-		misPacDots = Collections.synchronizedList(new ArrayList<Elemento>());
-		misPowerPellets = Collections.synchronizedList(new ArrayList<Elemento>());
-		
-		spawnearPrincipal();
-		spawnearPacDots();
-		spawnearPowerPellets();
-		spawnearFantasmas();
-		
-		pausarDespausarRelojes();
-	}
-	
 	public void setNivel(Nivel nivel) {
 		this.miNivel = nivel;
+		this.miGrilla = miNivel.getGrilla();
 	}
-
-	private void desaparecerEntidadesRestantes() {
-		miPersonajePrincipal.getMiRepresentacion().desaparecer();
-		for (Enemigo enemigo : misEnemigos) {
-			enemigo.getMiRepresentacion().desaparecer();
-		}
-		for (Elemento pacDot : misPacDots) {
-			pacDot.getMiRepresentacion().desaparecer();
-		}
-		for (Elemento powerPellet : misPowerPellets) {
-			powerPellet.getMiRepresentacion().desaparecer();
-		}
-		for (Elemento pocion : misPociones) {
-			pocion.getMiRepresentacion().desaparecer();
-		}
-		if (miFruta != null) {
-			miFruta.getMiRepresentacion().desaparecer();
-		}
-	}
-
+	
 	public void pausarDespausarRelojes() {
 		if (!estaPausado) {
 			estaPausado = true;

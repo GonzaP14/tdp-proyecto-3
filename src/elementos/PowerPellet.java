@@ -11,15 +11,26 @@ public class PowerPellet extends Elemento {
 		{
 			new Posicion(650,575), new Posicion(25,575), new Posicion(650,75), new Posicion(25,75)
 		};
-	public PowerPellet(Juego miJuego, String[] imagenes, Posicion spawn) {
+	
+	public static final int cantidadPowerPellets = misSpawns.length;
+	
+	/*
+	public PowerPellet(Juego miJuego, String[] imagenes) {
 		this.miJuego = miJuego;
 		miRepresentacion = new ElementoGrafico(imagenes);
 		puntajeOtorgado = 50;
-		miSpawn = spawn;
-		miPosicion = new Posicion(miSpawn.getX(), miSpawn.getY());
-		miJuego.getGrilla().getBloque(miPosicion.getY() / Ventana.pixelesBloque , miPosicion.getX() / Ventana.pixelesBloque).agregarAListaEntidades(this);
 	}
+	*/
 
+	public PowerPellet(Juego miJuego, String[] imagenes, Posicion spawn) {
+        this.miJuego = miJuego;
+        miRepresentacion = new ElementoGrafico(imagenes);
+        puntajeOtorgado = 50;
+        miSpawn = spawn;
+        miPosicion = new Posicion(miSpawn.getX(), miSpawn.getY());
+        miJuego.getGrilla().getBloque(miPosicion.getY() / Ventana.pixelesBloque , miPosicion.getX() / Ventana.pixelesBloque).agregarAListaEntidades(this);
+    }
+		
 	@Override
 	protected void iniciarTimer(HiloElemento timer) {
 		timer.start();

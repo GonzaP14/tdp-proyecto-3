@@ -1,6 +1,8 @@
-package entidadesLogicas;
+package niveles;
 
 import entidadesGraficas.Laberinto;
+import entidadesLogicas.DominioJuego;
+import entidadesLogicas.Grilla;
 
 public class Nivel {
 	
@@ -19,6 +21,7 @@ public class Nivel {
 	private int velocidadEnemigos;
 	
     public Nivel () {
+    	miGrilla = new Grilla();
     	mapa = new Object [Grilla.Filas][Grilla.Columnas];
     	iniciarMapa();
     }
@@ -622,11 +625,6 @@ public class Nivel {
    			mapa[30][j] = pared;
    		}
 	}
-
-	
-	public void setGrilla(Grilla g) {
-		miGrilla = g;
-	}
 	
 	public void setDominio(DominioJuego d) {
 		dominio = d;
@@ -698,6 +696,10 @@ public class Nivel {
    				}				
 			}
 		}
+	}
+
+	public Grilla getGrilla() {
+		return miGrilla;
 	}
 	
 	

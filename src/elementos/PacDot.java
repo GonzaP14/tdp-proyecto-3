@@ -73,15 +73,25 @@ public class PacDot extends Elemento {
 //            new Posicion(150,300 ),
 //            new Posicion(150,325 )
 	};
+	
+	public static final int cantidadPacDots = misSpawns.length;
+	
 	public PacDot(Juego miJuego, String[] imagenes , Posicion spawn) {
+        this.miJuego = miJuego;
+        miRepresentacion = new ElementoGrafico(imagenes);
+        puntajeOtorgado = 10;
+        miSpawn = spawn;
+        miPosicion = new Posicion(miSpawn.getX(), miSpawn.getY());
+        miJuego.getGrilla().getBloque(miPosicion.getY() / Ventana.pixelesBloque , miPosicion.getX() / Ventana.pixelesBloque).agregarAListaEntidades(this);
+    }
+	
+	/*
+	public PacDot(Juego miJuego, String[] imagenes) {
 		this.miJuego = miJuego;
 		miRepresentacion = new ElementoGrafico(imagenes);
 		puntajeOtorgado = 10;
-		miSpawn = spawn;
-		miPosicion = new Posicion(miSpawn.getX(), miSpawn.getY());
-		miJuego.getGrilla().getBloque(miPosicion.getY() / Ventana.pixelesBloque , miPosicion.getX() / Ventana.pixelesBloque).agregarAListaEntidades(this);
 	}
-
+	*/
 	
 	@Override
 	protected void iniciarTimer(HiloElemento timer) {

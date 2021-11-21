@@ -26,7 +26,7 @@ public class ElementoGrafico extends EntidadGrafica {
 	}
 	
 	public void aparecer(Posicion miPosicion) {
-		this.setLocation((int) miPosicion.getX(), (int) miPosicion.getY());
+		this.setLocation(miPosicion.getX(), miPosicion.getY());
 		representacionActual = sentidosEstado.get(0);
 		setIcon(representacionActual);
 	}
