@@ -1,11 +1,12 @@
 package launcher;
 
 import entidadesLogicas.DominioJuego;
-import entidadesLogicas.BuilderNivel;
+import entidadesLogicas.DominioMarioBros;
+import entidadesLogicas.DominioSonic;
 import entidadesLogicas.Juego;
-import entidadesLogicas.Nivel;
 import gui.SplashScreen;
 import gui.Ventana;
+import niveles.BuilderNivel;
 
 public class Launcher {
 	
@@ -13,26 +14,46 @@ public class Launcher {
 	private static Juego miJuego;
 	private static Ventana miVentana;
 	private static SplashScreen miSplashScreen;
-	private static BuilderNivel miNivel;
+	private static BuilderNivel miBuilder;
 	private static int nivelActual;
 	
 	public static void main(String[] args) {
 		miSplashScreen = new SplashScreen();
+		miSplashScreen.setVisible(true);
 		nivelActual = 0;
-		dominioJuego = miSplashScreen.getDominio();
-		if (dominioJuego != null) { // si el dominio es nulo, se cerro la splashscreen desde el exit button sin seleccionar un dominio
+		
+		if (dominioJuego != null) {
 			iniciarJuego(dominioJuego);
-			construirNivel();
-			iniciarVentana();
 		}
 	}
 	
+	private static void iniciarJuego(DominioJuego dominio) {
+		miJuego = new Juego(dominio);
+		miBuilder = new BuilderNivel();
+		construirNivel();
+		miJuego.setNivel(miBuilder.getProduct());
+		iniciarVentana();
+		miJuego.iniciarJuego();
+	}
+	
+	private static void iniciarVentana() {
+		miVentana = new Ventana(miJuego, dominioJuego);
+		miVentana.setVisible(true);
+		miJuego.setVentana(miVentana);
+	}
+	
+	public static void crearDominioMarioBros() {
+		dominioJuego = new DominioMarioBros();
+	}
+	
+	public static void crearDominioSonic() {
+		dominioJuego = new DominioSonic();
+	}
+	
 	private static void construirNivel() {
-		nivelActual++;
-		miNivel = new BuilderNivel();
-		miNivel.setNivelActual(nivelActual);
-		miNivel.setGrilla(miJuego.getGrilla());
-		miNivel.setDominio(miJuego.getDominio());
+		nivelActual ++;
+		miBuilder.setNivelActual(nivelActual);
+		miBuilder.setDominio(dominioJuego);
 		
 		if (nivelActual == 1) { 
 			construirNivel1();
@@ -43,43 +64,40 @@ public class Launcher {
 		else if (nivelActual == 3) {
 			construirNivel3();
 		}
-		
-		miJuego.setNivel(miNivel.getProduct());
-	}
-	
-	public static void pasarNivel() {
-		construirNivel();
-		miJuego.reiniciarNivel();
-	}
+	}	
 
-	public static void iniciarJuego(DominioJuego dominio) {
-		miJuego = new Juego(dominio);
-	}
-	
-	public static void iniciarVentana() {
-		miVentana = new Ventana(miJuego, dominioJuego);
-		miVentana.setVisible(true);
-	}
-	
 	private static void construirNivel1() {
-		miNivel.setVelocidadEnemigos(8);
-		miNivel.setDuracionFrutas(100);
-		miNivel.setDuracionPowerPellet(100);
-		miNivel.setDuracionPociones(100);
+		miBuilder.setVelocidadEnemigos(8);
+		miBuilder.setDuracionFrutas(100);
+		miBuilder.setDuracionPowerPellet(100);
+		miBuilder.setDuracionPociones(100);
 	}
 	
 	private static void construirNivel2() {
-		miNivel.setVelocidadEnemigos(9);
-		miNivel.setDuracionFrutas(75);
-		miNivel.setDuracionPowerPellet(100);
-		miNivel.setDuracionPociones(100);
+		miBuilder.setVelocidadEnemigos(9);
+		miBuilder.setDuracionFrutas(75);
+		miBuilder.setDuracionPowerPellet(100);
+		miBuilder.setDuracionPociones(100);
 	}
 	
 	private static void construirNivel3() {
-		miNivel.setVelocidadEnemigos(10);
-		miNivel.setDuracionFrutas(50);
-		miNivel.setDuracionPowerPellet(100);
-		miNivel.setDuracionPociones(100);
+		miBuilder.setVelocidadEnemigos(10);
+		miBuilder.setDuracionFrutas(50);
+		miBuilder.setDuracionPowerPellet(100);
+		miBuilder.setDuracionPociones(100);
 	}
 
+	public static void pasarNivel() {
+		// miJuego.pausar_despausar();
+		miVentana.setVisible(false);
+		miBuilder.reset();
+		construirNivel();
+		miJuego.setNivel(miBuilder.getProduct());
+		iniciarVentana();
+		miJuego.reset();
+		miJuego.spawnearEntidades();
+		//miJuego.pausar_despausar();
+	}
+	
 }
+

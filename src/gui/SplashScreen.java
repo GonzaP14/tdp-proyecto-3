@@ -1,11 +1,7 @@
 package gui;
 
 import javax.swing.*;
-
-import entidadesLogicas.DominioJuego;
-import entidadesLogicas.DominioMarioBros;
-import entidadesLogicas.DominioSonic;
-
+import launcher.Launcher;
 import java.awt.event.ActionListener;
 import java.awt.Image;
 import java.awt.event.ActionEvent;
@@ -16,16 +12,15 @@ public class SplashScreen extends JDialog{
 	
 	private JButton marioButton; 
 	private JButton sonicButton;
-	private DominioJuego miDominio;
 	
 	public SplashScreen() {
 		super();
 		this.setModal(true);		
 		this.getContentPane().setLayout(null);
 		crearBotonMario();
-		crearBotonSonic();	
+		crearBotonSonic();		
 		setBounds(100, 0, 1500, 500);
-		setVisible(true);
+		
 	}
 
 	
@@ -36,7 +31,7 @@ public class SplashScreen extends JDialog{
 		marioButton.setIcon(new ImageIcon(botonMario.getImage().getScaledInstance(marioButton.getWidth(), marioButton.getHeight(), Image.SCALE_DEFAULT)));
 		marioButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				miDominio = new DominioMarioBros();
+				Launcher.crearDominioMarioBros();
 				setVisible(false);
 			}
 		});
@@ -56,7 +51,7 @@ public class SplashScreen extends JDialog{
 		sonicButton.setIcon(new ImageIcon(botonMemoji.getImage().getScaledInstance(sonicButton.getWidth(), sonicButton.getHeight(), Image.SCALE_DEFAULT)));
 		sonicButton.addActionListener(new ActionListener() {	
 			public void actionPerformed(ActionEvent e) {
-				miDominio = new DominioSonic();
+				Launcher.crearDominioSonic();
 				setVisible(false);
 			}
 		});
@@ -67,10 +62,6 @@ public class SplashScreen extends JDialog{
 		lblFotoMemoji.setBounds(750, 0, 750, 500);
 		lblFotoMemoji.setIcon(new ImageIcon(fotoMemoji.getImage().getScaledInstance(lblFotoMemoji.getWidth(), lblFotoMemoji.getHeight(), Image.SCALE_DEFAULT)));
 		getContentPane().add(lblFotoMemoji);
-	}
-	
-	public DominioJuego getDominio() {
-		return miDominio;
 	}
 	
 }
