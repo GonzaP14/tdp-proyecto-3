@@ -51,4 +51,7 @@ public class HiloEnemigo extends Thread {
 		this.velocidadTickeo = velocidadTickeo;
 	}
 	
+	public void setCantidadTicks(int ticks) {
+		cantidadTicks = ticks;
+	}
 }
