@@ -4,8 +4,13 @@ import entidadesLogicas.Posicion;
 
 public class Frightened implements EstadoEnemigo {
 	
-	Enemigo miEnemigo;
-	Posicion posicionPrincipal;
+	private Enemigo miEnemigo;
+	private Principal miPrincipal;
+	
+	public Frightened (Enemigo miEnemigo , Principal miPrincipal) {
+		this.miEnemigo = miEnemigo;
+		this.miPrincipal = miPrincipal;
+	}
 	
 	@Override
 	public Posicion siguientePosicion() {
@@ -19,31 +24,14 @@ public class Frightened implements EstadoEnemigo {
 		*/ 
 		
 		for (Posicion pos: miEnemigo.posicionesDestino()) {
-			distanciaActual = pos.distanciaEntrePosicionesPitagoras(posicionPrincipal);
+			distanciaActual = pos.distanciaEntrePosicionesPitagoras(miPrincipal.getPosicion());
 			
 			if (distanciaActual > distanciaMaxima) {
 				distanciaMaxima = distanciaActual;
 				toReturn = pos;
 			}
 		}
-		System.out.println(toReturn);
 		return toReturn;		
-	}
-
-	@Override
-	public void setEnemigo(Enemigo e) {
-		miEnemigo = e;
-	}
-
-	@Override
-	public void setPosicionObjetivo(Posicion posicionObjetivo) {
-		this.posicionPrincipal = posicionObjetivo;
-	}
-
-	@Override
-	public void setPrincipal(Principal p) {
-		// TODO Auto-generated method stub
-		
 	}
 
 }

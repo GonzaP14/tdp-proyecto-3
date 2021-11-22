@@ -33,4 +33,8 @@ public abstract class EntidadGrafica extends JLabel {
 	public void perseguir(int sentidoActual) {
 		
 	}
+	
+	public void morir() {
+		
+	}
 }

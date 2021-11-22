@@ -178,7 +178,6 @@ public class Juego {
 	// Estados del juego.
 	
 	public void pausar_despausar() {
-		//System.out.println("Pausado/Despausado");
 		//pausarDespausarRelojes();
 		miAudio.despausar();
 		miVentana.setVisible(false);

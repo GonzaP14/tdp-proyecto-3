@@ -8,7 +8,7 @@ import javax.swing.ImageIcon;
 public class EnemigoGrafico extends PersonajeGrafico{
 	private static final long serialVersionUID = 1L;
 	
-	protected ArrayList<ImageIcon> sentidosChase, sentidosFrightened;
+	protected ArrayList<ImageIcon> sentidosChase, sentidosFrightened , sentidosEaten;
 	
 	public EnemigoGrafico(String[] imagenes) {
 		setBounds(25, 25, 25, 25);
@@ -16,6 +16,7 @@ public class EnemigoGrafico extends PersonajeGrafico{
 		sentidosEstado = new ArrayList<ImageIcon>();
 		sentidosChase = new ArrayList<ImageIcon>();
 		sentidosFrightened = new ArrayList<ImageIcon>();
+		sentidosEaten = new ArrayList<ImageIcon>();
 		
 		for (int imagenesIndice = 0; imagenesIndice < 4; imagenesIndice++) {
 			scalingAuxImage = new ImageIcon(this.getClass().getResource(imagenes[imagenesIndice]));
@@ -25,7 +26,9 @@ public class EnemigoGrafico extends PersonajeGrafico{
 		
 		scalingAuxImage = new ImageIcon(this.getClass().getResource(imagenes[4]));
 		muerto = new ImageIcon(scalingAuxImage.getImage().getScaledInstance(getWidth(), getHeight(), Image.SCALE_DEFAULT));
-		
+		for(int i = 0 ; i < 4 ; i++) {
+			sentidosEaten.add(muerto);
+		}
 		for (int imagenesIndice = 5; imagenesIndice < 9; imagenesIndice++) {
 			scalingAuxImage = new ImageIcon(this.getClass().getResource(imagenes[imagenesIndice]));
 			scalingAuxImage = new ImageIcon(scalingAuxImage.getImage().getScaledInstance(getWidth(), getHeight(), Image.SCALE_DEFAULT));
@@ -46,5 +49,10 @@ public class EnemigoGrafico extends PersonajeGrafico{
 	public void perseguir(int sentidoActual) {
 		sentidosEstado = sentidosChase;
 		this.actualizar(sentidoActual);
+	}
+	
+	public void morir() {
+		sentidosEstado = sentidosEaten;
+		this.actualizar(1);
 	}
 }

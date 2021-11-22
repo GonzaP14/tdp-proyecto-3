@@ -2,8 +2,8 @@ package entidadesLogicas;
 
 public class Reloj extends Thread{
 	
-	int velocidadTickeo, ticks;
-	Juego miJuego;
+	private int velocidadTickeo, ticks;
+	private Juego miJuego;
 	
 	public Reloj(int velocidadPrincipal, Juego miJuego) {
 		this.miJuego = miJuego;
@@ -16,7 +16,7 @@ public class Reloj extends Thread{
 	        if(!miJuego.estaPausado()) {
 	        	try {
 					miJuego.operar(miJuego.getMiPersonajePrincipal());
-					Thread.sleep(500 / velocidadTickeo); // 1s
+					Thread.sleep(5000 / velocidadTickeo); // 1s
 					ticks++;
 					if (ticks == 200) 
 						miJuego.spawnearFruta();

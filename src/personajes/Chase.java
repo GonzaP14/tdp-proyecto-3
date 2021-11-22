@@ -9,28 +9,14 @@ public class Chase implements EstadoEnemigo {
 	protected Principal miDestino;
 	protected Posicion posicionPrincipal;
 	
-	public Chase(ChaseIA miInteligencia) {
+	public Chase(ChaseIA miInteligencia , Enemigo miEnemigo , Principal miPrincipal) {
 		this.miInteligencia = miInteligencia;
+		this.miEnemigo = miEnemigo;
+		this.miDestino = miPrincipal;
 	}
 	
 	@Override
 	public Posicion siguientePosicion() {
 		return miInteligencia.calcularSiguientePosicion(miEnemigo, miDestino);
 	}
-	
-	@Override
-	public void setPosicionObjetivo(Posicion posicionObjetivo) {
-		this.posicionPrincipal = posicionObjetivo;
-	}
-
-	@Override
-	public void setEnemigo(Enemigo e) {
-		this.miEnemigo = e;
-	}
-
-	@Override
-	public void setPrincipal(Principal p) {
-		miDestino = p;	
-	}
-
 }

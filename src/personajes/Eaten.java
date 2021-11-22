@@ -7,12 +7,19 @@ public class Eaten implements EstadoEnemigo {
 	private Enemigo miEnemigo;
 	private Posicion posicionRecuperacion;
 	
+	public Eaten (Enemigo miEnemigo , Posicion posicionRecuperacion) {
+		this.miEnemigo = miEnemigo;
+		this.posicionRecuperacion = posicionRecuperacion;
+	}
+	
 	@Override
 	public Posicion siguientePosicion() {
 		Posicion toReturn = miEnemigo.getPosicion();
-		double distanciaMinima = toReturn.distanciaEntrePosicionesPitagoras(posicionRecuperacion);
-		double distanciaActual = Double.MAX_VALUE;
-		
+		if(toReturn.equals(miEnemigo.getSpawn())) {
+			miEnemigo.cambiarEstado(Enemigo.Chase);
+		}
+		double distanciaMinima = Double.MAX_VALUE;
+		double distanciaActual;
 		for (Posicion pos: miEnemigo.posicionesDestino()) {
 			distanciaActual = pos.distanciaEntrePosicionesPitagoras(posicionRecuperacion);
 			
@@ -24,21 +31,4 @@ public class Eaten implements EstadoEnemigo {
 		
 		return toReturn;
 	}
-
-	@Override
-	public void setEnemigo(Enemigo e) {
-		miEnemigo = e;
-	}
-
-	@Override
-	public void setPosicionObjetivo(Posicion posicionObjetivo) {
-		this.posicionRecuperacion = posicionObjetivo;
-	}
-
-	@Override
-	public void setPrincipal(Principal p) {
-		// TODO Auto-generated method stub
-		
-	}
-
 }

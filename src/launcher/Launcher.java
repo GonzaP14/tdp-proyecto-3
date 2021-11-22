@@ -67,21 +67,21 @@ public class Launcher {
 	}	
 
 	private static void construirNivel1() {
-		miBuilder.setVelocidadEnemigos(8);
+		miBuilder.setVelocidadEnemigos(90);
 		miBuilder.setDuracionFrutas(100);
 		miBuilder.setDuracionPowerPellet(100);
 		miBuilder.setDuracionPociones(100);
 	}
 	
 	private static void construirNivel2() {
-		miBuilder.setVelocidadEnemigos(9);
+		miBuilder.setVelocidadEnemigos(95);
 		miBuilder.setDuracionFrutas(75);
 		miBuilder.setDuracionPowerPellet(100);
 		miBuilder.setDuracionPociones(100);
 	}
 	
 	private static void construirNivel3() {
-		miBuilder.setVelocidadEnemigos(10);
+		miBuilder.setVelocidadEnemigos(100);
 		miBuilder.setDuracionFrutas(50);
 		miBuilder.setDuracionPowerPellet(100);
 		miBuilder.setDuracionPociones(100);

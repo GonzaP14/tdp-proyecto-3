@@ -17,6 +17,7 @@ public abstract class Enemigo extends Personaje {
 	protected EstadoEnemigo [] estados;
 	protected int indiceEstado;
 	protected int tiempoEstado;
+	protected int velocidadPredeterminada;
 	private static final int puntajeOtorgado = 200;
 	public static final int Frightened = 0;
 	public static final int Chase = 1;
@@ -28,7 +29,8 @@ public abstract class Enemigo extends Personaje {
 		if(indiceEstado == Frightened) {
 			miJuego.setCantidadFantasmasComidos(miJuego.getCantidadFantasmasComidos() + 1);
 			miJuego.aumentarPuntaje(200 * miJuego.getCantidadFantasmasComidos());
-			// morir()
+			miJuego.getGrilla().getBloque(miPosicion.getY() / 25 , miPosicion.getX() / 25).agregarAListaRemovidos(this);
+			cambiarEstado(Eaten);
 		}
 		else {
 			miJuego.getMiPersonajePrincipal().recibirEfecto(this);
@@ -45,11 +47,11 @@ public abstract class Enemigo extends Personaje {
 		crearEstados();
 		indiceEstado = Scatter;
 		estadoActual = estados[indiceEstado];
-		velocidadActual=miJuego.getNivel().getVelocidadEnemigos();
 		crearHilo(this);
 	}
 
 	public void recibirEfecto(PowerPellet p) {
+		setVelocidadActual(velocidadActual - 10);
 		cambiarEstado(Frightened);
     }
 
@@ -64,10 +66,15 @@ public abstract class Enemigo extends Personaje {
 			indiceEstado = Frightened;
 			miRepresentacion.asustarse(sentidoActual);
 		} else if (estado == Chase) {
+			if(indiceEstado == Eaten) {
+				setVelocidadActual(velocidadPredeterminada);
+			}
 			indiceEstado = Chase;
 			miRepresentacion.perseguir(sentidoActual);
 		} else if (estado == Eaten) {
+			setVelocidadActual(200);
 			indiceEstado = Eaten;
+			miRepresentacion.morir();
 		} else if (estado == Scatter) {
 			indiceEstado = Scatter;
 		}
@@ -110,33 +117,22 @@ public abstract class Enemigo extends Personaje {
 	}
 	
 	protected EstadoEnemigo crearEstadoFrightened() {
-		EstadoEnemigo frightened = new Frightened();
-		frightened.setEnemigo(this);
-		frightened.setPosicionObjetivo(miJuego.getMiPersonajePrincipal().getPosicion());
-		
+		EstadoEnemigo frightened = new Frightened(this , miJuego.getMiPersonajePrincipal());
 		return frightened;
 	}
 	
 	protected EstadoEnemigo crearEstadoEaten() {
-		EstadoEnemigo eaten = new Eaten();
-		eaten.setEnemigo(this);
-		eaten.setPosicionObjetivo(miSpawn);
-		
+		EstadoEnemigo eaten = new Eaten(this , getSpawn());	
 		return eaten;
 	}
 	
 	protected EstadoEnemigo crearEstadoScatter() {
 		EstadoEnemigo scatter = new Scatter(this , this.getPosicionScatter());
-		scatter.setEnemigo(this);
-		scatter.setPosicionObjetivo(miJuego.getMiPersonajePrincipal().getPosicion());
-		
 		return scatter;
 	}
 	
 	public EstadoEnemigo crearEstadoChase(ChaseIA chaseIA, Enemigo enemigoLigado) {
-		EstadoEnemigo chase = new Chase(chaseIA);
-		chase.setEnemigo(enemigoLigado);
-		chase.setPrincipal(miJuego.getMiPersonajePrincipal());
+		EstadoEnemigo chase = new Chase(chaseIA , enemigoLigado , miJuego.getMiPersonajePrincipal());
 		return chase;
 	}
 	
@@ -190,17 +186,10 @@ public abstract class Enemigo extends Personaje {
 
 	public ArrayList <Posicion> posicionesDestino() {
 		ArrayList<Posicion> toReturn = new ArrayList<Posicion>();
-
-		//System.out.println("Posicion actual = " + miPosicion);
-		//System.out.println("Bloque " + miPosicion.getY() / 25 + " " + miPosicion.getX() / 25);
-		
 		for (Posicion p: miPosicion.posicionesDestino()) { 
-			//System.out.println("Posicion destino = " + p);
-			// !p.equals(miPosicion) && -> No es necesario
 			
 			if (!sentidosContrarios(sentidoActual, calcularSentido(miPosicion, p)) && miJuego.getGrilla().bloqueVisitable(p.getY() / 25, p.getX() / 25)) {
 				toReturn.add(p);
-				//System.out.println("Posicion destino (Vistable) = " + p);
 			}
 		}
 		
@@ -225,6 +214,19 @@ public abstract class Enemigo extends Personaje {
 	public void reaparecer() {
 		super.reaparecer();
 		cambiarEstado(Chase);
+	}
+	
+	public void setVelocidadActual(int velocidad) {
+		velocidadActual = velocidad;
+		miHilo.setVelocidadTickeo(velocidad);
+	}
+
+	public int getIndiceEstado() {
+		return indiceEstado;
+	}
+	
+	public int getVelocidadPredeterminada() {
+		return velocidadPredeterminada;
 	}
 	
 }

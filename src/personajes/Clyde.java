@@ -7,6 +7,8 @@ public class Clyde extends Enemigo {
 	private static final Posicion posicionScatter = new Posicion(25 , 750);
 
 	public Clyde(Juego miJuego, String[] imagenes) {
+		velocidadPredeterminada = miJuego.getNivel().getVelocidadEnemigos();
+		velocidadActual = velocidadPredeterminada;
 		super.crearEnemigo(miJuego, new Posicion(400, 275), imagenes);
 	}
 

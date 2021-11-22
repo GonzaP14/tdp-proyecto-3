@@ -53,7 +53,10 @@ public class PowerPellet extends Elemento {
 	public void finPocion() {
 		miJuego.setCantidadFantasmasComidos(0);
 		for(Enemigo e : miJuego.getMisEnemigos()) {
-			e.cambiarEstado(Enemigo.Chase);
+			if(e.getIndiceEstado() == Enemigo.Frightened) {
+				e.cambiarEstado(Enemigo.Chase);
+				e.setVelocidadActual(e.getVelocidadPredeterminada());
+			}
 		}
 	}
 }

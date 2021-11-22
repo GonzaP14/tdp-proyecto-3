@@ -4,22 +4,28 @@ import entidadesLogicas.Juego;
 
 public class HiloEnemigo extends Thread {
 	
-	int velocidadTickeo;
-	Juego miJuego;
-	Enemigo miEnemigo;
+	private int velocidadTickeo;
+	private Juego miJuego;
+	private Enemigo miEnemigo;
+	private int cantidadTicks;
 	
 	public HiloEnemigo(int velocidadEnemigo, Juego miJuego, Enemigo miEnemigo) {
 		this.miJuego = miJuego;
 		velocidadTickeo = velocidadEnemigo;
 		this.miEnemigo = miEnemigo;
+		cantidadTicks = 0;
 	}
 	
 	public void run() {
 		while (!miJuego.isGameOver()) {	
 			if (!miJuego.estaPausado()) {			
 				try {
+					cantidadTicks++;
+					if(cantidadTicks == 200) {
+						miEnemigo.cambiarEstado(Enemigo.Chase);
+					}
 					miJuego.operar(miEnemigo);
-					Thread.sleep(500/velocidadTickeo);
+					Thread.sleep(5000/velocidadTickeo);
 				} catch (InterruptedException e) {
 					e.printStackTrace();
 				}
