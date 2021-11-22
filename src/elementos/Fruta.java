@@ -2,6 +2,7 @@ package elementos;
 
 import entidadesGraficas.ElementoGrafico;
 import entidadesLogicas.Juego;
+import entidadesLogicas.Posicion;
 import gui.Ventana;
 
 public class Fruta extends Elemento {
@@ -25,5 +26,12 @@ public class Fruta extends Elemento {
 	@Override
 	public void finPocion() {
 
+	}
+	
+	@Override
+	public void reset() {
+		setSpawneo(new Posicion(350, 425));
+		getMiRepresentacion().crearGrafica(getSpawn());
+		miJuego.getVentana().aparecerEntidad(getMiRepresentacion());
 	}
 }

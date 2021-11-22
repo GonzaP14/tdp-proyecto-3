@@ -25,7 +25,8 @@ public class ElementoGrafico extends EntidadGrafica {
 		miPrioridad = 1;
 	}
 	
-	public void aparecer(Posicion miPosicion) {
+	@Override
+	public void crearGrafica(Posicion miPosicion) {
 		this.setLocation(miPosicion.getX(), miPosicion.getY());
 		representacionActual = sentidosEstado.get(0);
 		setIcon(representacionActual);

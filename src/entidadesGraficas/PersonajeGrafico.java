@@ -11,13 +11,15 @@ public abstract class PersonajeGrafico extends EntidadGrafica {
 	protected ArrayList<ImageIcon> sentidosEstado;
 	protected ImageIcon muerto;
 	
+	@Override
 	public void actualizar (int i) {
 		representacionActual = sentidosEstado.get(i-1);
 		setIcon(representacionActual);
 	}
 	
-	public void aparecer(Posicion miPosicion) {
-		this.setLocation((int) miPosicion.getX(), (int) miPosicion.getY());
+	@Override
+	public void crearGrafica(Posicion miPosicion) {
+		setLocation(miPosicion.getX(), miPosicion.getY());
 		representacionActual = sentidosEstado.get(3);
 		setIcon(representacionActual);
 	}

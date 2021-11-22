@@ -149,34 +149,28 @@ public class EntidadesJuego {
 	}
 	
 	public void aparecerPocionBomba() {
-		misPociones.get(0).setSpawneo(new Posicion(325, 425));
-		misPociones.get(0).getMiRepresentacion().aparecer(misPociones.get(0).getSpawn());
-		miJuego.getVentana().aparecerEntidad(misPociones.get(0).getMiRepresentacion());
+		misPociones.get(0).reset();
 	}
 
 	public void aparecerPocionVelocidad() {
-		misPociones.get(1).setSpawneo(new Posicion(375, 425));
-		misPociones.get(1).getMiRepresentacion().aparecer(misPociones.get(1).getSpawn());
-		miJuego.getVentana().aparecerEntidad(misPociones.get(1).getMiRepresentacion());
+		misPociones.get(1).reset();
 
 	}
 	
 	public void aparecerFruta() {
-		miFruta.setSpawneo(new Posicion(350, 425));
-		miFruta.getMiRepresentacion().aparecer(miFruta.getSpawn());
-		miJuego.getVentana().aparecerEntidad(miFruta.getMiRepresentacion());
+		miFruta.reset();
 	}
 	
 	private void aparecerPacDots() {
 		for (Elemento e: misPacDots) {
-			e.getMiRepresentacion().aparecer(e.getSpawn());
+			e.getMiRepresentacion().crearGrafica(e.getSpawn());
 			miJuego.getVentana().aparecerEntidad(e.getMiRepresentacion());
 		}
     }
 
     private void aparecerPowerPellets() {
     	for (Elemento e: misPowerPellets) {
-			e.getMiRepresentacion().aparecer(e.getSpawn());
+			e.getMiRepresentacion().crearGrafica(e.getSpawn());
 			miJuego.getVentana().aparecerEntidad(e.getMiRepresentacion());
 		}
     }

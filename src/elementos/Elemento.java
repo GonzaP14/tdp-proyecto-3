@@ -24,6 +24,6 @@ public abstract class Elemento extends Entidad {
 	@Override
 	public void reset() {
 		setSpawneo(miSpawn);
-		miRepresentacion.aparecer(miPosicion);
+		miRepresentacion.crearGrafica(miPosicion);
 	}
 }

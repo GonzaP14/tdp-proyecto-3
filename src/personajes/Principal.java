@@ -21,7 +21,7 @@ public class Principal extends Personaje {
 		this.miJuego = miJuego;
 		miSpawn = new Posicion(350, 575);
 		miPosicion = new Posicion(miSpawn.getX(), miSpawn.getY());
-		this.miRepresentacion.aparecer(miPosicion);
+		this.miRepresentacion.crearGrafica(miPosicion);
 		sentidoActual = Entidad.sentidoFijo;
 		sentidoSiguiente = Entidad.sentidoFijo;
 		miJuego.getGrilla().getBloque(miPosicion.getY() / Ventana.pixelesBloque , miPosicion.getX() / Ventana.pixelesBloque).agregarAListaEntidades(this);
@@ -78,7 +78,7 @@ public class Principal extends Personaje {
 		estadoActual = Vivo;
 		miSpawn = new Posicion(350, 575);
 		miPosicion = new Posicion(miSpawn.getX(), miSpawn.getY());
-		this.miRepresentacion.aparecer(miPosicion);
+		this.miRepresentacion.crearGrafica(miPosicion);
 		sentidoActual = Entidad.sentidoFijo;
 		sentidoSiguiente = Entidad.sentidoFijo;
 		miJuego.getGrilla().getBloque(miPosicion.getY() / Ventana.pixelesBloque , miPosicion.getX() / Ventana.pixelesBloque).agregarAListaEntidades(this);

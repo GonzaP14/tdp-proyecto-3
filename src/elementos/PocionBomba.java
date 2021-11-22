@@ -5,6 +5,7 @@ import entidadesGraficas.ElementoGrafico;
 import entidadesLogicas.Bloque;
 import entidadesLogicas.Entidad;
 import entidadesLogicas.Juego;
+import entidadesLogicas.Posicion;
 import gui.Ventana;
 
 public class PocionBomba extends Pocion {
@@ -48,5 +49,12 @@ public class PocionBomba extends Pocion {
 	public void despawnear() {
 		miJuego.getGrilla().getBloque(miPosicion.getY() / Ventana.pixelesBloque , miPosicion.getX() / Ventana.pixelesBloque).borrarDeListaDeEntidades(this);
 		miRepresentacion.desaparecer();
+	}
+	
+	@Override
+	public void reset() {
+		setSpawneo(new Posicion(325, 425));
+		getMiRepresentacion().crearGrafica(getSpawn());
+		miJuego.getVentana().aparecerEntidad(getMiRepresentacion());
 	}
 }

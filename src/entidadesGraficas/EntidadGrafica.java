@@ -20,7 +20,7 @@ public abstract class EntidadGrafica extends JLabel {
 	
 	public abstract void actualizar (int sentido);
 	
-	public abstract void aparecer(Posicion miPosicion);
+	public abstract void crearGrafica(Posicion miPosicion);
 	
 	public void desaparecer() {
 		this.setVisible(false);

@@ -2,6 +2,7 @@ package elementos;
 
 import entidadesGraficas.ElementoGrafico;
 import entidadesLogicas.Juego;
+import entidadesLogicas.Posicion;
 import gui.Ventana;
 
 public class PocionVelocidad extends Pocion {
@@ -24,5 +25,12 @@ public class PocionVelocidad extends Pocion {
 	public void finPocion() {
 		miJuego.getPrincipal().setVelocidadActual(100);
 		miJuego.getMiReloj().setVelocidadTickeo(100);
+	}
+	
+	@Override
+	public void reset() {
+		setSpawneo(new Posicion(375, 425));
+		getMiRepresentacion().crearGrafica(getSpawn());
+		miJuego.getVentana().aparecerEntidad(getMiRepresentacion());
 	}
 }

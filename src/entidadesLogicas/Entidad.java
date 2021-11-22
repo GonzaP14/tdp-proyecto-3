@@ -77,7 +77,7 @@ public abstract class Entidad {
 		bloqueAnterior = miJuego.getGrilla().getBloque(miPosicion.getY() / Ventana.pixelesBloque , miPosicion.getX() / Ventana.pixelesBloque);
 		miPosicion.setX(miSpawn.getX());
 		miPosicion.setY(miSpawn.getY());
-		this.miRepresentacion.aparecer(miPosicion);
+		this.miRepresentacion.crearGrafica(miPosicion);
 		bloqueRespawn = miJuego.getGrilla().getBloque(miSpawn.getY() / Ventana.pixelesBloque , miSpawn.getX() / Ventana.pixelesBloque);
 		
 		if (bloqueAnterior != bloqueRespawn) {

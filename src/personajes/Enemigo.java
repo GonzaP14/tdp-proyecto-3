@@ -42,7 +42,7 @@ public abstract class Enemigo extends Personaje {
 		miSpawn = spawn;
 		miPosicion = new Posicion(miSpawn.getX(), miSpawn.getY());
 		miRepresentacion = new EnemigoGrafico(imagenes);
-		miRepresentacion.aparecer(miPosicion);
+		miRepresentacion.crearGrafica(miPosicion);
 		miJuego.getGrilla().getBloque(miPosicion.getY() / Ventana.pixelesBloque , miPosicion.getX() / Ventana.pixelesBloque).agregarAListaEntidades(this);
 		crearEstados();
 		indiceEstado = Scatter;
@@ -236,7 +236,7 @@ public abstract class Enemigo extends Personaje {
 	public void reset() {
 		miSpawn = getSpawn();
 		miPosicion = new Posicion(miSpawn.getX(), miSpawn.getY());
-		miRepresentacion.aparecer(miPosicion);
+		miRepresentacion.crearGrafica(miPosicion);
 		miRepresentacion.reset();
 		miJuego.getGrilla().getBloque(miPosicion.getY() / Ventana.pixelesBloque , miPosicion.getX() / Ventana.pixelesBloque).agregarAListaEntidades(this);
 		indiceEstado = Scatter;
