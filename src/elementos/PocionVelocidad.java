@@ -13,7 +13,7 @@ public class PocionVelocidad extends Pocion {
 		miPosicion = new Posicion(miSpawn.getX(), miSpawn.getY());
 		miRepresentacion = new ElementoGrafico(imagenes);
 		miRepresentacion.aparecer(miPosicion);
-		velocidadOtorgada = 12;
+		velocidadOtorgada = 120;
 		miJuego.getGrilla().getBloque(miPosicion.getY() / Ventana.pixelesBloque , miPosicion.getX() / Ventana.pixelesBloque).agregarAListaEntidades(this);
 	}
 
@@ -27,7 +27,7 @@ public class PocionVelocidad extends Pocion {
 
 	@Override
 	public void finPocion() {
-		miJuego.getMiPersonajePrincipal().setVelocidadActual(10);
-		miJuego.getMiReloj().setVelocidadTickeo(10);
+		miJuego.getMiPersonajePrincipal().setVelocidadActual(100);
+		miJuego.getMiReloj().setVelocidadTickeo(100);
 	}
 }

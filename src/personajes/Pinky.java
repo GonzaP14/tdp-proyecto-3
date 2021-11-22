@@ -9,7 +9,7 @@ public class Pinky extends Enemigo {
 	public Pinky(Juego miJuego, String[] imagenes) {
 		velocidadPredeterminada = miJuego.getNivel().getVelocidadEnemigos();
 		velocidadActual = velocidadPredeterminada;
-		super.crearEnemigo(miJuego, new Posicion(25, 25), imagenes);
+		super.crearEnemigo(miJuego, new Posicion(350, 275), imagenes);
 	}
 
 	@Override

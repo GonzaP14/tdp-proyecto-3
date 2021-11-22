@@ -32,7 +32,7 @@ public abstract class Enemigo extends Personaje {
 			miJuego.getGrilla().getBloque(miPosicion.getY() / 25 , miPosicion.getX() / 25).agregarAListaRemovidos(this);
 			cambiarEstado(Eaten);
 		}
-		else {
+		else if(indiceEstado == Scatter || indiceEstado == Chase){
 			miJuego.getMiPersonajePrincipal().recibirEfecto(this);
 		}
 	}
