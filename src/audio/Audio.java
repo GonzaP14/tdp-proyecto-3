@@ -1,14 +1,12 @@
 package audio;
 
 import java.io.IOException;
-
 import javax.sound.sampled.AudioInputStream;
 import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.Clip;
 import javax.sound.sampled.FloatControl;
 import javax.sound.sampled.LineUnavailableException;
 import javax.sound.sampled.UnsupportedAudioFileException;
-
 import dominios.DominioJuego;
 
 public class Audio {
@@ -31,7 +29,10 @@ public class Audio {
 			e.printStackTrace();
 		}	
 	}
-		
+	
+	/**
+	 * Utilizado para iniciar la musica del juego
+	 */
 	public void iniciarMusica() {
 		try {
 			miClip.open(miMusica);
@@ -44,12 +45,9 @@ public class Audio {
 		}
 	}
 	
-	public boolean estaPausado() {
-		return false;
-	}
-	
-	
-
+	/**
+	 * Utilizado para reproducir el sonido cuando el jugador pierda
+	 */
 	public void sonidoGameOver() {
 		 try {
 			miClip.close();
@@ -60,6 +58,9 @@ public class Audio {
 		}
 	}
 	
+	/**
+	 * Utilizado para reproducir el sonido cuando el jugador gana
+	 */
 	public void sonidoWin() {
 		 try {
 			miClip.close();
@@ -70,6 +71,9 @@ public class Audio {
 		}
 	}
 	
+	/**
+	 * Utilizado para mutear el juego
+	 */
 	public void mutear() {
 		if(miClip.isRunning()==true) {
 			miClip.stop();
