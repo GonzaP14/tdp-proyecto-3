@@ -5,11 +5,11 @@ import entidadesLogicas.Posicion;
 
 public class Inky extends Enemigo {
 	private static final Posicion posicionScatter = new Posicion(700  , 800);
-
+	private static final Posicion spawnInky = new Posicion(350, 275);
 	public Inky(Juego miJuego, String[] imagenes) {
 		setVelocidadPredeterminada(miJuego.getNivel().getVelocidadEnemigos());
 		velocidadActual = velocidadPredeterminada;
-		super.crearEnemigo(miJuego, new Posicion(350, 275), imagenes);
+		super.crearEnemigo(miJuego, spawnInky, imagenes);
 	}
 
 	@Override

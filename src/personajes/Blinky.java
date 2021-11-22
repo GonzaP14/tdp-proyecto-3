@@ -5,11 +5,11 @@ import entidadesLogicas.Posicion;
 
 public class Blinky extends Enemigo {
 	private static final Posicion posicionScatter = new Posicion(675 , -75);
-	
+	private static final Posicion spawnBlinky = new Posicion(350, 275);
 	public Blinky(Juego miJuego, String[] imagenes) {
 		setVelocidadPredeterminada(miJuego.getNivel().getVelocidadEnemigos());
 		velocidadActual = velocidadPredeterminada;
-		super.crearEnemigo(miJuego, new Posicion(350, 275), imagenes);
+		super.crearEnemigo(miJuego, spawnBlinky, imagenes);
 	}
 	
 	@Override
