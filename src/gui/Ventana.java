@@ -214,7 +214,7 @@ public class Ventana extends JFrame implements KeyListener {
 		score.setBounds(780, 50, 130, 50);
 		this.getContentPane().add(score);
 		
-    	puntajeNum = new JLabel("0",SwingConstants.CENTER);
+    	puntajeNum = new JLabel(miJuego.getPlayer().getScore()+"",SwingConstants.CENTER);
     	puntajeNum.setFont(fuente);
 		puntajeNum.setForeground(Color.WHITE);
 		puntajeNum.setBounds(780, 100, 130, 50);
@@ -266,26 +266,30 @@ public class Ventana extends JFrame implements KeyListener {
 	}
     
 	private void crearLogosVidas() {
-		vida1 = new JLabel("", SwingConstants.CENTER);
-		vida1.setBounds(775, 375, 50, 50);
-    	ImageIcon icovida1 = new ImageIcon(Toolkit.getDefaultToolkit().getImage(this.getClass().getResource(miDominio.getImagenVidas())));	
-		ImageIcon imgvida1 = new ImageIcon(icovida1.getImage().getScaledInstance(vida1.getWidth(), vida1.getHeight(), Image.SCALE_SMOOTH));
-		vida1.setIcon(imgvida1);
-		this.getContentPane().add(vida1);
-
-		vida2 = new JLabel("", SwingConstants.CENTER);
-		vida2.setBounds(825, 375, 50, 50);
-    	ImageIcon icovida2 = new ImageIcon(Toolkit.getDefaultToolkit().getImage(this.getClass().getResource(miDominio.getImagenVidas())));	
-		ImageIcon imgvida2 = new ImageIcon(icovida2.getImage().getScaledInstance(vida2.getWidth(), vida2.getHeight(), Image.SCALE_SMOOTH));
-		vida2.setIcon(imgvida2);
-		this.getContentPane().add(vida2);
-		
-		vida3 = new JLabel("", SwingConstants.CENTER);
-		vida3.setBounds(875, 375, 50, 50);
-    	ImageIcon icovida3 = new ImageIcon(Toolkit.getDefaultToolkit().getImage(this.getClass().getResource(miDominio.getImagenVidas())));	
-		ImageIcon imgvida3 = new ImageIcon(icovida3.getImage().getScaledInstance(vida3.getWidth(), vida3.getHeight(), Image.SCALE_SMOOTH));
-		vida3.setIcon(imgvida3);
-		this.getContentPane().add(vida3);	
+		if(miJuego.getVidasActuales() == 3 || miJuego.getVidasActuales() == 2 || miJuego.getVidasActuales() == 1) {
+			vida1 = new JLabel("", SwingConstants.CENTER);
+			vida1.setBounds(775, 375, 50, 50);
+	    	ImageIcon icovida1 = new ImageIcon(Toolkit.getDefaultToolkit().getImage(this.getClass().getResource(miDominio.getImagenVidas())));	
+			ImageIcon imgvida1 = new ImageIcon(icovida1.getImage().getScaledInstance(vida1.getWidth(), vida1.getHeight(), Image.SCALE_SMOOTH));
+			vida1.setIcon(imgvida1);
+			this.getContentPane().add(vida1);
+		}
+		if( miJuego.getVidasActuales() == 3 || miJuego.getVidasActuales() == 2) {
+			vida2 = new JLabel("", SwingConstants.CENTER);
+			vida2.setBounds(825, 375, 50, 50);
+	    	ImageIcon icovida2 = new ImageIcon(Toolkit.getDefaultToolkit().getImage(this.getClass().getResource(miDominio.getImagenVidas())));	
+			ImageIcon imgvida2 = new ImageIcon(icovida2.getImage().getScaledInstance(vida2.getWidth(), vida2.getHeight(), Image.SCALE_SMOOTH));
+			vida2.setIcon(imgvida2);
+			this.getContentPane().add(vida2);
+		}
+		if( miJuego.getVidasActuales() == 3) {
+			vida3 = new JLabel("", SwingConstants.CENTER);
+			vida3.setBounds(875, 375, 50, 50);
+	    	ImageIcon icovida3 = new ImageIcon(Toolkit.getDefaultToolkit().getImage(this.getClass().getResource(miDominio.getImagenVidas())));	
+			ImageIcon imgvida3 = new ImageIcon(icovida3.getImage().getScaledInstance(vida3.getWidth(), vida3.getHeight(), Image.SCALE_SMOOTH));
+			vida3.setIcon(imgvida3);
+			this.getContentPane().add(vida3);
+		}	
 	}
 	
 	private void crearHub() {
