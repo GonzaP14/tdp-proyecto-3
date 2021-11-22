@@ -22,7 +22,8 @@ public class HiloEnemigo extends Thread {
 				try {
 					cantidadTicks++;
 					if(cantidadTicks == 200) {
-						miEnemigo.cambiarEstado(Enemigo.Chase);
+						if(miEnemigo.getIndiceEstado() == Enemigo.Scatter)
+							miEnemigo.cambiarEstado(Enemigo.Chase);
 					}
 					miJuego.operar(miEnemigo);
 					Thread.sleep(5000/velocidadTickeo);
