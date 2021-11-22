@@ -18,7 +18,7 @@ public abstract class Enemigo extends Personaje {
 	protected int indiceEstado;
 	protected int tiempoEstado;
 	protected int velocidadPredeterminada;
-	private static final int puntajeOtorgado = 200; // Preguntar si lo vamos a utilizar
+	private static final int puntajeOtorgado = 200;
 	public static final int Frightened = 0;
 	public static final int Chase = 1;
 	public static final int Eaten = 2;
@@ -28,7 +28,7 @@ public abstract class Enemigo extends Personaje {
 	public void afectar() {
 		if(indiceEstado == Frightened) {
 			miJuego.setCantidadFantasmasComidos(miJuego.getCantidadFantasmasComidos() + 1);
-			miJuego.aumentarPuntaje(200 * miJuego.getCantidadFantasmasComidos());
+			miJuego.aumentarPuntaje(puntajeOtorgado * miJuego.getCantidadFantasmasComidos());
 			miJuego.getGrilla().getBloque(miPosicion.getY() / 25 , miPosicion.getX() / 25).agregarAListaRemovidos(this);
 			cambiarEstado(Eaten);
 		}
@@ -58,7 +58,7 @@ public abstract class Enemigo extends Personaje {
 
     public void recibirEfecto(PocionBomba p) {
     	miJuego.aumentarPuntaje(p.getPuntajeOtorgado());
-		reaparecer();
+    	cambiarEstado(Eaten);
     }
 	
 	public void cambiarEstado (int estado) {

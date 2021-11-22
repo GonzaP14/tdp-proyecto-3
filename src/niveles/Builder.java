@@ -1,6 +1,7 @@
 package niveles;
 
 import dominios.DominioJuego;
+import entidadesLogicas.Grilla;
 
 public interface Builder {
 	

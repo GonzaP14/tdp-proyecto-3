@@ -1,24 +1,18 @@
 package elementos;
 
 import java.util.ArrayList;
-
 import entidadesGraficas.ElementoGrafico;
 import entidadesLogicas.Bloque;
 import entidadesLogicas.Entidad;
 import entidadesLogicas.Juego;
-import entidadesLogicas.Posicion;
 import gui.Ventana;
 
 public class PocionBomba extends Pocion {
 	
 	public PocionBomba(Juego miJuego, String imagenes[]) {
-		this.miJuego = miJuego;
-		miSpawn =  new Posicion(325, 425);
-		miPosicion = new Posicion(miSpawn.getX(), miSpawn.getY());
-		miRepresentacion = new ElementoGrafico(imagenes);
-		miRepresentacion.aparecer(miPosicion);
 		puntajeOtorgado = 400;
-		miJuego.getGrilla().getBloque(miPosicion.getY() / Ventana.pixelesBloque , miPosicion.getX() / Ventana.pixelesBloque).agregarAListaEntidades(this);
+		miRepresentacion = new ElementoGrafico(imagenes);
+		this.miJuego = miJuego;
 	}
 
 	@Override
@@ -35,7 +29,7 @@ public class PocionBomba extends Pocion {
 		ArrayList<Bloque> bloquesEnRadio = new ArrayList<Bloque>();
 		
 		// Se arma un radio de 4x4 a partir de la posicion de la bomba (no incluye la posicion de la bomba misma)
-		for (int i = 1; i < 5; i++) {
+		for (int i = 0; i < 5; i++) {
 			bloquesEnRadio.add(miJuego.getGrilla().getBloque(miPosicion.getY() / Ventana.pixelesBloque + i, miPosicion.getX() / Ventana.pixelesBloque));
 			bloquesEnRadio.add(miJuego.getGrilla().getBloque(miPosicion.getY() / Ventana.pixelesBloque - i, miPosicion.getX() / Ventana.pixelesBloque));
 			bloquesEnRadio.add(miJuego.getGrilla().getBloque(miPosicion.getY() / Ventana.pixelesBloque, miPosicion.getX() / Ventana.pixelesBloque + i));
@@ -47,8 +41,6 @@ public class PocionBomba extends Pocion {
 			for (Entidad entidad : bloqueAlcanzado.getListaEntidades()) {
 				entidad.recibirEfecto(this);
 			}
-			bloqueAlcanzado.getListaEntidades().removeAll(bloqueAlcanzado.getListaRemovidos());
-			bloqueAlcanzado.limpiarListaRemovidos();
 		}
 		miRepresentacion.desaparecer();
 	}

@@ -24,9 +24,7 @@ public class PowerPellet extends Elemento {
         this.miJuego = miJuego;
         miRepresentacion = new ElementoGrafico(imagenes);
         puntajeOtorgado = 50;
-        miSpawn = spawn;
-        miPosicion = new Posicion(miSpawn.getX(), miSpawn.getY());
-        miJuego.getGrilla().getBloque(miPosicion.getY() / Ventana.pixelesBloque , miPosicion.getX() / Ventana.pixelesBloque).agregarAListaEntidades(this);
+        setSpawneo(spawn);
     }
 		
 	@Override

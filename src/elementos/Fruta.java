@@ -2,7 +2,6 @@ package elementos;
 
 import entidadesGraficas.ElementoGrafico;
 import entidadesLogicas.Juego;
-import entidadesLogicas.Posicion;
 import gui.Ventana;
 
 public class Fruta extends Elemento {
@@ -10,10 +9,6 @@ public class Fruta extends Elemento {
 		puntajeOtorgado = 100;
 		miRepresentacion = new ElementoGrafico(imagenes);
 		this.miJuego = miJuego;
-		miSpawn = new Posicion(350, 425);
-		miPosicion = new Posicion(miSpawn.getX(), miSpawn.getY());
-		miRepresentacion.aparecer(miPosicion);
-		miJuego.getGrilla().getBloque(miPosicion.getY() / Ventana.pixelesBloque , miPosicion.getX() / Ventana.pixelesBloque).agregarAListaEntidades(this);
 	}
 
 	@Override
@@ -31,5 +26,4 @@ public class Fruta extends Elemento {
 	public void finPocion() {
 
 	}
-	
 }

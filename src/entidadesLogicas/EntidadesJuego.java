@@ -97,14 +97,7 @@ public class EntidadesJuego {
 		
 		for (Elemento e: misPowerPellets) {
 			e.reset();
-		}
-		
-		miFruta.reset();
-		
-		for (Elemento e: misPociones) {
-			e.reset();
-		}
-		
+		}	
 	}
 
 	public Principal getPrincipal() {
@@ -121,6 +114,10 @@ public class EntidadesJuego {
 	
 	public List<Elemento> getPowerPellets() {
 		return misPowerPellets;
+	}
+	
+	public Elemento getFruta() {
+		return miFruta;
 	}
 	
 	public void cambiarSentidoPrincipal(int sentidoMovimiento) {
@@ -152,14 +149,21 @@ public class EntidadesJuego {
 	}
 	
 	public void aparecerPocionBomba() {
+		misPociones.get(0).setSpawneo(new Posicion(325, 425));
+		misPociones.get(0).getMiRepresentacion().aparecer(misPociones.get(0).getSpawn());
 		miJuego.getVentana().aparecerEntidad(misPociones.get(0).getMiRepresentacion());
 	}
-	
+
 	public void aparecerPocionVelocidad() {
+		misPociones.get(1).setSpawneo(new Posicion(375, 425));
+		misPociones.get(1).getMiRepresentacion().aparecer(misPociones.get(1).getSpawn());
 		miJuego.getVentana().aparecerEntidad(misPociones.get(1).getMiRepresentacion());
+
 	}
 	
 	public void aparecerFruta() {
+		miFruta.setSpawneo(new Posicion(350, 425));
+		miFruta.getMiRepresentacion().aparecer(miFruta.getSpawn());
 		miJuego.getVentana().aparecerEntidad(miFruta.getMiRepresentacion());
 	}
 	

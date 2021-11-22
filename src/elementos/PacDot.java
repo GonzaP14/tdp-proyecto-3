@@ -80,9 +80,7 @@ public class PacDot extends Elemento {
         this.miJuego = miJuego;
         miRepresentacion = new ElementoGrafico(imagenes);
         puntajeOtorgado = 10;
-        miSpawn = spawn;
-        miPosicion = new Posicion(miSpawn.getX(), miSpawn.getY());
-        miJuego.getGrilla().getBloque(miPosicion.getY() / Ventana.pixelesBloque , miPosicion.getX() / Ventana.pixelesBloque).agregarAListaEntidades(this);
+        setSpawneo(spawn);
     }
 	
 	public PacDot(Juego miJuego, String[] imagenes) {

@@ -10,7 +10,6 @@ import dominios.DominioJuego;
 import elementos.Elemento;
 import gui.Ventana;
 import launcher.Launcher;
-import niveles.Grilla;
 import niveles.Nivel;
 import personajes.Enemigo;
 import personajes.Personaje;
@@ -68,6 +67,10 @@ public class Juego {
 	
 	public List<Enemigo> getEnemigos() {
 		return misEntidades.getEnemigos();
+	}
+	
+	public Elemento getFruta() {
+		return misEntidades.getFruta();
 	}
 	
 	public DominioJuego getDominio() {
@@ -173,7 +176,6 @@ public class Juego {
 		} 
 		else if (cantidadPacDots == 0) {
 			Launcher.pasarNivel();
-			resetRelojes();
 		}
 	}
 	
@@ -280,6 +282,7 @@ public class Juego {
 	public synchronized void reset() {
 		miGrilla.reset();
 		misEntidades.reset();
+		resetRelojes();
 	}
 	
 	public void resetRelojes() {
@@ -290,5 +293,4 @@ public class Juego {
 			e.setVelocidadActual(e.getVelocidadPredeterminada());
 		}
 	}
-
 }

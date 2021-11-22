@@ -2,19 +2,14 @@ package elementos;
 
 import entidadesGraficas.ElementoGrafico;
 import entidadesLogicas.Juego;
-import entidadesLogicas.Posicion;
 import gui.Ventana;
 
 public class PocionVelocidad extends Pocion {
 	
 	public PocionVelocidad(Juego miJuego, String[] imagenes) {
-		this.miJuego = miJuego;
-		miSpawn = new Posicion(375, 425);
-		miPosicion = new Posicion(miSpawn.getX(), miSpawn.getY());
-		miRepresentacion = new ElementoGrafico(imagenes);
-		miRepresentacion.aparecer(miPosicion);
 		velocidadOtorgada = 120;
-		miJuego.getGrilla().getBloque(miPosicion.getY() / Ventana.pixelesBloque , miPosicion.getX() / Ventana.pixelesBloque).agregarAListaEntidades(this);
+		miRepresentacion = new ElementoGrafico(imagenes);
+		this.miJuego = miJuego;
 	}
 
 	@Override

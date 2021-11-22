@@ -18,14 +18,15 @@ public class Reloj extends Thread{
 					miJuego.operar(miJuego.getPrincipal());
 					Thread.sleep(5000 / velocidadTickeo); // 1s
 					cantidadTicks++;
-					if (cantidadTicks == 200) 
+					if (cantidadTicks == 200) {
 						miJuego.aparecerFruta();
+					}
 					if(cantidadTicks == ( 200 + miJuego.getNivel().getDuracionFrutas() ) )
 						miJuego.despawnearFruta();
 					if(cantidadTicks == 400) {
 						miJuego.aparecerPocionBomba();
 					}
-					if(cantidadTicks == 400 + miJuego.getNivel().getDuracionPociones() * 4)
+					if(cantidadTicks == 400 + miJuego.getNivel().getDuracionPociones())
 						miJuego.despawnearPocionBomba();
 					if(cantidadTicks == 600) {
 						miJuego.aparecerPocionVelocidad();

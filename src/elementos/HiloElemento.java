@@ -18,7 +18,6 @@ public class HiloElemento extends Thread {
 	
 	public void run() {
 		while (!miJuego.isGameOver() && !romper) {
-			System.out.println(cantidadTicks);
 	        if(!miJuego.estaPausado()) {
 	        	try {
 					Thread.sleep(50);

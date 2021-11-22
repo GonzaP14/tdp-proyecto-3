@@ -24,6 +24,4 @@ public abstract class Pocion extends Elemento {
 	public int getPuntajeOtorgado() {
 		return puntajeOtorgado;
 	}
-	
-	
 }
