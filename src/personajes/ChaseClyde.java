@@ -16,18 +16,21 @@ public class ChaseClyde extends ChaseIA {
 	@Override
 	public Posicion siguientePosicion() {
 		Posicion siguientePosicion = miEnemigo.getPosicion();
-		double distanciaMinima = Double.MAX_VALUE;
-		double distanciaActual; 
+		double distanciaMinimaAPrincipal = Double.MAX_VALUE, distanciaMinimaAMiScatter = Double.MAX_VALUE;
+		double distanciaActualAPrincipal, distanciaActualAMiScatter; 
 		
 		for (Posicion pos: miEnemigo.posiblesPosiciones()) {
-			distanciaActual = pos.distanciaEntrePosicionesPitagoras(miPrincipal.getPosicion());
-
-			if (distanciaActual <= 8.0 * Ventana.pixelesBloque) {
-				siguientePosicion = miEnemigo.getPosicionScatter();
-				break;
+			distanciaActualAPrincipal = pos.distanciaEntrePosicionesPitagoras(miPrincipal.getPosicion());
+			distanciaActualAMiScatter = pos.distanciaEntrePosicionesPitagoras(miEnemigo.getPosicionScatter());
+			
+			if (distanciaActualAPrincipal <= 8.0 * Ventana.pixelesBloque) {
+				if (distanciaActualAMiScatter < distanciaMinimaAMiScatter) {
+					distanciaMinimaAMiScatter = distanciaActualAMiScatter;
+					siguientePosicion = pos;
+				}
 			}
-			else if (distanciaActual <= distanciaMinima){
-				distanciaMinima = distanciaActual;
+			else if (distanciaActualAPrincipal < distanciaMinimaAPrincipal){
+				distanciaMinimaAPrincipal = distanciaActualAPrincipal;
 				siguientePosicion = pos;
 			}
 		}
