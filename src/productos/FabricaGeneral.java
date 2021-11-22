@@ -1,5 +1,6 @@
 package productos;
 
+import dominios.DominioJuego;
 import elementos.Elemento;
 import elementos.Fruta;
 import elementos.PacDot;
@@ -7,7 +8,6 @@ import elementos.Pocion;
 import elementos.PocionBomba;
 import elementos.PocionVelocidad;
 import elementos.PowerPellet;
-import entidadesLogicas.DominioJuego;
 import entidadesLogicas.Juego;
 import entidadesLogicas.Posicion;
 import personajes.Blinky;

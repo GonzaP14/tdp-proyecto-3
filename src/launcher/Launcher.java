@@ -1,8 +1,8 @@
 package launcher;
 
-import entidadesLogicas.DominioJuego;
-import entidadesLogicas.DominioMarioBros;
-import entidadesLogicas.DominioSonic;
+import dominios.DominioJuego;
+import dominios.DominioMarioBros;
+import dominios.DominioSonic;
 import entidadesLogicas.Juego;
 import gui.SplashScreen;
 import gui.Ventana;

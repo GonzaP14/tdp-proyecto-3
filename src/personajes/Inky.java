@@ -19,6 +19,6 @@ public class Inky extends Enemigo {
 
 	@Override
 	public ChaseIA crearChaseIA() {
-		return new ChaseInky(miJuego.getEnemigos().get(0));
+		return new ChaseInky(this, miJuego.getPrincipal(), miJuego.getEnemigos().get(0));
 	}
 }

@@ -4,18 +4,22 @@ import entidadesLogicas.Posicion;
 
 public class ChaseBlinky extends ChaseIA {
 	
+	private Enemigo miEnemigo;
+	private Principal miPrincipal;
+	
+	public ChaseBlinky(Enemigo blinky, Principal principal) {
+		miEnemigo = blinky;
+		miPrincipal = principal;
+	}
+	
 	@Override
-	public Posicion calcularSiguientePosicion(Enemigo e, Principal principal) {
-		Posicion toReturn = e.getPosicion();
-		Posicion posicionPrincipal = principal.getPosicion();
+	public Posicion siguientePosicion() {
+		Posicion toReturn = miEnemigo.getPosicion();
+		Posicion posicionPrincipal = miPrincipal.getPosicion();
 		double distanciaMinima = Double.MAX_VALUE; 
-		/* Asumo que la distancia actual con el principal es la maxima posible.
-		   Esto se realiza para no quedar que el enemigo e no quede en la misma posición, ya que cualquier
-		   otra distancia sera menor con respecto a esta.
-		*/ 
 		double distanciaActual;
 		
-		for (Posicion pos: e.posicionesDestino()) { // Direcciones de Blinky
+		for (Posicion pos: miEnemigo.posicionesDestino()) {
 			distanciaActual = pos.distanciaEntrePosicionesPitagoras(posicionPrincipal);
 			
 			if (distanciaActual < distanciaMinima) {

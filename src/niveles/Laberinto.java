@@ -1,11 +1,10 @@
-package entidadesGraficas;
+package niveles;
 
 import java.awt.GridLayout;
 import java.util.LinkedList;
 import java.util.List;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import entidadesLogicas.Grilla;
 
 public class Laberinto extends JPanel{
 		

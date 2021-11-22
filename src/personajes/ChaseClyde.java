@@ -4,25 +4,31 @@ import entidadesLogicas.Posicion;
 import gui.Ventana;
 
 public class ChaseClyde extends ChaseIA {
+	
+	private Enemigo miEnemigo;
+	private Principal miPrincipal;
+	
+	public ChaseClyde(Enemigo clyde, Principal principal) {
+		miEnemigo = clyde;
+		miPrincipal = principal;
+	}
+	
 	@Override
-	public Posicion calcularSiguientePosicion(Enemigo enemigoLigado, Principal principal) {
-		Posicion siguientePosicion = enemigoLigado.getPosicion();
+	public Posicion siguientePosicion() {
+		Posicion siguientePosicion = miEnemigo.getPosicion();
+		double distanciaMinima = Double.MAX_VALUE;
+		double distanciaActual; 
 		
-		double distanciaMinima = Double.MAX_VALUE, distanciaPosiblePos; 
-		
-		for (Posicion posiblePos: enemigoLigado.posicionesDestino()) {
-			distanciaPosiblePos = posiblePos.distanciaEntrePosicionesPitagoras(principal.getPosicion());
+		for (Posicion pos: miEnemigo.posicionesDestino()) {
+			distanciaActual = pos.distanciaEntrePosicionesPitagoras(miPrincipal.getPosicion());
 
-			if (distanciaPosiblePos <= 8.0 * Ventana.pixelesBloque) { // 8 bloques
-				// entra en scatter mode
-				// siguientePosicion = ScatterClyde.getInicio();
-				// break
+			if (distanciaActual <= 8.0 * Ventana.pixelesBloque) {
 				siguientePosicion = new Posicion(650, 650);
 				break;
 			}
-			else if (distanciaPosiblePos <= distanciaMinima){
-				distanciaMinima = distanciaPosiblePos;
-				siguientePosicion = posiblePos;
+			else if (distanciaActual <= distanciaMinima){
+				distanciaMinima = distanciaActual;
+				siguientePosicion = pos;
 			}
 		}
 		

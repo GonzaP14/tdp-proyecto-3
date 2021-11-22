@@ -14,7 +14,7 @@ public class Clyde extends Enemigo {
 
 	@Override
 	public ChaseIA crearChaseIA() {
-		return new ChaseClyde();
+		return new ChaseClyde(this, miJuego.getPrincipal());
 	}
 
 	@Override

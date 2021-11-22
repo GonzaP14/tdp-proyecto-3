@@ -1,9 +1,10 @@
-package entidadesGraficas;
+package niveles;
 
 import java.awt.Image;
 import java.awt.Toolkit;
 import javax.swing.*;
-import entidadesLogicas.DominioJuego;
+
+import dominios.DominioJuego;
 
 public class BloqueGrafico extends JLabel{
 	

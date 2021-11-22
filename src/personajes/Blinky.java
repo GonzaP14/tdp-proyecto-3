@@ -14,7 +14,7 @@ public class Blinky extends Enemigo {
 	
 	@Override
 	public ChaseIA crearChaseIA() {
-		return new ChaseBlinky();
+		return new ChaseBlinky(this, miJuego.getPrincipal());
 	}
 
 	@Override

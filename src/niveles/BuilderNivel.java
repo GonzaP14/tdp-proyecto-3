@@ -1,7 +1,6 @@
 package niveles;
 
-import entidadesLogicas.DominioJuego;
-import entidadesLogicas.Grilla;
+import dominios.DominioJuego;
 
 public class BuilderNivel implements Builder {
 	

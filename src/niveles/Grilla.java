@@ -1,6 +1,10 @@
-package entidadesLogicas;
+package niveles;
 
 import java.awt.Rectangle;
+
+import entidadesLogicas.Bloque;
+import entidadesLogicas.Entidad;
+import entidadesLogicas.Posicion;
 import gui.Ventana;
 import personajes.Personaje;
 

@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-import entidadesGraficas.BloqueGrafico;
+import niveles.BloqueGrafico;
 
 public class Bloque {
 	

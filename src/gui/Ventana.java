@@ -20,12 +20,15 @@ import javax.swing.JLayeredPane;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 import entidadesGraficas.EntidadGrafica;
-import entidadesGraficas.Laberinto;
-import entidadesLogicas.DominioJuego;
 import entidadesLogicas.Entidad;
 import entidadesLogicas.Juego;
+import niveles.Laberinto;
+
 import java.awt.Color;
 import javax.swing.border.EmptyBorder;
+
+import dominios.DominioJuego;
+
 import javax.swing.JTextField;
 import javax.swing.JButton;
 

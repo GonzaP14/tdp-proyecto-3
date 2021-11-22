@@ -3,6 +3,8 @@ package entidadesLogicas;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+
+import dominios.DominioJuego;
 import elementos.Elemento;
 import elementos.PacDot;
 import elementos.PowerPellet;

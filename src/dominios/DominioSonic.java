@@ -1,4 +1,4 @@
-package entidadesLogicas;
+package dominios;
 
 public class DominioSonic implements DominioJuego {
 

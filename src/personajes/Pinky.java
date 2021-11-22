@@ -20,7 +20,7 @@ public class Pinky extends Enemigo {
 
 	@Override
 	public ChaseIA crearChaseIA() {
-		return new ChasePinky();
+		return new ChasePinky(this, miJuego.getPrincipal());
 	}
 	
 }

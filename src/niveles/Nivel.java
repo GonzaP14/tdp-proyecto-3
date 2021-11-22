@@ -1,8 +1,6 @@
 package niveles;
 
-import entidadesGraficas.Laberinto;
-import entidadesLogicas.DominioJuego;
-import entidadesLogicas.Grilla;
+import dominios.DominioJuego;
 
 public class Nivel {
 	
