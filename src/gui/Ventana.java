@@ -67,6 +67,8 @@ public class Ventana extends JFrame implements KeyListener {
     private JTextField txtName2;
     private JButton Load;
     private JButton Load2;
+    private JLabel imagenMario;
+    private JLabel imagenSonic;
     private JLabel imagenMuertoMario;
     private JLabel imagenLogoBowser;
     private JLabel imagenDrEggman;
@@ -149,8 +151,11 @@ public class Ventana extends JFrame implements KeyListener {
 		win = new JLabel("CONGRATULATIONS");
 		win.setForeground(Color.GREEN);
 		win.setFont(fuenteTitulo);
-		win.setBounds(150, 41, 650, 133);
+		win.setBounds(175, 41, 650, 133);
 		endWin.add(win);
+		
+		crearMario();
+		crearSonic();
 
 	}
 
@@ -238,7 +243,24 @@ public class Ventana extends JFrame implements KeyListener {
     	ImageIcon icoMario = new ImageIcon(Toolkit.getDefaultToolkit().getImage(this.getClass().getResource("/recursosMarioBros/marioMuerto.png")));	
 		ImageIcon imgMario = new ImageIcon(icoMario.getImage().getScaledInstance(imagenMuertoMario.getWidth(), imagenMuertoMario.getHeight(), Image.SCALE_SMOOTH));
 		imagenMuertoMario.setIcon(imgMario);
+		
 		endGameOver.add(imagenMuertoMario);
+	}
+	private void crearMario() {
+		imagenMario= new JLabel("");
+		imagenMario.setBounds(89, 300, 198, 400);
+    	ImageIcon icoMario2 = new ImageIcon(Toolkit.getDefaultToolkit().getImage(this.getClass().getResource("/recursosMarioBros/marioWin.png")));	
+		ImageIcon imgMario2 = new ImageIcon(icoMario2.getImage().getScaledInstance(imagenMario.getWidth(), imagenMario.getHeight(), Image.SCALE_SMOOTH));
+		imagenMario.setIcon(imgMario2);
+		endWin.add(imagenMario);
+	}
+	private void crearSonic() {
+		imagenSonic= new JLabel("");
+		imagenSonic.setBounds(650, 250, 350, 550);
+    	ImageIcon icoSonic2 = new ImageIcon(Toolkit.getDefaultToolkit().getImage(this.getClass().getResource("/recursosSonic/sonicWin.png")));	
+		ImageIcon imgSonic2 = new ImageIcon(icoSonic2.getImage().getScaledInstance(imagenSonic.getWidth(), imagenSonic.getHeight(), Image.SCALE_SMOOTH));
+		imagenSonic.setIcon(imgSonic2);
+		endWin.add(imagenSonic);
 	}
 	
 	private void crearLogoBowser() {
