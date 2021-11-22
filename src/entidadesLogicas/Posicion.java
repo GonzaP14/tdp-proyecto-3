@@ -3,7 +3,7 @@ package entidadesLogicas;
 import gui.Ventana;
 
 public class Posicion {
-	int x, y, width, height;
+	private int x, y, width, height;
 	
 	public Posicion (int x, int y, int ancho, int alto) {
 		this.x = x;
