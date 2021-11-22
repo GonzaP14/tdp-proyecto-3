@@ -18,7 +18,7 @@ public abstract class Enemigo extends Personaje {
 	protected int indiceEstado;
 	protected int tiempoEstado;
 	protected int velocidadPredeterminada;
-	private static final int puntajeOtorgado = 200;
+	private static final int puntajeOtorgado = 200; // Preguntar si lo vamos a utilizar
 	public static final int Frightened = 0;
 	public static final int Chase = 1;
 	public static final int Eaten = 2;
@@ -33,7 +33,7 @@ public abstract class Enemigo extends Personaje {
 			cambiarEstado(Eaten);
 		}
 		else if(indiceEstado == Scatter || indiceEstado == Chase){
-			miJuego.getMiPersonajePrincipal().recibirEfecto(this);
+			miJuego.getPrincipal().recibirEfecto(this);
 		}
 	}
 
@@ -117,7 +117,7 @@ public abstract class Enemigo extends Personaje {
 	}
 	
 	protected EstadoEnemigo crearEstadoFrightened() {
-		EstadoEnemigo frightened = new Frightened(this , miJuego.getMiPersonajePrincipal());
+		EstadoEnemigo frightened = new Frightened(this , miJuego.getPrincipal());
 		return frightened;
 	}
 	
@@ -132,7 +132,7 @@ public abstract class Enemigo extends Personaje {
 	}
 	
 	public EstadoEnemigo crearEstadoChase(ChaseIA chaseIA, Enemigo enemigoLigado) {
-		EstadoEnemigo chase = new Chase(chaseIA , enemigoLigado , miJuego.getMiPersonajePrincipal());
+		EstadoEnemigo chase = new Chase(chaseIA , enemigoLigado , miJuego.getPrincipal());
 		return chase;
 	}
 	

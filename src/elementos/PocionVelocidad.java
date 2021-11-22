@@ -20,14 +20,14 @@ public class PocionVelocidad extends Pocion {
 	@Override
 	public void afectar() {
 		iniciarTimer(new HiloElemento(miJuego, miJuego.getNivel().getDuracionPociones() , this) );
-		miJuego.getMiPersonajePrincipal().recibirEfecto(this);
+		miJuego.getPrincipal().recibirEfecto(this);
 		miRepresentacion.desaparecer();
 		miJuego.getGrilla().getBloque(miPosicion.getY() / Ventana.pixelesBloque , miPosicion.getX() / Ventana.pixelesBloque).agregarAListaRemovidos(this);
 	}
 
 	@Override
 	public void finPocion() {
-		miJuego.getMiPersonajePrincipal().setVelocidadActual(100);
+		miJuego.getPrincipal().setVelocidadActual(100);
 		miJuego.getMiReloj().setVelocidadTickeo(100);
 	}
 }

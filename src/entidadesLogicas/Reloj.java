@@ -15,7 +15,7 @@ public class Reloj extends Thread{
 		while (!miJuego.isGameOver()) {
 	        if(!miJuego.estaPausado()) {
 	        	try {
-					miJuego.operar(miJuego.getMiPersonajePrincipal());
+					miJuego.operar(miJuego.getPrincipal());
 					Thread.sleep(5000 / velocidadTickeo); // 1s
 					ticks++;
 					if (ticks == 200) 

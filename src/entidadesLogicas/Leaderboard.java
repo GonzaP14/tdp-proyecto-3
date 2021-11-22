@@ -12,7 +12,8 @@ import java.util.ArrayList;
 import java.util.Collections;
 
 public class Leaderboard implements Serializable{
-
+	
+	private static final long serialVersionUID = 1L;
 	
 	private List<Player> ranking;
 	
@@ -60,6 +61,7 @@ public class Leaderboard implements Serializable{
 		}
 	} 
 	
+	@SuppressWarnings("unchecked")
 	public void recuperarLeaderboard() {
 		try {
 			FileInputStream fileInputStream = new FileInputStream(Juego.configuration.getProperty("file"));

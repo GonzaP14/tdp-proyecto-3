@@ -267,16 +267,16 @@ public class Ventana extends JFrame implements KeyListener{
 	public void keyPressed(KeyEvent e) {
 		switch (e.getKeyCode()) {
 	        case KeyEvent.VK_UP:
-	          miJuego.cambiarSentidoActualPrincipal(Entidad.sentidoArriba);
+	          miJuego.cambiarSentido(Entidad.sentidoArriba);
 	          break;
 	        case KeyEvent.VK_DOWN:
-	          miJuego.cambiarSentidoActualPrincipal(Entidad.sentidoAbajo);
+	          miJuego.cambiarSentido(Entidad.sentidoAbajo);
 	          break;
 	        case KeyEvent.VK_LEFT:
-	          miJuego.cambiarSentidoActualPrincipal(Entidad.sentidoIzquierda);
+	          miJuego.cambiarSentido(Entidad.sentidoIzquierda);
 	          break;
 	        case KeyEvent.VK_RIGHT:
-	          miJuego.cambiarSentidoActualPrincipal(Entidad.sentidoDerecha);
+	          miJuego.cambiarSentido(Entidad.sentidoDerecha);
 	          break;          
 	        case KeyEvent.VK_P:
 	            break;

@@ -37,7 +37,7 @@ public class PowerPellet extends Elemento {
 	@Override
 	public void afectar() {
 		iniciarTimer(new HiloElemento(miJuego, miJuego.getNivel().getDuracionPowerPellet() , this) );
-		for(Enemigo e : miJuego.getMisEnemigos())
+		for(Enemigo e : miJuego.getEnemigos())
 			e.recibirEfecto(this);
 		miJuego.aumentarPuntaje(puntajeOtorgado);
 		miRepresentacion.desaparecer();	
@@ -50,7 +50,7 @@ public class PowerPellet extends Elemento {
 	
 	public void finPocion() {
 		miJuego.setCantidadFantasmasComidos(0);
-		for(Enemigo e : miJuego.getMisEnemigos()) {
+		for(Enemigo e : miJuego.getEnemigos()) {
 			if(e.getIndiceEstado() == Enemigo.Frightened) {
 				e.cambiarEstado(Enemigo.Chase);
 				e.setVelocidadActual(e.getVelocidadPredeterminada());
