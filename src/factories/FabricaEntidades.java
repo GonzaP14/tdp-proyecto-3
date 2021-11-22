@@ -1,4 +1,4 @@
-package productos;
+package factories;
 
 import elementos.Elemento;
 import elementos.Pocion;

@@ -22,7 +22,6 @@ public class SplashScreen extends JDialog{
 		setBounds(100, 0, 1500, 500);
 		
 	}
-
 	
 	private void crearBotonMario() {
 		marioButton = new JButton("");
@@ -47,8 +46,8 @@ public class SplashScreen extends JDialog{
 	private void crearBotonSonic() {
 		sonicButton = new JButton("");
 		sonicButton.setBounds(1078, 246, 125, 51);
-		ImageIcon botonMemoji = new ImageIcon(this.getClass().getResource("/recursosSonic/botonPlaySonic.png"));
-		sonicButton.setIcon(new ImageIcon(botonMemoji.getImage().getScaledInstance(sonicButton.getWidth(), sonicButton.getHeight(), Image.SCALE_DEFAULT)));
+		ImageIcon botonSonic = new ImageIcon(this.getClass().getResource("/recursosSonic/botonPlaySonic.png"));
+		sonicButton.setIcon(new ImageIcon(botonSonic.getImage().getScaledInstance(sonicButton.getWidth(), sonicButton.getHeight(), Image.SCALE_DEFAULT)));
 		sonicButton.addActionListener(new ActionListener() {	
 			public void actionPerformed(ActionEvent e) {
 				Launcher.crearDominioSonic();
@@ -57,11 +56,11 @@ public class SplashScreen extends JDialog{
 		});
 		getContentPane().add(sonicButton);
 				
-		ImageIcon fotoMemoji = new ImageIcon(this.getClass().getResource("/recursosSonic/portadaSonic.jpg"));
-		JLabel lblFotoMemoji = new JLabel();
-		lblFotoMemoji.setBounds(750, 0, 750, 500);
-		lblFotoMemoji.setIcon(new ImageIcon(fotoMemoji.getImage().getScaledInstance(lblFotoMemoji.getWidth(), lblFotoMemoji.getHeight(), Image.SCALE_DEFAULT)));
-		getContentPane().add(lblFotoMemoji);
+		ImageIcon fotoSonic = new ImageIcon(this.getClass().getResource("/recursosSonic/portadaSonic.jpg"));
+		JLabel lblFotoSonic = new JLabel();
+		lblFotoSonic.setBounds(750, 0, 750, 500);
+		lblFotoSonic.setIcon(new ImageIcon(fotoSonic.getImage().getScaledInstance(lblFotoSonic.getWidth(), lblFotoSonic.getHeight(), Image.SCALE_DEFAULT)));
+		getContentPane().add(lblFotoSonic);
 	}
 	
 }

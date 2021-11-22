@@ -1,4 +1,4 @@
-package productos;
+package factories;
 
 import dominios.DominioJuego;
 import elementos.Elemento;

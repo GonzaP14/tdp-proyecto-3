@@ -32,7 +32,8 @@ import dominios.DominioJuego;
 import javax.swing.JTextField;
 import javax.swing.JButton;
 
-public class Ventana extends JFrame implements KeyListener{
+public class Ventana extends JFrame implements KeyListener {
+	
 	public static final int pixelesBloque = 25;
     private static final long serialVersionUID = 1L;
     
@@ -81,16 +82,33 @@ public class Ventana extends JFrame implements KeyListener{
     }
     
     private void initialize() {
-    	try {
+    	crearFuente();
+    	crearGameOver();		
+		crearName();
+		crearLoad();
+		crearLogosLeaderBoard();
+		crearScore();
+		crearLevel();
+		crearlifes();
+		crearLeaderBoard();
+		crearLogosVidas();
+		crearHub();
+		crearCapasPanel();
+    }
+    
+    private void crearFuente() {
+		try {
 			myStream = new BufferedInputStream(new FileInputStream("src/fuentes/Pixeled.ttf"));
 			fuente = Font.createFont(Font.TRUETYPE_FONT, myStream);
 	        fuente = fuente.deriveFont(Font.PLAIN, 26);
 	        fuenteTitulo = fuente.deriveFont(Font.PLAIN, 60);
 		} catch (IOException | FontFormatException e) {
 			e.printStackTrace();
-		}      	
-    	
-    	endGameOver = new JPanel();
+		} 
+	}
+    
+    private void crearGameOver() {
+		endGameOver = new JPanel();
     	endGameOver.setBounds(0, 0, 992, 770);
     	endGameOver.setBackground(Color.BLACK);
     	endGameOver.setOpaque(true);
@@ -98,13 +116,14 @@ public class Ventana extends JFrame implements KeyListener{
 		this.getContentPane().add(endGameOver);
 		endGameOver.setLayout(null);
 		
-		
 		GameOver = new JLabel("GAME OVER");
 		GameOver.setForeground(Color.RED);
 		GameOver.setFont(fuenteTitulo);
 		GameOver.setBounds(315, 41, 375, 133);
 		endGameOver.add(GameOver);
-		
+	}
+    
+    private void crearName() {
 		txtName = new JTextField();
 		txtName.setForeground(Color.WHITE);
 		txtName.setBackground(Color.BLACK);
@@ -112,7 +131,9 @@ public class Ventana extends JFrame implements KeyListener{
 		txtName.setBounds(350, 172, 291, 72);
 		endGameOver.add(txtName);
 		txtName.setColumns(10);
-		
+	}
+    
+    private void crearLoad() {
 		Load = new JButton("LOAD NAME");
 		Load.setBounds(350, 274, 296, 72);
 		Load.setFont(fuente);
@@ -125,8 +146,9 @@ public class Ventana extends JFrame implements KeyListener{
 			mostrarLeaderboard();			
 			}
 		});
-		
-		
+	}
+
+    private void crearLogosLeaderBoard() {
 		leaderBoard2 = new JLabel("LEADERBOARD",SwingConstants.CENTER);
 		leaderBoard2.setFont(fuente);
 		leaderBoard2.setForeground(Color.WHITE);
@@ -141,42 +163,50 @@ public class Ventana extends JFrame implements KeyListener{
 		//mostrarLeaderboard();
 		endGameOver.add(leaderboardPuntaje2);
 		
+		crearMarioMuerto();
+		crearLogoBowser();
+		crearDrEggman();
+		crearSonicMuerto();
+	}
+    
+	private void crearMarioMuerto() {
 		imagenMuertoMario = new JLabel("");
 		imagenMuertoMario.setBounds(89, 428, 198, 205);
     	ImageIcon icoMario = new ImageIcon(Toolkit.getDefaultToolkit().getImage(this.getClass().getResource("/recursosMarioBros/marioMuerto.png")));	
 		ImageIcon imgMario = new ImageIcon(icoMario.getImage().getScaledInstance(imagenMuertoMario.getWidth(), imagenMuertoMario.getHeight(), Image.SCALE_SMOOTH));
 		imagenMuertoMario.setIcon(imgMario);
 		endGameOver.add(imagenMuertoMario);
-		
+	}
+	
+	private void crearLogoBowser() {
 		imagenLogoBowser = new JLabel("");
 		imagenLogoBowser.setBounds(64, 96, 203, 192);
 		ImageIcon icoLogoBowser = new ImageIcon(Toolkit.getDefaultToolkit().getImage(this.getClass().getResource("/recursosMarioBros/logoBowser.png")));	
 		ImageIcon imgLogoBowser = new ImageIcon(icoLogoBowser.getImage().getScaledInstance(imagenLogoBowser.getWidth(), imagenLogoBowser.getHeight(), Image.SCALE_SMOOTH));
 		imagenLogoBowser.setIcon(imgLogoBowser);
 		endGameOver.add(imagenLogoBowser);
-		
+	}
 
+	private void crearDrEggman() {
 		imagenDrEggman = new JLabel("");
 		imagenDrEggman.setBounds(742, 66, 181, 280);
 		ImageIcon icoEggman = new ImageIcon(Toolkit.getDefaultToolkit().getImage(this.getClass().getResource("/recursosSonic/Dr_Eggman.png")));	
 		ImageIcon imgEggman= new ImageIcon(icoEggman.getImage().getScaledInstance(imagenDrEggman.getWidth(), imagenDrEggman.getHeight(), Image.SCALE_SMOOTH));
 		imagenDrEggman.setIcon(imgEggman);
 		endGameOver.add(imagenDrEggman);
-		
+	}
+	
+	private void crearSonicMuerto() {
 		imagenSonicMuerto = new JLabel("");
 		imagenSonicMuerto.setBounds(727, 425, 191, 205);
 		ImageIcon icoSonicMuerto = new ImageIcon(Toolkit.getDefaultToolkit().getImage(this.getClass().getResource("/recursosSonic/sonicMuerto.png")));	
 		ImageIcon imgSonicMuerto= new ImageIcon(icoSonicMuerto.getImage().getScaledInstance(imagenSonicMuerto.getWidth(), imagenSonicMuerto.getHeight(), Image.SCALE_SMOOTH));
 		imagenSonicMuerto.setIcon(imgSonicMuerto);
 		endGameOver.add(imagenSonicMuerto);
-		
-		
-		
-		
-		
-		
-		
-    	score = new JLabel("SCORE",SwingConstants.CENTER);
+	}
+    
+    private void crearScore() {
+		score = new JLabel("SCORE",SwingConstants.CENTER);
 		score.setFont(fuente);
 		score.setForeground(Color.WHITE);
 		score.setBounds(780, 50, 130, 50);
@@ -187,19 +217,25 @@ public class Ventana extends JFrame implements KeyListener{
 		puntajeNum.setForeground(Color.WHITE);
 		puntajeNum.setBounds(780, 100, 130, 50);
 		this.getContentPane().add(puntajeNum);
-						
+	}
+    
+    private void crearLevel() {
 		level = new JLabel("LEVEL",SwingConstants.CENTER);
 		level.setFont(fuente);
 		level.setForeground(Color.WHITE);
 		level.setBounds(780, 175, 130, 50);
-		this.getContentPane().add(level);	
-		
+		this.getContentPane().add(level);
+	}
+    
+    private void crearlifes() {
 		lifes = new JLabel("LIFES",SwingConstants.CENTER);
 		lifes.setFont(fuente);
 		lifes.setForeground(Color.WHITE);
 		lifes.setBounds(780, 300, 130, 50);
 		this.getContentPane().add(lifes);
-			
+	}
+    
+    private void crearLeaderBoard() {
 		leaderBoard = new JLabel("LEADERBOARD",SwingConstants.CENTER);
 		leaderBoard.setFont(fuente);
 		leaderBoard.setForeground(Color.WHITE);
@@ -213,7 +249,9 @@ public class Ventana extends JFrame implements KeyListener{
 		leaderboardPuntaje.setBounds(700, 490, 300, 280);
 		this.getContentPane().add(leaderboardPuntaje);
 		mostrarLeaderboard();
-		
+	}
+    
+	private void crearLogosVidas() {
 		vida1 = new JLabel("", SwingConstants.CENTER);
 		vida1.setBounds(775, 375, 50, 50);
     	ImageIcon icovida1 = new ImageIcon(Toolkit.getDefaultToolkit().getImage(this.getClass().getResource(miDominio.getImagenVidas())));	
@@ -233,16 +271,20 @@ public class Ventana extends JFrame implements KeyListener{
     	ImageIcon icovida3 = new ImageIcon(Toolkit.getDefaultToolkit().getImage(this.getClass().getResource(miDominio.getImagenVidas())));	
 		ImageIcon imgvida3 = new ImageIcon(icovida3.getImage().getScaledInstance(vida3.getWidth(), vida3.getHeight(), Image.SCALE_SMOOTH));
 		vida3.setIcon(imgvida3);
-		this.getContentPane().add(vida3);		
-		
-    	hub = new JLabel("", SwingConstants.CENTER);
+		this.getContentPane().add(vida3);	
+	}
+	
+	private void crearHub() {
+		hub = new JLabel("", SwingConstants.CENTER);
 		hub.setBounds(700, 0, 300, 775);
     	ImageIcon ico = new ImageIcon(Toolkit.getDefaultToolkit().getImage(this.getClass().getResource("/recursosImagenes/hudFondoPacman.png")));	
 		ImageIcon img = new ImageIcon(ico.getImage().getScaledInstance(hub.getWidth(), hub.getHeight(), Image.SCALE_SMOOTH));
 		hub.setIcon(img);
 		this.getContentPane().add(hub);
-		
-    	layeredPane = new JLayeredPane();
+	}
+	
+	private void crearCapasPanel() {
+		layeredPane = new JLayeredPane();
 	    layeredPane.setBounds(0,0,1250,850); 
 	    layeredPane.add(miLaberinto,Integer.valueOf(0));
 	    this.getContentPane().add(layeredPane);
@@ -253,8 +295,8 @@ public class Ventana extends JFrame implements KeyListener{
 		setBounds(0, 0, 1008, 806);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		layeredPane.addKeyListener(this);
-    }
-
+	}
+	
 	public void aparecerEntidad(EntidadGrafica entidadGrafica) {
 		misEntidadesGraficas.add(entidadGrafica);
 		layeredPane.add(entidadGrafica, Integer.valueOf(entidadGrafica.getMiPrioridad()));
@@ -301,13 +343,13 @@ public class Ventana extends JFrame implements KeyListener{
 	}
 	
 	public void actualizarVidasActuales(int vidasActuales) {
-		if(vidasActuales==2) {
+		if (vidasActuales == 2) {
 			vida3.setVisible(false);
 		}
-		else if(vidasActuales==1) {
+		else if (vidasActuales == 1) {
 			vida2.setVisible(false);
 		}
-		else if(vidasActuales==0) {
+		else if (vidasActuales == 0) {
 			vida1.setVisible(false);
 		}
 	}

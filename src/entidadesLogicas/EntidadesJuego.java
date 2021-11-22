@@ -8,11 +8,11 @@ import dominios.DominioJuego;
 import elementos.Elemento;
 import elementos.PacDot;
 import elementos.PowerPellet;
+import factories.FabricaEntidades;
+import factories.FabricaGeneral;
 import gui.Ventana;
 import personajes.Enemigo;
 import personajes.Principal;
-import productos.FabricaEntidades;
-import productos.FabricaGeneral;
 
 public class EntidadesJuego {
 	
