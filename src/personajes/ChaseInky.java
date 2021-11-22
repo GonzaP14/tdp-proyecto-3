@@ -22,7 +22,7 @@ public class ChaseInky extends ChaseIA {
 		double distanciaMinima = Double.MAX_VALUE; 
 		double distanciaActual;
 		
-		for (Posicion pos: miEnemigo.posicionesDestino()) {
+		for (Posicion pos: miEnemigo.posiblesPosiciones()) {
 			distanciaActual = pos.distanciaEntrePosicionesPitagoras(destino);
 			
 			if (distanciaActual < distanciaMinima) {

@@ -21,7 +21,7 @@ public class ChasePinky extends ChaseIA {
 		double distanciaMinima = Double.MAX_VALUE; 
 		double distanciaActual;
 		
-		for (Posicion pos: miEnemigo.posicionesDestino()) {
+		for (Posicion pos: miEnemigo.posiblesPosiciones()) {
 			distanciaActual = pos.distanciaEntrePosicionesPitagoras(posicionObjetivo);
 			
 			if (distanciaActual < distanciaMinima) {

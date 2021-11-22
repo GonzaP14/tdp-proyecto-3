@@ -69,7 +69,7 @@ public class Posicion {
 		return new Posicion(x , y + height);
 	}
 	
-	public Posicion [] posicionesDestino() {
+	public Posicion [] posiblesPosiciones() {
 		Posicion [] direcciones = new Posicion [4];
 		
 		direcciones [0] = new Posicion (x + Ventana.pixelesBloque, y);

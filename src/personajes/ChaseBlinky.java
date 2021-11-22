@@ -19,7 +19,7 @@ public class ChaseBlinky extends ChaseIA {
 		double distanciaMinima = Double.MAX_VALUE; 
 		double distanciaActual;
 		
-		for (Posicion pos: miEnemigo.posicionesDestino()) {
+		for (Posicion pos: miEnemigo.posiblesPosiciones()) {
 			distanciaActual = pos.distanciaEntrePosicionesPitagoras(posicionPrincipal);
 			
 			if (distanciaActual < distanciaMinima) {

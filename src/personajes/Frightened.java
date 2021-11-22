@@ -23,7 +23,7 @@ public class Frightened implements EstadoEnemigo {
 		   otra distancia sera menor con respecto a esta.
 		*/ 
 		
-		for (Posicion pos: miEnemigo.posicionesDestino()) {
+		for (Posicion pos: miEnemigo.posiblesPosiciones()) {
 			distanciaActual = pos.distanciaEntrePosicionesPitagoras(miPrincipal.getPosicion());
 			
 			if (distanciaActual > distanciaMaxima) {

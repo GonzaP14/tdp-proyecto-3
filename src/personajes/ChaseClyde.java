@@ -19,7 +19,7 @@ public class ChaseClyde extends ChaseIA {
 		double distanciaMinima = Double.MAX_VALUE;
 		double distanciaActual; 
 		
-		for (Posicion pos: miEnemigo.posicionesDestino()) {
+		for (Posicion pos: miEnemigo.posiblesPosiciones()) {
 			distanciaActual = pos.distanciaEntrePosicionesPitagoras(miPrincipal.getPosicion());
 
 			if (distanciaActual <= 8.0 * Ventana.pixelesBloque) {

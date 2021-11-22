@@ -184,9 +184,9 @@ public abstract class Enemigo extends Personaje {
 		miHilo.start();
 	}
 
-	public ArrayList <Posicion> posicionesDestino() {
+	public ArrayList <Posicion> posiblesPosiciones() {
 		ArrayList<Posicion> toReturn = new ArrayList<Posicion>();
-		for (Posicion p: miPosicion.posicionesDestino()) { 
+		for (Posicion p: miPosicion.posiblesPosiciones()) { 
 			
 			if (!sentidosContrarios(sentidoActual, calcularSentido(miPosicion, p)) && miJuego.getGrilla().bloqueVisitable(p.getY() / 25, p.getX() / 25)) {
 				toReturn.add(p);

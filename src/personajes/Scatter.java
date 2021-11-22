@@ -16,7 +16,7 @@ public class Scatter implements EstadoEnemigo {
         double distanciaMinima = Double.MAX_VALUE; 
         double distanciaActual;
 
-        for (Posicion pos: miEnemigo.posicionesDestino()) { //Direcciones de cada fantasma
+        for (Posicion pos: miEnemigo.posiblesPosiciones()) { //Direcciones de cada fantasma
             distanciaActual = pos.distanciaEntrePosicionesPitagoras(posicionObjetivo);
 
             if (distanciaActual < distanciaMinima) {
