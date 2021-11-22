@@ -31,4 +31,5 @@ public class Fruta extends Elemento {
 	public void finPocion() {
 
 	}
+	
 }

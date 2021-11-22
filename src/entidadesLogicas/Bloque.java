@@ -70,4 +70,11 @@ public class Bloque {
 	public List<Entidad>  getListaRemovidos() {
 		return listaRemovidos;
 	}
+
+
+	public void reset() {
+		miRepresentacion = new BloqueGrafico();
+		listaEntidades = Collections.synchronizedList(new ArrayList<Entidad>());
+		listaRemovidos = Collections.synchronizedList(new ArrayList<Entidad>());
+	}
 }

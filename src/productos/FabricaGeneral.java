@@ -57,13 +57,16 @@ public class FabricaGeneral implements FabricaEntidades {
 		return new Fruta(miJuego, miDominio.getFruta());
 	}
 	
-	/*
 	@Override
 	public Elemento getPacDot() {
 		return new PacDot(miJuego, miDominio.getPacDot());
 	}
-	*/
 
+	@Override
+    public Elemento getPacDot(Posicion posicion) {
+        return new PacDot(miJuego, miDominio.getPacDot(), posicion);
+    }
+	
 	@Override
 	public Pocion getPocionBomba() {
 		return new PocionBomba(miJuego, miDominio.getPocionBomba());
@@ -74,17 +77,11 @@ public class FabricaGeneral implements FabricaEntidades {
 		return new PocionVelocidad(miJuego, miDominio.getPocionVelocidad());
 	}
 	
-	/*
 	@Override
 	public Elemento getPowerPellet() {
 		return new PowerPellet(miJuego, miDominio.getPowerPellet());
 	}
-	*/
 
-	@Override
-    public Elemento getPacDot(Posicion posicion) {
-        return new PacDot(miJuego, miDominio.getPacDot(), posicion);
-    }
 	@Override
     public Elemento getPowerPellet(Posicion posicion) {
         return new PowerPellet(miJuego, miDominio.getPowerPellet(), posicion);

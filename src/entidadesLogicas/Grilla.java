@@ -99,8 +99,12 @@ public class Grilla {
 		bloqueActual.limpiarListaRemovidos();
 	}
 	
-	public void resetear() {
-	
+	public void reset() {		
+		for (int i = 0; i < Filas; i ++) {
+			for (int j = 0; j < Columnas; j ++) {
+				grilla[i][j].reset();
+			}
+		} 
 	}
 	
 	public Bloque getBloque(int x, int y) {

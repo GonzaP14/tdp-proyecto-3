@@ -35,14 +35,16 @@ public class Juego {
 	private List<Enemigo>  misEnemigos;
 	private Principal miPersonajePrincipal;
 	private Nivel miNivel;
+	
 	private List<Elemento> misPociones, misPacDots, misPowerPellets;
 	private Elemento miFruta;
 	public static Properties configuration;
-	private int cantidadFantasmasComidos;
+	private int cantidadFantasmasComidos, cantidadPacDots;
 	private DominioJuego miDominio;
 	
 	public Juego(DominioJuego dominio) {
 		this.miDominio = dominio;
+		miGrilla = new Grilla();
 		miAudio = new Audio(miDominio);
 		miPlayer = new Player();
 		miLeaderboard = new Leaderboard();
@@ -55,13 +57,13 @@ public class Juego {
 
 	// Comandos.
 	
-	public void reset() {
+	public void crearEntidades() {
 		miFabricaEntidades = new FabricaGeneral(this, miDominio);
 		crearPersonajePrincipal();
 		crearEnemigos();
 		crearPociones();
-		spawnearPacDots();
-		spawnearPowerPellets();
+		crearPacDots();
+		crearPowerPellets();
 		crearFrutas();
 	}	
 
@@ -83,24 +85,32 @@ public class Juego {
 		misPociones.add(1, miFabricaEntidades.getPocionVelocidad());
 	}
 	
-	/*
 	private void crearPacDots() {
 		misPacDots = Collections.synchronizedList(new ArrayList<Elemento>());
+		Elemento actual;
 		
-		for (int i = 0; i < PacDot.cantidadPacDots; i ++) {
-			misPacDots.add(miFabricaEntidades.getPacDot());
+		for (Posicion p: PacDot.getMisSpawns()) {
+			actual = miFabricaEntidades.getPacDot();
+			actual.setSpawneo(p);
+			misPacDots.add(actual);
 		}
 		
+		System.out.println(misPacDots.toString());
+		cantidadPacDots = misPacDots.size();
+		System.out.println("Cantidad de pacDots inicial = " + misPacDots.size());
 	}
 	
 	private void crearPowerPellets() {
 		misPowerPellets = Collections.synchronizedList(new ArrayList<Elemento>());
+		Elemento actual;
 		
-		for (int i = 0; i < PowerPellet.cantidadPowerPellets; i ++) {
-			misPowerPellets.add(miFabricaEntidades.getPowerPellet());
+		for (Posicion p: PowerPellet.getMisSpawns()) {
+			actual = miFabricaEntidades.getPowerPellet();
+			actual.setSpawneo(p);
+			misPowerPellets.add(actual);
 		}
+		
 	}
-	*/
 	
 	private void crearFrutas() {
 		miFruta = miFabricaEntidades.getFruta();
@@ -178,9 +188,14 @@ public class Juego {
 	// Estados del juego.
 	
 	public void pausar_despausar() {
-		//pausarDespausarRelojes();
-		miAudio.despausar();
-		miVentana.setVisible(false);
+		if (estaPausado == false) {
+			pausarDespausarRelojes();
+			miAudio.pausar();
+			miVentana.dispose();
+		} else {
+			pausarDespausarRelojes();
+			miAudio.despausar();
+		}
 	}
 	
 	public void congratulations() {
@@ -218,16 +233,18 @@ public class Juego {
 		miLeaderboard.addPlayer(miPlayer);
 	}
 
-	public void removerPacDot(Elemento pacDotARemover) {
-		misPacDots.remove(pacDotARemover);
-		if (misPacDots.size() == 0) {
-			if (miNivel.getNivelActual() == 2) {
+	public void removerPacDot() {
+		cantidadPacDots --;
+		
+		System.out.println("PacDots [Cantiadad] = " + cantidadPacDots);
+		
+		if (cantidadPacDots == 0 && miNivel.getNivelActual() == 3) {
 				congratulations();
-			}
-			else {
-				Launcher.pasarNivel();
-			}
+		} 
+		else if (cantidadPacDots == 0) {
+			Launcher.pasarNivel();
 		}
+		
 	}
 	//
 	
@@ -256,58 +273,49 @@ public class Juego {
 	
 	// ---------------------------------------- SPAWNING ------------------------------------
 	
-    public void spawnearEntidades() {
-		spawnearPrincipal();
-		spawnearEnemigos();
-		spawnearPacDots();
-		spawnearPowerPellets();
+    public void aparecerEntidades() {
+		aparecerPrinicpal();
+		aparecerEnemigos();
+		aparecerPacDots();
+		aparecerPowerPellets();
 	}
     
-    private void spawnearPrincipal() {
+    private void aparecerPrinicpal() {
 		miVentana.aparecerEntidad(miPersonajePrincipal.getMiRepresentacion());
 	}
     
-    private void spawnearEnemigos() {
+    private void aparecerEnemigos() {
 		for(Enemigo fantasma: misEnemigos) {
 			miVentana.aparecerEntidad(fantasma.getMiRepresentacion());
-			fantasma.iniciarHilo();
 		}
 	}
 	
-	public void spawnearPocionBomba() {
+	public void aparecerPocionBomba() {
 		miVentana.aparecerEntidad(misPociones.get(0).getMiRepresentacion());
 	}
 	
-	public void spawnearPocionVelocidad() {
+	public void aparecerPocionVelocidad() {
 		miVentana.aparecerEntidad(misPociones.get(1).getMiRepresentacion());
 	}
 	
-	public void spawnearFruta() {
+	public void aparecerFruta() {
 		miVentana.aparecerEntidad(miFruta.getMiRepresentacion());
 	}
 	
-	private void spawnearPacDots() {
-		misPacDots = Collections.synchronizedList(new ArrayList<Elemento>());
+	private void aparecerPacDots() {
+		cantidadPacDots = misPacDots.size();
 		
-        Elemento nuevoPacDot;
-        for (Posicion spawn : PacDot.getMisSpawns()) {
-            nuevoPacDot = miFabricaEntidades.getPacDot(spawn);
-            misPacDots.add(nuevoPacDot);
-            nuevoPacDot.getMiRepresentacion().aparecer(spawn);
-            miVentana.aparecerEntidad(nuevoPacDot.getMiRepresentacion()); // aparece el recien agregado
-        }
+		for (Elemento e: misPacDots) {
+			e.getMiRepresentacion().aparecer(e.getSpawn());
+			miVentana.aparecerEntidad(e.getMiRepresentacion());
+		}
     }
 
-    private void spawnearPowerPellets() {
-    	misPowerPellets = Collections.synchronizedList(new ArrayList<Elemento>());
-    	
-        Elemento aux;
-        for (Posicion spawn : PowerPellet.getMisSpawns()) {
-            aux = miFabricaEntidades.getPowerPellet(spawn);
-            misPowerPellets.add(aux);
-            aux.getMiRepresentacion().aparecer(spawn);
-            miVentana.aparecerEntidad(aux.getMiRepresentacion()); // aparece el recien agregado
-        }
+    private void aparecerPowerPellets() {
+    	for (Elemento e: misPowerPellets) {
+			e.getMiRepresentacion().aparecer(e.getSpawn());
+			miVentana.aparecerEntidad(e.getMiRepresentacion());
+		}
     }
 
     
@@ -368,15 +376,22 @@ public class Juego {
  	
 	// ---------------------------------------- INICIO & RESET ------------------------------------
 	public void iniciarJuego() {
-		this.reset();
-		spawnearEntidades();
+		crearEntidades();
+		aparecerEntidades();
 		iniciarMusica();
 		iniciarReloj();
+		iniciarEnemigos();
 	}
 	
 	private void iniciarReloj() {
 		miReloj = new Reloj(miPersonajePrincipal.getVelocidadActual(), this);
 		miReloj.start();
+	}
+	
+	private void iniciarEnemigos() {
+		for (Enemigo e: misEnemigos) {
+			e.iniciarHilo();
+		}
 	}
 	
 	public void setNivel(Nivel nivel) {
@@ -406,4 +421,30 @@ public class Juego {
             ex.printStackTrace();
         }
 	}
+
+	public void reset() {
+		miGrilla.reset();
+		
+		miPersonajePrincipal.reset();
+		
+		for (Enemigo e: misEnemigos) {
+			e.reset();
+		}
+		
+		for (Elemento e: misPacDots) {
+			e.reset();
+		}
+		
+		for (Elemento e: misPowerPellets) {
+			e.reset();
+		}
+		
+		miFruta.reset();
+		
+		for (Elemento e: misPociones) {
+			e.reset();
+		}
+		
+	}
+
 }

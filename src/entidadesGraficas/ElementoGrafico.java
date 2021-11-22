@@ -29,11 +29,13 @@ public class ElementoGrafico extends EntidadGrafica {
 		this.setLocation(miPosicion.getX(), miPosicion.getY());
 		representacionActual = sentidosEstado.get(0);
 		setIcon(representacionActual);
+		this.setVisible(true);
 	}
 	
 	@Override
 	public void actualizar(int sentido) {
 		representacionActual = sentidosEstado.get(sentido);
 		setIcon(representacionActual);
-	}	
+	}
+	
 }

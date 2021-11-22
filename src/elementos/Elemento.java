@@ -15,9 +15,17 @@ public abstract class Elemento extends Entidad {
 		miRepresentacion.desaparecer();
 	}
 	
-	public void spawnear(Posicion spawn) {
+	public void setSpawneo(Posicion spawn) {
 		miSpawn = spawn;
 		miPosicion = new Posicion(miSpawn.getX(), miSpawn.getY());
+		miJuego.getGrilla().getBloque(miPosicion.getY() / Ventana.pixelesBloque , miPosicion.getX() / Ventana.pixelesBloque).agregarAListaEntidades(this);
+	}
+	
+	@Override
+	public void reset() {
+		miSpawn = getPosicion();
+		miPosicion = new Posicion(miSpawn.getX(), miSpawn.getY());
+		miRepresentacion.aparecer(miPosicion);
 		miJuego.getGrilla().getBloque(miPosicion.getY() / Ventana.pixelesBloque , miPosicion.getX() / Ventana.pixelesBloque).agregarAListaEntidades(this);
 	}
 	

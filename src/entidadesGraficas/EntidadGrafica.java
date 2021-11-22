@@ -37,4 +37,8 @@ public abstract class EntidadGrafica extends JLabel {
 	public void morir() {
 		
 	}
+
+	public void reset() { 
+		
+	}
 }

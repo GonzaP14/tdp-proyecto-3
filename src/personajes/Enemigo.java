@@ -229,4 +229,14 @@ public abstract class Enemigo extends Personaje {
 		return velocidadPredeterminada;
 	}
 	
+	public void reset() {
+		miSpawn = getSpawn();
+		miPosicion = new Posicion(miSpawn.getX(), miSpawn.getY());
+		miRepresentacion.aparecer(miPosicion);
+		miRepresentacion.reset();
+		miJuego.getGrilla().getBloque(miPosicion.getY() / Ventana.pixelesBloque , miPosicion.getX() / Ventana.pixelesBloque).agregarAListaEntidades(this);
+		indiceEstado = Scatter;
+		estadoActual = estados[indiceEstado];
+	}
+	
 }

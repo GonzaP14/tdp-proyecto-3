@@ -52,6 +52,7 @@ public class Launcher {
 	
 	private static void construirNivel() {
 		nivelActual ++;
+		miBuilder.setGrilla(miJuego.getGrilla());
 		miBuilder.setNivelActual(nivelActual);
 		miBuilder.setDominio(dominioJuego);
 		
@@ -88,15 +89,14 @@ public class Launcher {
 	}
 
 	public static void pasarNivel() {
-		// miJuego.pausar_despausar();
-		miVentana.setVisible(false);
+		miJuego.pausar_despausar();
+		miJuego.reset();
 		miBuilder.reset();
 		construirNivel();
 		miJuego.setNivel(miBuilder.getProduct());
 		iniciarVentana();
-		miJuego.reset();
-		miJuego.spawnearEntidades();
-		//miJuego.pausar_despausar();
+		miJuego.aparecerEntidades();
+		miJuego.pausar_despausar();
 	}
 	
 }

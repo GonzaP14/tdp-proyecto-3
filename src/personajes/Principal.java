@@ -68,5 +68,17 @@ public class Principal extends Personaje {
 		sentidoActual = Entidad.sentidoFijo;
 		sentidoSiguiente = Entidad.sentidoFijo;
 	}
+
+	@Override
+	public void reset() {
+		estadoActual = Vivo;
+		miSpawn = new Posicion(350, 575);
+		miPosicion = new Posicion(miSpawn.getX(), miSpawn.getY());
+		this.miRepresentacion.aparecer(miPosicion);
+		sentidoActual = Entidad.sentidoFijo;
+		sentidoSiguiente = Entidad.sentidoFijo;
+		miJuego.getGrilla().getBloque(miPosicion.getY() / Ventana.pixelesBloque , miPosicion.getX() / Ventana.pixelesBloque).agregarAListaEntidades(this);
+		velocidadActual = 100;
+	}
 	
 }

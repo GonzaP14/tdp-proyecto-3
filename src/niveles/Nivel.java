@@ -21,7 +21,6 @@ public class Nivel {
 	private int velocidadEnemigos;
 	
     public Nivel () {
-    	miGrilla = new Grilla();
     	mapa = new Object [Grilla.Filas][Grilla.Columnas];
     	iniciarMapa();
     }
@@ -651,6 +650,10 @@ public class Nivel {
 		this.velocidadEnemigos = v;
 	}
 	
+	public void setGrilla(Grilla g) {
+		miGrilla = g;
+	}
+	
 	public int getNivelActual() {
 		return nivelActual;
 	}
@@ -701,6 +704,5 @@ public class Nivel {
 	public Grilla getGrilla() {
 		return miGrilla;
 	}
-	
 	
 }

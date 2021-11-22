@@ -14,13 +14,11 @@ public class PowerPellet extends Elemento {
 	
 	public static final int cantidadPowerPellets = misSpawns.length;
 	
-	/*
 	public PowerPellet(Juego miJuego, String[] imagenes) {
 		this.miJuego = miJuego;
 		miRepresentacion = new ElementoGrafico(imagenes);
 		puntajeOtorgado = 50;
 	}
-	*/
 
 	public PowerPellet(Juego miJuego, String[] imagenes, Posicion spawn) {
         this.miJuego = miJuego;

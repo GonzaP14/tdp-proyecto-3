@@ -85,13 +85,11 @@ public class PacDot extends Elemento {
         miJuego.getGrilla().getBloque(miPosicion.getY() / Ventana.pixelesBloque , miPosicion.getX() / Ventana.pixelesBloque).agregarAListaEntidades(this);
     }
 	
-	/*
 	public PacDot(Juego miJuego, String[] imagenes) {
 		this.miJuego = miJuego;
 		miRepresentacion = new ElementoGrafico(imagenes);
 		puntajeOtorgado = 10;
 	}
-	*/
 	
 	@Override
 	protected void iniciarTimer(HiloElemento timer) {
@@ -103,7 +101,7 @@ public class PacDot extends Elemento {
 		miJuego.aumentarPuntaje(puntajeOtorgado);
 		miRepresentacion.desaparecer();
 		miJuego.getGrilla().getBloque(miPosicion.getY() / Ventana.pixelesBloque , miPosicion.getX() / Ventana.pixelesBloque).agregarAListaRemovidos(this);
-		miJuego.removerPacDot(this);
+		miJuego.removerPacDot();
 	}
 
 	public static Posicion[] getMisSpawns() {

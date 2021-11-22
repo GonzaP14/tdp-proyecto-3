@@ -1,10 +1,13 @@
 package niveles;
 
 import entidadesLogicas.DominioJuego;
+import entidadesLogicas.Grilla;
 
 public interface Builder {
 	
 	public void reset();
+	
+	public void setGrilla(Grilla g);
 	
 	public void setNivelActual(int n);
 	

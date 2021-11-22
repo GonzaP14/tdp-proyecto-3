@@ -55,4 +55,12 @@ public class EnemigoGrafico extends PersonajeGrafico{
 		sentidosEstado = sentidosEaten;
 		this.actualizar(1);
 	}
+
+	@Override
+	public void reset() {
+		sentidosEstado = sentidosChase;
+		miPrioridad = 2;
+		representacionActual = sentidosEstado.get(2);
+		this.setIcon(representacionActual);
+	}
 }
