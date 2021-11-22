@@ -73,16 +73,23 @@ public abstract class Entidad {
 	}
 	
 	public void reaparecer() {
-		Bloque bloqueAnterior, bloqueRespawn;
+		Bloque bloqueAnterior, bloqueRespawn, bloquePrincipal;
 		bloqueAnterior = miJuego.getGrilla().getBloque(miPosicion.getY() / Ventana.pixelesBloque , miPosicion.getX() / Ventana.pixelesBloque);
-		
 		miPosicion.setX(miSpawn.getX());
 		miPosicion.setY(miSpawn.getY());
 		this.miRepresentacion.aparecer(miPosicion);
 		bloqueRespawn = miJuego.getGrilla().getBloque(miSpawn.getY() / Ventana.pixelesBloque , miSpawn.getX() / Ventana.pixelesBloque);
 		
 		if (bloqueAnterior != bloqueRespawn) {
-			bloqueAnterior.agregarAListaRemovidos(this);
+			// si el fantasma no esta en el bloque del principal, borrarlo directamente, sino, agregar a lista de removidos
+			
+			bloquePrincipal = miJuego.getGrilla().getBloque(miJuego.getPrincipal().getPosicion().getY() / Ventana.pixelesBloque , miJuego.getPrincipal().getPosicion().getX() / Ventana.pixelesBloque);
+			if (bloqueAnterior != bloquePrincipal) {
+				bloqueAnterior.borrarDeListaDeEntidades(this);
+			}
+			else {
+				bloqueAnterior.agregarAListaRemovidos(this);
+			}
 			bloqueRespawn.agregarAListaEntidades(this);
 		}
 		

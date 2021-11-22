@@ -7,6 +7,7 @@ import entidadesLogicas.Entidad;
 import entidadesLogicas.Posicion;
 import gui.Ventana;
 import personajes.Personaje;
+import personajes.Principal;
 
 public class Grilla {
 	
@@ -84,7 +85,7 @@ public class Grilla {
 		return false;
 	}
 	
-	public void buscarColisionesEntidades(Entidad e) {
+	public void buscarColisionesEntidades(Principal e) {
 		Posicion posicionActual = e.getPosicion();
 		Bloque bloqueActual = null;
 		bloqueActual = grilla[posicionActual.getY() / Ventana.pixelesBloque][posicionActual.getX() / Ventana.pixelesBloque];
@@ -101,6 +102,7 @@ public class Grilla {
 		
 		bloqueActual.getListaEntidades().removeAll(bloqueActual.getListaRemovidos());
 		bloqueActual.limpiarListaRemovidos();
+		e.setYaMeMatoOtroFantasma(false);
 	}
 	
 	public void reset() {		

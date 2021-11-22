@@ -12,7 +12,7 @@ public class Principal extends Personaje {
 	protected static Principal original;
 	protected static final int Vivo = 1;
 	protected static final int Muerto = 2;
-	
+	protected boolean yaMeMatoOtroFantasma;
 	protected int estadoActual;
 	
 	private Principal(Juego miJuego, String[] imagenes) { // singleton principle
@@ -26,6 +26,7 @@ public class Principal extends Personaje {
 		sentidoSiguiente = Entidad.sentidoFijo;
 		miJuego.getGrilla().getBloque(miPosicion.getY() / Ventana.pixelesBloque , miPosicion.getX() / Ventana.pixelesBloque).agregarAListaEntidades(this);
 		velocidadActual = 100;
+		yaMeMatoOtroFantasma = false;
 	}
 	
 	
@@ -52,8 +53,11 @@ public class Principal extends Personaje {
 	}
 
 	public void recibirEfecto(Enemigo e) {
-		miJuego.perderVida();
-		reaparecer();
+		if (!yaMeMatoOtroFantasma) {
+			yaMeMatoOtroFantasma = true;
+			miJuego.perderVida();
+			reaparecer();
+		}
 	}
 
 	public void recibirEfecto(PocionVelocidad p) {
@@ -79,6 +83,11 @@ public class Principal extends Personaje {
 		sentidoSiguiente = Entidad.sentidoFijo;
 		miJuego.getGrilla().getBloque(miPosicion.getY() / Ventana.pixelesBloque , miPosicion.getX() / Ventana.pixelesBloque).agregarAListaEntidades(this);
 		velocidadActual = 100;
+	}
+
+
+	public void setYaMeMatoOtroFantasma(boolean b) {
+		yaMeMatoOtroFantasma = b;
 	}
 	
 }
