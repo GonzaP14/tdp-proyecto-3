@@ -65,6 +65,7 @@ public class Ventana extends JFrame implements KeyListener {
     private JLabel imagenLogoBowser;
     private JLabel imagenDrEggman;
     private JLabel imagenSonicMuerto;
+    private JLabel levelActualNumero;
 
     
     
@@ -89,11 +90,12 @@ public class Ventana extends JFrame implements KeyListener {
 		crearLogosLeaderBoard();
 		crearScore();
 		crearLevel();
-		crearlifes();
+		crearlifes();		
 		crearLeaderBoard();
 		crearLogosVidas();
 		crearHub();
 		crearCapasPanel();
+		
     }
     
     private void crearFuente() {
@@ -225,7 +227,17 @@ public class Ventana extends JFrame implements KeyListener {
 		level.setForeground(Color.WHITE);
 		level.setBounds(780, 175, 130, 50);
 		this.getContentPane().add(level);
+		
+		
+		levelActualNumero = new JLabel("",SwingConstants.CENTER);
+    	levelActualNumero.setFont(fuente);
+    	levelActualNumero.setForeground(Color.WHITE);
+    	levelActualNumero.setBounds(780, 230, 130, 50);
+    	levelActualNumero.setText(String.valueOf(miJuego.getNivel().getNivelActual()));
+		this.getContentPane().add(levelActualNumero);	
 	}
+    
+    
     
     private void crearlifes() {
 		lifes = new JLabel("LIFES",SwingConstants.CENTER);
@@ -234,6 +246,8 @@ public class Ventana extends JFrame implements KeyListener {
 		lifes.setBounds(780, 300, 130, 50);
 		this.getContentPane().add(lifes);
 	}
+    
+    
     
     private void crearLeaderBoard() {
 		leaderBoard = new JLabel("LEADERBOARD",SwingConstants.CENTER);
@@ -327,7 +341,8 @@ public class Ventana extends JFrame implements KeyListener {
 	            break;
 	        case KeyEvent.VK_R:
 	            break;
-	        case KeyEvent.VK_M:                
+	        case KeyEvent.VK_M:   
+	        	miJuego.muted();
 	            break;
 		}
 	}

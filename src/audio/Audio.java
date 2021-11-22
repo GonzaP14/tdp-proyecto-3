@@ -46,9 +46,7 @@ public class Audio {
 		return false;
 	}
 	
-	public void pausar() {
-		miClip.stop();
-	}
+	
 
 	public void sonidoGameOver() {
 		 try {
@@ -60,8 +58,13 @@ public class Audio {
 		}
 	}
 	
-	public void despausar() {
-		miClip.loop(Clip.LOOP_CONTINUOUSLY);
-		miClip.start();
+	public void mutear() {
+		if(miClip.isRunning()==true) {
+			miClip.stop();
+		}
+		else {
+			miClip.loop(Clip.LOOP_CONTINUOUSLY);
+			miClip.start();
+		}		
 	}
 }

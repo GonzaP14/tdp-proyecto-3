@@ -119,11 +119,11 @@ public class Juego {
 	public void pausar_despausar() {
 		if (estaPausado == false) {
 			pausarDespausarRelojes();
-			miAudio.pausar();
+			miAudio.mutear();
 			miVentana.dispose();
 		} else {
 			pausarDespausarRelojes();
-			miAudio.despausar();
+			miAudio.mutear();
 		}
 	}
 	
@@ -145,6 +145,9 @@ public class Juego {
 	
 	public void aumentarTiempo() {
 		
+	}
+	public void muted() {
+		miAudio.mutear();
 	}
 	
 	public void perderVida() {
