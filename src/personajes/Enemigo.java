@@ -216,6 +216,10 @@ public abstract class Enemigo extends Personaje {
 		cambiarEstado(Chase);
 	}
 	
+	public void setVelocidadPredeterminada(int velocidad) {
+		velocidadPredeterminada = velocidad;
+	}
+	
 	public void setVelocidadActual(int velocidad) {
 		velocidadActual = velocidad;
 		miHilo.setVelocidadTickeo(velocidad);

@@ -57,4 +57,5 @@ public class PowerPellet extends Elemento {
 			}
 		}
 	}
+	
 }

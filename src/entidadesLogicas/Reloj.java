@@ -2,13 +2,13 @@ package entidadesLogicas;
 
 public class Reloj extends Thread{
 	
-	private int velocidadTickeo, ticks;
+	private int velocidadTickeo, cantidadTicks;
 	private Juego miJuego;
 	
 	public Reloj(int velocidadPrincipal, Juego miJuego) {
 		this.miJuego = miJuego;
 		velocidadTickeo = velocidadPrincipal;
-		ticks = 0;
+		cantidadTicks = 0;
 	}
 	
 	public void run() {
@@ -17,20 +17,20 @@ public class Reloj extends Thread{
 	        	try {
 					miJuego.operar(miJuego.getPrincipal());
 					Thread.sleep(5000 / velocidadTickeo); // 1s
-					ticks++;
-					if (ticks == 200) 
+					cantidadTicks++;
+					if (cantidadTicks == 200) 
 						miJuego.aparecerFruta();
-					if(ticks == ( 200 + miJuego.getNivel().getDuracionFrutas() ) )
+					if(cantidadTicks == ( 200 + miJuego.getNivel().getDuracionFrutas() ) )
 						miJuego.despawnearFruta();
-					if(ticks == 400) {
+					if(cantidadTicks == 400) {
 						miJuego.aparecerPocionBomba();
 					}
-					if(ticks == 400 + miJuego.getNivel().getDuracionPociones() * 4)
+					if(cantidadTicks == 400 + miJuego.getNivel().getDuracionPociones() * 4)
 						miJuego.despawnearPocionBomba();
-					if(ticks == 600) {
+					if(cantidadTicks == 600) {
 						miJuego.aparecerPocionVelocidad();
 					}
-					if(ticks == 600 + miJuego.getNivel().getDuracionPociones())
+					if(cantidadTicks == 600 + miJuego.getNivel().getDuracionPociones())
 						miJuego.despawnearPocionVelocidad();
 				} catch (InterruptedException e) {
 					e.printStackTrace();
@@ -55,5 +55,11 @@ public class Reloj extends Thread{
 	public void setVelocidadTickeo(int velocidadTickeo) {
 		this.velocidadTickeo = velocidadTickeo;
 	}
+
+	public void setCantidadTicks(int cantidadTicks) {
+		this.cantidadTicks = cantidadTicks;
+	}
+	
+	
 
 }

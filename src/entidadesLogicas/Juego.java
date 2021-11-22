@@ -7,6 +7,7 @@ import java.util.List;
 import java.util.Properties;
 import audio.Audio;
 import dominios.DominioJuego;
+import elementos.Elemento;
 import gui.Ventana;
 import launcher.Launcher;
 import niveles.Grilla;
@@ -143,9 +144,6 @@ public class Juego {
 		miVentana.actualizarPuntaje();
 	}
 	
-	public void aumentarTiempo() {
-		
-	}
 	public void muted() {
 		miAudio.mutear();
 	}
@@ -173,6 +171,7 @@ public class Juego {
 		} 
 		else if (cantidadPacDots == 0) {
 			Launcher.pasarNivel();
+			resetRelojes();
 		}
 	}
 	
@@ -279,6 +278,15 @@ public class Juego {
 	public synchronized void reset() {
 		miGrilla.reset();
 		misEntidades.reset();
+	}
+	
+	public void resetRelojes() {
+		miReloj.setCantidadTicks(0);
+		for(Enemigo e : misEntidades.getEnemigos()) {
+			e.getMiHilo().setCantidadTicks(0);
+			e.setVelocidadPredeterminada(miNivel.getVelocidadEnemigos());
+			e.setVelocidadActual(e.getVelocidadPredeterminada());
+		}
 	}
 
 }

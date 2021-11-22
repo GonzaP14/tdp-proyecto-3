@@ -29,4 +29,5 @@ public abstract class Elemento extends Entidad {
 		miJuego.getGrilla().getBloque(miPosicion.getY() / Ventana.pixelesBloque , miPosicion.getX() / Ventana.pixelesBloque).agregarAListaEntidades(this);
 	}
 	
+	
 }

@@ -3,14 +3,14 @@ package elementos;
 import entidadesLogicas.Juego;
 
 public class HiloElemento extends Thread {
-	private int ticks;
+	private int ticksALlegar;
 	private Juego miJuego;
 	private int cantidadTicks;
 	private boolean romper;
 	private Elemento miElemento;
 	public HiloElemento(Juego miJuego , int ticks , Elemento e ) {
 		this.miJuego = miJuego;
-		this.ticks = ticks;
+		this.ticksALlegar = ticks;
 		cantidadTicks = 0;
 		romper = false;
 		miElemento = e;
@@ -18,10 +18,11 @@ public class HiloElemento extends Thread {
 	
 	public void run() {
 		while (!miJuego.isGameOver() && !romper) {
+			System.out.println(cantidadTicks);
 	        if(!miJuego.estaPausado()) {
 	        	try {
 					Thread.sleep(50);
-					if(cantidadTicks == ticks) {
+					if(cantidadTicks == ticksALlegar) {
 						miElemento.finPocion();
 						romper = true;
 					}
@@ -50,6 +51,8 @@ public class HiloElemento extends Thread {
 		this.romper = romper;
 	}
 	
-	
+	public void setCantidadTicks(int ticks) {
+		cantidadTicks = ticks;
+	}
 	
 }
