@@ -26,6 +26,8 @@ public interface DominioJuego {
 	
 	public String getSonidoGameOver();
 	
+	public String getSonidoWin();
+	
 	public String getParedNivel1();
 	
 	public String getParedNivel2();
@@ -35,6 +37,8 @@ public interface DominioJuego {
 	public String getPuerta();
 	
 	public String getImagenVidas();
+	
+	
 	
 ;
 	

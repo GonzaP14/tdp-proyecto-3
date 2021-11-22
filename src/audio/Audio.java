@@ -16,6 +16,7 @@ public class Audio {
 	protected Clip miClip;
 	protected AudioInputStream miMusica;
 	protected AudioInputStream sonidoGameOver;
+	protected AudioInputStream sonidoWin;
 	protected DominioJuego miDominio;
 	
 	public Audio(DominioJuego miDominio) {
@@ -24,6 +25,7 @@ public class Audio {
 		try {
 			miMusica= AudioSystem.getAudioInputStream(getClass().getResource(miDominio.getMusica()));
 			sonidoGameOver=AudioSystem.getAudioInputStream(getClass().getResource(miDominio.getSonidoGameOver()));
+			sonidoWin=AudioSystem.getAudioInputStream(getClass().getResource(miDominio.getSonidoWin()));
 			miClip = AudioSystem.getClip();
 		} catch (UnsupportedAudioFileException | IOException | LineUnavailableException e) {
 			e.printStackTrace();
@@ -52,6 +54,16 @@ public class Audio {
 		 try {
 			miClip.close();
 			miClip.open(sonidoGameOver);
+			miClip.start();	
+		} catch (IOException | LineUnavailableException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public void sonidoWin() {
+		 try {
+			miClip.close();
+			miClip.open(sonidoWin);
 			miClip.start();	
 		} catch (IOException | LineUnavailableException e) {
 			e.printStackTrace();

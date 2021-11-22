@@ -165,6 +165,11 @@ public class DominioMarioBros implements DominioJuego {
 		return new String("/recursosMarioBros/Mario.png");
 	}
 
+	@Override
+	public String getSonidoWin() {
+		return new String("/recursosAudio/winMarioBros.wav");
+	}
+
 
 	
 }

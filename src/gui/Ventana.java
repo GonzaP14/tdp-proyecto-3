@@ -49,18 +49,24 @@ public class Ventana extends JFrame implements KeyListener {
     private JLabel lifes;
     private JLabel leaderBoard;
     private JLabel leaderBoard2;
+    private JLabel leaderBoard3;
     private JPanel endGameOver;
+    private JPanel endWin;
     private JLabel vida1;
     private JLabel vida2;
     private JLabel vida3;
     private JLabel GameOver;
+    private JLabel win;
     private JLabel leaderboardPuntaje;
     private JLabel leaderboardPuntaje2;
+    private JLabel leaderboardPuntaje3;
     private Font fuente = null; 
     private Font fuenteTitulo = null; 
     private InputStream myStream = null;
     private JTextField txtName;
+    private JTextField txtName2;
     private JButton Load;
+    private JButton Load2;
     private JLabel imagenMuertoMario;
     private JLabel imagenLogoBowser;
     private JLabel imagenDrEggman;
@@ -85,6 +91,7 @@ public class Ventana extends JFrame implements KeyListener {
     private void initialize() {
     	crearFuente();
     	crearGameOver();		
+    	crearWin();
 		crearName();
 		crearLoad();
 		crearLogosLeaderBoard();
@@ -123,7 +130,30 @@ public class Ventana extends JFrame implements KeyListener {
 		GameOver.setFont(fuenteTitulo);
 		GameOver.setBounds(315, 41, 375, 133);
 		endGameOver.add(GameOver);
+		
+		crearMarioMuerto();
+		crearLogoBowser();
+		crearDrEggman();
+		crearSonicMuerto();
 	}
+    
+    private void crearWin() {
+		endWin = new JPanel();
+		endWin.setBounds(0, 0, 992, 770);
+		endWin.setBackground(Color.BLACK);
+		endWin.setOpaque(true);
+		endWin.setVisible(false);
+		this.getContentPane().add(endWin);
+		endWin.setLayout(null);
+		
+		win = new JLabel("CONGRATULATIONS");
+		win.setForeground(Color.GREEN);
+		win.setFont(fuenteTitulo);
+		win.setBounds(150, 41, 650, 133);
+		endWin.add(win);
+
+	}
+
     
     private void crearName() {
 		txtName = new JTextField();
@@ -133,6 +163,14 @@ public class Ventana extends JFrame implements KeyListener {
 		txtName.setBounds(350, 172, 291, 72);
 		endGameOver.add(txtName);
 		txtName.setColumns(10);
+		
+		txtName2 = new JTextField();
+		txtName2.setForeground(Color.WHITE);
+		txtName2.setBackground(Color.BLACK);
+		txtName2.setFont(fuente);
+		txtName2.setBounds(350, 172, 291, 72);
+		endWin.add(txtName2);
+		txtName2.setColumns(10);
 	}
     
     private void crearLoad() {
@@ -145,6 +183,18 @@ public class Ventana extends JFrame implements KeyListener {
 			miJuego.procesarPuntaje(txtName.getText());
 			txtName.setText("");
 			txtName.setEditable(false);
+			mostrarLeaderboard();			
+			}
+		});
+		Load2 = new JButton("LOAD NAME");
+		Load2.setBounds(350, 274, 296, 72);
+		Load2.setFont(fuente);
+		endWin.add(Load2);
+		Load2.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {		
+			miJuego.procesarPuntaje(txtName2.getText());
+			txtName2.setText("");
+			txtName2.setEditable(false);
 			mostrarLeaderboard();			
 			}
 		});
@@ -165,10 +215,21 @@ public class Ventana extends JFrame implements KeyListener {
 		//mostrarLeaderboard();
 		endGameOver.add(leaderboardPuntaje2);
 		
-		crearMarioMuerto();
-		crearLogoBowser();
-		crearDrEggman();
-		crearSonicMuerto();
+		leaderBoard3 = new JLabel("LEADERBOARD",SwingConstants.CENTER);
+		leaderBoard3.setFont(fuente);
+		leaderBoard3.setForeground(Color.WHITE);
+		leaderBoard3.setBounds(350, 425, 300, 50);
+		endWin.add(leaderBoard3);
+		
+		leaderboardPuntaje3 = new JLabel("",SwingConstants.CENTER);
+		leaderboardPuntaje3.setBorder(new EmptyBorder(0, 0, 0, 0));
+		leaderboardPuntaje3.setFont(fuente);
+		leaderboardPuntaje3.setForeground(Color.WHITE);
+		leaderboardPuntaje3.setBounds(350, 468, 300, 280);
+		//mostrarLeaderboard();
+		endWin.add(leaderboardPuntaje3);
+		
+	
 	}
     
 	private void crearMarioMuerto() {
@@ -375,10 +436,14 @@ public class Ventana extends JFrame implements KeyListener {
 	public void gameOver() {		
 		endGameOver.setVisible(true);		
 	}
+	public void win() {		
+		endWin.setVisible(true);		
+	}
 	
 	private void mostrarLeaderboard() {
 		leaderboardPuntaje.setText(miJuego.getMiLeaderboard().getLeaderboard());
 		leaderboardPuntaje2.setText(miJuego.getMiLeaderboard().getLeaderboard());
+		leaderboardPuntaje3.setText(miJuego.getMiLeaderboard().getLeaderboard());
 	}
 	
 }

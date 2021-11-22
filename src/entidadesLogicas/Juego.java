@@ -129,7 +129,9 @@ public class Juego {
 	}
 	
 	public void congratulations() {
-		
+		miAudio.sonidoWin();
+		miVentana.win();
+		gameOver=true;
 	}
 	
 	public void gameOver() {

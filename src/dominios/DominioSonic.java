@@ -165,6 +165,11 @@ public class DominioSonic implements DominioJuego {
 		return new String("/recursosSonic/Sonic.png");
 	}
 
+	@Override
+	public String getSonidoWin() {
+		return new String("/recursosAudio/winSonic.wav");
+	}
+
 	
 
 }
