@@ -18,9 +18,15 @@ import personajes.Principal;
 
 public class FabricaGeneral implements FabricaEntidades {
 	
-	Juego miJuego;
-	DominioJuego miDominio;
+	// Atributos de instancia
+	private Juego miJuego;
+	private DominioJuego miDominio;
 	
+	/**
+	 * Crea una fabrica general para el juego, para un determinado dominio.
+	 * @param miJuego ligado a la fabrica
+	 * @param miDominio dominio determinado.
+	 */
 	public FabricaGeneral(Juego miJuego, DominioJuego miDominio) {
 		this.miJuego = miJuego;
 		this.miDominio = miDominio;
@@ -60,7 +66,7 @@ public class FabricaGeneral implements FabricaEntidades {
 	public Elemento getPacDot() {
 		return new PacDot(miJuego, miDominio.getPacDot());
 	}
-
+	
 	@Override
 	public Pocion getPocionBomba() {
 		return new PocionBomba(miJuego, miDominio.getPocionBomba());
@@ -75,5 +81,4 @@ public class FabricaGeneral implements FabricaEntidades {
 	public Elemento getPowerPellet() {
 		return new PowerPellet(miJuego, miDominio.getPowerPellet());
 	}
-
 }
