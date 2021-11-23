@@ -36,7 +36,7 @@ public class Juego {
 		miDominio = dominio;
 		miGrilla = new Grilla();
 		miAudio = new Audio(miDominio);
-		miPlayer = new Player();
+		createPlayer();
 		miLeaderboard = new Leaderboard();
 		loadConfiguration();
 		cantidadFantasmasComidos = 0;
@@ -46,7 +46,11 @@ public class Juego {
 	}
 
 	// Setters.
-		
+	
+	public void createPlayer() {
+		miPlayer = new Player();
+	}
+	
 	public void setVentana(Ventana miVentana) {
 		this.miVentana = miVentana;
 	}
@@ -120,15 +124,9 @@ public class Juego {
 
 	// Estados del juego.
 	
-	public void pausar_despausar() {
-		if (estaPausado == false) {
-			pausarDespausarRelojes();
-			miAudio.mutear();
-			miVentana.dispose();
-		} else {
-			pausarDespausarRelojes();
-			miAudio.mutear();
-		}
+	public void pausarDespausarJuego() {
+		pausarDespausarRelojes();
+		miAudio.mutear();
 	}
 	
 	public void congratulations() {
@@ -140,7 +138,7 @@ public class Juego {
 	public void gameOver() {
 		miAudio.sonidoGameOver();
 		miVentana.gameOver();
-		gameOver=true;
+		gameOver = true;
 	}
 	
 	// -------------------------------------- SIMPLES DE ATRIBUTOS ------------------------------------
@@ -156,10 +154,12 @@ public class Juego {
 	public void perderVida() {
 		vidasActuales--;
 		miVentana.actualizarVidasActuales(vidasActuales);
-		if(vidasActuales == 0)
+		if(vidasActuales == 0) {
 			gameOver();
+		}
 	}
-	private void iniciarMusica() {
+	
+	public void iniciarMusica() {
         miAudio.iniciarMusica();
     }
 	
@@ -172,7 +172,7 @@ public class Juego {
 		cantidadPacDots --;
 		
 		if (cantidadPacDots == 0 && miNivel.getNivelActual() == 3) {
-				congratulations();
+			congratulations();
 		} 
 		else if (cantidadPacDots == 0) {
 			Launcher.pasarNivel();
@@ -278,10 +278,18 @@ public class Juego {
             ex.printStackTrace();
         }
 	}
-
+	
+	public synchronized void restart() {
+		createPlayer();
+		vidasActuales = 3;
+		cantidadFantasmasComidos = 0;
+	}
+	
 	public synchronized void reset() {
+		miVentana.setVisible(false);
 		miGrilla.reset();
 		misEntidades.reset();
+		miAudio.reset();
 		resetRelojes();
 	}
 	
@@ -291,6 +299,15 @@ public class Juego {
 			e.getMiHilo().setCantidadTicks(0);
 			e.setVelocidadPredeterminada(miNivel.getVelocidadEnemigos());
 			e.setVelocidadActual(e.getVelocidadPredeterminada());
+		}
+	}
+
+	public void iniciarRelojes() {
+		iniciarReloj();
+		
+		for (Enemigo e: misEntidades.getEnemigos()) {
+			e.crearHilo(e);
+			e.iniciarHilo();
 		}
 	}
 }
