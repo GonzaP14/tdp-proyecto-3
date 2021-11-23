@@ -20,13 +20,10 @@ public class Fruta extends Elemento {
 	}
 	
 	@Override
-	protected void iniciarTimer(HiloElemento timer) {
-	}
+	protected void iniciarTimer(HiloElemento timer) {}
 
 	@Override
-	public void finPocion() {
-
-	}
+	public void finPocion() {}
 	
 	@Override
 	public void reset() {

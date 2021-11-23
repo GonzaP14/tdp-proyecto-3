@@ -52,11 +52,13 @@ public class Ventana extends JFrame implements KeyListener {
     private JLabel leaderBoard3;
     private JPanel endGameOver;
     private JPanel endWin;
+    private JPanel pause;
     private JLabel vida1;
     private JLabel vida2;
     private JLabel vida3;
     private JLabel GameOver;
     private JLabel win;
+    private JLabel pauseText;
     private JLabel leaderboardPuntaje;
     private JLabel leaderboardPuntaje2;
     private JLabel leaderboardPuntaje3;
@@ -76,7 +78,8 @@ public class Ventana extends JFrame implements KeyListener {
     private JLabel imagenDrEggman;
     private JLabel imagenSonicMuerto;
     private JLabel levelActualNumero;
-
+    private JLabel fuegosArtificiales;
+    private JLabel fuegosArtificiales2;
     
     
     public Ventana(Juego miJuego, DominioJuego miDominio) {
@@ -94,7 +97,8 @@ public class Ventana extends JFrame implements KeyListener {
     
     private void initialize() {
     	crearFuente();
-    	crearGameOver();		
+    	crearGameOver();	
+    	crearPause();
     	crearWin();
 		crearName();
 		crearRestar();
@@ -142,6 +146,22 @@ public class Ventana extends JFrame implements KeyListener {
 		crearSonicMuerto();
 	}
     
+    private void crearPause() {
+		pause = new JPanel();
+		pause.setBounds(100, 225, 500, 275);
+		pause.setVisible(false);
+		this.getContentPane().add(pause);
+		pause.setLayout(null);
+		
+		pauseText = new JLabel("");
+		pauseText.setBounds(0, 0, 500, 275);
+		ImageIcon icoPause = new ImageIcon(Toolkit.getDefaultToolkit().getImage(this.getClass().getResource("/recursosImagenes/pause.jpg")));	
+		ImageIcon imgPause = new ImageIcon(icoPause.getImage().getScaledInstance(pause.getWidth(), pause.getHeight(), Image.SCALE_SMOOTH));
+		pauseText.setIcon(imgPause);
+		pause.add(pauseText);
+
+	}
+    
     private void crearWin() {
 		endWin = new JPanel();
 		endWin.setBounds(0, 0, 992, 770);
@@ -159,7 +179,7 @@ public class Ventana extends JFrame implements KeyListener {
 		
 		crearMario();
 		crearSonic();
-
+		crearFuegosArtificiales();
 	}
 
     
@@ -263,7 +283,23 @@ public class Ventana extends JFrame implements KeyListener {
 		
 	
 	}
-    
+    private void crearFuegosArtificiales() {
+		fuegosArtificiales = new JLabel("");
+		fuegosArtificiales.setBounds(20, 25, 150, 150);
+		ImageIcon icoFuegos = new ImageIcon(this.getClass().getResource("/recursosImagenes/fuegosArtificiales.gif"));	
+		ImageIcon imgFuegos = new ImageIcon(icoFuegos.getImage().getScaledInstance(fuegosArtificiales.getWidth(), fuegosArtificiales.getHeight(), Image.SCALE_DEFAULT));
+		fuegosArtificiales.setIcon(imgFuegos);
+		
+		endWin.add(fuegosArtificiales);
+		
+		fuegosArtificiales2 = new JLabel("");
+		fuegosArtificiales2.setBounds(800, 25, 150, 150);
+		ImageIcon icoFuegos2 = new ImageIcon(this.getClass().getResource("/recursosImagenes/fuegosArtificiales.gif"));	
+		ImageIcon imgFuegos2 = new ImageIcon(icoFuegos2.getImage().getScaledInstance(fuegosArtificiales2.getWidth(), fuegosArtificiales2.getHeight(), Image.SCALE_DEFAULT));
+		fuegosArtificiales2.setIcon(imgFuegos2);
+		
+		endWin.add(fuegosArtificiales2);
+	}
 	private void crearMarioMuerto() {
 		imagenMuertoMario = new JLabel("");
 		imagenMuertoMario.setBounds(89, 428, 198, 205);
@@ -453,6 +489,7 @@ public class Ventana extends JFrame implements KeyListener {
 	        	break;          
 	        case KeyEvent.VK_P:
 	        	miJuego.pausarDespausarJuego();
+	        	pause();
 	        	break;
 	        case KeyEvent.VK_M:   
 	        	miJuego.muted();
@@ -486,6 +523,14 @@ public class Ventana extends JFrame implements KeyListener {
 	}
 	public void win() {		
 		endWin.setVisible(true);		
+	}
+	public void pause() {
+		if(pause.isVisible()==false) {
+			pause.setVisible(true);	
+		}	
+		else {
+			pause.setVisible(false);
+		}
 	}
 	
 	private void mostrarLeaderboard() {

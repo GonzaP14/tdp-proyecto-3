@@ -110,8 +110,4 @@ public interface DominioJuego {
 	 */
 	public String getImagenVidas();
 	
-	
-	
-;
-	
 }
