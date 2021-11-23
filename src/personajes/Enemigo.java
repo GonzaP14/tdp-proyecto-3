@@ -175,7 +175,7 @@ public abstract class Enemigo extends Personaje {
 		return sentidoNuevo;
 	}
 	
-	protected void crearHilo (Enemigo e) {
+	public void crearHilo (Enemigo e) {
 		miHilo = new HiloEnemigo(velocidadActual, miJuego, e);
 	}
 
