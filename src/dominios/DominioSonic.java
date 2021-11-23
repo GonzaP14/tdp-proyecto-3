@@ -12,15 +12,15 @@ public class DominioSonic implements DominioJuego {
         imagenes[3] = "/recursosSonic/sonicDerecha.gif";
         imagenes[4] = "/recursosSonic/sonicDerecha.gif";
         
-        imagenes[5] = "/recursosMarioBros/MarioArriba.gif";
-		imagenes[6] = "/recursosMarioBros/MarioAbajo.gif";
-		imagenes[7] = "/recursosMarioBros/MarioIzquierda.gif";
-		imagenes[8] = "/recursosMarioBros/MarioDerecha.gif";
+        imagenes[5] = "/recursosSonic/sonicArribaAfectado.gif";
+		imagenes[6] = "/recursosSonic/sonicAbajoAfectado.gif";
+		imagenes[7] = "/recursosSonic/sonicIzquierdaAfectado.gif";
+		imagenes[8] = "/recursosSonic/sonicDerechaAfectado.gif";
 		
-		imagenes[9] = "/recursosSonic/shadowArribaEscapando.gif";
-		imagenes[10] = "/recursosSonic/shadowAbajoEscapando.gif";
-		imagenes[11] = "/recursosSonic/shadowIzquierdaEscapando.gif";
-		imagenes[12] = "/recursosSonic/shadowDerechaEscapando.gif";
+		imagenes[9] = "/recursosSonic/sonicArribaAfectado2.gif";
+		imagenes[10] = "/recursosSonic/sonicAbajoAfectado2.gif";
+		imagenes[11] = "/recursosSonic/sonicIzquierdaAfectado2.gif";
+		imagenes[12] = "/recursosSonic/sonicDerechaAfectado2.gif";
         
         return imagenes;
 	}
@@ -98,8 +98,8 @@ public class DominioSonic implements DominioJuego {
 		String[] imagenes = new String[3];
 
 		imagenes[0] = ("/recursosSonic/gemaAzul.png");
-		imagenes[1] = ("/recursosSonic/gemaAzul.png");
-		imagenes[2] = ("/recursosSonic/gemaAzul.png");
+		imagenes[1] = ("/recursosSonic/gemaRoja.png");
+		imagenes[2] = ("/recursosSonic/gemaVioleta.png");
 
 		return imagenes;
 	}

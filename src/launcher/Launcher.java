@@ -116,19 +116,19 @@ public class Launcher {
 		miBuilder.setDuracionPowerPellet(50);
 		miBuilder.setDuracionPociones(50);
 	}
-
+	
 	/**
 	 * Cambia el estado del juego al siguiente nivel.
 	 */
 	public static void pasarNivel() {
-		miJuego.pausar_despausar();
+		miJuego.pausarDespausarRelojes();
 		miJuego.reset();
 		miBuilder.reset();
 		construirNivel();
 		miJuego.setNivel(miBuilder.getProduct());
 		iniciarVentana();
 		miJuego.aparecerEntidades();
-		miJuego.pausar_despausar();
+		miJuego.pausarDespausarRelojes();
 	}
 	
 }

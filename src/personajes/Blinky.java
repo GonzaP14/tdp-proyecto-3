@@ -32,5 +32,20 @@ public class Blinky extends Enemigo {
 	public Posicion getPosicionScatter() {
 		return posicionScatter;
 	}
+
+	@Override
+	public void entrarALaCasa() {
+		setVelocidadActual(velocidadPredeterminada);
+		miRepresentacion.perseguir(sentidoActual);
+		tieneQueEntrarALaCasa = false;
+		salirDeLaCasa();
+	}
+
+	@Override
+	public void salirDeLaCasa() {
+		miHilo.setCantidadTicks(0);
+		cambiarEstado(Scatter);
+		tieneQueSalirDeLaCasa = false;
+	}
 	
 }

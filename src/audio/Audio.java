@@ -83,4 +83,9 @@ public class Audio {
 			miClip.start();
 		}		
 	}
+	
+	public void reset() {
+		miClip.setMicrosecondPosition(0);
+	}
+	
 }
