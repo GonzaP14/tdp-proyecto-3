@@ -67,6 +67,8 @@ public class Ventana extends JFrame implements KeyListener {
     private JTextField txtName2;
     private JButton Load;
     private JButton Load2;
+    private JButton restart;
+    private JButton restart2;
     private JLabel imagenMario;
     private JLabel imagenSonic;
     private JLabel imagenMuertoMario;
@@ -95,6 +97,7 @@ public class Ventana extends JFrame implements KeyListener {
     	crearGameOver();		
     	crearWin();
 		crearName();
+		crearRestar();
 		crearLoad();
 		crearLogosLeaderBoard();
 		crearScore();
@@ -165,7 +168,7 @@ public class Ventana extends JFrame implements KeyListener {
 		txtName.setForeground(Color.WHITE);
 		txtName.setBackground(Color.BLACK);
 		txtName.setFont(fuente);
-		txtName.setBounds(350, 172, 291, 72);
+		txtName.setBounds(350, 490, 291, 70);
 		endGameOver.add(txtName);
 		txtName.setColumns(10);
 		
@@ -173,14 +176,14 @@ public class Ventana extends JFrame implements KeyListener {
 		txtName2.setForeground(Color.WHITE);
 		txtName2.setBackground(Color.BLACK);
 		txtName2.setFont(fuente);
-		txtName2.setBounds(350, 172, 291, 72);
+		txtName2.setBounds(350, 490, 291, 70);
 		endWin.add(txtName2);
 		txtName2.setColumns(10);
 	}
     
     private void crearLoad() {
 		Load = new JButton("LOAD NAME");
-		Load.setBounds(350, 274, 296, 72);
+		Load.setBounds(350, 570, 296, 70);
 		Load.setFont(fuente);
 		endGameOver.add(Load);
 		Load.addActionListener(new ActionListener() {
@@ -191,8 +194,9 @@ public class Ventana extends JFrame implements KeyListener {
 			mostrarLeaderboard();			
 			}
 		});
+		
 		Load2 = new JButton("LOAD NAME");
-		Load2.setBounds(350, 274, 296, 72);
+		Load2.setBounds(350, 570, 296, 70);
 		Load2.setFont(fuente);
 		endWin.add(Load2);
 		Load2.addActionListener(new ActionListener() {
@@ -204,33 +208,56 @@ public class Ventana extends JFrame implements KeyListener {
 			}
 		});
 	}
+    
+    private void crearRestar() {
+    	restart = new JButton("RESTART");
+    	restart.setBounds(350, 650, 296, 70);
+    	restart.setFont(fuente);
+		endGameOver.add(restart);
+		restart.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {		
+				
+			}
+		});
+		
+		restart2 = new JButton("RESTART");
+		restart2.setBounds(350, 650, 296, 70);
+		restart2.setFont(fuente);
+		endWin.add(restart2);
+		restart2.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {		
+	
+			}
+		});
+    }
+    
 
     private void crearLogosLeaderBoard() {
 		leaderBoard2 = new JLabel("LEADERBOARD",SwingConstants.CENTER);
 		leaderBoard2.setFont(fuente);
 		leaderBoard2.setForeground(Color.WHITE);
-		leaderBoard2.setBounds(350, 425, 300, 50);
+		leaderBoard2.setBounds(350, 200, 300, 50);
 		endGameOver.add(leaderBoard2);
 		
 		leaderboardPuntaje2 = new JLabel("",SwingConstants.CENTER);
 		leaderboardPuntaje2.setBorder(new EmptyBorder(0, 0, 0, 0));
 		leaderboardPuntaje2.setFont(fuente);
 		leaderboardPuntaje2.setForeground(Color.WHITE);
-		leaderboardPuntaje2.setBounds(350, 468, 300, 280);
+		leaderboardPuntaje2.setBounds(350, 210, 300, 280);
 		//mostrarLeaderboard();
 		endGameOver.add(leaderboardPuntaje2);
 		
 		leaderBoard3 = new JLabel("LEADERBOARD",SwingConstants.CENTER);
 		leaderBoard3.setFont(fuente);
 		leaderBoard3.setForeground(Color.WHITE);
-		leaderBoard3.setBounds(350, 425, 300, 50);
+		leaderBoard3.setBounds(350, 200, 300, 50);
 		endWin.add(leaderBoard3);
 		
 		leaderboardPuntaje3 = new JLabel("",SwingConstants.CENTER);
 		leaderboardPuntaje3.setBorder(new EmptyBorder(0, 0, 0, 0));
 		leaderboardPuntaje3.setFont(fuente);
 		leaderboardPuntaje3.setForeground(Color.WHITE);
-		leaderboardPuntaje3.setBounds(350, 468, 300, 280);
+		leaderboardPuntaje3.setBounds(350, 210, 300, 280);
 		//mostrarLeaderboard();
 		endWin.add(leaderboardPuntaje3);
 		
