@@ -60,14 +60,6 @@ public class Principal extends Personaje {
 
 	}
 
-	/**
-	 * Consulta el estado actual del personaje.
-	 * @return estado actual.
-	 */
-	public int getEstadoActual() {
-		return estadoActual;
-	}
-
 	@Override
 	public void chequearColisionesEntidades() {
 		miJuego.getGrilla().buscarColisionesEntidades(this);
@@ -125,6 +117,13 @@ public class Principal extends Personaje {
 	 */
 	public void setYaMeMatoOtroFantasma(boolean b) {
 		yaMeMatoOtroFantasma = b;
+	}	
+
+	/**
+	 * Consulta el estado actual del personaje.
+	 * @return estado actual.
+	 */
+	public int getEstadoActual() {
+		return estadoActual;
 	}
-	
 }

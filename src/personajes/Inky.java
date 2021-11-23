@@ -23,16 +23,6 @@ public class Inky extends Enemigo {
 		velocidadActual = velocidadPredeterminada;
 		super.crearEnemigo(miJuego, spawnInky, imagenes);
 	}
-
-	@Override
-	public Posicion getPosicionScatter() {
-		return posicionScatter;
-	}
-
-	@Override
-	public ChaseIA crearChaseIA() {
-		return new ChaseInky(this, miJuego.getPrincipal(), miJuego.getEnemigos().get(0));
-	}
 	
 	/**
 	 * Setea la velocidad predeterminada del movimiento de Inky.
@@ -40,7 +30,8 @@ public class Inky extends Enemigo {
 	public void setVelocidadPredeterminada(int velocidad) {
 		velocidadPredeterminada = velocidad - 8;
 	}
-
+	
+	@Override
 	public void entrarALaCasa() {	
 		miJuego.getGrilla().getBloque(miPosicion.getY() / Ventana.pixelesBloque, miPosicion.getX() / Ventana.pixelesBloque).borrarDeListaDeEntidades(this);
 		if(miPosicion.getY() != miSpawn.getY()) {
@@ -70,6 +61,16 @@ public class Inky extends Enemigo {
 			cambiarEstado(Scatter);
 			tieneQueSalirDeLaCasa = false;
 		}
+	}
+
+	@Override
+	public Posicion getPosicionScatter() {
+		return posicionScatter;
+	}
+
+	@Override
+	public ChaseIA crearChaseIA() {
+		return new ChaseInky(this, miJuego.getPrincipal(), miJuego.getEnemigos().get(0));
 	}
 	
 }

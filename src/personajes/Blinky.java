@@ -24,16 +24,6 @@ public class Blinky extends Enemigo {
 	}
 	
 	@Override
-	public ChaseIA crearChaseIA() {
-		return new ChaseBlinky(this, miJuego.getPrincipal());
-	}
-
-	@Override
-	public Posicion getPosicionScatter() {
-		return posicionScatter;
-	}
-
-	@Override
 	public void entrarALaCasa() {
 		setVelocidadActual(velocidadPredeterminada);
 		miRepresentacion.perseguir(sentidoActual);
@@ -46,6 +36,16 @@ public class Blinky extends Enemigo {
 		miHilo.setCantidadTicks(0);
 		cambiarEstado(Scatter);
 		tieneQueSalirDeLaCasa = false;
+	}
+	
+	@Override
+	public ChaseIA crearChaseIA() {
+		return new ChaseBlinky(this, miJuego.getPrincipal());
+	}
+
+	@Override
+	public Posicion getPosicionScatter() {
+		return posicionScatter;
 	}
 	
 }

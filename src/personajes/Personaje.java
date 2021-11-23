@@ -61,42 +61,6 @@ public abstract class Personaje extends Entidad {
 	}
 	
 	/**
-	 * Calcula la proxima posicion de desplazamiento lateral.
-	 * @param sentidoLigado sentido del personaje.
-	 * @return Proxima posicion lateral del personaje.
-	 */
-	private Posicion calcularProximaPosicionLateral(int sentidoLigado) {
-		Posicion proximaPosicion = null;
-		
-		if (sentidoLigado == Entidad.sentidoDerecha ) {
-			proximaPosicion = new Posicion(miPosicion.getX() + desplazamientoPixeles, miPosicion.getY());
-		}
-		else if (sentidoLigado == Entidad.sentidoIzquierda ) {
-			proximaPosicion = new Posicion(miPosicion.getX() - desplazamientoPixeles,  miPosicion.getY());	
-		}
-		
-		return proximaPosicion;
-	}
-	
-	/**
-	 * Calcula la proxima posicion de desplazamiento vertical.
-	 * @param sentidoLigado sentido del personaje.
-	 * @return Proxima posicion lateral del vertical.
-	 */
-	private Posicion calcularProximaPosicionVertical(int sentidoLigado) {
-		Posicion proximaPosicion = null;
-		
-		if (sentidoLigado == Entidad.sentidoArriba) {
-			proximaPosicion = new Posicion(miPosicion.getX(), miPosicion.getY() - desplazamientoPixeles);
-		}
-		else if (sentidoLigado == Entidad.sentidoAbajo) {
-			proximaPosicion = new Posicion(miPosicion.getX(), miPosicion.getY() + desplazamientoPixeles);	
-		}
-		
-		return proximaPosicion;
-	}
-	
-	/**
 	 * Realiza un movimiento lateral del personaje.
 	 */
 	private void moverLateralmente() {
@@ -172,6 +136,42 @@ public abstract class Personaje extends Entidad {
 	 * Chequea las colisiones del personaje con otras entidades del juego.
 	 */
 	public abstract void chequearColisionesEntidades();
+	
+	/**
+	 * Calcula la proxima posicion de desplazamiento lateral.
+	 * @param sentidoLigado sentido del personaje.
+	 * @return Proxima posicion lateral del personaje.
+	 */
+	private Posicion calcularProximaPosicionLateral(int sentidoLigado) {
+		Posicion proximaPosicion = null;
+		
+		if (sentidoLigado == Entidad.sentidoDerecha ) {
+			proximaPosicion = new Posicion(miPosicion.getX() + desplazamientoPixeles, miPosicion.getY());
+		}
+		else if (sentidoLigado == Entidad.sentidoIzquierda ) {
+			proximaPosicion = new Posicion(miPosicion.getX() - desplazamientoPixeles,  miPosicion.getY());	
+		}
+		
+		return proximaPosicion;
+	}
+	
+	/**
+	 * Calcula la proxima posicion de desplazamiento vertical.
+	 * @param sentidoLigado sentido del personaje.
+	 * @return Proxima posicion lateral del vertical.
+	 */
+	private Posicion calcularProximaPosicionVertical(int sentidoLigado) {
+		Posicion proximaPosicion = null;
+		
+		if (sentidoLigado == Entidad.sentidoArriba) {
+			proximaPosicion = new Posicion(miPosicion.getX(), miPosicion.getY() - desplazamientoPixeles);
+		}
+		else if (sentidoLigado == Entidad.sentidoAbajo) {
+			proximaPosicion = new Posicion(miPosicion.getX(), miPosicion.getY() + desplazamientoPixeles);	
+		}
+		
+		return proximaPosicion;
+	}
 	
 	/**
 	 * Consulta la velocidad actual del personaje.

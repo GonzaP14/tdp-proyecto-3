@@ -41,7 +41,69 @@ public abstract class Enemigo extends Personaje {
 				e.setTieneQueSalirDeLaCasa(true);
 		}
 	}
+	@Override
+	public void chequearColisionesEntidades() {
+	}
+	
+	/**
+	 * Crea todos los posibles estados que va a tener un enemigo
+	 */
+	protected void crearEstados() {
+		estados = new EstadoEnemigo[4];
+		estados[Frightened] = crearEstadoFrightened();
+		estados[Chase] = crearEstadoChase(crearChaseIA(), this);
+		estados[Eaten] = crearEstadoEaten();
+		estados[Scatter] = crearEstadoScatter();
+	}
+	
+	/**
+	 * Mueve al enemigo calculando su siguiente posicion con su IA
+	 */
+	public void mover() {
+		Posicion destino = estadoActual.siguientePosicion();
+		int sentidoDestino = calcularSentido(miPosicion, destino);
 
+		
+		if (this.getSentidoActual() == Entidad.sentidoFijo) {
+            this.setSentidoActual(sentidoDestino);
+        }
+        else {
+            this.setSentidoSiguiente(sentidoDestino);
+        }
+		
+		super.mover();
+	}
+	
+	/**
+	 * Reaparece a los enemigos cambiando su estado a Chase
+	 */
+	public void reaparecer() {
+		super.reaparecer();
+	}
+	
+	/**
+	 * Setea la velocidad predeterminada del enemigo
+	 * @param velocidad velocidad predeterminada que va a tener el enemigo
+	 */
+	public void setVelocidadPredeterminada(int velocidad) {
+		velocidadPredeterminada = velocidad;
+	}
+	
+	/**
+	 * Setea la velocidad predeterminada del enemigo
+	 * @param velocidad velocidad que va a tener el enemigo
+	 */
+	public void setVelocidadActual(int velocidad) {
+		velocidadActual = velocidad;
+		miHilo.setVelocidadTickeo(velocidad);
+	}
+	
+	/**
+	 * Crea un enemigo basico para cuando se crea el juego con sus parametros correspondientes
+	 * @param miJuego El juego asociado que va a tener el enemigo
+	 * @param spawn Lugar en el que va a respawnear el enemigo
+	 * @param imagenes Path de las imagenes posibles que va a tener un enemigo
+	 */
 	protected void crearEnemigo(Juego miJuego, Posicion spawn, String[] imagenes) {
 		tieneQueEntrarALaCasa = false;
 		this.miJuego = miJuego;
@@ -56,18 +118,29 @@ public abstract class Enemigo extends Personaje {
 		estadoActual = estados[indiceEstado];
 		crearHilo(this);
 	}
-
+	
+	/**
+	 * Modela el efecto que recibe un enemigo al ser afectado por un powerPellet
+	 * @param p powerPellet del que va a recibir el efecto
+	 */
 	public void recibirEfecto(PowerPellet p) {
 		setVelocidadActual(velocidadActual - 10);
 		cambiarEstado(Frightened);
     }
 
-
+	/**
+	 * Modela el efecto que recibe un enemigo al ser afectado por una pocionBomba
+	 * @param p powerPellet del que va a recibir el efecto
+	 */
     public void recibirEfecto(PocionBomba p) {
     	miJuego.aumentarPuntaje(p.getPuntajeOtorgado());
     	cambiarEstado(Eaten);
     }
 	
+    /**
+     * Cambia el estado en el que se encuentra el enemigo
+     * @param estado que va a pasar a tener
+     */
 	public void cambiarEstado (int estado) {
 		if (estado == Frightened) {
 			indiceEstado = Frightened;
@@ -91,78 +164,180 @@ public abstract class Enemigo extends Personaje {
 		
 	}
 	
-	public void recuperarse () {
-		
+	/**
+	 * Setea el tiene que salir de la casa en caso de que el enemigo tenga que realizar esta accion
+	 * @param tieneQueSalirDeLaCasa
+	 */
+	public void setTieneQueSalirDeLaCasa(boolean tieneQueSalirDeLaCasa) {
+		this.tieneQueSalirDeLaCasa = tieneQueSalirDeLaCasa;
 	}
 	
+	/**
+	 * Resetea a los enemigos para un posible cambio de nivel
+	 */
+	public void reset() {
+		tieneQueSalirDeLaCasa = true;
+		miSpawn = getSpawn();
+		miPosicion = new Posicion(miSpawn.getX(), miSpawn.getY());
+		miRepresentacion.crearGrafica(miPosicion);
+		miRepresentacion.reset();
+		miJuego.getGrilla().getBloque(miPosicion.getY() / Ventana.pixelesBloque , miPosicion.getX() / Ventana.pixelesBloque).agregarAListaEntidades(this);
+		indiceEstado = Scatter;
+		estadoActual = estados[indiceEstado];
+	}
+	
+	/**
+	 * Seteo si tiene que entrar a la casa el enemigo en el caso de necesitarlo
+	 * @param t 
+	 */
+	public void setTieneQueEntrarALaCasa(boolean t) {
+		tieneQueEntrarALaCasa = t;
+	}
+	
+	/**
+	 * Crea el hilo para los enemigos 
+	 * @param e Enemigo al que se le va a crear el hilo
+	 */
+	public void crearHilo (Enemigo e) {
+		miHilo = new HiloEnemigo(velocidadActual, miJuego, e);
+	}
+	
+	/**
+	 * Inicia el hilo del enemigo
+	 */
+	public void iniciarHilo() {
+		miHilo.start();
+	}
+	
+	/**
+	 * Modela el comportamiento del enemigo para entrar a la casa
+	 */
+	public abstract void entrarALaCasa();
+	
+	/**
+	 * Modela el comportamiento del enemigo para salir de la casa
+	 */
+	public abstract void salirDeLaCasa();
+	
+	/**
+	 * @return el hilo del enemigo
+	 */
+	public HiloEnemigo getMiHilo() {
+		return miHilo;
+	}
+	
+	/**
+	 * @return la posicion de scatter del enemigo
+	 */
+	public abstract Posicion getPosicionScatter();
+	
+	/**
+	 * @return el indiceEstado del enemigo,osea el estado en el que se encuentra 
+	 */
+	public int getIndiceEstado() {
+		return indiceEstado;
+	}
+	
+	/**
+	 * @return la velocidad predeterminada del enemigo
+	 */
+	public int getVelocidadPredeterminada() {
+		return velocidadPredeterminada;
+	}
+	
+	/** 
+	 * @return si tiene que entrar a la casa 
+	 */
+	public boolean getTieneQueEntrarALaCasa() {
+		return tieneQueEntrarALaCasa;
+	}
+	
+	/**
+	 * @return si tiene que salir de la casa
+	 */
+	public boolean getTieneQueSalirDeLaCasa() {
+		return tieneQueSalirDeLaCasa;
+	}
+
+	/**
+	 * @return la posicion de arriba de la casa del enemigo , osea la posicion que tiene que estar al salir de la casa
+	 */
 	public Posicion getArribaDeLaCasa() {
 		return arribaDeLaCasa;
 	}
 	
+	/**
+	 * @return si el enemigo esta en frightened
+	 */
 	public boolean estaAterrado() {
 		return (indiceEstado == Frightened);
 	}
 	
+	/**
+	 * @return si el enemigo esta en chase
+	 */
 	public boolean estaPersiguiendo() {
 		return (indiceEstado == Chase);
 	}
 	
+	/** 
+	 * @return si el enemigo esta en eaten
+	 */
 	public boolean estaComido() {
 		return (indiceEstado == Eaten);
 	}
 	
+	/**
+	 * @return si el enemigo esta en scatter
+	 */
 	public boolean estaDisperso() {
 		return (indiceEstado == Scatter);
 	}
 	
-	public void chequearColisionesEntidades() {
-	}
-	
-	protected void crearEstados() {
-		estados = new EstadoEnemigo[4];
-		estados[Frightened] = crearEstadoFrightened();
-		estados[Chase] = crearEstadoChase(crearChaseIA(), this);
-		estados[Eaten] = crearEstadoEaten();
-		estados[Scatter] = crearEstadoScatter();
-	}
-	
+	/**
+	 * crea el estado frightened del enemigo
+	 * @return el estado creado
+	 */
 	protected EstadoEnemigo crearEstadoFrightened() {
 		EstadoEnemigo frightened = new Frightened(this , miJuego.getPrincipal());
 		return frightened;
 	}
 	
+	/**
+	 * crea el estado eaten del enemigo
+	 * @return el estado creado
+	 */
 	protected EstadoEnemigo crearEstadoEaten() {
 		EstadoEnemigo eaten = new Eaten(this , getSpawn());	
 		return eaten;
 	}
 	
+	/**
+	 * crea el estado scatter del enemigo
+	 * @return el estado creado
+	 */
 	protected EstadoEnemigo crearEstadoScatter() {
 		EstadoEnemigo scatter = new Scatter(this , this.getPosicionScatter());
 		return scatter;
 	}
 	
+	/**
+	 * Crea el estado chase del enemigo
+	 * @param chaseIA la IA que va a utilizar el enemigo en su estado chase
+	 * @param enemigoLigado el enemigo que va a tener este estado
+	 * @return el estado creado
+	 */
 	public EstadoEnemigo crearEstadoChase(ChaseIA chaseIA, Enemigo enemigoLigado) {
 		EstadoEnemigo chase = new Chase(chaseIA , enemigoLigado , miJuego.getPrincipal());
 		return chase;
 	}
 	
-	public abstract ChaseIA crearChaseIA();
-	
-	public void mover() {
-		Posicion destino = estadoActual.siguientePosicion();
-		int sentidoDestino = calcularSentido(miPosicion, destino);
-
-		
-		if (this.getSentidoActual() == Entidad.sentidoFijo) {
-            this.setSentidoActual(sentidoDestino);
-        }
-        else {
-            this.setSentidoSiguiente(sentidoDestino);
-        }
-		
-		super.mover();
-	}
-
+	/**
+	 * Calcula el sentido en el que va a estar el enemigo
+	 * @param miPosicion La posicion actual del enemigo
+	 * @param destino La posicion de destino del enemigo
+	 * @return el sentido calculado
+	 */
 	private int calcularSentido(Posicion miPosicion, Posicion destino) {
 		int sentidoNuevo = sentidoActual;
 		Posicion resta = destino.distanciaEntrePosiciones(miPosicion);
@@ -186,14 +361,9 @@ public abstract class Enemigo extends Personaje {
 		return sentidoNuevo;
 	}
 	
-	public void crearHilo (Enemigo e) {
-		miHilo = new HiloEnemigo(velocidadActual, miJuego, e);
-	}
-
-	public void iniciarHilo() {
-		miHilo.start();
-	}
-
+	/**
+	 * @return Las posibles posiciones a las que puede ir un enemigo
+	 */
 	public ArrayList <Posicion> posiblesPosiciones() {
 		ArrayList<Posicion> toReturn = new ArrayList<Posicion>();
 		for (Posicion p: miPosicion.posiblesPosiciones()) { 
@@ -206,6 +376,12 @@ public abstract class Enemigo extends Personaje {
 		return toReturn;
 	}
 	
+	/**
+	 * Calcula si los sentidos pasados por parametro son opuestos/contrarios
+	 * @param sentidoActual El sentido actual del enemigo
+	 * @param sentidoNuevo El sentido nuevo del enemigo
+	 * @return Verdadero si son opuestos, falso en caso contrario
+	 */
 	private boolean sentidosContrarios(int sentidoActual, int sentidoNuevo) {
 		boolean contrarios = false;
 		if ((sentidoActual == Entidad.sentidoAbajo && sentidoNuevo == Entidad.sentidoArriba) || (sentidoActual == Entidad.sentidoArriba && sentidoNuevo == Entidad.sentidoAbajo) || (sentidoActual == Entidad.sentidoIzquierda && sentidoNuevo == Entidad.sentidoDerecha) || (sentidoActual == Entidad.sentidoDerecha && sentidoNuevo == Entidad.sentidoIzquierda)) {
@@ -213,70 +389,12 @@ public abstract class Enemigo extends Personaje {
 		}
 		return contrarios;
 	}
-
-	public HiloEnemigo getMiHilo() {
-		return miHilo;
-	}
-
 	
-	public abstract Posicion getPosicionScatter();
-
-	public void reaparecer() {
-		super.reaparecer();
-		cambiarEstado(Chase);
-	}
-	
-	public void setVelocidadPredeterminada(int velocidad) {
-		velocidadPredeterminada = velocidad;
-	}
-	
-	public void setVelocidadActual(int velocidad) {
-		velocidadActual = velocidad;
-		miHilo.setVelocidadTickeo(velocidad);
-	}
-
-	public int getIndiceEstado() {
-		return indiceEstado;
-	}
-	
-	public int getVelocidadPredeterminada() {
-		return velocidadPredeterminada;
-	}
-	
-	
-	public boolean getTieneQueEntrarALaCasa() {
-		return tieneQueEntrarALaCasa;
-	}
-	
-	public void reset() {
-		tieneQueSalirDeLaCasa = true;
-		miSpawn = getSpawn();
-		miPosicion = new Posicion(miSpawn.getX(), miSpawn.getY());
-		miRepresentacion.crearGrafica(miPosicion);
-		miRepresentacion.reset();
-		miJuego.getGrilla().getBloque(miPosicion.getY() / Ventana.pixelesBloque , miPosicion.getX() / Ventana.pixelesBloque).agregarAListaEntidades(this);
-		indiceEstado = Scatter;
-		estadoActual = estados[indiceEstado];
-	}
-	
-	public void setTieneQueEntrarALaCasa(boolean t) {
-		tieneQueEntrarALaCasa = t;
-	}
-	
-	
-	
-	public boolean getTieneQueSalirDeLaCasa() {
-		return tieneQueSalirDeLaCasa;
-	}
-
-	public void setTieneQueSalirDeLaCasa(boolean tieneQueSalirDeLaCasa) {
-		this.tieneQueSalirDeLaCasa = tieneQueSalirDeLaCasa;
-	}
-
-	public abstract void entrarALaCasa();
-	
-	public abstract void salirDeLaCasa();
-
+	/**
+	 * Crea la IA del chase del enemigo
+	 * @return La IA correspondiente
+	 */
+	public abstract ChaseIA crearChaseIA();
 	
 }
 

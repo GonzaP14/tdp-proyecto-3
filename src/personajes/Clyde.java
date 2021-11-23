@@ -23,17 +23,8 @@ public class Clyde extends Enemigo {
 		velocidadActual = velocidadPredeterminada;
 		super.crearEnemigo(miJuego, spawnClyde, imagenes);
 	}
-
+	
 	@Override
-	public ChaseIA crearChaseIA() {
-		return new ChaseClyde(this, miJuego.getPrincipal());
-	}
-
-	@Override
-	public Posicion getPosicionScatter() {
-		return posicionScatter;
-	}
-
 	public void entrarALaCasa() {
 		miJuego.getGrilla().getBloque(miPosicion.getY() / Ventana.pixelesBloque, miPosicion.getX() / Ventana.pixelesBloque).borrarDeListaDeEntidades(this);
 		if(miPosicion.getX() != miSpawn.getX()) {
@@ -71,6 +62,16 @@ public class Clyde extends Enemigo {
 			cambiarEstado(Scatter);
 			tieneQueSalirDeLaCasa = false;
 		}
+	}
+
+	@Override
+	public ChaseIA crearChaseIA() {
+		return new ChaseClyde(this, miJuego.getPrincipal());
+	}
+
+	@Override
+	public Posicion getPosicionScatter() {
+		return posicionScatter;
 	}
 	
 }

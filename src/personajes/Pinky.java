@@ -23,19 +23,8 @@ public class Pinky extends Enemigo {
 		velocidadActual = velocidadPredeterminada;
 		super.crearEnemigo(miJuego, spawnPinky, imagenes);
 	}
-
+	
 	@Override
-	public Posicion getPosicionScatter() {
-		return posicionScatter;
-	}
-
-
-	@Override
-	public ChaseIA crearChaseIA() {
-		return new ChasePinky(this, miJuego.getPrincipal());
-	}
-
-
 	public void entrarALaCasa() {
 		//Acordarme de llamarlo cuando esta arriba de la casa noma
 		miJuego.getGrilla().getBloque(miPosicion.getY() / Ventana.pixelesBloque, miPosicion.getX() / Ventana.pixelesBloque).borrarDeListaDeEntidades(this);
@@ -74,6 +63,17 @@ public class Pinky extends Enemigo {
 			cambiarEstado(Scatter);
 			tieneQueSalirDeLaCasa = false;	
 		}
+	}
+
+	@Override
+	public Posicion getPosicionScatter() {
+		return posicionScatter;
+	}
+
+
+	@Override
+	public ChaseIA crearChaseIA() {
+		return new ChasePinky(this, miJuego.getPrincipal());
 	}
 	
 }
