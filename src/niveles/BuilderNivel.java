@@ -5,6 +5,7 @@ import entidadesLogicas.Grilla;
 
 public class BuilderNivel implements Builder {
 	
+	// Atributos de instancia
 	private Nivel nivel;
 	
 	public BuilderNivel() {
@@ -52,6 +53,9 @@ public class BuilderNivel implements Builder {
 		nivel.setVelocidadEnemigos(v);
 	}
 
+	/**
+	 * @return Devuelve un producto (nivel), luego de que la construccion del mismo finaliza.
+	 */
 	public Nivel getProduct() {
 		return nivel;
 	}
