@@ -31,7 +31,7 @@ public class Reloj extends Thread{
 					if(cantidadTicks == 600) {
 						miJuego.aparecerPocionVelocidad();
 					}
-					if(cantidadTicks == 600 + miJuego.getNivel().getDuracionPociones()*100)
+					if(cantidadTicks == 600 + miJuego.getNivel().getDuracionPociones())
 						miJuego.despawnearPocionVelocidad();
 				} catch (InterruptedException e) {
 					e.printStackTrace();
