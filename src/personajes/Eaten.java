@@ -27,20 +27,19 @@ public class Eaten implements EstadoEnemigo {
 		double distanciaMinima = Double.MAX_VALUE;
 		double distanciaActual;
 		
-		if (toReturn.equals(miEnemigo.getSpawn())) {
-			miEnemigo.cambiarEstado(Enemigo.Chase);
-		} else {
+		if (toReturn.equals(miEnemigo.getArribaDeLaCasa())) {
+			miEnemigo.setTieneQueEntrarALaCasa(true);
+			miEnemigo.entrarALaCasa();
+		} 
 			
-			for (Posicion pos: miEnemigo.posiblesPosiciones()) {
-				distanciaActual = pos.distanciaEntrePosicionesPitagoras(posicionRecuperacion);
-				
-				if (distanciaActual < distanciaMinima) {
-					distanciaMinima = distanciaActual;
-					toReturn = pos;
-				}
+		for (Posicion pos: miEnemigo.posiblesPosiciones()) {
+			distanciaActual = pos.distanciaEntrePosicionesPitagoras(posicionRecuperacion);
+			
+			if (distanciaActual < distanciaMinima) {
+				distanciaMinima = distanciaActual;
+				toReturn = pos;
 			}
-			
-		}
+		}	
 		
 		return toReturn;
 	}

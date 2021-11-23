@@ -47,18 +47,25 @@ public class HiloEnemigo extends Thread {
 	 */
 	public void run() {
 		while (!miJuego.isGameOver()) {	
-			
 			if (!miJuego.estaPausado()) {
 				
 				try {	
 					cantidadTicks ++;
-					
 					if (cantidadTicks == 200 && miEnemigo.getIndiceEstado() == Enemigo.Scatter) {
 							miEnemigo.cambiarEstado(Enemigo.Chase);
 					}
-					
-					miJuego.operar(miEnemigo);
-					Thread.sleep(5000/velocidadTickeo);
+					if( miEnemigo.getTieneQueSalirDeLaCasa()) {
+						miEnemigo.salirDeLaCasa();
+						Thread.sleep(5000/velocidadTickeo);
+					}
+					else if(miEnemigo.getTieneQueEntrarALaCasa()) {
+						miEnemigo.entrarALaCasa();
+						Thread.sleep(5000/velocidadTickeo);
+					}
+					else {
+						miJuego.operar(miEnemigo);
+						Thread.sleep(5000/velocidadTickeo);
+					}
 				} catch (InterruptedException e) {
 					e.printStackTrace();
 				}
