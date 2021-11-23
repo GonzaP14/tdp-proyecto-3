@@ -1,5 +1,7 @@
 package entidadesLogicas;
 
+import java.awt.Rectangle;
+
 import gui.Ventana;
 
 public class Posicion {
@@ -53,19 +55,19 @@ public class Posicion {
 		return new Posicion (x, y);
 	}
 	
-	public Posicion posicionEsquinaArribaIzquierda() {
+	private Posicion posicionEsquinaArribaIzquierda() {
 		return new Posicion(x,y);
 	}
 	
-	public Posicion posicionEsquinaArribaDerecha() {
+	private Posicion posicionEsquinaArribaDerecha() {
 		return new Posicion(x + width , y);
 	}
 	
-	public Posicion posicionEsquinaAbajoDerecha() {
+	private Posicion posicionEsquinaAbajoDerecha() {
 		return new Posicion(x + width , y + height);
 	}
 	
-	public Posicion posicionEsquinaAbajoIzquierda() {
+	private Posicion posicionEsquinaAbajoIzquierda() {
 		return new Posicion(x , y + height);
 	}
 	
@@ -86,6 +88,28 @@ public class Posicion {
 	
 	public String toString(){
 		return "(" + x + "," + y + ")";
+	}
+
+	public Posicion[] getPosicionEsquina(int sentidoEntidad) {
+		Posicion[] posicionEsquina = new Posicion[2];
+		if (sentidoEntidad == Entidad.sentidoIzquierda) {
+			posicionEsquina[0] = posicionEsquinaArribaIzquierda();
+			posicionEsquina[1] = posicionEsquinaAbajoIzquierda();
+		}
+		else if (sentidoEntidad == Entidad.sentidoDerecha) {
+			posicionEsquina[0] = posicionEsquinaArribaDerecha();
+			posicionEsquina[1] = posicionEsquinaAbajoDerecha();
+		}
+		else if (sentidoEntidad == Entidad.sentidoArriba) {
+			posicionEsquina[0] = posicionEsquinaArribaDerecha();
+			posicionEsquina[1] = posicionEsquinaArribaIzquierda();
+		}
+		else if (sentidoEntidad == Entidad.sentidoAbajo) {
+			posicionEsquina[0] = posicionEsquinaAbajoDerecha();
+			posicionEsquina[1] = posicionEsquinaAbajoIzquierda();
+		}
+
+		return posicionEsquina;
 	}
 	
 }
