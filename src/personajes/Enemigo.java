@@ -23,6 +23,9 @@ public abstract class Enemigo extends Personaje {
 	public static final int Chase = 1;
 	public static final int Eaten = 2;
 	public static final int Scatter = 3;
+	protected Posicion arribaDeLaCasa = new Posicion(350, 275);
+	protected boolean tieneQueEntrarALaCasa;
+	protected boolean tieneQueSalirDeLaCasa;
 	
 	@Override
 	public void afectar() {
@@ -34,11 +37,15 @@ public abstract class Enemigo extends Personaje {
 		}
 		else if(indiceEstado == Scatter || indiceEstado == Chase){
 			miJuego.getPrincipal().recibirEfecto(this);
+			for(Enemigo e : miJuego.getEnemigos())
+				e.setTieneQueSalirDeLaCasa(true);
 		}
 	}
 
 	protected void crearEnemigo(Juego miJuego, Posicion spawn, String[] imagenes) {
+		tieneQueEntrarALaCasa = false;
 		this.miJuego = miJuego;
+		tieneQueSalirDeLaCasa = true;
 		miSpawn = spawn;
 		miPosicion = new Posicion(miSpawn.getX(), miSpawn.getY());
 		miRepresentacion = new EnemigoGrafico(imagenes);
@@ -86,6 +93,10 @@ public abstract class Enemigo extends Personaje {
 	
 	public void recuperarse () {
 		
+	}
+	
+	public Posicion getArribaDeLaCasa() {
+		return arribaDeLaCasa;
 	}
 	
 	public boolean estaAterrado() {
@@ -232,7 +243,13 @@ public abstract class Enemigo extends Personaje {
 		return velocidadPredeterminada;
 	}
 	
+	
+	public boolean getTieneQueEntrarALaCasa() {
+		return tieneQueEntrarALaCasa;
+	}
+	
 	public void reset() {
+		tieneQueSalirDeLaCasa = true;
 		miSpawn = getSpawn();
 		miPosicion = new Posicion(miSpawn.getX(), miSpawn.getY());
 		miRepresentacion.crearGrafica(miPosicion);
@@ -242,4 +259,24 @@ public abstract class Enemigo extends Personaje {
 		estadoActual = estados[indiceEstado];
 	}
 	
+	public void setTieneQueEntrarALaCasa(boolean t) {
+		tieneQueEntrarALaCasa = t;
+	}
+	
+	
+	
+	public boolean getTieneQueSalirDeLaCasa() {
+		return tieneQueSalirDeLaCasa;
+	}
+
+	public void setTieneQueSalirDeLaCasa(boolean tieneQueSalirDeLaCasa) {
+		this.tieneQueSalirDeLaCasa = tieneQueSalirDeLaCasa;
+	}
+
+	public abstract void entrarALaCasa();
+	
+	public abstract void salirDeLaCasa();
+
+	
 }
+
