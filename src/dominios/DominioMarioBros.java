@@ -12,15 +12,15 @@ public class DominioMarioBros implements DominioJuego {
 		imagenes[3] = "/recursosMarioBros/MarioDerecha.gif";
 		imagenes[4] = "/recursosMarioBros/MarioDerecha.gif";
 		
-		imagenes[5] = "/recursosSonic/sonicArriba.gif";
-		imagenes[6] = "/recursosSonic/sonicAbajo.gif";
-		imagenes[7] = "/recursosSonic/sonicIzquierda.gif";
-		imagenes[8] = "/recursosSonic/sonicDerecha.gif";
+		imagenes[5] = "/recursosMarioBros/MarioArribaAfectado.gif";
+		imagenes[6] = "/recursosMarioBros/MarioAbajoAfectado.gif";
+		imagenes[7] = "/recursosMarioBros/MarioIzquierdaAfectado.gif";
+		imagenes[8] = "/recursosMarioBros/MarioDerechaAfectado.gif";
 		
-		imagenes[9] = "/recursosSonic/shadowArribaEscapando.gif";
-		imagenes[10] = "/recursosSonic/shadowAbajoEscapando.gif";
-		imagenes[11] = "/recursosSonic/shadowIzquierdaEscapando.gif";
-		imagenes[12] = "/recursosSonic/shadowDerechaEscapando.gif";
+		imagenes[9] = "/recursosMarioBros/MarioArribaAfectado2.gif";
+		imagenes[10] = "/recursosMarioBros/MarioAbajoAfectado2.gif";
+		imagenes[11] = "/recursosMarioBros/MarioIzquierdaAfectado2.gif";
+		imagenes[12] = "/recursosMarioBros/MarioDerechaAfectado2.gif";
 		
 		return imagenes;
 	}
