@@ -5,11 +5,13 @@ import entidadesLogicas.Grilla;
 
 public class Nivel {
 	
+	// Atributos de clase
 	private static final Object pared = new Object();
     private static final Object puerta = new Object();
     private static final Object casaFantasma = new Object();
 	protected static Object[][] mapa;
 	
+	// Atributos de instancia
 	private Grilla miGrilla;
 	private Laberinto miLaberinto;
 	private DominioJuego dominio;
@@ -19,18 +21,28 @@ public class Nivel {
 	private int duracionFrutas;
 	private int velocidadEnemigos;
 	
+	/**
+	 * Crea un nuevo nivel, lo que implica un nuevo mapa para el mismo. 
+	 */
     public Nivel () {
     	mapa = new Object [Grilla.Filas][Grilla.Columnas];
     	iniciarMapa();
     }
 
+    /**
+     * Crea un nuevo mapa para el nivel.
+     */
 	private void iniciarMapa() {
 		for (int i = 0; i < Grilla.Filas; i ++) {
-			inicializarFila(i);
+			inicializarFilas(i);
 		}
 	}
 
-	private void inicializarFila(int i) {
+	/**
+	 * Metodo auxiliar a la creacion de un mapa, crea cada fila del mismo. 
+	 * @param i indice de fila del mapa a crear.
+	 */
+	private void inicializarFilas(int i) {
 		if (i == 0) {
 			inicializarFila0();
 		} else if (i == 1) {
@@ -96,6 +108,9 @@ public class Nivel {
 		}
 	}
 	
+	/**
+	 * Inicializa la fila i (i = 0), de acuerdo al mapa que se quiere lograr.
+	 */
 	private void inicializarFila0() {
 		for(int j = 0; j < Grilla.Columnas; j++) {
 			mapa[0][j] = pared;
@@ -624,55 +639,102 @@ public class Nivel {
    		}
 	}
 	
+	/**
+	 * Establece el dominio para el nivel.
+	 * @param d dominio para el nivel.
+	 */
 	public void setDominio(DominioJuego d) {
 		dominio = d;
 	}
 	
+	/**
+	 * Establece el valor numerico del nivel.
+	 * @param n valor del nivel
+	 */
 	public void setNivelActual(int n) {
 		this.nivelActual = n;
 	}
 
-	
+	/**
+	 * Establece la duracion de los Power Pellets para el nivel actual.
+	 * @param d duracion, medido en ticks del reloj ligado al juego.
+	 */
 	public void setDuracionPowerPellet(int d) {
 		this.duracionPowerPellet = d;
 	}
 	
+	/**
+	 * Establece la duracion de las pociones para el nivel actual.
+	 * @param d duracion, medido en ticks del reloj ligado al juego.
+	 */
 	public void setDuracionPociones(int d) {
 		this.duracionPociones = d;
 	}
 	
+	/**
+	 * Establece la duracion de las frutas para el nivel actual.
+	 * @param d duracion, medido en ticks del reloj ligado al juego.
+	 */
 	public void setDuracionFrutas(int d) {
 		this.duracionFrutas = d;
 	}
 	
+	/**
+	 * Establece la velocidad de los enemigos para el nivel actual.
+	 * @param v duracion, medido en ticks del reloj ligado al juego.
+	 */
 	public void setVelocidadEnemigos(int v) {
 		this.velocidadEnemigos = v;
 	}
 	
+	/**
+	 * Establece la grilla para el nivel ligado.
+	 * @param g grilla para el nivel ligado
+	 */
 	public void setGrilla(Grilla g) {
 		miGrilla = g;
 	}
 	
+	/**
+	 * @return Devuelve el valor numerico del nivel actual.
+	 */
 	public int getNivelActual() {
 		return nivelActual;
 	}
 	
+	/**
+	 * @return Devuelve la duracion de los Power Pellets para el nivel actual.
+	 */
 	public int getDuracionPowerPellet() {
 		return duracionPowerPellet;
 	}
 	
+	/**
+	 * @return Devuelve la duracion de las pociones para el nivel actual.
+	 */
 	public int getDuracionPociones() {
 		return duracionPociones;
 	}
 	
+	/**
+	 * @return Devuelve la duracion de las frutas para el nivel actual.
+	 */
 	public int getDuracionFrutas() {
 		return duracionFrutas;
 	}
 	
+	/**
+	 * 
+	 * @return Devuelve la velocidad de los enemigos para el nivel actual.
+	 */
 	public int getVelocidadEnemigos() {
 		return velocidadEnemigos;
 	}
 	
+	/**
+	 * Crea la grafica asociada al mapa del juego.
+	 * @return Devuelve el mapa grafico ya creado.
+	 */
 	public Laberinto getLaberinto() {
 		miLaberinto = new Laberinto(miGrilla);
 		constuirBloques();
@@ -680,6 +742,10 @@ public class Nivel {
 		return miLaberinto;
 	}
 	
+	/**
+	 * Metodo auxiliar a la construccion de la grafica para el mapa, 
+	 * construye cada bloque grafico segun la configuracion logica que tenga el mismo.
+	 */
 	private void constuirBloques() {
 		
 		for (int i = 0; i < Grilla.Filas; i ++) {
@@ -700,6 +766,9 @@ public class Nivel {
 		}
 	}
 
+	/**
+	 * @return Devuelve la grilla ligada al nivel actual.
+	 */
 	public Grilla getGrilla() {
 		return miGrilla;
 	}

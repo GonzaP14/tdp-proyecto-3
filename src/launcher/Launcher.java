@@ -9,7 +9,7 @@ import gui.Ventana;
 import niveles.BuilderNivel;
 
 public class Launcher {
-	
+	// Atributos de clase
 	private static DominioJuego dominioJuego;
 	private static Juego miJuego;
 	private static Ventana miVentana;

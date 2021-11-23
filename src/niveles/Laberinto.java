@@ -9,12 +9,18 @@ import javax.swing.JPanel;
 import entidadesLogicas.Grilla;
 
 public class Laberinto extends JPanel{
-		
+	
+	// Atributos de clase
 	private static final long serialVersionUID = 1L;
 	
+	// Atributos de instancia
     protected final List<JLabel> misLabels = new LinkedList<JLabel>();
     protected Grilla miGrillaLogica;
     
+    /**
+     * Crea un nuevo laberinto por defecto, para un mapa logico determinado.
+     * @param miGrillaLogica el mapa logico asociado.
+     */
     public Laberinto(Grilla miGrillaLogica) {
     	this.miGrillaLogica = miGrillaLogica;
     	
