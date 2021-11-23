@@ -22,6 +22,7 @@ import javax.swing.SwingConstants;
 import entidadesGraficas.EntidadGrafica;
 import entidadesLogicas.Entidad;
 import entidadesLogicas.Juego;
+import launcher.Launcher;
 import niveles.Laberinto;
 
 import java.awt.Color;
@@ -236,7 +237,7 @@ public class Ventana extends JFrame implements KeyListener {
 		endGameOver.add(restart);
 		restart.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {		
-				
+				Launcher.restart();
 			}
 		});
 		
@@ -246,7 +247,7 @@ public class Ventana extends JFrame implements KeyListener {
 		endWin.add(restart2);
 		restart2.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {		
-	
+				Launcher.restart();
 			}
 		});
     }
@@ -476,16 +477,16 @@ public class Ventana extends JFrame implements KeyListener {
 	public void keyPressed(KeyEvent e) {
 		switch (e.getKeyCode()) {
 	        case KeyEvent.VK_UP:
-	        	miJuego.cambiarSentido(Entidad.sentidoArriba);
+	        	miJuego.cambiarSentidoPrincipal(Entidad.sentidoArriba);
 	          	break;
 	        case KeyEvent.VK_DOWN:
-	        	miJuego.cambiarSentido(Entidad.sentidoAbajo);
+	        	miJuego.cambiarSentidoPrincipal(Entidad.sentidoAbajo);
 	          	break;
 	        case KeyEvent.VK_LEFT:
-	        	miJuego.cambiarSentido(Entidad.sentidoIzquierda);
+	        	miJuego.cambiarSentidoPrincipal(Entidad.sentidoIzquierda);
 	        	break;
 	        case KeyEvent.VK_RIGHT:
-	        	miJuego.cambiarSentido(Entidad.sentidoDerecha);
+	        	miJuego.cambiarSentidoPrincipal(Entidad.sentidoDerecha);
 	        	break;          
 	        case KeyEvent.VK_P:
 	        	miJuego.pausarDespausarJuego();
@@ -534,9 +535,9 @@ public class Ventana extends JFrame implements KeyListener {
 	}
 	
 	private void mostrarLeaderboard() {
-		leaderboardPuntaje.setText(miJuego.getMiLeaderboard().getLeaderboard());
-		leaderboardPuntaje2.setText(miJuego.getMiLeaderboard().getLeaderboard());
-		leaderboardPuntaje3.setText(miJuego.getMiLeaderboard().getLeaderboard());
+		leaderboardPuntaje.setText(miJuego.getLeaderBoard().getLeaderboard());
+		leaderboardPuntaje2.setText(miJuego.getLeaderBoard().getLeaderboard());
+		leaderboardPuntaje3.setText(miJuego.getLeaderBoard().getLeaderboard());
 	}
 	
 }

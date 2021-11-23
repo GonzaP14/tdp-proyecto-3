@@ -83,7 +83,7 @@ public class Principal extends Personaje {
 	 */
 	public void recibirEfecto(PocionVelocidad p) {
 		velocidadActual = p.getVelocidadOtorgada();
-		miJuego.getMiReloj().setVelocidadTickeo(p.getVelocidadOtorgada());
+		miJuego.getReloj().setVelocidadTickeo(p.getVelocidadOtorgada());
 		miRepresentacion.efectoPocionVelocidad(sentidoActual);
 	}
 	

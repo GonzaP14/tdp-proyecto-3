@@ -4,16 +4,18 @@ import dominios.DominioJuego;
 import dominios.DominioMarioBros;
 import dominios.DominioSonic;
 import entidadesLogicas.Juego;
+import gui.LoadingScreen;
 import gui.SplashScreen;
 import gui.Ventana;
 import niveles.BuilderNivel;
 
 public class Launcher {
-	// Atributos de clase
+	
 	private static DominioJuego dominioJuego;
 	private static Juego miJuego;
 	private static Ventana miVentana;
 	private static SplashScreen miSplashScreen;
+	private static LoadingScreen miLoadingScreen;
 	private static BuilderNivel miBuilder;
 	private static int nivelActual;
 	
@@ -23,12 +25,20 @@ public class Launcher {
 	 */
 	public static void main(String[] args) {
 		miSplashScreen = new SplashScreen();
-		miSplashScreen.setVisible(true);
-		nivelActual = 0;
+		lanzarSplashScren();
+		miLoadingScreen = new LoadingScreen();
 		
 		if (dominioJuego != null) {
 			iniciarJuego(dominioJuego);
 		}
+	}
+	
+	public static void lanzarSplashScren() {	
+		miSplashScreen.setVisible(true);	
+	}
+
+	private static void lanzarLoadingScreen() {
+		miLoadingScreen.setVisible(true);
 	}
 	
 	/**
@@ -36,6 +46,7 @@ public class Launcher {
 	 * @param dominio
 	 */
 	private static void iniciarJuego(DominioJuego dominio) {
+		nivelActual = 0;
 		miJuego = new Juego(dominio);
 		miBuilder = new BuilderNivel();
 		construirNivel();
@@ -121,14 +132,46 @@ public class Launcher {
 	 * Cambia el estado del juego al siguiente nivel.
 	 */
 	public static void pasarNivel() {
-		miJuego.pausarDespausarRelojes();
+		miVentana.dispose();
+		lanzarLoadingScreen();
+		
+		miJuego.pausarDespausarJuego();
 		miJuego.reset();
+		
 		miBuilder.reset();
 		construirNivel();
 		miJuego.setNivel(miBuilder.getProduct());
+		
 		iniciarVentana();
+		
 		miJuego.aparecerEntidades();
-		miJuego.pausarDespausarRelojes();
+		miJuego.pausarDespausarJuego();
+		
+		miLoadingScreen.setVisible(false);
+	}
+	
+	public static void restart() {
+		miVentana.dispose();
+		lanzarLoadingScreen();
+		
+		if (miJuego.isMuted()) {
+			miJuego.muted();
+		}
+		
+		miJuego.restart();
+		
+		nivelActual = 0;
+		miBuilder.reset();
+		construirNivel();
+		miJuego.setNivel(miBuilder.getProduct());
+		
+		iniciarVentana();
+		
+		miJuego.aparecerEntidades();
+		miJuego.iniciarRelojes();
+		miJuego.iniciarMusica();
+		
+		miLoadingScreen.setVisible(false);
 	}
 	
 }
