@@ -13,20 +13,31 @@ import java.util.Collections;
 
 public class Leaderboard implements Serializable{
 	
+	// Atributos de clase
 	private static final long serialVersionUID = 1L;
-	
+	// Atributos de instancia
 	private List<Player> ranking;
 	
+	/**
+	 * Crea un ranking para almacenar jugadores.
+	 */
 	public Leaderboard() {
 		ranking = new ArrayList<Player>();
 	}
 	
+	/**
+	 * Agrega un jugador al ranking.
+	 * @param p El jugador a agregar.
+	 */
 	public void addPlayer( Player p ) {
 		recuperarLeaderboard();
 		ranking.add(p);
 		actualizarLeaderboard();
 	}
 	
+	/**
+	 * @return Devuelve el ranking actual del juego.
+	 */
 	public String getLeaderboard() {
 		recuperarLeaderboard();
 		ordenar();
@@ -40,11 +51,16 @@ public class Leaderboard implements Serializable{
 		return toReturn+="</html>";
 	}
 
+	/**
+	 * Ordena el ranking en el orden inverso al que determina la comparacion por defecto entre jugadores.
+	 */
 	private void ordenar() {
 		Collections.sort(this.ranking, Collections.reverseOrder());
 	}
 
-	
+	/**
+	 * Actualiza de manera persistente el ranking, para no perder la informacion del mismo al finalizar una determinada ejecucion del juego.
+	 */
 	public void actualizarLeaderboard() {
 		try {
 			FileOutputStream fileOutputStream = new FileOutputStream(Juego.configuration.getProperty("file"));
@@ -61,6 +77,9 @@ public class Leaderboard implements Serializable{
 		}
 	} 
 	
+	/**
+	 * Recupera la ultima version del ranking.
+	 */
 	@SuppressWarnings("unchecked")
 	public void recuperarLeaderboard() {
 		try {
