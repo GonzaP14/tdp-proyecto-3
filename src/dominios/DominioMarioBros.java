@@ -4,13 +4,23 @@ public class DominioMarioBros implements DominioJuego {
 
 	@Override
 	public String[] getSkinsPrincipal() {
-		String[] imagenes = new String[5];
+		String[] imagenes = new String[13];
 		
 		imagenes[0] = "/recursosMarioBros/MarioArriba.gif";
 		imagenes[1] = "/recursosMarioBros/MarioAbajo.gif";
 		imagenes[2] = "/recursosMarioBros/MarioIzquierda.gif";
 		imagenes[3] = "/recursosMarioBros/MarioDerecha.gif";
 		imagenes[4] = "/recursosMarioBros/MarioDerecha.gif";
+		
+		imagenes[5] = "/recursosSonic/sonicArriba.gif";
+		imagenes[6] = "/recursosSonic/sonicAbajo.gif";
+		imagenes[7] = "/recursosSonic/sonicIzquierda.gif";
+		imagenes[8] = "/recursosSonic/sonicDerecha.gif";
+		
+		imagenes[9] = "/recursosSonic/shadowArribaEscapando.gif";
+		imagenes[10] = "/recursosSonic/shadowAbajoEscapando.gif";
+		imagenes[11] = "/recursosSonic/shadowIzquierdaEscapando.gif";
+		imagenes[12] = "/recursosSonic/shadowDerechaEscapando.gif";
 		
 		return imagenes;
 	}

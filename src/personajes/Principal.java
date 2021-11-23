@@ -1,5 +1,6 @@
 package personajes;
 
+import elementos.PocionBomba;
 import elementos.PocionVelocidad;
 import entidadesGraficas.PrincipalGrafico;
 import entidadesLogicas.Entidad;
@@ -91,6 +92,11 @@ public class Principal extends Personaje {
 	public void recibirEfecto(PocionVelocidad p) {
 		velocidadActual = p.getVelocidadOtorgada();
 		miJuego.getMiReloj().setVelocidadTickeo(p.getVelocidadOtorgada());
+		miRepresentacion.efectoPocionVelocidad(sentidoActual);
+	}
+	
+	public void recibirEfecto(PocionBomba p) {
+		miRepresentacion.efectoPocionBomba(sentidoActual);
 	}
 
 	public void reaparecer() {

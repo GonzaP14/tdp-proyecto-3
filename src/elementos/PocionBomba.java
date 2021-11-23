@@ -22,6 +22,7 @@ public class PocionBomba extends Pocion {
 		iniciarTimer(new HiloElemento(miJuego, 25, this)); // en 5 ticks explota
 		// Cambia su representacion grafica adecuadamente
 		miRepresentacion.actualizar(1);
+		miJuego.getPrincipal().recibirEfecto(this);
 		miJuego.getGrilla().getBloque(miPosicion.getY() / Ventana.pixelesBloque , miPosicion.getX() / Ventana.pixelesBloque).agregarAListaRemovidos(this);
 	}
 
@@ -44,6 +45,7 @@ public class PocionBomba extends Pocion {
 			}
 		}
 		miRepresentacion.desaparecer();
+		miJuego.getPrincipal().getMiRepresentacion().finEfectoPocion(sentidoActual + 1);
 	}
 	
 	@Override
