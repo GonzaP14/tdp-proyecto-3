@@ -104,8 +104,7 @@ public abstract class Enemigo extends Personaje {
 		return (indiceEstado == Scatter);
 	}
 	
-	public void checkeoColisionesPersonaje() {
-		
+	public void chequearColisionesEntidades() {
 	}
 	
 	protected void crearEstados() {

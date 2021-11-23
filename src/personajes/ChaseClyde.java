@@ -3,11 +3,20 @@ package personajes;
 import entidadesLogicas.Posicion;
 import gui.Ventana;
 
+/**
+ * Class ChaseClyde - Representa la IA asociada al estado 'Chase' de Clyde.
+ * @author Grupo N°2: Bruno Mandolesi, Albano Mazzino, Nicolas Messina, Gonzalo Martin Perez.
+ */
 public class ChaseClyde extends ChaseIA {
 	
 	private Enemigo miEnemigo;
 	private Principal miPrincipal;
 	
+	/**
+	 * Crea un nuevo ChaseClyde.
+	 * @param clyde Enemigo asociado.
+	 * @param principal Personaje principal del juego.
+	 */
 	public ChaseClyde(Enemigo clyde, Principal principal) {
 		miEnemigo = clyde;
 		miPrincipal = principal;

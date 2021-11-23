@@ -4,11 +4,20 @@ import entidadesLogicas.Entidad;
 import entidadesLogicas.Posicion;
 import gui.Ventana;
 
+/**
+ * Class ChasePinky - Representa la IA asociada al estado 'Chase' de Pinky.
+ * @author Grupo N°2: Bruno Mandolesi, Albano Mazzino, Nicolas Messina, Gonzalo Martin Perez.
+ */
 public class ChasePinky extends ChaseIA {
 
 	private Enemigo miEnemigo;
 	private Principal miPrincipal;
 	
+	/**
+	 * Crea un nuevo ChasePinky.
+	 * @param pinky Enemigo asociado.
+	 * @param principal Personaje principal del juego.
+	 */
 	public ChasePinky(Enemigo pinky, Principal principal) {
 		miEnemigo = pinky;
 		miPrincipal = principal;
@@ -34,6 +43,10 @@ public class ChasePinky extends ChaseIA {
 		return toReturn;
 	}
 
+	/**
+	 * Calcula la posicion objetivo de Clyde de acuerdo a la rotación del vector de dirección en 180°.
+	 * @return Posicion objetivo de Pinky.
+	 */
 	private Posicion calcularPosicionObjetivo(Posicion posicionPrincipal) {
 		Posicion toReturn = null;
 		int sentidoPrincipal = miPrincipal.getSentidoActual();

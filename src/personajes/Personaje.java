@@ -3,20 +3,28 @@ package personajes;
 import entidadesLogicas.Bloque;
 import entidadesLogicas.Entidad;
 import entidadesLogicas.Posicion;
+import gui.Ventana;
 
+/**
+ * Class Personaje - Representa un Personaje del juego.
+ * @author Grupo N°2: Bruno Mandolesi, Albano Mazzino, Nicolas Messina, Gonzalo Martin Perez.
+ */
 public abstract class Personaje extends Entidad {
 	
+	private static final int desplazamientoPixeles = 5;
 	protected int velocidadActual;
 	
-	public int getVelocidadActual() {
-		return velocidadActual;
-	}
-	
+	/**
+	 * Establece la velocidad de movimiento del personaje.
+	 * @param velocidadActual velocidad de movimiento actual.
+	 */
 	public void setVelocidadActual(int velocidadActual) {
 		this.velocidadActual = velocidadActual;
 	}
-
 	
+	/**
+	 * Realiza un movimiento del personaje dentro del mapa del juego.
+	 */
 	public void mover() {
 		if (getSentidoActual() != getSentidoSiguiente()) {
 			// si los sentidos son opuestos (una misma direccion / mismo eje)
@@ -32,56 +40,76 @@ public abstract class Personaje extends Entidad {
 		else if(sentidoActual == Entidad.sentidoDerecha || sentidoActual == Entidad.sentidoIzquierda ) {
 			moverLateralmente();
 		}
-		checkeoColisionesPersonaje();
+		chequearColisionesEntidades();
 	}
 	
+	/**
+	 * Realiza la traslación de la entidad dentro del mapar del juego.
+	 * @param nuevaPosicion Posicion destino de la entidad.
+	 */
 	private void traslacionEfectiva(Posicion nuevaPosicion) {
-		Bloque bloqueAnterior = miJuego.getGrilla().getBloque(miPosicion.getY() / 25 , miPosicion.getX() / 25);
-		Bloque bloqueNuevo = miJuego.getGrilla().getBloque(nuevaPosicion.getY() / 25, nuevaPosicion.getX() / 25);
+		Bloque bloqueAnterior = miJuego.getGrilla().getBloque(miPosicion.getY() / Ventana.pixelesBloque, miPosicion.getX() / Ventana.pixelesBloque);
+		Bloque bloqueNuevo = miJuego.getGrilla().getBloque(nuevaPosicion.getY() / Ventana.pixelesBloque, nuevaPosicion.getX() / Ventana.pixelesBloque);
 		
 		if (bloqueAnterior != bloqueNuevo) {
-			miJuego.getGrilla().getBloque(miPosicion.getY() / 25 , miPosicion.getX() / 25).borrarDeListaDeEntidades(this);
-			miJuego.getGrilla().getBloque(nuevaPosicion.getY() / 25 , nuevaPosicion.getX() / 25).agregarAListaEntidades(this);
+			miJuego.getGrilla().getBloque(miPosicion.getY() / Ventana.pixelesBloque, miPosicion.getX() / Ventana.pixelesBloque).borrarDeListaDeEntidades(this);
+			miJuego.getGrilla().getBloque(nuevaPosicion.getY() / Ventana.pixelesBloque, nuevaPosicion.getX() / Ventana.pixelesBloque).agregarAListaEntidades(this);
 		}
+		
 		miPosicion = nuevaPosicion;
-		miRepresentacion.setLocation( miPosicion.getX() ,  miPosicion.getY());
+		miRepresentacion.setLocation(miPosicion.getX(), miPosicion.getY());
 	}
 	
-	private Posicion calcularProximaPosicionX(int sentidoLigado) {
+	/**
+	 * Calcula la proxima posicion de desplazamiento lateral.
+	 * @param sentidoLigado sentido del personaje.
+	 * @return Proxima posicion lateral del personaje.
+	 */
+	private Posicion calcularProximaPosicionLateral(int sentidoLigado) {
 		Posicion proximaPosicion = null;
-		if(sentidoLigado == Entidad.sentidoDerecha ) {
-			proximaPosicion = new Posicion( miPosicion.getX() + 5, miPosicion.getY());
+		
+		if (sentidoLigado == Entidad.sentidoDerecha ) {
+			proximaPosicion = new Posicion(miPosicion.getX() + desplazamientoPixeles, miPosicion.getY());
 		}
-		else if(sentidoLigado == Entidad.sentidoIzquierda ) {
-			proximaPosicion = new Posicion( miPosicion.getX() - 5,  miPosicion.getY());	
+		else if (sentidoLigado == Entidad.sentidoIzquierda ) {
+			proximaPosicion = new Posicion(miPosicion.getX() - desplazamientoPixeles,  miPosicion.getY());	
 		}
+		
 		return proximaPosicion;
 	}
 	
-	private Posicion calcularProximaPosicionY(int sentidoLigado) {
+	/**
+	 * Calcula la proxima posicion de desplazamiento vertical.
+	 * @param sentidoLigado sentido del personaje.
+	 * @return Proxima posicion lateral del vertical.
+	 */
+	private Posicion calcularProximaPosicionVertical(int sentidoLigado) {
 		Posicion proximaPosicion = null;
-		if(sentidoLigado == Entidad.sentidoArriba ) {
-			proximaPosicion = new Posicion( miPosicion.getX(), miPosicion.getY() - 5);
+		
+		if (sentidoLigado == Entidad.sentidoArriba) {
+			proximaPosicion = new Posicion(miPosicion.getX(), miPosicion.getY() - desplazamientoPixeles);
 		}
-		else if(sentidoLigado == Entidad.sentidoAbajo ) {
-			proximaPosicion = new Posicion( miPosicion.getX(),  miPosicion.getY() + 5);	
+		else if (sentidoLigado == Entidad.sentidoAbajo) {
+			proximaPosicion = new Posicion(miPosicion.getX(), miPosicion.getY() + desplazamientoPixeles);	
 		}
+		
 		return proximaPosicion;
 	}
 	
-	
-	
+	/**
+	 * Realiza un movimiento lateral del personaje.
+	 */
 	private void moverLateralmente() {
 		Posicion proximaPosicion;
 		// Calcula la proxima posicion en Y (para doblar / cambiar de direccion)
-		proximaPosicion = calcularProximaPosicionY(sentidoSiguiente);
+		proximaPosicion = calcularProximaPosicionVertical(sentidoSiguiente);
 		// Si puede doblar inmediatamente
 		if (proximaPosicion != null && !miJuego.getGrilla().buscarColisiones(sentidoSiguiente, proximaPosicion)) {
 			setSentidoActual(getSentidoSiguiente());
 			traslacionEfectiva(proximaPosicion);
 		} 
 		else {
-			proximaPosicion = calcularProximaPosicionX(sentidoActual);
+			proximaPosicion = calcularProximaPosicionLateral(sentidoActual);
 			// Tunnels
 			if(proximaPosicion != null && proximaPosicion.equals(new Posicion(-5 , 350))) {
 				traslacionEfectiva(new Posicion(670 , 350));
@@ -94,7 +122,7 @@ public abstract class Personaje extends Entidad {
 				traslacionEfectiva(proximaPosicion);
 				
 				// Se calcula la proxima posicion (para doblar / cambiar de direccion) desde una posicion mas cercana a la curva
-				proximaPosicion = calcularProximaPosicionY(sentidoSiguiente);
+				proximaPosicion = calcularProximaPosicionVertical(sentidoSiguiente);
 				// Si puede doblar luego de haber avanzado en el sentido actual, intenta doblar nuevamente
 				if (proximaPosicion != null && !miJuego.getGrilla().buscarColisiones(sentidoSiguiente, proximaPosicion)) { 
 					setSentidoActual(getSentidoSiguiente());
@@ -107,25 +135,27 @@ public abstract class Personaje extends Entidad {
 		}
 	}
 	
-
+	/**
+	 * Realiza un movimiento vertical del personaje.
+	 */
 	private void moverVerticalmente() {
 		Posicion proximaPosicion;
 		
 		// Calcula la proxima posicion en X (para doblar / cambiar de direccion)
-		proximaPosicion = calcularProximaPosicionX(sentidoSiguiente);
+		proximaPosicion = calcularProximaPosicionLateral(sentidoSiguiente);
 		// Si puede doblar inmediatamente
 		if (proximaPosicion != null && !miJuego.getGrilla().buscarColisiones(sentidoSiguiente, proximaPosicion)) {
 			setSentidoActual(getSentidoSiguiente());
 			traslacionEfectiva(proximaPosicion);
 		} 
 		else {
-			proximaPosicion = calcularProximaPosicionY(sentidoActual);
+			proximaPosicion = calcularProximaPosicionVertical(sentidoActual);
 			if (proximaPosicion != null && !miJuego.getGrilla().buscarColisiones(sentidoActual, proximaPosicion)) {
 				// se avanza en el sentidoActual
 				traslacionEfectiva(proximaPosicion);
 				
 				// Se calcula la proxima posicion (para doblar / cambiar de direccion) desde una posicion mas cercana a la curva
-				proximaPosicion = calcularProximaPosicionX(sentidoSiguiente);
+				proximaPosicion = calcularProximaPosicionLateral(sentidoSiguiente);
 				// Si puede doblar luego de haber avanzado en el sentido actual, intenta doblar nuevamente
 				if (proximaPosicion != null && !miJuego.getGrilla().buscarColisiones(sentidoSiguiente, proximaPosicion)) {
 					setSentidoActual(getSentidoSiguiente());
@@ -138,8 +168,17 @@ public abstract class Personaje extends Entidad {
 		}
 	}
 	
-	public abstract void checkeoColisionesPersonaje();
+	/**
+	 * Chequea las colisiones del personaje con otras entidades del juego.
+	 */
+	public abstract void chequearColisionesEntidades();
+	
+	/**
+	 * Consulta la velocidad actual del personaje.
+	 * @return velocidad actual.
+	 */
+	public int getVelocidadActual() {
+		return velocidadActual;
+	}
+	
 }
-
-
-

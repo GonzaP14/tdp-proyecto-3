@@ -2,11 +2,20 @@ package personajes;
 
 import entidadesLogicas.Posicion;
 
+/**
+ * Class Frightened - Representa el estado 'Frightened' de un enemigo.
+ * @author Grupo N°2: Bruno Mandolesi, Albano Mazzino, Nicolas Messina, Gonzalo Martin Perez.
+ */
 public class Frightened implements EstadoEnemigo {
 	
 	private Enemigo miEnemigo;
 	private Principal miPrincipal;
 	
+	/**
+	 * Crea un nuevo estado Frightened.
+	 * @param miEnemigo Enemigo asociado.
+	 * @param miPrincipal Personaje principal del juego.
+	 */
 	public Frightened (Enemigo miEnemigo , Principal miPrincipal) {
 		this.miEnemigo = miEnemigo;
 		this.miPrincipal = miPrincipal;
@@ -18,11 +27,6 @@ public class Frightened implements EstadoEnemigo {
 		double distanciaMaxima = Double.MIN_VALUE;
 		double distanciaActual;
 		
-		/* Asumo que la distancia actual con el principal es la maxima posible.
-		   Esto se realiza para no quedar que el enemigo e no quede en la misma posición, ya que cualquier
-		   otra distancia sera menor con respecto a esta.
-		*/ 
-		
 		for (Posicion pos: miEnemigo.posiblesPosiciones()) {
 			distanciaActual = pos.distanciaEntrePosicionesPitagoras(miPrincipal.getPosicion());
 			
@@ -31,6 +35,7 @@ public class Frightened implements EstadoEnemigo {
 				toReturn = pos;
 			}
 		}
+		
 		return toReturn;		
 	}
 
