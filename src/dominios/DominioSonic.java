@@ -85,9 +85,11 @@ public class DominioSonic implements DominioJuego {
 
 	@Override
 	public String[] getFruta() {
-		String[] imagenes = new String[1];
+		String[] imagenes = new String[3];
 
 		imagenes[0] = ("/recursosSonic/gemaAzul.png");
+		imagenes[1] = ("/recursosSonic/gemaAzul.png");
+		imagenes[2] = ("/recursosSonic/gemaAzul.png");
 
 		return imagenes;
 	}

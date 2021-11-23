@@ -11,16 +11,25 @@ public abstract class Pocion extends Elemento {
 
 	@Override
 	public abstract void afectar();
-	
+	/**
+	 * Despawnea la pocion tanto logica como graficamente
+	 */
 	public void despawnear() {
 		miJuego.getGrilla().getBloque(miPosicion.getY() / Ventana.pixelesBloque , miPosicion.getX() / Ventana.pixelesBloque).borrarDeListaDeEntidades(this);
 		miRepresentacion.desaparecer();
 	}
-
+	/**
+	 * Retorno la velocidad que otorga la pocion en caso de tener
+	 * @return velocidad otorgada
+	 */
 	public int getVelocidadOtorgada() {
 		return velocidadOtorgada;
 	}
 	
+	/**
+	 * Retorno el puntaje otorgado por la pocion en caso de tener
+	 * @return el puntaje otorgado
+	 */
 	public int getPuntajeOtorgado() {
 		return puntajeOtorgado;
 	}

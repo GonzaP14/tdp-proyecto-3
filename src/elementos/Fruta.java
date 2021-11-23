@@ -14,7 +14,7 @@ public class Fruta extends Elemento {
 
 	@Override
 	public void afectar() {
-		miJuego.aumentarPuntaje(puntajeOtorgado);
+		miJuego.aumentarPuntaje(puntajeOtorgado * miJuego.getNivel().getNivelActual());
 		miRepresentacion.desaparecer();
 		miJuego.getGrilla().getBloque(miPosicion.getY() / Ventana.pixelesBloque , miPosicion.getX() / Ventana.pixelesBloque).agregarAListaRemovidos(this);
 	}
@@ -32,6 +32,7 @@ public class Fruta extends Elemento {
 	public void reset() {
 		setSpawneo(new Posicion(350, 425));
 		getMiRepresentacion().crearGrafica(getSpawn());
+		miRepresentacion.actualizar(miJuego.getNivel().getNivelActual() - 1);
 		miJuego.getVentana().aparecerEntidad(getMiRepresentacion());
 	}
 }

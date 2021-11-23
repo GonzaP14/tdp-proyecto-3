@@ -2,7 +2,6 @@ package factories;
 
 import elementos.Elemento;
 import elementos.Pocion;
-import entidadesLogicas.Posicion;
 import personajes.Enemigo;
 import personajes.Principal;
 
@@ -22,14 +21,10 @@ public interface FabricaEntidades {
 	
 	public abstract Elemento getPacDot();
 	
-	public abstract Elemento getPacDot(Posicion p);
-	
 	public abstract Pocion getPocionBomba();
 	
 	public abstract Pocion getPocionVelocidad();
 	
 	public abstract Elemento getPowerPellet();
-	
-	public abstract Elemento getPowerPellet(Posicion p);
 	
 }

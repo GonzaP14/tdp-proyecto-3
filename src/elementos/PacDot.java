@@ -101,7 +101,10 @@ public class PacDot extends Elemento {
 		miJuego.getGrilla().getBloque(miPosicion.getY() / Ventana.pixelesBloque , miPosicion.getX() / Ventana.pixelesBloque).agregarAListaRemovidos(this);
 		miJuego.removerPacDot();
 	}
-
+	/**
+	 * Retorno los spawns de los pacdots
+	 * @return los spawns
+	 */
 	public static Posicion[] getMisSpawns() {
 		return misSpawns;
 	}

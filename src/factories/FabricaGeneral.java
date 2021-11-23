@@ -9,7 +9,6 @@ import elementos.PocionBomba;
 import elementos.PocionVelocidad;
 import elementos.PowerPellet;
 import entidadesLogicas.Juego;
-import entidadesLogicas.Posicion;
 import personajes.Blinky;
 import personajes.Clyde;
 import personajes.Enemigo;
@@ -63,11 +62,6 @@ public class FabricaGeneral implements FabricaEntidades {
 	}
 
 	@Override
-    public Elemento getPacDot(Posicion posicion) {
-        return new PacDot(miJuego, miDominio.getPacDot(), posicion);
-    }
-	
-	@Override
 	public Pocion getPocionBomba() {
 		return new PocionBomba(miJuego, miDominio.getPocionBomba());
 	}
@@ -82,9 +76,4 @@ public class FabricaGeneral implements FabricaEntidades {
 		return new PowerPellet(miJuego, miDominio.getPowerPellet());
 	}
 
-	@Override
-    public Elemento getPowerPellet(Posicion posicion) {
-        return new PowerPellet(miJuego, miDominio.getPowerPellet(), posicion);
-    }
-	
 }

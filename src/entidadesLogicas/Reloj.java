@@ -52,11 +52,17 @@ public class Reloj extends Thread{
 	        }
 		}
 	}
-
+	/**
+	 * Seteo la velocidad con la que tickea el reloj
+	 * @param velocidadTickeo con la que va a tickear el reloj
+	 */
 	public void setVelocidadTickeo(int velocidadTickeo) {
 		this.velocidadTickeo = velocidadTickeo;
 	}
-
+	/**
+	 * Seteo la cantidad de ticks que hizo el reloj
+	 * @param cantidadTicks que hizo el reloj
+	 */
 	public void setCantidadTicks(int cantidadTicks) {
 		this.cantidadTicks = cantidadTicks;
 	}

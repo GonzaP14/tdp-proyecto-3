@@ -46,11 +46,6 @@ public class PocionBomba extends Pocion {
 		miRepresentacion.desaparecer();
 	}
 	
-	public void despawnear() {
-		miJuego.getGrilla().getBloque(miPosicion.getY() / Ventana.pixelesBloque , miPosicion.getX() / Ventana.pixelesBloque).borrarDeListaDeEntidades(this);
-		miRepresentacion.desaparecer();
-	}
-	
 	@Override
 	public void reset() {
 		setSpawneo(new Posicion(325, 425));

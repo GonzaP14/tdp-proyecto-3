@@ -45,11 +45,18 @@ public class HiloElemento extends Thread {
 	        }
 		}
 	}
-
+	/**
+	 * Seteo el romper por si quiero romper el hilo de elemento
+	 * @param romper 
+	 */
 	public void setRomper(boolean romper) {
 		this.romper = romper;
 	}
 	
+	/**
+	 * Seteo la cantidad de ticks que tiene el hilo
+	 * @param ticks la cantidad de ticks que tiene el hilo
+	 */
 	public void setCantidadTicks(int ticks) {
 		cantidadTicks = ticks;
 	}

@@ -41,7 +41,10 @@ public class PowerPellet extends Elemento {
 		miRepresentacion.desaparecer();	
 		miJuego.getGrilla().getBloque(miPosicion.getY() / Ventana.pixelesBloque , miPosicion.getX() / Ventana.pixelesBloque).agregarAListaRemovidos(this);
 	}
-	
+	/**
+	 * Devuelve los posibles spawns de los powerPellet
+	 * @return los posibles spawns
+	 */
 	public static Posicion[] getMisSpawns() {
 		return misSpawns;
 	}

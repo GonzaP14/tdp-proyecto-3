@@ -85,10 +85,11 @@ public class DominioMarioBros implements DominioJuego {
 
 	@Override
 	public String[] getFruta() {
-		String[] imagenes = new String[1];
+		String[] imagenes = new String[3];
 
 		imagenes[0] = ("/recursosMarioBros/Flor.png");
-
+		imagenes[1] = ("/recursosMarioBros/FlorNivel2.png");
+		imagenes[2] = ("/recursosMarioBros/Flor.png");
 		return imagenes;
 	}
 
