@@ -8,11 +8,19 @@ import niveles.BloqueGrafico;
 
 public class Bloque {
 	
+	// Atributos de instancia
 	private Posicion miPosicion;
 	private boolean puedeVisitarse;
 	private BloqueGrafico miRepresentacion;
 	private List<Entidad> listaEntidades, listaRemovidos;
-
+	
+	// ------------------------------------------------------------------------------    CONSTRUCTOR    ------------------------------------------------------------------
+	/**
+	 * Crea un nuevo bloque logico para el mapa, con una posicion en el mismo.
+	 * @param x coordenada x para la posicion del bloque
+	 * @param y coordenada y para la posicion del bloque
+	 * @param puedeVisitarse Determinada si una entidad puede visitar el bloque
+	 */
 	public Bloque(int x , int y , boolean puedeVisitarse ) {
 		miPosicion = new Posicion(x , y);
 		this.puedeVisitarse = puedeVisitarse;
@@ -21,6 +29,7 @@ public class Bloque {
 		listaRemovidos = Collections.synchronizedList(new ArrayList<Entidad>());
 	}
 	
+	// ------------------------------------------------------------------------------    COMANDOS    ------------------------------------------------------------------
 	/**
 	 * Agrego una entidad a la lista de entidades del bloque
 	 * @param entidadAAgregar a la lista de entidades
@@ -50,14 +59,6 @@ public class Bloque {
 	 */
 	public void limpiarListaRemovidos() {
 		listaRemovidos.clear();
-	}
-	
-	/**
-	 * Retorno la posicion del bloque
-	 * @return la posicion del bloque
-	 */
-	public Posicion getMiPosicion() {
-		return miPosicion;
 	}
 	
 	/**
@@ -93,6 +94,16 @@ public class Bloque {
 		listaRemovidos = Collections.synchronizedList(new ArrayList<Entidad>());
 	}
 	
+	// ------------------------------------------------------------------------------    CONSULTAS    ------------------------------------------------------------------
+	
+	/**
+	 * Retorno la posicion del bloque
+	 * @return la posicion del bloque
+	 */
+	public Posicion getMiPosicion() {
+		return miPosicion;
+	}
+	
 	/**
 	 * Devuelvo si el bloque es visitable o no
 	 * @return si puedo visitarlo
@@ -124,5 +135,4 @@ public class Bloque {
 	public List<Entidad>  getListaRemovidos() {
 		return listaRemovidos;
 	}
-	
 }
