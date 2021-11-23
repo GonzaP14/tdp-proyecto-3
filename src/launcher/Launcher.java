@@ -17,6 +17,10 @@ public class Launcher {
 	private static BuilderNivel miBuilder;
 	private static int nivelActual;
 	
+	/**
+	 * Inicia la ejecucion del sistema
+	 * @param args argumentos de entrada para la ejecucion del sistema (unused)
+	 */
 	public static void main(String[] args) {
 		miSplashScreen = new SplashScreen();
 		miSplashScreen.setVisible(true);
@@ -27,6 +31,10 @@ public class Launcher {
 		}
 	}
 	
+	/**
+	 * Inicia la creacion del juego, prepara un nivel para el mismo y se lo asigna. Muestra una ventana con el juego, y finalmente inicia el mismo.
+	 * @param dominio
+	 */
 	private static void iniciarJuego(DominioJuego dominio) {
 		miJuego = new Juego(dominio);
 		miBuilder = new BuilderNivel();
@@ -36,20 +44,32 @@ public class Launcher {
 		miJuego.iniciarJuego();
 	}
 	
+	/**
+	 * Crea la ventana para el juego, y la vincula con el mismo.
+	 */
 	private static void iniciarVentana() {
 		miVentana = new Ventana(miJuego, dominioJuego);
 		miVentana.setVisible(true);
 		miJuego.setVentana(miVentana);
 	}
 	
+	/**
+	 * Prepara y crea un dominio de Mario Bros, para el juego.
+	 */
 	public static void crearDominioMarioBros() {
 		dominioJuego = new DominioMarioBros();
 	}
 	
+	/**
+	 * Prepara y crea un dominio de Sonic, para el juego.
+	 */
 	public static void crearDominioSonic() {
 		dominioJuego = new DominioSonic();
 	}
 	
+	/**
+	 * Construye un determinado nivel para el juego.
+	 */
 	private static void construirNivel() {
 		nivelActual ++;
 		miBuilder.setGrilla(miJuego.getGrilla());
@@ -67,6 +87,9 @@ public class Launcher {
 		}
 	}	
 
+	/**
+	 * Metodo auxiliar a construirNivel(), implementa la construccion de un nivel 1.
+	 */
 	private static void construirNivel1() {
 		miBuilder.setVelocidadEnemigos(90);
 		miBuilder.setDuracionFrutas(100);
@@ -74,6 +97,9 @@ public class Launcher {
 		miBuilder.setDuracionPociones(100);
 	}
 	
+	/**
+	 * Metodo auxiliar a construirNivel(), implementa la construccion de un nivel 2.
+	 */
 	private static void construirNivel2() {
 		miBuilder.setVelocidadEnemigos(95);
 		miBuilder.setDuracionFrutas(75);
@@ -81,6 +107,9 @@ public class Launcher {
 		miBuilder.setDuracionPociones(75);
 	}
 	
+	/**
+	 * Metodo auxiliar a construirNivel(), implementa la construccion de un nivel 3.
+	 */
 	private static void construirNivel3() {
 		miBuilder.setVelocidadEnemigos(100);
 		miBuilder.setDuracionFrutas(50);
@@ -88,6 +117,9 @@ public class Launcher {
 		miBuilder.setDuracionPociones(50);
 	}
 
+	/**
+	 * Cambia el estado del juego al siguiente nivel.
+	 */
 	public static void pasarNivel() {
 		miJuego.pausar_despausar();
 		miJuego.reset();
