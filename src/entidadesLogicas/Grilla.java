@@ -3,7 +3,6 @@ package entidadesLogicas;
 import java.awt.Rectangle;
 
 import gui.Ventana;
-import personajes.Personaje;
 import personajes.Principal;
 
 public class Grilla {
@@ -24,62 +23,32 @@ public class Grilla {
 		}
 	}
 	
+	
 	// ------------------------------------   Metodos   ------------------------------------------
+	private boolean colisionaConBloque(int sentidoEntidad, Posicion proximaPos, Rectangle rectanguloDePrincipal, int indiceEsquinaActual) {
+		boolean hayColision = false;
+		Posicion esquina = new Posicion(proximaPos.getPosicionEsquina(sentidoEntidad)[indiceEsquinaActual].getY() / Ventana.pixelesBloque , proximaPos.getPosicionEsquina(sentidoEntidad)[indiceEsquinaActual].getX() / Ventana.pixelesBloque);
+		Bloque bloqueLigadoAEsquina = grilla[esquina.getX()][esquina.getY()];
+		Rectangle rectanguloParaBloque = new Rectangle(bloqueLigadoAEsquina.getMiPosicion().getX(),bloqueLigadoAEsquina.getMiPosicion().getY(),Ventana.pixelesBloque,Ventana.pixelesBloque);
+		
+		if(bloqueLigadoAEsquina.esVisitable() == false && rectanguloParaBloque.intersects(rectanguloDePrincipal)) 
+    		hayColision =  true;
+		
+		return hayColision;
+	}
+	
 	public boolean buscarColisiones(int sentidoEntidad, Posicion proximaPos) {
-		Rectangle rectanguloPosicionPj = new Rectangle(proximaPos.getY() , proximaPos.getX() , Ventana.pixelesBloque , Ventana.pixelesBloque);	
-        Bloque bloqueNecesario;
-        Rectangle rectanguloBloque;
+		Rectangle rectanguloDePrincipal = new Rectangle(proximaPos.getY() , proximaPos.getX() , Ventana.pixelesBloque , Ventana.pixelesBloque);	
+        boolean colisiona = false;
         
-        if(sentidoEntidad == Personaje.sentidoIzquierda ) {
-        	Posicion izquierdaArribaBloque = new Posicion(proximaPos.getY() / Ventana.pixelesBloque , proximaPos.getX() / Ventana.pixelesBloque);
-        	bloqueNecesario = grilla[izquierdaArribaBloque.getX()][izquierdaArribaBloque.getY()];
-        	rectanguloBloque = new Rectangle(bloqueNecesario.getMiPosicion().getX(),bloqueNecesario.getMiPosicion().getY(),Ventana.pixelesBloque,Ventana.pixelesBloque);
-        	if(bloqueNecesario.esVisitable() == false && rectanguloBloque.intersects(rectanguloPosicionPj) ) 
-        		return true;
-        	Posicion izquierdaAbajoBloque = new Posicion(proximaPos.posicionEsquinaAbajoIzquierda().getY() / Ventana.pixelesBloque , proximaPos.posicionEsquinaAbajoIzquierda().getX() / Ventana.pixelesBloque);
-        	bloqueNecesario = grilla[izquierdaAbajoBloque.getX()][izquierdaAbajoBloque.getY()];
-        	rectanguloBloque = new Rectangle(bloqueNecesario.getMiPosicion().getX(),bloqueNecesario.getMiPosicion().getY(),Ventana.pixelesBloque,Ventana.pixelesBloque);
-        	if(bloqueNecesario.esVisitable() == false && rectanguloBloque.intersects(rectanguloPosicionPj) ) 
-        		return true;        	
-		}
-        else if(sentidoEntidad == Personaje.sentidoDerecha) {
-        	Posicion derechaArribaBloque = new Posicion(proximaPos.posicionEsquinaArribaDerecha().getY() / Ventana.pixelesBloque , proximaPos.posicionEsquinaArribaDerecha().getX() / Ventana.pixelesBloque);
-        	bloqueNecesario = grilla[derechaArribaBloque.getX()][derechaArribaBloque.getY()];
-        	rectanguloBloque = new Rectangle(bloqueNecesario.getMiPosicion().getX(),bloqueNecesario.getMiPosicion().getY(),Ventana.pixelesBloque,Ventana.pixelesBloque);
-        	if(bloqueNecesario.esVisitable() == false && rectanguloBloque.intersects(rectanguloPosicionPj) ) 
-        		return true;
-        	Posicion derechaAbajoBloque = new Posicion(proximaPos.posicionEsquinaAbajoDerecha().getY() / Ventana.pixelesBloque , proximaPos.posicionEsquinaAbajoDerecha().getX() / Ventana.pixelesBloque);
-        	bloqueNecesario = grilla[derechaAbajoBloque.getX()][derechaAbajoBloque.getY()];
-        	rectanguloBloque = new Rectangle(bloqueNecesario.getMiPosicion().getX(),bloqueNecesario.getMiPosicion().getY(),Ventana.pixelesBloque,Ventana.pixelesBloque);
-        	if(bloqueNecesario.esVisitable() == false && rectanguloBloque.intersects(rectanguloPosicionPj) ) 
-        		return true;
-        }
-        else if(sentidoEntidad == Personaje.sentidoArriba) {
-        	Posicion derechaArribaBloque = new Posicion(proximaPos.posicionEsquinaArribaDerecha().getY() / Ventana.pixelesBloque , proximaPos.posicionEsquinaArribaDerecha().getX() / Ventana.pixelesBloque);
-        	bloqueNecesario = grilla[derechaArribaBloque.getX()][derechaArribaBloque.getY()];
-        	rectanguloBloque = new Rectangle(bloqueNecesario.getMiPosicion().getX(),bloqueNecesario.getMiPosicion().getY(),Ventana.pixelesBloque,Ventana.pixelesBloque);
-        	if(bloqueNecesario.esVisitable() == false && rectanguloBloque.intersects(rectanguloPosicionPj) ) 
-        		return true;
-        	Posicion izquierdaArribaBloque = new Posicion(proximaPos.getY() / Ventana.pixelesBloque , proximaPos.getX() / Ventana.pixelesBloque);
-        	bloqueNecesario = grilla[izquierdaArribaBloque.getX()][izquierdaArribaBloque.getY()];
-        	rectanguloBloque = new Rectangle(bloqueNecesario.getMiPosicion().getX(),bloqueNecesario.getMiPosicion().getY(),Ventana.pixelesBloque,Ventana.pixelesBloque);
-        	if(bloqueNecesario.esVisitable() == false && rectanguloBloque.intersects(rectanguloPosicionPj) ) 
-        		return true;
-        }
-        else if(sentidoEntidad == Personaje.sentidoAbajo) {
-        	Posicion derechaAbajoBloque = new Posicion(proximaPos.posicionEsquinaAbajoDerecha().getY() / Ventana.pixelesBloque , proximaPos.posicionEsquinaAbajoDerecha().getX() / Ventana.pixelesBloque);
-        	bloqueNecesario = grilla[derechaAbajoBloque.getX()][derechaAbajoBloque.getY()];
-        	rectanguloBloque = new Rectangle(bloqueNecesario.getMiPosicion().getX(),bloqueNecesario.getMiPosicion().getY(),Ventana.pixelesBloque,Ventana.pixelesBloque);
-        	if(bloqueNecesario.esVisitable() == false && rectanguloBloque.intersects(rectanguloPosicionPj) ) 
-        		return true;
-        	Posicion izquierdaAbajoBloque = new Posicion(proximaPos.posicionEsquinaAbajoIzquierda().getY() / Ventana.pixelesBloque , proximaPos.posicionEsquinaAbajoIzquierda().getX() / Ventana.pixelesBloque);
-        	bloqueNecesario = grilla[izquierdaAbajoBloque.getX()][izquierdaAbajoBloque.getY()];
-        	rectanguloBloque = new Rectangle(bloqueNecesario.getMiPosicion().getX(),bloqueNecesario.getMiPosicion().getY(),Ventana.pixelesBloque,Ventana.pixelesBloque);
-        	if(bloqueNecesario.esVisitable() == false && rectanguloBloque.intersects(rectanguloPosicionPj) ) 
-        		return true;
-        }
+    	for (int i = 0; i < 2; i++) {
+    		colisiona = colisionaConBloque(sentidoEntidad, proximaPos, rectanguloDePrincipal, i);
+    		if (colisiona) {
+    			return true;
+    		}
+    	}
         
-		return false;
+    	return colisiona;
 	}
 	
 	public void buscarColisionesEntidades(Principal e) {
