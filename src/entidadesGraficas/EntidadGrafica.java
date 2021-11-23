@@ -37,6 +37,18 @@ public abstract class EntidadGrafica extends JLabel {
 	public void morir() {
 		
 	}
+	
+	public void efectoPocionBomba(int sentidoActual) {
+
+	}
+	
+	public void efectoPocionVelocidad(int sentidoActual) {
+
+	}
+	
+	public void finEfectoPocion(int sentidoActual) {
+
+	}
 
 	public void reset() { 
 		
