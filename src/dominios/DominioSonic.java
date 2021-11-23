@@ -182,6 +182,4 @@ public class DominioSonic implements DominioJuego {
 		return new String("/recursosAudio/winSonic.wav");
 	}
 
-	
-
 }

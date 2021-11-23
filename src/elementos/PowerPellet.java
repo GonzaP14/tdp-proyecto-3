@@ -49,6 +49,7 @@ public class PowerPellet extends Elemento {
 		return misSpawns;
 	}
 	
+	@Override
 	public void finPocion() {
 		miJuego.setCantidadFantasmasComidos(0);
 		for(Enemigo e : miJuego.getEnemigos()) {

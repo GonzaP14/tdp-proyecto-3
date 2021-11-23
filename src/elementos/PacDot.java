@@ -90,9 +90,7 @@ public class PacDot extends Elemento {
 	}
 	
 	@Override
-	protected void iniciarTimer(HiloElemento timer) {
-		
-	}
+	protected void iniciarTimer(HiloElemento timer) {}
 
 	@Override
 	public void afectar() {
@@ -111,16 +109,10 @@ public class PacDot extends Elemento {
 
 
 	@Override
-	public void finPocion() {
-		// TODO Auto-generated method stub
-		
-	}
+	public void finPocion() {}
 
 
 	@Override
-	public void despawnear() {
-		// TODO Auto-generated method stub
-		
-	}
+	public void despawnear() {}
 
 }

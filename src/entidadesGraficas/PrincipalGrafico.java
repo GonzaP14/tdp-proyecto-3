@@ -44,16 +44,19 @@ public class PrincipalGrafico extends PersonajeGrafico {
 	     this.setIcon(representacionActual);
 	}
 	
+	@Override
 	public void efectoPocionBomba(int sentidoActual) {
 		sentidosEstado = sentidosPocionBomba;
 		this.actualizar(sentidoActual);
 	}
 	
+	@Override
 	public void efectoPocionVelocidad(int sentidoActual) {
 		sentidosEstado = sentidosPocionVelocidad;
 		this.actualizar(sentidoActual);
 	}
 	
+	@Override
 	public void finEfectoPocion(int sentidoActual) {
 		sentidosEstado = sentidosDefault;
 		this.actualizar(sentidoActual);
