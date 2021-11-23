@@ -54,12 +54,20 @@ public class HiloEnemigo extends Thread {
 					if (cantidadTicks == 200 && miEnemigo.getIndiceEstado() == Enemigo.Scatter) {
 							miEnemigo.cambiarEstado(Enemigo.Chase);
 					}
-					if( miEnemigo.getTieneQueSalirDeLaCasa()) {
-						miEnemigo.salirDeLaCasa();
+					if( miEnemigo.getTieneQueSalirDeLaCasaX()) {
+						miEnemigo.salirDeLaCasaEnX();
 						Thread.sleep(5000/velocidadTickeo);
 					}
-					else if(miEnemigo.getTieneQueEntrarALaCasa()) {
-						miEnemigo.entrarALaCasa();
+					else if( miEnemigo.getTieneQueSalirDeLaCasaY()) {
+						miEnemigo.salirDeLaCasaEnY();
+						Thread.sleep(5000/velocidadTickeo);
+					}
+					else if(miEnemigo.getTieneQueEntrarALaCasaY()) {
+						miEnemigo.entrarALaCasaEnY();
+						Thread.sleep(5000/velocidadTickeo);
+					}
+					else if(miEnemigo.getTieneQueEntrarALaCasaX()) {
+						miEnemigo.entrarALaCasaEnX();
 						Thread.sleep(5000/velocidadTickeo);
 					}
 					else {

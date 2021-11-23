@@ -18,24 +18,10 @@ public class Blinky extends Enemigo {
 	 * @param imagenes Skins de Blinky.
 	 */
 	public Blinky(Juego miJuego, String[] imagenes) {
+		arribaDeLaCasa =  new Posicion(350, 275);
 		setVelocidadPredeterminada(miJuego.getNivel().getVelocidadEnemigos());
 		velocidadActual = velocidadPredeterminada;
 		super.crearEnemigo(miJuego, spawnBlinky, imagenes);
-	}
-	
-	@Override
-	public void entrarALaCasa() {
-		setVelocidadActual(velocidadPredeterminada);
-		miRepresentacion.perseguir(sentidoActual);
-		tieneQueEntrarALaCasa = false;
-		salirDeLaCasa();
-	}
-
-	@Override
-	public void salirDeLaCasa() {
-		miHilo.setCantidadTicks(0);
-		cambiarEstado(Scatter);
-		tieneQueSalirDeLaCasa = false;
 	}
 	
 	@Override
@@ -47,5 +33,30 @@ public class Blinky extends Enemigo {
 	public Posicion getPosicionScatter() {
 		return posicionScatter;
 	}
+
+	@Override
+	public void entrarALaCasaEnX() {
+	}
+
+	@Override
+	public void entrarALaCasaEnY() {
+		setVelocidadActual(velocidadPredeterminada);
+		miRepresentacion.perseguir(sentidoActual);
+		tieneQueEntrarALaCasaX = false;
+		tieneQueEntrarALaCasaY = false;
+		salirDeLaCasaEnX();
+	}
+
+	@Override
+	public void salirDeLaCasaEnX() {
+		miHilo.setCantidadTicks(0);
+		cambiarEstado(Scatter);
+		tieneQueSalirDeLaCasaX = false;
+		tieneQueSalirDeLaCasaY = false;
+		
+	}
+
+	@Override
+	public void salirDeLaCasaEnY() {}
 	
 }

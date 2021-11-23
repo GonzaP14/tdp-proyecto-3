@@ -28,8 +28,8 @@ public class Eaten implements EstadoEnemigo {
 		double distanciaActual;
 		
 		if (toReturn.equals(miEnemigo.getArribaDeLaCasa())) {
-			miEnemigo.setTieneQueEntrarALaCasa(true);
-			miEnemigo.entrarALaCasa();
+			miEnemigo.setTieneQueEntrarALaCasaY(true);
+			miEnemigo.setTieneQueEntrarALaCasaX(true);
 		} 
 			
 		for (Posicion pos: miEnemigo.posiblesPosiciones()) {

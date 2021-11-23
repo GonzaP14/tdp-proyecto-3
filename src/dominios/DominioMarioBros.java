@@ -99,7 +99,7 @@ public class DominioMarioBros implements DominioJuego {
 
 		imagenes[0] = ("/recursosMarioBros/Flor.png");
 		imagenes[1] = ("/recursosMarioBros/FlorNivel2.png");
-		imagenes[2] = ("/recursosMarioBros/Flor.png");
+		imagenes[2] = ("/recursosMarioBros/FlorNivel3.png");
 		return imagenes;
 	}
 

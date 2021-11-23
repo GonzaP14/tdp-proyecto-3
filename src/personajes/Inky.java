@@ -19,6 +19,7 @@ public class Inky extends Enemigo {
 	 * @param imagenes Skins de Inky.
 	 */
 	public Inky(Juego miJuego, String[] imagenes) {
+		arribaDeLaCasa =  new Posicion(350, 275);
 		setVelocidadPredeterminada(miJuego.getNivel().getVelocidadEnemigos());
 		velocidadActual = velocidadPredeterminada;
 		super.crearEnemigo(miJuego, spawnInky, imagenes);
@@ -32,36 +33,42 @@ public class Inky extends Enemigo {
 	}
 	
 	@Override
-	public void entrarALaCasa() {	
+	public void entrarALaCasaEnX() {}
+
+	@Override
+	public void entrarALaCasaEnY() {
 		miJuego.getGrilla().getBloque(miPosicion.getY() / Ventana.pixelesBloque, miPosicion.getX() / Ventana.pixelesBloque).borrarDeListaDeEntidades(this);
 		if(miPosicion.getY() != miSpawn.getY()) {
 			miPosicion.setY(miPosicion.getY() + 5);
 			miRepresentacion.setLocation(miPosicion.getX(), miPosicion.getY());
 		}
-		if(miPosicion.getY() == miSpawn.getY() && miPosicion.getX() == miSpawn.getX()) {
+		else {
 			setVelocidadActual(velocidadPredeterminada);
 			miRepresentacion.perseguir(sentidoActual);
-			tieneQueSalirDeLaCasa = true;
-			salirDeLaCasa();
-			tieneQueEntrarALaCasa=false;
+			tieneQueSalirDeLaCasaX = true;
+			tieneQueSalirDeLaCasaY = true;
+			tieneQueEntrarALaCasaX =false;
+			tieneQueEntrarALaCasaY =false;
 		}
 	}
 
 	@Override
-	public void salirDeLaCasa() {
-		if(!miPosicion.equals(arribaDeLaCasa)) {
-			if(miPosicion.getY() != arribaDeLaCasa.getY()) {
-				miPosicion.setY(miPosicion.getY() - 5);
-				miRepresentacion.setLocation(miPosicion.getX(), miPosicion.getY());
-			}
+	public void salirDeLaCasaEnX() {
+		if(miPosicion.getY() != arribaDeLaCasa.getY()) {
+			miPosicion.setY(miPosicion.getY() - 5);
+			miRepresentacion.setLocation(miPosicion.getX(), miPosicion.getY());
 		}
 		else {
 			miJuego.getGrilla().getBloque(miPosicion.getY() / Ventana.pixelesBloque, miPosicion.getX() / Ventana.pixelesBloque).agregarAListaEntidades(this);
 			miHilo.setCantidadTicks(0);
 			cambiarEstado(Scatter);
-			tieneQueSalirDeLaCasa = false;
+			tieneQueSalirDeLaCasaX = false;
+			tieneQueSalirDeLaCasaY = false;
 		}
 	}
+
+	@Override
+	public void salirDeLaCasaEnY() {}
 
 	@Override
 	public Posicion getPosicionScatter() {

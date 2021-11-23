@@ -23,9 +23,11 @@ public abstract class Enemigo extends Personaje {
 	public static final int Chase = 1;
 	public static final int Eaten = 2;
 	public static final int Scatter = 3;
-	protected Posicion arribaDeLaCasa = new Posicion(350, 275);
-	protected boolean tieneQueEntrarALaCasa;
-	protected boolean tieneQueSalirDeLaCasa;
+	protected Posicion arribaDeLaCasa;
+	protected boolean tieneQueEntrarALaCasaX;
+	protected boolean tieneQueEntrarALaCasaY;
+	protected boolean tieneQueSalirDeLaCasaX;
+	protected boolean tieneQueSalirDeLaCasaY;
 	
 	@Override
 	public void afectar() {
@@ -37,8 +39,10 @@ public abstract class Enemigo extends Personaje {
 		}
 		else if(indiceEstado == Scatter || indiceEstado == Chase){
 			miJuego.getPrincipal().recibirEfecto(this);
-			for(Enemigo e : miJuego.getEnemigos())
-				e.setTieneQueSalirDeLaCasa(true);
+			for(Enemigo e : miJuego.getEnemigos()) {
+				e.setTieneQueSalirDeLaCasaX(true);
+				e.setTieneQueSalirDeLaCasaY(true);
+			}
 		}
 	}
 	@Override
@@ -75,7 +79,7 @@ public abstract class Enemigo extends Personaje {
 	}
 	
 	/**
-	 * Reaparece a los enemigos cambiando su estado a Chase
+	 * Reaparece a los enemigos 
 	 */
 	public void reaparecer() {
 		super.reaparecer();
@@ -105,9 +109,11 @@ public abstract class Enemigo extends Personaje {
 	 * @param imagenes Path de las imagenes posibles que va a tener un enemigo
 	 */
 	protected void crearEnemigo(Juego miJuego, Posicion spawn, String[] imagenes) {
-		tieneQueEntrarALaCasa = false;
+		tieneQueEntrarALaCasaX = false;
+		tieneQueEntrarALaCasaY = false;
 		this.miJuego = miJuego;
-		tieneQueSalirDeLaCasa = true;
+		tieneQueSalirDeLaCasaX = true;
+		tieneQueSalirDeLaCasaY = true;
 		miSpawn = spawn;
 		miPosicion = new Posicion(miSpawn.getX(), miSpawn.getY());
 		miRepresentacion = new EnemigoGrafico(imagenes);
@@ -165,18 +171,27 @@ public abstract class Enemigo extends Personaje {
 	}
 	
 	/**
-	 * Setea el tiene que salir de la casa en caso de que el enemigo tenga que realizar esta accion
+	 * Setea el tiene que salir de la casa en caso de que el enemigo tenga que realizar esta accion respecto a X
 	 * @param tieneQueSalirDeLaCasa
 	 */
-	public void setTieneQueSalirDeLaCasa(boolean tieneQueSalirDeLaCasa) {
-		this.tieneQueSalirDeLaCasa = tieneQueSalirDeLaCasa;
+	public void setTieneQueSalirDeLaCasaX(boolean tieneQueSalirDeLaCasa) {
+		this.tieneQueSalirDeLaCasaX = tieneQueSalirDeLaCasa;
+	}
+	
+	/**
+	 * Setea el tiene que salir de la casa en caso de que el enemigo tenga que realizar esta accion respecto a Y
+	 * @param tieneQueSalirDeLaCasa
+	 */
+	public void setTieneQueSalirDeLaCasaY(boolean tieneQueSalirDeLaCasa) {
+		this.tieneQueSalirDeLaCasaY = tieneQueSalirDeLaCasa;
 	}
 	
 	/**
 	 * Resetea a los enemigos para un posible cambio de nivel
 	 */
 	public void reset() {
-		tieneQueSalirDeLaCasa = true;
+		tieneQueSalirDeLaCasaX = true;
+		tieneQueSalirDeLaCasaY = true;
 		miSpawn = getSpawn();
 		miPosicion = new Posicion(miSpawn.getX(), miSpawn.getY());
 		miRepresentacion.crearGrafica(miPosicion);
@@ -187,11 +202,19 @@ public abstract class Enemigo extends Personaje {
 	}
 	
 	/**
-	 * Seteo si tiene que entrar a la casa el enemigo en el caso de necesitarlo
+	 * Seteo si tiene que entrar a la casa el enemigo en el caso de necesitarlo respecto a X
 	 * @param t 
 	 */
-	public void setTieneQueEntrarALaCasa(boolean t) {
-		tieneQueEntrarALaCasa = t;
+	public void setTieneQueEntrarALaCasaX(boolean t) {
+		tieneQueEntrarALaCasaX = t;
+	}
+	
+	/**
+	 * Seteo si tiene que entrar a la casa el enemigo en el caso de necesitarlo respecto a Y
+	 * @param t 
+	 */
+	public void setTieneQueEntrarALaCasaY(boolean t) {
+		tieneQueEntrarALaCasaY = t;
 	}
 	
 	/**
@@ -210,14 +233,24 @@ public abstract class Enemigo extends Personaje {
 	}
 	
 	/**
-	 * Modela el comportamiento del enemigo para entrar a la casa
+	 * Modela el comportamiento del enemigo para entrar a la casa en X
 	 */
-	public abstract void entrarALaCasa();
+	public abstract void entrarALaCasaEnX();
 	
 	/**
-	 * Modela el comportamiento del enemigo para salir de la casa
+	 * Modela el comportamiento del enemigo para entrar a la casa en Y
 	 */
-	public abstract void salirDeLaCasa();
+	public abstract void entrarALaCasaEnY();
+	
+	/**
+	 * Modela el comportamiento del enemigo para salir de la casa en X
+	 */
+	public abstract void salirDeLaCasaEnX();
+	
+	/**
+	 * Modela el comportamiento del enemigo para salir de la casa en Y
+	 */
+	public abstract void salirDeLaCasaEnY();
 	
 	/**
 	 * @return el hilo del enemigo
@@ -246,18 +279,33 @@ public abstract class Enemigo extends Personaje {
 	}
 	
 	/** 
-	 * @return si tiene que entrar a la casa 
+	 * @return si tiene que entrar a la casa respecto a X 
 	 */
-	public boolean getTieneQueEntrarALaCasa() {
-		return tieneQueEntrarALaCasa;
+	public boolean getTieneQueEntrarALaCasaX() {
+		return tieneQueEntrarALaCasaX;
 	}
 	
 	/**
-	 * @return si tiene que salir de la casa
+	 * @return si tiene que salir de la casa respecto a X
 	 */
-	public boolean getTieneQueSalirDeLaCasa() {
-		return tieneQueSalirDeLaCasa;
+	public boolean getTieneQueSalirDeLaCasaX() {
+		return tieneQueSalirDeLaCasaX;
 	}
+	
+	/** 
+	 * @return si tiene que entrar a la casa respecto a Y
+	 */
+	public boolean getTieneQueEntrarALaCasaY() {
+		return tieneQueEntrarALaCasaY;
+	}
+	
+	/**
+	 * @return si tiene que salir de la casa respecto a Y
+	 */
+	public boolean getTieneQueSalirDeLaCasaY() {
+		return tieneQueSalirDeLaCasaY;
+	}
+	
 
 	/**
 	 * @return la posicion de arriba de la casa del enemigo , osea la posicion que tiene que estar al salir de la casa

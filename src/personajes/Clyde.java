@@ -19,48 +19,61 @@ public class Clyde extends Enemigo {
 	 * @param imagenes Skins de Clyde.
 	 */
 	public Clyde(Juego miJuego, String[] imagenes) {
+		arribaDeLaCasa =  new Posicion(325, 275);
 		setVelocidadPredeterminada(miJuego.getNivel().getVelocidadEnemigos());
 		velocidadActual = velocidadPredeterminada;
 		super.crearEnemigo(miJuego, spawnClyde, imagenes);
 	}
 	
 	@Override
-	public void entrarALaCasa() {
-		miJuego.getGrilla().getBloque(miPosicion.getY() / Ventana.pixelesBloque, miPosicion.getX() / Ventana.pixelesBloque).borrarDeListaDeEntidades(this);
+	public void entrarALaCasaEnX() {
 		if(miPosicion.getX() != miSpawn.getX()) {
 			miPosicion.setX(miPosicion.getX() + 5);
 			miRepresentacion.setLocation(miPosicion.getX(), miPosicion.getY());
 		}
-		if(miPosicion.getY() != miSpawn.getY()) {
-			miPosicion.setY(miPosicion.getY() + 5);
-			miRepresentacion.setLocation(miPosicion.getX(), miPosicion.getY());
-		}
-		if(miPosicion.getY() == miSpawn.getY() && miPosicion.getX() == miSpawn.getX()) {
+		else {
 			setVelocidadActual(velocidadPredeterminada);
 			miRepresentacion.perseguir(sentidoActual);
-			tieneQueSalirDeLaCasa = true;
-			salirDeLaCasa();
-			tieneQueEntrarALaCasa=false;
+			tieneQueSalirDeLaCasaX = true;
+			tieneQueSalirDeLaCasaY = true;
+			tieneQueEntrarALaCasaX =false;
 		}
 	}
 
 	@Override
-	public void salirDeLaCasa() {
-		if(!miPosicion.equals(arribaDeLaCasa)) {
-			if(miPosicion.getX() != arribaDeLaCasa.getX()) {
-				miPosicion.setX(miPosicion.getX() - 5);
-				miRepresentacion.setLocation(miPosicion.getX(), miPosicion.getY());
-			}
-			if(miPosicion.getY() != arribaDeLaCasa.getY()) {
-				miPosicion.setY(miPosicion.getY() - 5);
-				miRepresentacion.setLocation(miPosicion.getX(), miPosicion.getY());
-			}
+	public void entrarALaCasaEnY() {
+		miJuego.getGrilla().getBloque(miPosicion.getY() / Ventana.pixelesBloque, miPosicion.getX() / Ventana.pixelesBloque).borrarDeListaDeEntidades(this);
+		if(miPosicion.getY() != miSpawn.getY()) {
+			miPosicion.setY(miPosicion.getY() + 5);
+			miRepresentacion.setLocation(miPosicion.getX(), miPosicion.getY());
+		}
+		else {
+			tieneQueEntrarALaCasaY = false;
+		}
+	}
+
+	@Override
+	public void salirDeLaCasaEnX() {
+		if(miPosicion.getX() != arribaDeLaCasa.getX()) {
+			miPosicion.setX(miPosicion.getX() - 5);
+			miRepresentacion.setLocation(miPosicion.getX(), miPosicion.getY());
+		}
+		else {
+			tieneQueSalirDeLaCasaX = false;
+		}
+	}
+
+	@Override
+	public void salirDeLaCasaEnY() {
+		if(miPosicion.getY() != arribaDeLaCasa.getY()) {
+			miPosicion.setY(miPosicion.getY() - 5);
+			miRepresentacion.setLocation(miPosicion.getX(), miPosicion.getY());
 		}
 		else {
 			miJuego.getGrilla().getBloque(miPosicion.getY() / Ventana.pixelesBloque, miPosicion.getX() / Ventana.pixelesBloque).agregarAListaEntidades(this);
 			miHilo.setCantidadTicks(0);
 			cambiarEstado(Scatter);
-			tieneQueSalirDeLaCasa = false;
+			tieneQueSalirDeLaCasaY = false;
 		}
 	}
 
