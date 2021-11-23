@@ -6,7 +6,7 @@ import entidadesLogicas.Grilla;
 /**
  * Interfaz referida a Builder (design pattern), que abstrae el comportamiento
  * ligado a la preparacion de un nuevo nivel y dominio para el juego.
- * @author Grupo 2 TDP
+ * @author Grupo 2 TDP. 2021
  */
 public interface Builder {
 	/**
