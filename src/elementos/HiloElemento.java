@@ -2,13 +2,25 @@ package elementos;
 
 import entidadesLogicas.Juego;
 
+/**
+ * Class HiloElemento - Representa el hilo asociado a un elemento (Pocion, PowePellet).
+ * @author Grupo N°2: Bruno Mandolesi, Albano Mazzino, Nicolas Messina, Gonzalo Martin Perez.
+ */
 public class HiloElemento extends Thread {
-	private int ticksALlegar;
+	
 	private Juego miJuego;
+	private Elemento miElemento;
+	private int ticksALlegar;
 	private int cantidadTicks;
 	private boolean romper;
-	private Elemento miElemento;
-	public HiloElemento(Juego miJuego , int ticks , Elemento e ) {
+	
+	/**
+	 * Crea un nuevo HiloElemento.
+	 * @param miJuego Juego asociado al Hilo.
+	 * @param ticks Ticks actuales del Hilo.
+	 * @param e Elemento asociado.
+	 */
+	public HiloElemento(Juego miJuego, int ticks, Elemento e ) {
 		this.miJuego = miJuego;
 		this.ticksALlegar = ticks;
 		cantidadTicks = 0;

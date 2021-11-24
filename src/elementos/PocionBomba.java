@@ -8,8 +8,19 @@ import entidadesLogicas.Juego;
 import entidadesLogicas.Posicion;
 import gui.Ventana;
 
+/**
+ * Class PocionBomba - Representa un tipo de poción del juego.
+ * @author Grupo N°2: Bruno Mandolesi, Albano Mazzino, Nicolas Messina, Gonzalo Martin Perez.
+ */
 public class PocionBomba extends Pocion {
 	
+	private static final Posicion miSpawn = new Posicion(325, 425);
+	
+	/**
+	 * Crea una nueva PocionBomba.
+	 * @param miJuego Juego asociado.
+	 * @param imagenes Skins de la Bomba.
+	 */
 	public PocionBomba(Juego miJuego, String imagenes[]) {
 		puntajeOtorgado = 400;
 		miRepresentacion = new ElementoGrafico(imagenes);
@@ -50,7 +61,7 @@ public class PocionBomba extends Pocion {
 	
 	@Override
 	public void reset() {
-		setSpawneo(new Posicion(325, 425));
+		setSpawneo(miSpawn);
 		getMiRepresentacion().crearGrafica(getSpawn());
 		miJuego.getVentana().aparecerEntidad(getMiRepresentacion());
 	}

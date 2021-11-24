@@ -88,10 +88,6 @@ public class Audio {
 		miClip.setMicrosecondPosition(0);
 	}
 
-	public void stop() {
-		miClip.stop();
-	}
-
 	public boolean isMuted() {
 		return (miClip.isRunning());
 	}

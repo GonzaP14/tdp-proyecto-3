@@ -5,8 +5,19 @@ import entidadesLogicas.Juego;
 import entidadesLogicas.Posicion;
 import gui.Ventana;
 
+/**
+ * Class PocionVelociad - Representa un tipo de poción del juego.
+ * @author Grupo N°2: Bruno Mandolesi, Albano Mazzino, Nicolas Messina, Gonzalo Martin Perez.
+ */
 public class PocionVelocidad extends Pocion {
 	
+	private static final Posicion miSpawn = new Posicion(375, 425);
+	
+	/**
+	 * Crea una nueva PocionVelocidad.
+	 * @param miJuego Juego asociado.
+	 * @param imagenes Skins de la Pocion de velocidad.
+	 */
 	public PocionVelocidad(Juego miJuego, String[] imagenes) {
 		velocidadOtorgada = 120;
 		miRepresentacion = new ElementoGrafico(imagenes);
@@ -31,7 +42,7 @@ public class PocionVelocidad extends Pocion {
 	
 	@Override
 	public void reset() {
-		setSpawneo(new Posicion(375, 425));
+		setSpawneo(miSpawn);
 		getMiRepresentacion().crearGrafica(getSpawn());
 		miJuego.getVentana().aparecerEntidad(getMiRepresentacion());
 	}

@@ -2,8 +2,14 @@ package elementos;
 
 import gui.Ventana;
 
+/**
+ * Class Pocion - Representa una pocion del juego.
+ * @author Grupo N°2: Bruno Mandolesi, Albano Mazzino, Nicolas Messina, Gonzalo Martin Perez.
+ */
 public abstract class Pocion extends Elemento {
+	
 	protected int velocidadOtorgada, puntajeOtorgado;
+	
 	@Override
 	protected void iniciarTimer(HiloElemento timer) {
 		timer.start();

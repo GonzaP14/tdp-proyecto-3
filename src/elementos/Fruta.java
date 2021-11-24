@@ -5,7 +5,14 @@ import entidadesLogicas.Juego;
 import entidadesLogicas.Posicion;
 import gui.Ventana;
 
+/**
+ * Class Fruta - Representa una fruta del juego.
+ * @author Grupo N°2: Bruno Mandolesi, Albano Mazzino, Nicolas Messina, Gonzalo Martin Perez.
+ */
 public class Fruta extends Elemento {
+
+	private static final Posicion miSpawn = new Posicion(350, 425);
+	
 	public Fruta(Juego miJuego, String[] imagenes) {
 		puntajeOtorgado = 100;
 		miRepresentacion = new ElementoGrafico(imagenes);
@@ -27,9 +34,10 @@ public class Fruta extends Elemento {
 	
 	@Override
 	public void reset() {
-		setSpawneo(new Posicion(350, 425));
+		setSpawneo(miSpawn);
 		getMiRepresentacion().crearGrafica(getSpawn());
 		miRepresentacion.actualizar(miJuego.getNivel().getNivelActual() - 1);
 		miJuego.getVentana().aparecerEntidad(getMiRepresentacion());
 	}
+	
 }

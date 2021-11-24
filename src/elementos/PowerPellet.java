@@ -6,26 +6,24 @@ import entidadesLogicas.Posicion;
 import gui.Ventana;
 import personajes.Enemigo;
 
+/**
+ * Class PowerPellet - Representa un PowerPellet del juego.
+ * @author Grupo N°2: Bruno Mandolesi, Albano Mazzino, Nicolas Messina, Gonzalo Martin Perez.
+ */
 public class PowerPellet extends Elemento {
-	private static final Posicion[] misSpawns = 
-		{
-			new Posicion(650,575), new Posicion(25,575), new Posicion(650,75), new Posicion(25,75)
-		};
 	
-	public static final int cantidadPowerPellets = misSpawns.length;
+	private static final Posicion[] misSpawns = { new Posicion(650,575), new Posicion(25,575), new Posicion(650,75), new Posicion(25,75)};
 	
+	/**
+	 * Crea un nuevo PowerPellet.
+	 * @param miJuego Juego asociado.
+	 * @param imagenes Skins del PowerPellet.
+	 */
 	public PowerPellet(Juego miJuego, String[] imagenes) {
 		this.miJuego = miJuego;
 		miRepresentacion = new ElementoGrafico(imagenes);
 		puntajeOtorgado = 50;
 	}
-
-	public PowerPellet(Juego miJuego, String[] imagenes, Posicion spawn) {
-        this.miJuego = miJuego;
-        miRepresentacion = new ElementoGrafico(imagenes);
-        puntajeOtorgado = 50;
-        setSpawneo(spawn);
-    }
 		
 	@Override
 	protected void iniciarTimer(HiloElemento timer) {
@@ -41,13 +39,6 @@ public class PowerPellet extends Elemento {
 		miRepresentacion.desaparecer();	
 		miJuego.getGrilla().getBloque(miPosicion.getY() / Ventana.pixelesBloque , miPosicion.getX() / Ventana.pixelesBloque).agregarAListaRemovidos(this);
 	}
-	/**
-	 * Devuelve los posibles spawns de los powerPellet
-	 * @return los posibles spawns
-	 */
-	public static Posicion[] getMisSpawns() {
-		return misSpawns;
-	}
 	
 	@Override
 	public void finPocion() {
@@ -58,6 +49,14 @@ public class PowerPellet extends Elemento {
 				e.setVelocidadActual(e.getVelocidadPredeterminada());
 			}
 		}
+	}
+	
+	/**
+	 * Devuelve los posibles spawns de los powerPellet
+	 * @return los posibles spawns
+	 */
+	public static Posicion[] getMisSpawns() {
+		return misSpawns;
 	}
 	
 }
