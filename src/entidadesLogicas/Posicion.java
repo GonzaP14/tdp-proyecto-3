@@ -5,7 +5,7 @@ public class Posicion {
 	private int x, y, width, height;
 	
 	/**
-	 * 
+	 * Crea una posicion con ancho,alto,x e y
 	 * @param x
 	 * @param y
 	 * @param ancho
@@ -19,7 +19,7 @@ public class Posicion {
 	}
 	
 	/**
-	 * 
+	 * Crea una posicion con x e y
 	 * @param x
 	 * @param y
 	 */

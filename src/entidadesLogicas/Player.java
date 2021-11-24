@@ -19,22 +19,6 @@ public class Player implements Comparable<Player>, Serializable{
 	}
 	
 	/**
-	 * 
-	 * @return Devuelve el nombre del jugador.
-	 */
-	public String getNombre () {
-		return nombre;
-	}
-	
-	/**
-	 * 
-	 * @return Devuelve el puntaje asociado al jugador.
-	 */
-	public Integer getScore() {
-		return score;
-	}
-	
-	/**
 	 * Aumenta el puntaje del jugador en una cantidad de puntos.
 	 * @param puntos La cantidad de puntos a aumentar.
 	 */
@@ -59,4 +43,21 @@ public class Player implements Comparable<Player>, Serializable{
 	public int compareTo(Player jugador) {
 		return score.compareTo(jugador.getScore());
 	}
+	
+	/**
+	 * 
+	 * @return Devuelve el nombre del jugador.
+	 */
+	public String getNombre () {
+		return nombre;
+	}
+	
+	/**
+	 * 
+	 * @return Devuelve el puntaje asociado al jugador.
+	 */
+	public Integer getScore() {
+		return score;
+	}
+	
 }

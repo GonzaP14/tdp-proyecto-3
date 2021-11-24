@@ -20,44 +20,6 @@ public abstract class Entidad {
 	public static final int sentidoIzquierda = 3;
 	public static final int sentidoDerecha = 4;
 	
-	
-	// -------------------------------------------- GETTERS ----------------------------------------
-	/**
-	 * Devuelvo el sentido actual de la entidad 
-	 * @return sentido actual
-	 */
-	public int getSentidoActual() {
-		return sentidoActual;
-	}
-	/**
-	 * Devuelvo la posicion de la entidad
-	 * @return la posicion de la entidad
-	 */
-	public Posicion getPosicion() {
-		return miPosicion;
-	}
-	/**
-	 * Devuelvo el spawn de la entidad
-	 * @return el spawn de la entidad
-	 */
-	public Posicion getSpawn() {
-		return miSpawn;
-	}
-	/**
-	 * Devuelvo la entidad grafica que corresponde a la entidad
-	 * @return la entidad grafica
-	 */
-	public EntidadGrafica getMiRepresentacion() {
-		return miRepresentacion;
-	}
-	/**
-	 * Devuelvo el proximo sentido que va a tener la entidad
-	 * @return el sentido siguiente
-	 */
-	public int getSentidoSiguiente() {
-		return sentidoSiguiente;
-	}
-	
 	// -------------------------------------------- SETTERS ----------------------------------------
 
 	/**
@@ -134,5 +96,42 @@ public abstract class Entidad {
 	 * Resetea la entidad para un cambio de nivel
 	 */
 	public abstract void reset();
+	
+	// -------------------------------------------- GETTERS ----------------------------------------
+		/**
+		 * Devuelvo el sentido actual de la entidad 
+		 * @return sentido actual
+		 */
+		public int getSentidoActual() {
+			return sentidoActual;
+		}
+		/**
+		 * Devuelvo la posicion de la entidad
+		 * @return la posicion de la entidad
+		 */
+		public Posicion getPosicion() {
+			return miPosicion;
+		}
+		/**
+		 * Devuelvo el spawn de la entidad
+		 * @return el spawn de la entidad
+		 */
+		public Posicion getSpawn() {
+			return miSpawn;
+		}
+		/**
+		 * Devuelvo la entidad grafica que corresponde a la entidad
+		 * @return la entidad grafica
+		 */
+		public EntidadGrafica getMiRepresentacion() {
+			return miRepresentacion;
+		}
+		/**
+		 * Devuelvo el proximo sentido que va a tener la entidad
+		 * @return el sentido siguiente
+		 */
+		public int getSentidoSiguiente() {
+			return sentidoSiguiente;
+		}
 	
 }
