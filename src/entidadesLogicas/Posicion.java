@@ -1,12 +1,16 @@
 package entidadesLogicas;
-
-import java.awt.Rectangle;
-
 import gui.Ventana;
 
 public class Posicion {
 	private int x, y, width, height;
 	
+	/**
+	 * 
+	 * @param x
+	 * @param y
+	 * @param ancho
+	 * @param alto
+	 */
 	public Posicion (int x, int y, int ancho, int alto) {
 		this.x = x;
 		this.y = y;
@@ -14,26 +18,49 @@ public class Posicion {
 		this.height = alto;
 	}
 	
+	/**
+	 * 
+	 * @param x
+	 * @param y
+	 */
 	public Posicion(int x , int y) {
 		this(x, y, Ventana.pixelesBloque, Ventana.pixelesBloque);
 	}
 	
-	public int getX() {
-		return x;
-	}
-
+	/**
+	 * Seteo la x de la posicion
+	 * @param x
+	 */
 	public void setX(int x) {
 		this.x = x;
 	}
-
-	public int getY() {
-		return y;
-	}
-
+	
+	/**
+	 * Seteo la Y de la posicion
+	 * @param y
+	 */
 	public void setY(int y) {
 		this.y = y;
 	}
 	
+	/**
+	 * @return la X de la posicion
+	 */
+	public int getX() {
+		return x;
+	}
+	
+	/**
+	 * @return la Y de la posicion
+	 */
+	public int getY() {
+		return y;
+	}
+	
+	/**
+	 * @param destino posicion a la que quiero ir y que va a ser usada para sacar la distancia
+	 * @return el valor de la distancia entre dos posiciones hecho con pitagoras
+	 */
 	public double distanciaEntrePosicionesPitagoras(Posicion destino) {
 		double distanciaX = this.getX() - destino.getX();
 		double distanciaY = this.getY() - destino.getY();
@@ -41,6 +68,10 @@ public class Posicion {
 		return Math.sqrt((Math.pow(distanciaX, 2) + Math.pow(distanciaY, 2)));
 	}
 	
+	/**
+	 * @param destino posicion a la que quiero ir y que va a ser usada para sacar la distancia
+	 * @return una posicion que es de la distancia entre dos posiciones 
+	 */
 	public Posicion distanciaEntrePosiciones(Posicion destino) {	
 		int distanciaX = this.getX() - destino.getX();
 		int distanciaY = this.getY() - destino.getY();
@@ -55,22 +86,37 @@ public class Posicion {
 		return new Posicion (x, y);
 	}
 	
+	/**
+	 * @return la posicion de la esquina arriba a la izquierda
+	 */
 	private Posicion posicionEsquinaArribaIzquierda() {
 		return new Posicion(x,y);
 	}
 	
+	/**
+	 * @return la posicion de la esquina arriba a la derecha
+	 */
 	private Posicion posicionEsquinaArribaDerecha() {
 		return new Posicion(x + width , y);
 	}
 	
+	/**
+	 * @return la posicion de la esquina abajo a la derecha
+	 */
 	private Posicion posicionEsquinaAbajoDerecha() {
 		return new Posicion(x + width , y + height);
 	}
 	
+	/**
+	 * @return la posicion de la esquina abajo a la izquierda
+	 */
 	private Posicion posicionEsquinaAbajoIzquierda() {
 		return new Posicion(x , y + height);
 	}
 	
+	/**
+	 * @return las 4 posibles posiciones a las que puede ir un fantasma 
+	 */
 	public Posicion [] posiblesPosiciones() {
 		Posicion [] direcciones = new Posicion [4];
 		
@@ -81,7 +127,7 @@ public class Posicion {
 		
 		return direcciones;
 	}
-	
+
 	public boolean equals(Posicion posicion) {
 		return x == posicion.getX() && y == posicion.getY();
 	}
@@ -89,7 +135,11 @@ public class Posicion {
 	public String toString(){
 		return "(" + x + "," + y + ")";
 	}
-
+	
+	/**
+	 * @param sentidoEntidad el sentido actual que tiene la entidad
+	 * @return las 4 esquinas de la entidad dependiendo de su sentido
+	 */
 	public Posicion[] getPosicionEsquina(int sentidoEntidad) {
 		Posicion[] posicionEsquina = new Posicion[2];
 		if (sentidoEntidad == Entidad.sentidoIzquierda) {
