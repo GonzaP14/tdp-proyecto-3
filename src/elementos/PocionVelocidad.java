@@ -36,7 +36,6 @@ public class PocionVelocidad extends Pocion {
 	public void finPocion() {
 		miJuego.getPrincipal().setVelocidadActual(100);
 		miJuego.getReloj().setVelocidadTickeo(100);
-		System.out.println(sentidoActual);
 		miJuego.getPrincipal().getMiRepresentacion().finEfectoPocion(sentidoActual + 1);
 	}
 	

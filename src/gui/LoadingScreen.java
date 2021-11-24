@@ -26,7 +26,7 @@ public class LoadingScreen extends JFrame {
 	 * Initialize the contents of the frame.
 	 */
 	private void initialize() {
-		setBounds(300, 300, 515, 250);
+		setBounds(300, 300, 515, 265);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);		
 		getContentPane().setLayout(null);
 	
