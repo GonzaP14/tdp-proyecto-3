@@ -152,7 +152,6 @@ public class Launcher {
 	
 	public static void restart() {
 		miVentana.dispose();
-		lanzarLoadingScreen();
 		
 		if (miJuego.isMuted()) {
 			miJuego.muted();
@@ -170,8 +169,6 @@ public class Launcher {
 		miJuego.aparecerEntidades();
 		miJuego.iniciarRelojes();
 		miJuego.iniciarMusica();
-		
-		miLoadingScreen.setVisible(false);
 	}
 	
 }
