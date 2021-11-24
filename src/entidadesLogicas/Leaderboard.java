@@ -34,22 +34,6 @@ public class Leaderboard implements Serializable{
 		ranking.add(p);
 		actualizarLeaderboard();
 	}
-	
-	/**
-	 * @return Devuelve el ranking actual del juego.
-	 */
-	public String getLeaderboard() {
-		recuperarLeaderboard();
-		ordenar();
-		String toReturn = "<html>";
-		int i = 0;
-		for(Player p : this.ranking) {
-			toReturn += p.getNombre() + " " + p.getScore() + "<br>"; 
-			if( i== 5 ) break;
-			i++;
-		}
-		return toReturn+="</html>";
-	}
 
 	/**
 	 * Ordena el ranking en el orden inverso al que determina la comparacion por defecto entre jugadores.
@@ -91,5 +75,21 @@ public class Leaderboard implements Serializable{
 		catch(Exception e) {
 			e.printStackTrace();
 		}
+	}
+	
+	/**
+	 * @return Devuelve el ranking actual del juego.
+	 */
+	public String getLeaderboard() {
+		recuperarLeaderboard();
+		ordenar();
+		String toReturn = "<html>";
+		int i = 0;
+		for(Player p : this.ranking) {
+			toReturn += p.getNombre() + " " + p.getScore() + "<br>"; 
+			if( i== 5 ) break;
+			i++;
+		}
+		return toReturn+="</html>";
 	}
 }
