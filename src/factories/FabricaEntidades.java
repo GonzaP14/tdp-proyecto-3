@@ -9,7 +9,6 @@ import personajes.Principal;
  * Interfaz para un factory design-pattern, encapsula
  * el comportamiento de la creacion de entidades para el juego.
  * @author Grupo 2 TDP. 2021
- * 
  */
 public interface FabricaEntidades {
 	

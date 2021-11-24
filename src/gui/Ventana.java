@@ -33,6 +33,10 @@ import dominios.DominioJuego;
 import javax.swing.JTextField;
 import javax.swing.JButton;
 
+/**
+ * Class Ventana - Representa la ventana grafica  del juego.
+ * @author Grupo N°2: Bruno Mandolesi, Albano Mazzino, Nicolas Messina, Gonzalo Martin Perez.
+ */
 public class Ventana extends JFrame implements KeyListener {
 	
 	public static final int pixelesBloque = 25;

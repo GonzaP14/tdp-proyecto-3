@@ -6,6 +6,10 @@ import java.awt.event.ActionListener;
 import java.awt.Image;
 import java.awt.event.ActionEvent;
 
+/**
+ * Class SplashScreen - Representa la ventana de seleccion de dominio del juego.
+ * @author Grupo N°2: Bruno Mandolesi, Albano Mazzino, Nicolas Messina, Gonzalo Martin Perez.
+ */
 public class SplashScreen extends JDialog{
 	
 	private static final long serialVersionUID = 1L;

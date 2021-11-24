@@ -5,6 +5,10 @@ import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 
+/**
+ * Class LoadingScreen - Representa la ventana de espera del juego.
+ * @author Grupo N°2: Bruno Mandolesi, Albano Mazzino, Nicolas Messina, Gonzalo Martin Perez.
+ */
 public class LoadingScreen extends JFrame {
 	
 	private static final long serialVersionUID = 1L;
